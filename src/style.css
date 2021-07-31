@@ -1,0 +1,563 @@
+#target, .control-content {
+    width:100%;
+    max-width:100%;
+    margin: 0 auto;
+}
+
+ons-toolbar {
+    height:0px !important;
+    position:fixed !important;
+    bottom:0px !important;
+}
+ons-toolbar.toolbar-hidden {
+    display:none;
+}
+
+ons-toolbar.toolbar-showing {
+    display:inline-block;
+}
+
+.player-controls {
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+
+    justify-content: center;
+    margin: 0 auto;
+}
+
+
+.tracklist hr {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.album-title-text-default {
+    height:100px;
+    font-size:14px;
+}
+.grid-tracklist {
+    font-size:10px;
+    display:inline-block;
+    z-index:100;
+    margin:1em 2em 1em 2em;
+    padding-bottom:70px;
+}
+.bpm-track-button{
+    display:block;
+}
+.main-album-grid {
+    width:100%;
+   
+}
+
+.album-title-text {
+    position:relative;
+    height:0px;
+    top:20px;
+}
+
+.album-background-image {
+    width:1000px;
+    height:1000px;
+    overflow: hidden;
+}
+.album-background-image-wrapper {
+    height:0px;
+}
+/* Album Grid view images and containers */
+.topss {
+    z-index: 100;
+}
+.album {
+    overflow:hidden;
+    /* padding: 5px 5px 5px 5px; */
+}
+img.album-image {
+    width:100%;
+    max-width:100%;
+    box-shadow: 12px 13px 11px -7px rgba(10, 9, 9, 0.11);
+    border:solid;
+    border-left-style: none;
+    border-top-style: outset;
+    border-bottom-style: none;
+    border-right-style: outset;
+    border-color: rgba(255, 233, 233, 0.3);
+    border-width:5px;
+    border-radius:6px;
+}
+
+
+ons-toolbar-button.show-toolbar-button {
+    position:fixed;
+    margin: 0 auto;
+    bottom:50px;
+    right:50px;
+    background-color: white;
+    opacity:0.5;
+
+}
+.handle-container {
+    z-index:50;
+    height:0px;   
+    width:0px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .5;
+}
+.handle {
+    width:40px;
+    height:40px;
+}
+.loading-message {
+    width: 300px;
+    margin: auto auto;
+    margin-top:200px;
+    text-align:center;
+
+}
+.search-bar {
+    display: inline-block;
+}
+.loading-text {
+    margin-top:20px;
+    font-size:1.5em;
+
+}
+.album-cover {
+    overflow:hidden;
+}
+
+.control-bar {
+    display:flex;
+    position:fixed;
+    z-index:100;
+    bottom:0;
+    width:100%;
+    background-color:white;
+    border-width:.5px;
+    border-color: #a5a0a0;
+    box-shadow: 0 -20px 75px -23px rgba(116, 109, 109, 0.8);
+    padding:10px 0px 25px 0px;
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       -moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+         -o-animation: fadein 2s; /* Opera < 12.1 */
+            animation: fadein 2s;
+}
+
+.now-playing-container {
+    border-bottom:solid;
+    border-width: 1px;
+    border-color:#d3d0d0
+}
+.now-playing {
+    display:flex;
+    margin: 0 auto;
+    padding:0px 6px 0px 6px;
+}
+.album-size-slider {
+    width:50%;
+    margin: 0 auto;
+}
+
+.playing-inset > {
+    height:100px;
+    max-height:100px;
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    z-index: 100;
+    max-width: 100%;
+    background-color: white;
+}
+
+.genre-selector {
+    font-size:40px !important;
+    text-align:center;
+    flex-direction: row;
+    display:flex;
+    align-self: center;
+    flex-basis:50%;
+    padding:0px 10px 0px 10px;
+    white-space: normal;
+}
+
+.player-selector {
+    font-size:40px !important;
+    display:flex;
+    text-align:center;
+    flex-direction: row;
+    flex-basis:50%;
+    padding:0px 10px 0px 10px;
+    align-self: center;
+    white-space: normal;
+}
+.player-selector ons-toolbar-button {
+    margin:0 auto;
+}
+.view-and-layout {
+    margin-top:12px;
+    display:flex;
+    flex-wrap: wrap;
+}
+
+button.genre-choice, button.search-button {
+    text-transform: none;
+    border:solid;   
+    border-color: rgb(179, 177, 177);
+    border-width:1px;
+    margin-left:1em;
+    margin: 5px 5px 5px 0px;
+    padding: 2px 12px;
+}
+button.order-select {
+    width:70px;
+}
+.search-clear {
+    background-color: #dcdcdc;
+    border-radius: 5px;
+}
+.view-and-search-selector hr {
+    margin-top:.4rem;
+    margin-bottom:.4rem;
+}
+.view-and-search-selector { 
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+} 
+.view-and-search-selector ons-button {
+    flex-grow: 1;
+}
+
+.view-and-search-selector ons-segment {
+    margin-bottom:20px;
+    min-width:120px;
+}
+
+.codec {
+    color: grey;
+    padding: 0 10px 0 10px;
+    font-size: 8px;
+    font-weight: 800;
+    background: #f3ecec;
+    border-radius: 3px;
+    margin-left: 5px;
+    width:auto;
+    height:12px;
+}
+.now-playing-album-title{
+    font-weight: bold;
+}
+button {
+    min-width:40px !important;
+}
+.custom-den-controls {
+    display:flex;
+    max-width:400px;
+}
+.base-lms-controls {
+    display:flex;
+    padding:0px 10px 0px 10px;
+    max-width:400px;
+}
+ons-toolbar-button.player-control-button {
+    flex-grow:1;
+    padding:2px 15px 2px 15px;
+}
+
+.custom-den-controls .player-control-button {
+    margin-bottom:0px;
+}
+.track-title {
+    font-size: 14px;
+    text-transform: none;
+    line-height: 14px;
+
+}
+.info-i {
+    display:flex;
+    text-transform: none;
+    background-color: lightgray;
+    width: 25px;
+    height: 25px;
+    border-radius: 15px;
+    font-weight:700;
+    font-family: ui-serif;
+    text-align:center;
+}
+.i {
+    display: flex;
+    text-align: center;
+    width: 100%;
+    padding-left: 50%;
+    position: relative;
+    left: -3px;
+}
+
+.player-bar {
+    display:flex;
+    width:100%;
+}
+
+/* Fixes an issue with flipcard not hiding properly in Safari */
+[class*="FlipCard-module_Front"], 
+[class*="FlipCard-module_Back"] {
+    -webkit-backface-visibility:hidden;
+}
+
+.card {
+    color:black;
+}
+
+.now-playing {
+    display:block;
+}
+
+.now-playing > img {
+    max-width:150px;
+    float:right;
+    margin-right:20px;
+    margin-bottom:10px;
+}
+/* .now-playing > hr {
+    width:100%;
+} */
+
+.now-playing .info {
+   width:100%;
+   display:flex;
+}
+.now-playing-meta { 
+    flex-basis:80%;
+}
+.now-playing-meta, .control-buttons {
+    display:flex;
+    flex-direction: column;
+    margin-left: 10px;
+   
+}
+.playing-inset > div {
+    height:100px;
+    flex-basis: 20%;
+}
+
+.album-info {
+    display:flex;    
+}
+.album-info .text-info {
+    flex-basis: 80%;
+    color:black;
+}
+.mini-album-cover {
+    flex-basis:20%;
+    margin:5px 15px 5px 15px;
+}
+.mini-album-cover img {
+    width:auto;
+    height:80px;
+}
+
+
+ons-modal.album-modal {
+    width:300px;
+    height:300px;
+}
+.track-container {
+    display:flex;
+    flex-direction:row;
+}
+.track-container .track-info {
+    display:flex;
+    flex-basis:80%;
+    flex-direction: column;
+}
+.track-info-controls {
+    display:flex;
+}
+.tracklist-album {
+    width:100%;
+    flex-basis:20%;
+}
+.track-container .track-info .track-title {
+    font-size:1.4em;
+}
+.tracklist-album {
+    width:100px;
+    display:inline-block;
+    float:right;
+    transition: 0.2s;
+}
+.list-track {
+    height:100px;
+    border-style:solid;
+    border-color:rgb(177, 174, 174);
+    margin-top: 10px;
+    padding:10px;
+    border-radius:10px;
+    border-width:2px;
+    height:auto;
+
+}
+.track-list-dialog{
+    z-index:100;
+}
+.dialog {
+    height:90%;
+    width:80%;
+}
+.dialog-container {
+    max-height:100%;
+}
+.btn-icon {
+    height:40px;
+}
+.selectors {
+    display:flex;
+    flex-direction: row;
+}
+
+.flip-container {
+    width:100%;
+    height:auto;
+}
+
+.drawer-button {
+    position:fixed;
+    top:30px;
+    right:30px;
+    z-index:100;
+    background: white;
+    opacity: .4;
+    border: solid;
+    border-width: 1px;
+}
+
+.view-and-search-selector span {
+    font-size: .8em;
+
+}
+ons-toolbar-button.view-selector {
+    flex-grow:0;
+    padding:10px 20px 10px 20px;
+    margin:20px;
+}
+ons-toolbar-button.genre-selector {
+    flex-grow:0;
+    padding:10px 20px 10px 20px;
+    margin:0 auto;
+
+}
+ons-toolbar-button.player-selector {
+    flex-grow:0;
+    padding:10px 20px 10px 20px;
+    margin:0 auto;
+}
+button.view-selector.composer-artist {
+    min-width:80px !important;
+}
+.composer-artist segment__button {
+    line-height:1.1em;
+ }
+ segment__button {
+     border-color: rgb(232, 233, 233) !important;
+ }
+ .grid-controls, .search-bar, .view-and-search-selector {
+    margin:0 auto;
+}
+
+.search-bar {
+    display:flex;
+    justify-content: center;
+    padding-bottom:12px;
+    align-self: center;
+    margin: 0 auto;
+}
+
+.track-time{
+    padding:10px 0px 10px 0px;
+    width:80%;
+}
+.player-control-button {
+    margin-bottom:0px;
+    padding:2px 10px 20px 10px;
+
+}
+.now-playing {
+    display:flex;
+    font-size:12px;
+    margin-top:1em;
+    width:98%;
+    margin: 0 auto;
+}
+.now-playing-album-cover {
+    min-width:100px;
+    max-width:100%;
+    float:right;
+    transition: 0.2s;
+    position:relative;
+    flex-basis:10%;
+}
+.now-playing-album-cover ons-button {
+    padding:0px;
+}
+
+.now-playing > img {
+    max-width:25%;
+    float:right;
+    margin-right:4px;
+}
+.slider-volume  {
+   
+    min-width:200px;
+}
+.slider-volume ons-range {
+    width:100%;
+}
+.loading-text {
+    font-size:5em;
+}
+.tracklist-album {
+    width:80px;
+}
+
+.tracklist-artist {
+    font-weight:800;
+    margin-left:10px;
+    color:black;
+}
+.tracklist-album-title {
+    margin-left:10px;
+    font-style:italic;
+    color:black;
+}
+ons-range.track-time {
+    width:50%;
+}
+
+.button--large--cta {
+    background-color:transparent !important;
+}
+.button--large--cta:active {
+    background-color:transparent !important;
+    opacity:0.8 !important;
+}
+.toolbar-activation-zone {
+    height:100px;
+    width:100%;
+    z-index:50;
+    position:fixed;
+    bottom:0;
+}
+@media (max-width:450px){
+    .page__content {
+        margin-top: 35px;
+    }
+    .player-bar {
+        flex-direction:column;
+    }
+  
+}

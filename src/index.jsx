@@ -1,0 +1,297 @@
+import * as React from "react";
+import { render } from 'react-dom';
+import { Player } from './LMS/Player';
+import { LMS } from './LMS/server';
+import { LMSLibrary } from './LMS/Library';
+import { BrowserPlayer } from './BrowserPlayer';
+import { Page, GestureDetector, ProgressCircular } from 'react-onsenui';
+import { LibraryView } from './LibraryView';
+import { ControlBar } from './Toolbar/ControlBar';
+import { Storage } from '@ionic/storage';
+
+import 'onsenui/css/onsenui.css';
+import 'onsenui/css/onsen-css-components.css';
+import './style.css';
+import { cooLog } from "./javascript-utils";
+
+class MediaApp extends React.PureComponent {
+    
+    constructor(props) {
+        super(props);
+        this.state = {
+            targetPlayer : 0,
+            playerInstance : null,
+            elapsedTime: 0,
+            library : null,
+            players_loop : [],
+            fullscreen: false,
+            lastScrollTop :0,
+            showNowPlaying : false,         
+            selectOpen: false,
+            scrollY : 0,
+            scrollStyle : 'toolbar-showing',
+            genreSelected : null,
+            view: 'grid',
+            searchResultsAlbums : null,
+            searchResultsTracks : null,
+            searchResultsContributors : null,
+            LMS :null,
+            storage : null,       
+            storedLayout:null, 
+            orderType: 'alpha',
+            albumsMoveable : false,
+            BrowserPlayer : null,
+        }
+    }
+
+    componentDidMount() {
+
+        this.setupStorage();
+
+        var ipAddress = "http://10.0.0.18:9000";
+        console.log('RUNNING')
+        this.setState({ LMS : new LMS(ipAddress) }, () => {
+            var l = new LMSLibrary(this.state.LMS);
+            l.establishLibrary( (library) => {
+                this.setState({library : library}, () => {
+                    this.loadRandomGenre();
+                });
+            });
+            
+            this.state.LMS.request(["",["serverstatus", "0","20"]], (response) => {
+                this.setState({players_loop: response.result.players_loop});
+            });
+            
+        });   
+    }
+
+    async setupStorage() {
+        const storage = new Storage();
+        await storage.create();
+        this.setState({storage:storage});
+    }
+
+    initBrowserPlayer() {
+
+        var newPlayer = new BrowserPlayer(this.state.LMS);
+        this.setState({
+            BrowserPlayer : newPlayer,
+            targetPlayer: 'This Device',
+            playerInstance : newPlayer,
+            selectOpen : false        
+        });
+    }
+
+    closeSelect() {
+        this.setState({selectOpen : false});
+    }
+    
+
+    setOrderType(type) {
+        var moveable = false;
+        if (type == 'shelf') { moveable = true; }
+        this.setState({
+            orderType:type,
+            albumsMoveable:moveable        
+        });
+    }
+
+
+    switchPlayer(playerName, callback) {
+        
+        this.state.LMS.request(["",["serverstatus", "0","20"]], (response) => {  
+            this.setState({players_loop: response.result.players_loop});
+        });
+        
+        var newPlayer;   
+            
+        if (playerName !== 'This Device') {
+            newPlayer = new Player(
+                this.state.LMS, 
+                playerName);
+            
+            this.setState({
+                targetPlayer: playerName,
+                playerInstance : newPlayer,
+                selectOpen : false        
+            }, () => {
+                if (callback) { callback(); }
+            }
+            
+            );
+        } else {
+            if (this.state.BrowserPlayer) {
+                this.setState({
+                    targetPlayer : 'This Device',
+                    playerInstance : this.state.BrowserPlayer});
+            } else {
+                this.initBrowserPlayer();
+            }
+
+        }
+    }
+
+    checkPlayerInstance(callback) {
+
+        if (! this.state.playerInstance) {
+            this.setState({selectOpen : true});
+            this.waitForPlayerInstance(callback);
+        } else {
+            callback(this.state.playerInstance);
+        }
+    }
+
+    waitForPlayerInstance(callback) {  
+        setTimeout( () => {
+            if ( this.state.playerInstance) {
+                callback(this.state.playerInstance);
+            } else {
+                this.waitForPlayerInstance(callback);
+            }
+        }, 500);
+    }
+
+
+    handleViewChange(name) {
+        this.setState({view:name});
+    }
+
+
+    toggleNowPlaying() {
+        this.setState({showNowPlaying: ! this.state.showNowPlaying });
+    }
+
+
+
+    async handleGenreChange(genre) {
+        var storedLayout = await this.state.storage.get(genre);
+        this.loadAlbumsForGenre(genre, storedLayout);
+        this.setState({view:'grid'})
+
+    }
+
+    storeOrderChange(storedLayout) {
+        this.state.storage.set(this.state.genreSelected, storedLayout);
+        this.setState({storedLayout : storedLayout})
+    }
+    
+
+
+    loadAlbumsForGenre(genreSelected, storedLayout) {
+        this.state.library.getAllAlbumsforGenre( this.state.library.genres[genreSelected].id, () => {            
+            this.setState({
+                genreSelected: genreSelected,        
+                storedLayout:storedLayout,
+            });
+        });
+    }
+
+    loadRandomGenre() {
+        var selection = Math.floor(Math.random() * Object.keys(this.state.library.genres).length);
+        this.handleGenreChange(Object.keys(this.state.library.genres)[selection]);
+    }
+
+
+
+    searchFor (item) {
+        
+        this.setState({view:'search'});
+
+        this.state.library.searchAlbums(item, (result) => {
+            this.setState({searchResultsAlbums: result});
+         });
+
+        this.state.library.searchTracks(item, (result) => {
+            this.setState({searchResultsTracks: result});
+         });
+
+        this.state.library.searchContributors(item, (result) => {
+            this.setState({searchResultsContributors: result});
+         });
+    }
+
+
+
+    render ()  {      
+        return (
+            <div className="main">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
+                    { this.state.players_loop.length > 0 && this.state.library ?
+                        <div>
+                           <ControlBar
+                                scrollStyle={this.state.scrollStyle}
+                                selectOpen={this.state.selectOpen}
+                                targetPlayer={this.state.targetPlayer}
+                                closeSelect={this.closeSelect.bind(this)}
+                                switchPlayer={this.switchPlayer.bind(this)}      
+                                toggleNowPlaying={this.toggleNowPlaying.bind(this)}
+                                playerInstance={this.state.playerInstance}
+                                players={this.state.players_loop ? this.state.players_loop : [] }
+                                library={this.state.library}
+                                handleGenreChange={this.handleGenreChange.bind(this)}
+                                genreSelected={this.state.genreSelected}
+                                LMS={this.state.LMS}
+                                handleViewChange={this.handleViewChange.bind(this)}
+                                searchFor={this.searchFor.bind(this)}
+                                setOrderType={this.setOrderType.bind(this)}
+                            />
+                            
+                            { this.state.library.genres ?
+                                
+                                <div className="library-view">
+                                    <GestureDetector
+                                        onDragUp={() => this.setState({scrollStyle : 'toolbar-hidden' })}
+                                        onDragDown={() => this.setState({scrollStyle : 'toolbar-hidden' })}
+                                        onDoubleTap={() => this.setState({scrollStyle : 'toolbar-showing' }) }>
+                                        
+                                        <LibraryView 
+                                            view={this.state.view}
+                                            genreSelected={this.state.genreSelected}
+                                            playerInstance={this.state.playerInstance}
+                                            library={this.state.library}
+                                            searchResultsAlbums={this.state.searchResultsAlbums}
+                                            searchResultsTracks={this.state.searchResultsTracks}
+                                            searchResultsContributors={this.state.searchResultsContributors} 
+                                            checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                                            LMS={this.state.LMS}
+                                            scrollStyle={this.state.scrollStyle}
+                                            storedLayout={this.state.storedLayout}
+                                            storeOrderChange={this.storeOrderChange.bind(this)}
+                                            orderType={this.state.orderType}
+                                            albumsMoveable={this.state.albumsMoveable}
+                                            />
+
+                                    </GestureDetector>    
+                                </div>
+                                : null
+                            }
+                            
+                        </div> 
+
+                    :
+                    <div className="loading-message"> 
+                        <ProgressCircular />
+                    </div>
+                    }              
+               
+                    <GestureDetector
+                        onTap={() => { 
+                            console.log('tapped');
+                            this.setState({scrollStyle : 'toolbar-showing' });
+                        }   
+                        }>  
+                         <div className="toolbar-activation-zone"></div>
+                    </GestureDetector>
+
+            </div>
+        );
+    }
+}
+render ( 
+    <Page>
+        <MediaApp />
+    </Page>,
+    document.getElementById('root')
+);
+
+export { MediaApp };
