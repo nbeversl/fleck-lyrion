@@ -5,7 +5,6 @@ https://www.openhab.org/addons/bindings/yamahareceiver/
 https://github.com/BirdAPI/yamaha-network-receivers/blob/master/yamaha_xml.py
 
 */
-import '@capacitor-community/http';
 
 class Yamaha {
     

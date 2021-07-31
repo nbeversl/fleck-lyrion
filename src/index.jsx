@@ -4,13 +4,12 @@ import { Player } from './LMS/Player';
 import { LMS } from './LMS/server';
 import { LMSLibrary } from './LMS/Library';
 import { BrowserPlayer } from './BrowserPlayer';
-import { Page, GestureDetector, ProgressCircular } from 'react-onsenui';
+import { GestureDetector, ProgressCircular } from 'react-onsenui';
 import { LibraryView } from './LibraryView';
 import { ControlBar } from './Toolbar/ControlBar';
-import { Storage } from '@ionic/storage';
 
-import 'onsenui/css/onsenui.css';
-import 'onsenui/css/onsen-css-components.css';
+// import 'onsenui/css/onsenui.css';
+// import 'onsenui/css/onsen-css-components.css';
 import './style.css';
 import { cooLog } from "./javascript-utils";
 
@@ -46,11 +45,9 @@ class MediaApp extends React.PureComponent {
 
     componentDidMount() {
 
-        this.setupStorage();
+        // this.setupStorage();
 
-        var ipAddress = "http://10.0.0.18:9000";
-        console.log('RUNNING')
-        this.setState({ LMS : new LMS(ipAddress) }, () => {
+        this.setState({ LMS : new LMS() }, () => {
             var l = new LMSLibrary(this.state.LMS);
             l.establishLibrary( (library) => {
                 this.setState({library : library}, () => {
@@ -59,17 +56,18 @@ class MediaApp extends React.PureComponent {
             });
             
             this.state.LMS.request(["",["serverstatus", "0","20"]], (response) => {
+                console.log(response)
                 this.setState({players_loop: response.result.players_loop});
             });
             
         });   
     }
 
-    async setupStorage() {
-        const storage = new Storage();
-        await storage.create();
-        this.setState({storage:storage});
-    }
+    // async setupStorage() {
+    //     const storage = new Storage();
+    //     await storage.create();
+    //     this.setState({storage:storage});
+    // }
 
     initBrowserPlayer() {
 
@@ -164,15 +162,16 @@ class MediaApp extends React.PureComponent {
 
 
     async handleGenreChange(genre) {
-        var storedLayout = await this.state.storage.get(genre);
+        // var storedLayout = await this.state.storage.get(genre);
+        var storedLayout = null;
         this.loadAlbumsForGenre(genre, storedLayout);
         this.setState({view:'grid'})
 
     }
 
     storeOrderChange(storedLayout) {
-        this.state.storage.set(this.state.genreSelected, storedLayout);
-        this.setState({storedLayout : storedLayout})
+        // this.state.storage.set(this.state.genreSelected, storedLayout);
+        // this.setState({storedLayout : storedLayout})
     }
     
 
@@ -215,6 +214,8 @@ class MediaApp extends React.PureComponent {
     render ()  {      
         return (
             <div className="main">
+                <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css"></link>
+                <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"></link>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
                     { this.state.players_loop.length > 0 && this.state.library ?
                         <div>
@@ -288,10 +289,5 @@ class MediaApp extends React.PureComponent {
     }
 }
 render ( 
-    <Page>
-        <MediaApp />
-    </Page>,
-    document.getElementById('root')
+    <MediaApp />, document.getElementById('root')
 );
-
-export { MediaApp };

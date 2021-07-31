@@ -74,7 +74,7 @@ class AlbumGrid extends React.PureComponent {
         }
     }
 
-    reArrange(initial:false) {
+    reArrange(initial) {
 
         if  ( initial || this.state.orderType != this.props.orderType) {
 
@@ -82,19 +82,19 @@ class AlbumGrid extends React.PureComponent {
 
                 switch (this.state.orderType) {
 
-                    case 'shelf':
-                        if ( this.props.storedLayout ) {
-                            this.setState({
-                                cols: this.props.storedLayout.cols,
+                    // case 'shelf':
+                    //     if ( this.props.storedLayout ) {
+                    //         this.setState({
+                    //             cols: this.props.storedLayout.cols,
                             
-                            }, () => {
-                                this.makeLayout(this.props.storedLayout.order)
-                            });
-                        } else {
-                            var order = Object.keys(this.state.albumDict);
-                            this.makeLayout(order);
-                        }      
-                        break;
+                    //         }, () => {
+                    //             this.makeLayout(this.props.storedLayout.order)
+                    //         });
+                    //     } else {
+                    //         var order = Object.keys(this.state.albumDict);
+                    //         this.makeLayout(order);
+                    //     }      
+                    //     break;
     
                     case 'alpha':              
 

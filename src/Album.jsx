@@ -97,7 +97,7 @@ class Album extends React.Component {
         var backgroundImageStyle = {
             WebkitFilter: 'blur(10px) saturate(2) opacity(.3)',
             filter:'blur(10px) saturate(2) opacity(.3)',
-            backgroundImage: this.state.album ? "url('"+this.props.LMS.IP+'/music/'+this.state.album.artwork_track_id+"/cover.jpg')" : '',
+            backgroundImage: this.state.album ? "url('/music/"+this.state.album.artwork_track_id+"/cover.jpg')" : '',
             backgroundSize : 'cover',
            
         }
