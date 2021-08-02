@@ -3,6 +3,7 @@
     max-width:100%;
     margin: 0 auto;
     display:flex;
+    align-items: center;
 }
 ons-dialog .dialog { position:fixed !important;}
 body {
@@ -84,13 +85,10 @@ ons-toolbar.toolbar-showing {
 img.album-image {
     width:100%;
     max-width:100%;
-    box-shadow: 12px 13px 11px -7px rgba(10, 9, 9, 0.11);
-    border:solid;
     border-left-style: none;
     border-top-style: outset;
     border-bottom-style: none;
     border-right-style: outset;
-    border-color: rgba(255, 233, 233, 0.3);
     border-width:5px;
     border-radius:6px;
 }
@@ -125,9 +123,7 @@ ons-toolbar-button.show-toolbar-button {
     text-align:center;
 
 }
-.search-bar {
-    display: inline-block;
-}
+
 .loading-text {
     margin-top:20px;
     font-size:1.5em;
@@ -144,12 +140,8 @@ ons-toolbar-button.show-toolbar-button {
     bottom:0;
     width:100%;
     background-color:white;
+    box-shadow: -1px -5px 16px #888888;
     padding:10px 0px 25px 0px;
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-       -moz-animation: fadein 2s; /* Firefox < 16 */
-        -ms-animation: fadein 2s; /* Internet Explorer */
-         -o-animation: fadein 2s; /* Opera < 12.1 */
-            animation: fadein 2s;
 }
 
 .now-playing {
@@ -197,10 +189,12 @@ ons-toolbar-button.show-toolbar-button {
 .player-selector ons-toolbar-button {
     margin:0 auto;
 }
-.view-and-layout {
-    margin-top:12px;
+.layout-and-search {
     display:flex;
     flex-wrap: wrap;
+    padding:0px 20px 0px 20px;
+    align-items: center;
+
 }
 
 button.genre-choice, button.search-button {
@@ -302,7 +296,6 @@ ons-toolbar-button.player-control-button {
 
 .player-bar {
     display:flex;
-    width:100%;
 }
 
 /* Fixes an issue with flipcard not hiding properly in Safari */
@@ -440,23 +433,19 @@ ons-modal.album-modal {
 
 .view-and-search-selector span {
     font-size: .8em;
+}
 
-}
-ons-toolbar-button.view-selector {
-    flex-grow:0;
-    padding:10px 20px 10px 20px;
-    margin:20px;
-}
-ons-toolbar-button.genre-selector {
+.genre-selector {
     flex-grow:0;
     padding:10px 20px 10px 20px;
     margin:0 auto;
+    white-space: nowrap;
 
 }
-ons-toolbar-button.player-selector {
+.player-selector {
     flex-grow:0;
     padding:10px 20px 10px 20px;
-    margin:0 auto;
+    white-space: nowrap;
 }
 button.view-selector.composer-artist {
     min-width:80px !important;
@@ -468,16 +457,15 @@ button.view-selector.composer-artist {
      border-color: rgb(232, 233, 233) !important;
      padding: 0px 5px 0px 5px; 
  }
- .grid-controls, .search-bar, .view-and-search-selector {
+ /* .grid-controls, .view-and-search-selector {
     margin:0 auto;
-}
+} */
 
 .search-bar {
     display:flex;
     justify-content: center;
-    padding-bottom:12px;
     align-self: center;
-    margin: 0 auto;
+    padding:0px 20px 0px 20px;
 }
 
 .track-time{
@@ -555,7 +543,7 @@ ons-range.track-time {
     position:fixed;
     bottom:0;
 }
-@media (max-width:450px){
+@media (max-width:800px){
     .page__content {
         margin-top: 35px;
     }
@@ -564,6 +552,7 @@ ons-range.track-time {
     }
     #target, .control-content {
         flex-direction:column;
+
     }
 
 }

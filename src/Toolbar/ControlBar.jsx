@@ -63,12 +63,7 @@ class ControlBar extends React.Component {
                             genreSelected={this.props.genreSelected}
                             />
                             {  this.props.genreSelected ?
-                                <div className="view-and-layout">
-                                    {/* <ViewSelector 
-                                        showDrawer={this.props.showDrawer}
-                                        searchFor={this.props.searchFor}
-                                        handleViewChange={this.props.handleViewChange}
-                                    /> */}
+                                <div className="layout-and-search">
                                     <div className="grid-controls">
                                         <Segment index={1}>
                                             <button className="order-select"
@@ -85,11 +80,11 @@ class ControlBar extends React.Component {
                                             </button>
                                         </Segment>
                                     </div>
-                                    
+                                    <SearchBar searchFor={this.props.searchFor} />
                                 </div>
                                 : null
                             }
-                        <SearchBar searchFor={this.props.searchFor} />                    
+                               
                     </div>    
                 </div>
             </Toolbar>
