@@ -66,23 +66,23 @@ class PlayerControls extends React.Component {
                         <div className="custom-den-controls">
 
                             <ToolbarButton className="player-control-button"  onClick={this.state.yamaha.togglePower}>
-                                <img className={"btn-icon"} src={"assets/icon/power.png"}/> 
+                                <img className={"btn-icon"} src={"./html/icon/power.png"}/> 
                             </ToolbarButton>
                             
                             <ToolbarButton className="player-control-button" onClick={this.state.yamaha.volumeDown}>
-                                <img className={"btn-icon"} src={"assets/icon/minus.png"}/> 
+                                <img className={"btn-icon"} src={"./html/icon/minus.png"}/> 
                             </ToolbarButton>
                             
                             <ToolbarButton className="player-control-button" onClick={this.state.yamaha.volumeUp}>
-                                <img className={"btn-icon"} src={"assets/icon/plus.png"}/> 
+                                <img className={"btn-icon"} src={"./html/icon/plus.png"}/> 
                             </ToolbarButton>                                        
                             
                             <ToolbarButton className="player-control-button"  onClick={this.state.yamaha.setAppleTV}>
-                                <img className={"btn-icon"} src={"assets/icon/apple.png"}/> 
+                                <img className={"btn-icon"} src={"./html/icon/apple.png"}/> 
                             </ToolbarButton>                                     
 
                             <ToolbarButton className="player-control-button"  onClick={this.state.yamaha.setMediaCenter}>
-                                <img className={"btn-icon"} src={"assets/icon/bug.png"}/>  
+                                <img className={"btn-icon"} src={"./html/icon/bug.png"}/>  
                             </ToolbarButton>
                         </div>
                         :       
@@ -101,28 +101,28 @@ class PlayerControls extends React.Component {
                             }}> 
                             
                             {  ! this.state.currentPlayerPlaying ? 
-                                <img className={"btn-icon"} src={"assets/icon/pause.png"} />
+                                <img className={"btn-icon"} src={"./html/icon/pause.png"} />
                                 :
-                                <img className={"btn-icon"} src={"assets/icon/play.png"} />
+                                <img className={"btn-icon"} src={"./html/icon/play.png"} />
                             }   
                         </ToolbarButton>
                         
                         <ToolbarButton
                             onClick={ this.props.playerInstance.skipBackward } >
-                                <img className={"btn-icon"} src={"assets/icon/10sec_backward-512.png"}/> 
+                                <img className={"btn-icon"} src={"./html/icon/10sec_backward-512.png"}/> 
                         </ToolbarButton> 
                         
                         <ToolbarButton
                             onClick={ this.props.playerInstance.skipForward } >
-                                <img className={"btn-icon"} src={"assets/icon/10sec_forward-512.png"}/> 
+                                <img className={"btn-icon"} src={"./html/icon/10sec_forward-512.png"}/> 
                         </ToolbarButton> 
 
                         <ToolbarButton className="player-control-button" onClick={this.props.playerInstance ? this.handleBackButton.bind(this) : null}>
-                            <img className={"btn-icon"} src={"assets/icon/previous.png"} />
+                            <img className={"btn-icon"} src={"./html/icon/previous.png"} />
                         </ToolbarButton>
 
                         <ToolbarButton className="player-control-button" onClick={this.props.playerInstance ? this.props.playerInstance.nextTrack : null}>
-                            <img className={"btn-icon"} src={"assets/icon/next.png"} />
+                            <img className={"btn-icon"} src={"./html/icon/next.png"} />
                         </ToolbarButton>
                        
                     </div>                      

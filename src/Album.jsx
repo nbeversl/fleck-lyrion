@@ -2,7 +2,6 @@ import * as React from "react";
 import TrackListScrolling from './Track/TrackListScrolling'
 import { ProgressCircular, Button, Dialog } from 'react-onsenui';
 
-
 class Album extends React.Component {
 
     constructor(props) {
@@ -175,4 +174,4 @@ class Album extends React.Component {
             </div>         
     )}
 }
-export default Album;
+export { Album };

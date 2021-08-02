@@ -1,5 +1,5 @@
 import * as React from "react";
-import Album from './Album';
+import { Album } from './Album';
 import { Button, ProgressCircular } from 'react-onsenui';
 
 class TrackList extends React.Component {
@@ -55,7 +55,7 @@ class TrackWithSourceAlbum extends React.Component {
 
                             <div className="">
                                 <Button onClick={ () => { this.playTrack(track.id) } } >
-                                    <img className={"btn-icon"} src={"assets/icon/play.png"} />
+                                    <img className={"btn-icon"} src={"./html/icon/play.png"} />
                                 </Button>
                            
                                 <a href={"/music/"+track.id+"/download/"}>↓</a>

@@ -7,13 +7,9 @@ import { BrowserPlayer } from './BrowserPlayer';
 import { GestureDetector, ProgressCircular } from 'react-onsenui';
 import { LibraryView } from './LibraryView';
 import { ControlBar } from './Toolbar/ControlBar';
-
-// import 'onsenui/css/onsenui.css';
-// import 'onsenui/css/onsen-css-components.css';
 import './style.css';
-import { cooLog } from "./javascript-utils";
 
-class MediaApp extends React.PureComponent {
+class MediaApp extends React.Component {
     
     constructor(props) {
         super(props);
@@ -74,7 +70,7 @@ class MediaApp extends React.PureComponent {
         var newPlayer = new BrowserPlayer(this.state.LMS);
         this.setState({
             BrowserPlayer : newPlayer,
-            targetPlayer: 'This Device',
+            targetPlayer: 'Browser',
             playerInstance : newPlayer,
             selectOpen : false        
         });
@@ -103,7 +99,7 @@ class MediaApp extends React.PureComponent {
         
         var newPlayer;   
             
-        if (playerName !== 'This Device') {
+        if (playerName !== 'Browser') {
             newPlayer = new Player(
                 this.state.LMS, 
                 playerName);
@@ -120,7 +116,7 @@ class MediaApp extends React.PureComponent {
         } else {
             if (this.state.BrowserPlayer) {
                 this.setState({
-                    targetPlayer : 'This Device',
+                    targetPlayer : 'Browser',
                     playerInstance : this.state.BrowserPlayer});
             } else {
                 this.initBrowserPlayer();
@@ -216,7 +212,6 @@ class MediaApp extends React.PureComponent {
             <div className="main">
                 <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css"></link>
                 <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"></link>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0"/>
                     { this.state.players_loop.length > 0 && this.state.library ?
                         <div>
                            <ControlBar
@@ -277,7 +272,6 @@ class MediaApp extends React.PureComponent {
                
                     <GestureDetector
                         onTap={() => { 
-                            console.log('tapped');
                             this.setState({scrollStyle : 'toolbar-showing' });
                         }   
                         }>  

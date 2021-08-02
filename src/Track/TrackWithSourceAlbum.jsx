@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ToolbarButton , Card } from 'react-onsenui';
 import '../style.css';
-import Album from '../Album';
+import { Album } from '../Album';
 
 class TrackWithSourceAlbum extends React.Component {
     constructor(props) {
@@ -37,7 +37,7 @@ class TrackWithSourceAlbum extends React.Component {
                                 <span><b>Track</b>: {track.tracknum} </span>
                             </div>
                             <ToolbarButton onClick={ () => { this.playTrack(track.id) } } >
-                                <img className={"btn-icon"} src={"assets/icon/play.png"} />
+                                <img className={"btn-icon"} src={"/html/icon/play.png"} />
                             </ToolbarButton>
 
                         </div>

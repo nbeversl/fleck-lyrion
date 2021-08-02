@@ -1,5 +1,6 @@
 import React from 'react';
-import { Popover,  List, ListItem, ToolbarButton } from 'react-onsenui';
+import { ActionSheet,  List, ListItem, ToolbarButton } from 'react-onsenui';
+import { Dialog,  List, ListItem, ToolbarButton } from 'react-onsenui';
 
 class PlayerSelector extends React.Component {
     constructor(props) {
@@ -22,7 +23,7 @@ class PlayerSelector extends React.Component {
                     
                 </ToolbarButton>
 
-                <Popover 
+                <Dialog 
                     isOpen={this.state.optionsShowing}
                     onCancel={() => this.setState({optionsShowing: false})}
                     getTarget={() => this.state.target}
@@ -30,7 +31,7 @@ class PlayerSelector extends React.Component {
                     <div style={{textAlign: 'center', opacity: 0.5}}>
                     
                     <List 
-                        dataSource={[{name:'This Device'}].concat(...this.props.players)}
+                        dataSource={[{name:'Browser'}].concat(...this.props.players)}
                         renderRow={(row, idx) => (
                         <ListItem
                             onClick={(e) => {
@@ -52,7 +53,7 @@ class PlayerSelector extends React.Component {
                    
                     </div>
                        
-                 </Popover>
+                 </Dialog>
             </div>
         )
     }

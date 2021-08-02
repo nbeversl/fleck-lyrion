@@ -61,14 +61,16 @@ class LMSLibrary {
     }
 
     getAlbumFromID(albumID, callback) {
+        if (albumID) {
         
-        this.LMS.request(["",["albums","0","100","album_id:"+albumID.toString(), "tags:ljaS"]], (r) => {
+                this.LMS.request(["",["albums","0","100","album_id:"+albumID.toString(), "tags:ljaS"]], (r) => {
             
             if (r.result.albums_loop) {
                 callback(r.result.albums_loop[0]);
             } 
             
         });
+        }
     }
 
     searchTracks(searchString, callback) {

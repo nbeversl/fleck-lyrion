@@ -5,7 +5,7 @@ module.exports = {
     entry: "./src/index.jsx",
     output: {
         filename: "main.js",
-        path : "/Users/nathanielbeversluis/Desktop",
+        path : "/Volumes/Media ( Main \)/lms-boulez-theme-master/",
         // path: path.resolve(__dirname, "dist")
     },
     resolve: {

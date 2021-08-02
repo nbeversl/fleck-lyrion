@@ -1,24 +1,9 @@
 import * as React from "react";
-import Album from '../Album';
+import { Album } from '../Album';
 import { GestureDetector } from 'react-onsenui';
-import { Responsive, WidthProvider } from 'react-grid-layout';
+import GridLayout from 'react-grid-layout';
 
-const GridResponsiveAlbum = React.forwardRef(( {style, className, ...props}, ref) => {
-    return (
-        <div style={{ ...style}} className={className} ref={ref}>
-            <Album
-                moveable={props.moveable}
-                album={props.album}
-                checkPlayerInstance={props.checkPlayerInstance}
-                library={props.library}
-                LMS={props.LMS}
-                moveToTop={props.moveToTop}        
-            />
-        </div>  
-    );
-  });
-
-class AlbumGrid extends React.PureComponent {
+class AlbumGrid extends React.Component {
     
     constructor(props) {
         super(props)
@@ -37,7 +22,8 @@ class AlbumGrid extends React.PureComponent {
     componentDidMount() {
 
         var albumDict = makeAlbumDict(this.props.albumList);
-          this.setState({
+       
+        this.setState({
             albumDict:albumDict,
             genre: this.props.genre,
             orderType:this.props.orderType,
@@ -48,7 +34,7 @@ class AlbumGrid extends React.PureComponent {
     }
 
     handleWidthChange(containerWidth, margin, cols, containerPadding) {
-        this.setState({albumSize : ( containerWidth / cols )  })
+        // this.setState({albumSize : ( containerWidth / cols )  })
     }
 
     componentDidUpdate() {
@@ -82,19 +68,19 @@ class AlbumGrid extends React.PureComponent {
 
                 switch (this.state.orderType) {
 
-                    // case 'shelf':
-                    //     if ( this.props.storedLayout ) {
-                    //         this.setState({
-                    //             cols: this.props.storedLayout.cols,
+                    case 'shelf':
+                        if ( this.props.storedLayout ) {
+                            this.setState({
+                                cols: this.props.storedLayout.cols,
                             
-                    //         }, () => {
-                    //             this.makeLayout(this.props.storedLayout.order)
-                    //         });
-                    //     } else {
-                    //         var order = Object.keys(this.state.albumDict);
-                    //         this.makeLayout(order);
-                    //     }      
-                    //     break;
+                            }, () => {
+                                this.makeLayout(this.props.storedLayout.order)
+                            });
+                        } else {
+                            var order = Object.keys(this.state.albumDict);
+                            this.makeLayout(order);
+                        }      
+                        break;
     
                     case 'alpha':              
 
@@ -149,7 +135,7 @@ class AlbumGrid extends React.PureComponent {
 
             row.push( 
               <div key={album_id}>
-                <GridResponsiveAlbum  
+                <Album  
                     album={this.state.albumDict[album_id]}
                     checkPlayerInstance={this.props.checkPlayerInstance}
                     library={this.props.library}
@@ -183,7 +169,7 @@ class AlbumGrid extends React.PureComponent {
         
                 row.push( 
                   <div key={album_id}>
-                        <GridResponsiveAlbum   
+                        <Album   
                           album={this.state.albumDict[album_id]}
                           checkPlayerInstance={this.props.checkPlayerInstance}
                           library={this.props.library}
@@ -251,41 +237,41 @@ class AlbumGrid extends React.PureComponent {
 
     render() {
       
-        const ResponsiveGridLayout = WidthProvider(Responsive);
-
-          return ( 
+          return (  
                 <div className={"main-album-grid "+ this.props.scrollStyle} >
-                    {this.props.number}
-                    <a name="albums"></a>
-                    { this.state.layout  ? 
+                    { this.state.layout  ?
             
                         <GestureDetector 
                             onPinchIn={this.handlePinchIn.bind(this)}
-                            onPinchOut={this.handlePinchOut.bind(this)}>
-                            <ResponsiveGridLayout 
-                                breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
-                                cols={{lg: this.state.cols, md: this.state.cols, sm: this.state.cols, xs: this.state.cols, xxs: this.state.cols}}
-                                className="layout"
-                                compactType={"horizontal"}
-                                draggableHandle={".handle"}
-                                rowHeight={this.state.albumSize}
-                                layouts={{lg:this.state.layout, md:this.state.layout, sm:this.state.layout, xs: this.state.layout, xxs:this.state.layout}}
-                                onDragStop={this.handleLayoutChange.bind(this) }
-                                onWidthChange={ this.handleWidthChange.bind(this)}
-                                >                    
-                                {this.state.row}
-                            </ResponsiveGridLayout>
+                            onPinchOut={this.handlePinchOut.bind(this)}
+                            >
+                                
+                            <GridLayout 
+                                 breakpoints={{lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0}}
+                                 cols={this.state.cols}
+                                 className="layout"
+                                 width={1000}
+                                 compactType={"horizontal"}
+                                 draggableHandle={".handle"}
+                                 rowHeight={this.state.albumSize}
+                                 layout={this.state.layout}
+                                 onDragStop={this.handleLayoutChange.bind(this) }
+                                  onWidthChange={ this.handleWidthChange.bind(this)}
+                                 >                    
+                                 {this.state.row}
+                             </GridLayout>
                         </GestureDetector>
                       
-                      :null
+                      : null
                     }
-                </div>   
+            </div>  
         )
     }
 }
 
 function makeAlbumDict(albums) {
     var albumDict = {};
+    if (! albums) { return {} }
     albums.forEach( (album) => {
         albumDict[album.id] = album;
     })

@@ -64,11 +64,11 @@ class ControlBar extends React.Component {
                             />
                             {  this.props.genreSelected ?
                                 <div className="view-and-layout">
-                                    <ViewSelector 
+                                    {/* <ViewSelector 
                                         showDrawer={this.props.showDrawer}
                                         searchFor={this.props.searchFor}
                                         handleViewChange={this.props.handleViewChange}
-                                    />
+                                    /> */}
                                     <div className="grid-controls">
                                         <Segment index={1}>
                                             <button className="order-select"
