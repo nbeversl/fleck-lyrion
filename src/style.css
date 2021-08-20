@@ -1,23 +1,10 @@
-#target, .control-content {
-    width:100%;
-    max-width:100%;
-    margin: 0 auto;
-    display:flex;
-    align-items: center;
-}
-ons-dialog .dialog { position:fixed !important;}
-body {
-   overflow:auto;
-}
 
-.dialog {
-    position:fixed;
-}
 ons-toolbar {
     height:0px !important;
     position:fixed !important;
     bottom:0px !important;
 }
+
 ons-toolbar.toolbar-hidden {
     display:none;
 }
@@ -25,25 +12,27 @@ ons-toolbar.toolbar-hidden {
 ons-toolbar.toolbar-showing {
     display:inline-block;
 }
+
 .react-grid-item {
     overflow:hidden;}
+
 .player-controls {
     display:flex;
     flex-direction: row;
     flex-wrap:wrap;
-
     justify-content: center;
     margin: 0 auto;
 }
-
 
 .tracklist hr {
     margin-top:5px;
     margin-bottom:5px;
 }
+
 .album-title-text-default {
     height:100px;
     font-size:14px;
+    color:black;
 }
 .grid-tracklist {
     font-size:10px;
@@ -52,20 +41,26 @@ ons-toolbar.toolbar-showing {
     margin:1em 2em 1em 2em;
     padding-bottom:70px;
 }
+
 .bpm-track-button{
     display:block;
 }
 .main-album-grid {
-    width:100%;
-   
+    width:100%;   
 }
 
 .album-title-text {
     position:relative;
-    height:0px;
     top:20px;
+    color:black;
 }
 
+.album-text-info {
+    display:flex;
+    flex-direction: column;
+    border:solid;
+    border-width:.5px;
+}
 .album-background-image {
     width:1000px;
     height:1000px;
@@ -74,25 +69,20 @@ ons-toolbar.toolbar-showing {
 .album-background-image-wrapper {
     height:0px;
 }
-/* Album Grid view images and containers */
-.topss {
-    z-index: 100;
-}
+
+/* 
+    Album Grid view images and containers 
+*/
+
 .album {
     overflow:hidden;
-    /* padding: 5px 5px 5px 5px; */
 }
 img.album-image {
     width:100%;
     max-width:100%;
-    border-left-style: none;
-    border-top-style: outset;
-    border-bottom-style: none;
-    border-right-style: outset;
     border-width:5px;
     border-radius:6px;
 }
-
 
 ons-toolbar-button.show-toolbar-button {
     position:fixed;
@@ -134,14 +124,23 @@ ons-toolbar-button.show-toolbar-button {
 }
 
 .control-bar {
+    visibility: visible;
     display:flex;
     position:fixed;
-    z-index:100;
+    z-index:200;
+    opacity: .95;
     bottom:0;
     width:100%;
     background-color:white;
     box-shadow: -1px -5px 16px #888888;
     padding:10px 0px 25px 0px;
+    
+}
+
+.control-bar.hidden {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s .5s, opacity .5s linear;
 }
 
 .now-playing {
@@ -189,12 +188,14 @@ ons-toolbar-button.show-toolbar-button {
 .player-selector ons-toolbar-button {
     margin:0 auto;
 }
+.player-selector-dialog .dialog {
+    height: auto !important;
+}
 .layout-and-search {
     display:flex;
     flex-wrap: wrap;
     padding:0px 20px 0px 20px;
     align-items: center;
-
 }
 
 button.genre-choice, button.search-button {
@@ -298,12 +299,6 @@ ons-toolbar-button.player-control-button {
     display:flex;
 }
 
-/* Fixes an issue with flipcard not hiding properly in Safari */
-[class*="FlipCard-module_Front"], 
-[class*="FlipCard-module_Back"] {
-    -webkit-backface-visibility:hidden;
-}
-
 .card {
     color:black;
 }
@@ -318,9 +313,6 @@ ons-toolbar-button.player-control-button {
     margin-right:20px;
     margin-bottom:10px;
 }
-/* .now-playing > hr {
-    width:100%;
-} */
 
 .now-playing .info {
    width:100%;
@@ -401,7 +393,6 @@ ons-modal.album-modal {
     z-index:100;
 }
 .dialog {
-    height:90%;
     width:80%;
 }
 .dialog-container {
@@ -445,7 +436,7 @@ ons-modal.album-modal {
 .player-selector {
     flex-grow:0;
     padding:10px 20px 10px 20px;
-    white-space: nowrap;
+   white-space: nowrap;
 }
 button.view-selector.composer-artist {
     min-width:80px !important;
@@ -457,9 +448,7 @@ button.view-selector.composer-artist {
      border-color: rgb(232, 233, 233) !important;
      padding: 0px 5px 0px 5px; 
  }
- /* .grid-controls, .view-and-search-selector {
-    margin:0 auto;
-} */
+
 
 .search-bar {
     display:flex;
@@ -539,7 +528,7 @@ ons-range.track-time {
 .toolbar-activation-zone {
     height:100px;
     width:100%;
-    z-index:50;
+    z-index:5000;
     position:fixed;
     bottom:0;
 }
@@ -552,7 +541,6 @@ ons-range.track-time {
     }
     #target, .control-content {
         flex-direction:column;
-
     }
 
 }

@@ -35,13 +35,14 @@ class PlayerControls extends React.Component {
     }
    
     render() {
- 
         return (
         
             <div className="player-bar">
                 <div className="selectors">
                     <PlayerSelector 
-                        open={this.props.selectOpen}
+                        togglePlayerSelect={this.props.togglePlayerSelect}
+                        selectOpen={this.props.selectOpen}
+                        openSelect={this.props.openSelect}
                         players={this.props.players} 
                         selectedPlayer={this.props.targetPlayer}
                         switchPlayer={this.props.switchPlayer}
@@ -54,6 +55,7 @@ class PlayerControls extends React.Component {
                         screenWidth={this.state.screenWidth}
                         handleGenreChange={this.props.handleGenreChange.bind(this)}
                         genreSelected={this.props.genreSelected}
+                        controlBarHeight={this.props.controlBarHeight}
                     />
                     : null
                     }

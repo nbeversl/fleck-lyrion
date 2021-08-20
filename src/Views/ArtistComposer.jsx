@@ -28,7 +28,6 @@ class ArtistComposer extends React.Component {
                         albumList={this.props.albumList} 
                         order={order}
                         orderType={'alpha'}
-                        scrollStyle={this.props.scrollStyle}
                         library={this.props.library} 
                         checkPlayerInstance={this.props.checkPlayerInstance}
                         LMS={this.props.LMS}

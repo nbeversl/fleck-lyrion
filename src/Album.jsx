@@ -10,6 +10,7 @@ class Album extends React.Component {
             discs : null,
             modalOpen : false,
             album: null,
+            height:0,
 
         }
     }
@@ -27,6 +28,9 @@ class Album extends React.Component {
 
             });
         }
+        // const height = this.divElement.clientHeight;
+        // this.setState({ height });
+    
     }
 
     componentDidUpdate() {
@@ -88,7 +92,6 @@ class Album extends React.Component {
 
     handleClose() {
         this.setState({modalOpen : false});
-
     }
    
     render() {   
@@ -105,10 +108,13 @@ class Album extends React.Component {
             width: this.props.albumWidth / 5,
             height: this.props.albumWidth / 5,
         }
-  
+        const DialogStyle = {
+            height: 500,
+        }
+        console.log(DialogStyle)
 
         return (
-            <div className="album">
+            <div className="album" ref={ (divElement) => {this.divElement = divElement}} >
                 { this.state.album ? 
                     <div >      
                                                      
@@ -121,24 +127,24 @@ class Album extends React.Component {
                                 null
                               } 
                             { this.state.album.artwork_track_id === undefined ? 
-                                <div className="album-title-text">{this.state.album.album}</div>
-                                :
-                                null
-                            }                              
+                                <div className="album-text-info">
+                                    <div className="album-title-text">{this.state.album.album}</div>
+                                    <div className="album-artist-text">{this.state.album.artist}</div>
+                                </div>
+                                :                        
                                 <img
                                     src={this.props.LMS.albumArtwork(this.state.album.artwork_track_id)}
-                                    className="album-image"
-                                />          
-
+                                    className="album-image" />          
+                            }
                         </Button>
                         { this.state.modalOpen ? 
-                        <Dialog
+                        <Dialog 
                             isOpen={true}
                             animation={'none'}
                             onCancel={this.handleClose.bind(this)}
-                            cancelable
+                            isCancelable={true}
                             >
-                           <div>
+                           <div style={DialogStyle}>
                           
                                 { this.state.discs ?
                                     <div className="tracklist">

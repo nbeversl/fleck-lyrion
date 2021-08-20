@@ -11,7 +11,12 @@ class ControlBar extends React.Component {
         super(props)
         this.state = {
             playerStatus: null,
+            height: 0,
         }
+    }
+    componentDidMount() {
+        const height = this.divElement.clientHeight;
+        this.setState({ height });
     }
 
     handleSeekChange (event)  {
@@ -35,9 +40,10 @@ class ControlBar extends React.Component {
     render() {
         return (
         
-            <Toolbar className={this.props.scrollStyle}>
-                <div className="control-bar">
-                    <div className={"control-content "+this.props.scrollStyle}>                                                
+            <Toolbar>
+                <div ref={ (divElement) => {this.divElement = divElement} } 
+                className="control-bar">
+                    <div className={"control-content"}>                                                
                         
                         <NowPlaying
                             handleSeekChange={this.handleSeekChange.bind(this)}
@@ -50,6 +56,8 @@ class ControlBar extends React.Component {
                         
                         <PlayerControls 
                             selectOpen={this.props.selectOpen}
+                            togglePlayerSelect={this.props.togglePlayerSelect}
+                            openSelect={this.props.openSelect}
                             closeSelect={this.props.closeSelect}
                             targetPlayer={this.props.targetPlayer}
                             switchPlayer={this.props.switchPlayer}   
@@ -61,6 +69,7 @@ class ControlBar extends React.Component {
                             library={this.props.library}
                             handleGenreChange={this.props.handleGenreChange}
                             genreSelected={this.props.genreSelected}
+                            controlBarHeight={this.state.height}
                             />
                             {  this.props.genreSelected ?
                                 <div className="layout-and-search">
@@ -108,6 +117,7 @@ class ViewSelector extends React.Component {
                         onClick={() => this.props.handleViewChange('composer-list') }>
                             Composer/Artist                             
                     </button>
+                  
                 </Segment>
             </div>
             );

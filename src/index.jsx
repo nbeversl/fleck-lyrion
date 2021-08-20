@@ -15,16 +15,14 @@ class MediaApp extends React.Component {
         super(props);
         this.state = {
             targetPlayer : 0,
-            playerInstance : null,
-            elapsedTime: 0,
+             elapsedTime: 0,
             library : null,
             players_loop : [],
             fullscreen: false,
-            lastScrollTop :0,
             showNowPlaying : false,         
             selectOpen: false,
             scrollY : 0,
-            scrollStyle : 'toolbar-showing',
+            toolbarShowing: true,
             genreSelected : null,
             view: 'grid',
             searchResultsAlbums : null,
@@ -36,13 +34,17 @@ class MediaApp extends React.Component {
             orderType: 'alpha',
             albumsMoveable : false,
             BrowserPlayer : null,
+            controlBarCouldHide: true,
         }
     }
 
     componentDidMount() {
 
-        // this.setupStorage();
-
+        
+        document.addEventListener("scroll", () => {
+            if (this.state.toolbarShowing && this.state.controlBarCouldHide) { this.setState({toolbarShowing :false}) }
+        });
+        
         this.setState({ LMS : new LMS() }, () => {
             var l = new LMSLibrary(this.state.LMS);
             l.establishLibrary( (library) => {
@@ -52,7 +54,6 @@ class MediaApp extends React.Component {
             });
             
             this.state.LMS.request(["",["serverstatus", "0","20"]], (response) => {
-                console.log(response)
                 this.setState({players_loop: response.result.players_loop});
             });
             
@@ -78,6 +79,12 @@ class MediaApp extends React.Component {
 
     closeSelect() {
         this.setState({selectOpen : false});
+    }
+    openSelect() {
+        this.setState({selectOpen : true});
+    }
+    togglePlayerSelect() {
+        this.setState({selectOpen : ! this.state.selectOpen});
     }
     
 
@@ -128,7 +135,10 @@ class MediaApp extends React.Component {
     checkPlayerInstance(callback) {
 
         if (! this.state.playerInstance) {
-            this.setState({selectOpen : true});
+            this.setState({
+                toolbarShowing : true,
+                selectOpen : true
+            });
             this.waitForPlayerInstance(callback);
         } else {
             callback(this.state.playerInstance);
@@ -136,6 +146,7 @@ class MediaApp extends React.Component {
     }
 
     waitForPlayerInstance(callback) {  
+
         setTimeout( () => {
             if ( this.state.playerInstance) {
                 callback(this.state.playerInstance);
@@ -158,10 +169,14 @@ class MediaApp extends React.Component {
 
 
     async handleGenreChange(genre) {
+        console.log(genre)
         // var storedLayout = await this.state.storage.get(genre);
         var storedLayout = null;
         this.loadAlbumsForGenre(genre, storedLayout);
-        this.setState({view:'grid'})
+        this.setState({
+            view:'grid',
+            controlBarCouldHide:true,
+        })
 
     }
 
@@ -184,13 +199,18 @@ class MediaApp extends React.Component {
     loadRandomGenre() {
         var selection = Math.floor(Math.random() * Object.keys(this.state.library.genres).length);
         this.handleGenreChange(Object.keys(this.state.library.genres)[selection]);
+
     }
 
 
 
     searchFor (item) {
         
-        this.setState({view:'search'});
+        this.setState({
+            view:'search',
+            genreSelected:null,
+            controlBarCouldHide: false,
+        });
 
         this.state.library.searchAlbums(item, (result) => {
             this.setState({searchResultsAlbums: result});
@@ -210,36 +230,41 @@ class MediaApp extends React.Component {
     render ()  {      
         return (
             <div className="main">
-                <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css"></link>
+                <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui-core.min.css"></link>
                 <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"></link>
                     { this.state.players_loop.length > 0 && this.state.library ?
                         <div>
-                           <ControlBar
-                                scrollStyle={this.state.scrollStyle}
-                                selectOpen={this.state.selectOpen}
-                                targetPlayer={this.state.targetPlayer}
-                                closeSelect={this.closeSelect.bind(this)}
-                                switchPlayer={this.switchPlayer.bind(this)}      
-                                toggleNowPlaying={this.toggleNowPlaying.bind(this)}
-                                playerInstance={this.state.playerInstance}
-                                players={this.state.players_loop ? this.state.players_loop : [] }
-                                library={this.state.library}
-                                handleGenreChange={this.handleGenreChange.bind(this)}
-                                genreSelected={this.state.genreSelected}
-                                LMS={this.state.LMS}
-                                handleViewChange={this.handleViewChange.bind(this)}
-                                searchFor={this.searchFor.bind(this)}
-                                setOrderType={this.setOrderType.bind(this)}
-                            />
-                            
+                            <div className={ "control-bar" + ( this.state.toolbarShowing ? "" : " hidden" ) } >
+                                <ControlBar
+                                    selectOpen={this.state.selectOpen}
+                                    togglePlayerSelect={this.togglePlayerSelect.bind(this)}
+                                    openSelect={this.openSelect.bind(this)}
+                                    targetPlayer={this.state.targetPlayer}
+                                    closeSelect={this.closeSelect.bind(this)}
+                                    switchPlayer={this.switchPlayer.bind(this)}      
+                                    toggleNowPlaying={this.toggleNowPlaying.bind(this)}
+                                    playerInstance={this.state.playerInstance}
+                                    players={this.state.players_loop ? this.state.players_loop : [] }
+                                    library={this.state.library}
+                                    checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                                    handleGenreChange={this.handleGenreChange.bind(this)}
+                                    genreSelected={this.state.genreSelected}
+                                    LMS={this.state.LMS}
+                                    handleViewChange={this.handleViewChange.bind(this)}
+                                    searchFor={this.searchFor.bind(this)}
+                                    setOrderType={this.setOrderType.bind(this)}
+                                />
+                            </div>
+                               
                             { this.state.library.genres ?
                                 
                                 <div className="library-view">
                                     <GestureDetector
-                                        onDragUp={() => this.setState({scrollStyle : 'toolbar-hidden' })}
-                                        onDragDown={() => this.setState({scrollStyle : 'toolbar-hidden' })}
-                                        onDoubleTap={() => this.setState({scrollStyle : 'toolbar-showing' }) }>
-                                        
+                                        onDragUp={() => console.log('nate')}
+                                        onDragDown={() => console.log('nate')}
+                                        onDoubleTap={() => this.setState({scrollStyle : 'toolbar-showing' }) }
+                                        onSwipe={  () => console.log('nate') }
+                                        >
                                         <LibraryView 
                                             view={this.state.view}
                                             genreSelected={this.state.genreSelected}
@@ -250,7 +275,6 @@ class MediaApp extends React.Component {
                                             searchResultsContributors={this.state.searchResultsContributors} 
                                             checkPlayerInstance={this.checkPlayerInstance.bind(this)}
                                             LMS={this.state.LMS}
-                                            scrollStyle={this.state.scrollStyle}
                                             storedLayout={this.state.storedLayout}
                                             storeOrderChange={this.storeOrderChange.bind(this)}
                                             orderType={this.state.orderType}
@@ -272,10 +296,15 @@ class MediaApp extends React.Component {
                
                     <GestureDetector
                         onTap={() => { 
-                            this.setState({scrollStyle : 'toolbar-showing' });
-                        }   
-                        }>  
-                         <div className="toolbar-activation-zone"></div>
+                            this.setState({toolbarShowing : true });
+                        }}   
+                        
+                        >  
+                         <div 
+                            onClick={ () => this.setState({toolbarShowing : true }) } 
+                            className="toolbar-activation-zone">
+                        
+                        </div>
                     </GestureDetector>
 
             </div>

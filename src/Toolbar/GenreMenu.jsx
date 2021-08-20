@@ -20,13 +20,17 @@ class GenreMenu extends React.Component {
     }
 
     render() {
-
+        const DialogStyle = {
+            height: window.innerHeight - this.props.controlBarHeight - 200,
+            top: "40%",
+        }
+       
         return (
 
                 <div className='genre-selector'>
                     <ToolbarButton className="order-select"
                         onClick={() =>
-                            this.setState({selectOpen: true})
+                            this.setState({selectOpen: ! this.state.selectOpen})
                      }> 
                      <div><b>Genre</b></div> { this.state.genreSelected ? this.state.genreSelected : null} 
                     
@@ -36,14 +40,16 @@ class GenreMenu extends React.Component {
                     animationOptions={{duration: 0.1, delay: 0}}
                     isOpen={this.state.selectOpen}
                     onCancel={() => this.setState({selectOpen: false})}
-                    cancelable>
+                    cancelable
+                    >
                    
-                    <Scrollbars>
-                        <div class="content">
+                    <Scrollbars style={DialogStyle}>
+                        <div className="content">
                             <List 
                                 dataSource={Object.keys(this.props.genres)}
                                 renderRow={(row, idx) => (
                                 <ListItem
+                                    key={idx}
                                     onClick={(e) => {
                                     this.setState({
                                             genreSelected:row,

@@ -1,10 +1,7 @@
 import * as React from "react";
-import ArtistComposerList from './Views/ArtistComposerList';
 import AlbumGrid from './Views/AlbumGrid';
-import { BPMView } from './Views/BPMview';
-import ScrollUpButton from "react-scroll-up-button";
 import SearchResults from './Views/SearchResults';
-
+import { Scrollbars } from 'react-custom-scrollbars';
 
 class LibraryView extends React.Component {
 
@@ -33,24 +30,10 @@ class LibraryView extends React.Component {
         }
     }
     render() {
-         var view;
+       
+        var view;
         switch(this.state.view) {   
 
-            case('composer-list'):
-                view = this.props.genreSelected ?
-                    <ArtistComposerList 
-                        albumList={this.props.library.genres[this.props.genreSelected].albums} 
-                        library={this.props.library}
-                        LMS={this.props.LMS}
-                        checkPlayerInstance={this.props.checkPlayerInstance}
-                        genreSelected={this.props.genreSelected} 
-                        scrollStyle={this.props.scrollStyle}
-                        layout={this.props.layout}
-                        handleOrderChange={this.props.handleOrderChange}
-                    />  
-                : null;
-                break;
-                
             case('grid'):
             
                 view =  this.props.genreSelected ?
@@ -86,10 +69,9 @@ class LibraryView extends React.Component {
 
                 }
         return (
-            <div>
-                    {view}
-                    <ScrollUpButton />
-            </div>
+            <Scrollbars>   
+                {view}
+            </Scrollbars>
         )
         }
         

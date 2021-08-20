@@ -94,7 +94,7 @@ class AlbumGrid extends React.PureComponent {
                             var order = Object.keys(this.state.albumDict);
                             this.makeLayout(order);
                         }      
-                        break;
+                    break;
     
                     case 'alpha':              
 
@@ -108,7 +108,10 @@ class AlbumGrid extends React.PureComponent {
                         order = shuffle(order);
                         this.makeLayout(order);
                         break;
+                    default:
+                        break;
                     }
+                    
                     
             });
           
@@ -254,7 +257,7 @@ class AlbumGrid extends React.PureComponent {
         const ResponsiveGridLayout = WidthProvider(Responsive);
 
           return ( 
-                <div className={"main-album-grid "+ this.props.scrollStyle} >
+                <div className={"main-album-grid"} >
                     {this.props.number}
                     <a name="albums"></a>
                     { this.state.layout  ? 

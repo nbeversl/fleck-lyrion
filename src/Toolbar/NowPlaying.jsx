@@ -39,10 +39,10 @@ class NowPlaying extends React.Component {
     
          if (this.props.playerStatus
             && this.props.playerStatus.playlist_cur_index != undefined
+            && this.props.playerStatus.playlist_loop[parseInt(this.props.playerStatus.playlist_cur_index)] != undefined
             ) {
-                console.log("HELLO")
-                console.log(this.props.playerStatus);
-            this.props.library.getAlbumFromID(this.props.playerStatus.playlist_loop[parseInt(this.props.playerStatus.playlist_cur_index)].album_id, (album) => {               
+            this.props.library.getAlbumFromID(
+                this.props.playerStatus.playlist_loop[parseInt(this.props.playerStatus.playlist_cur_index)].album_id, (album) => {               
                 if (!this.state.album || album.id != this.state.album.id) {
                     this.setState({
                         album:album,
