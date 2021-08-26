@@ -1,7 +1,9 @@
 import * as React from "react";
 import AlbumGrid from './Views/AlbumGrid';
 import SearchResults from './Views/SearchResults';
-import { Scrollbars } from 'react-custom-scrollbars';
+// import { Page } from 'react-custom-scrollbars';
+
+import { Page } from 'react-onsenui';
 
 class LibraryView extends React.Component {
 
@@ -69,9 +71,10 @@ class LibraryView extends React.Component {
 
                 }
         return (
-            <Scrollbars>   
-                {view}
-            </Scrollbars>
+            <Page>
+               {view}
+                
+            </Page>
         )
         }
         

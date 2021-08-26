@@ -113,7 +113,7 @@ class LMSLibrary {
     }
 
     getTrackInfo(trackID, callback) {
-        this.LMS.request(["",["songinfo","0","100","track_id:"+trackID.toString(), "tags:gald**J****e**"]], (r) => {
+        this.LMS.request(["",["songinfo","0","100","track_id:"+trackID.toString(), "tags:gald**J****e****u****m**"]], (r) => {
             callback(r.result.songinfo_loop);
         })
     }

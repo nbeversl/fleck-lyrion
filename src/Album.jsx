@@ -116,8 +116,7 @@ class Album extends React.Component {
         return (
             <div className="album" ref={ (divElement) => {this.divElement = divElement}} >
                 { this.state.album ? 
-                    <div >      
-                                                     
+                    <div>                          
                       <Button modifier="large--cta" onClick={ this.handleOpen.bind(this) }>
                               { this.props.moveable  ?    
                                 <div className="handle-container">

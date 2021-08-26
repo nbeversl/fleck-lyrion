@@ -127,7 +127,7 @@ ons-toolbar-button.show-toolbar-button {
     visibility: visible;
     display:flex;
     position:fixed;
-    z-index:200;
+    z-index:300;
     opacity: .95;
     bottom:0;
     width:100%;
@@ -484,7 +484,9 @@ button.view-selector.composer-artist {
 .now-playing-album-cover ons-button {
     padding:0px;
 }
-
+.library-view {
+    z-index:100;
+}
 .now-playing > img {
     max-width:25%;
     float:right;
@@ -528,7 +530,7 @@ ons-range.track-time {
 .toolbar-activation-zone {
     height:100px;
     width:100%;
-    z-index:5000;
+    z-index:200;
     position:fixed;
     bottom:0;
 }

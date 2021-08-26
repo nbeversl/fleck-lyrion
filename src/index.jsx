@@ -259,29 +259,21 @@ class MediaApp extends React.Component {
                             { this.state.library.genres ?
                                 
                                 <div className="library-view">
-                                    <GestureDetector
-                                        onDragUp={() => console.log('nate')}
-                                        onDragDown={() => console.log('nate')}
-                                        onDoubleTap={() => this.setState({scrollStyle : 'toolbar-showing' }) }
-                                        onSwipe={  () => console.log('nate') }
-                                        >
-                                        <LibraryView 
-                                            view={this.state.view}
-                                            genreSelected={this.state.genreSelected}
-                                            playerInstance={this.state.playerInstance}
-                                            library={this.state.library}
-                                            searchResultsAlbums={this.state.searchResultsAlbums}
-                                            searchResultsTracks={this.state.searchResultsTracks}
-                                            searchResultsContributors={this.state.searchResultsContributors} 
-                                            checkPlayerInstance={this.checkPlayerInstance.bind(this)}
-                                            LMS={this.state.LMS}
-                                            storedLayout={this.state.storedLayout}
-                                            storeOrderChange={this.storeOrderChange.bind(this)}
-                                            orderType={this.state.orderType}
-                                            albumsMoveable={this.state.albumsMoveable}
-                                            />
-
-                                    </GestureDetector>    
+                                    <LibraryView 
+                                        view={this.state.view}
+                                        genreSelected={this.state.genreSelected}
+                                        playerInstance={this.state.playerInstance}
+                                        library={this.state.library}
+                                        searchResultsAlbums={this.state.searchResultsAlbums}
+                                        searchResultsTracks={this.state.searchResultsTracks}
+                                        searchResultsContributors={this.state.searchResultsContributors} 
+                                        checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                                        LMS={this.state.LMS}
+                                        storedLayout={this.state.storedLayout}
+                                        storeOrderChange={this.storeOrderChange.bind(this)}
+                                        orderType={this.state.orderType}
+                                        albumsMoveable={this.state.albumsMoveable}
+                                        />
                                 </div>
                                 : null
                             }

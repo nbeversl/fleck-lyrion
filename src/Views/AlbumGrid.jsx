@@ -259,7 +259,6 @@ class AlbumGrid extends React.PureComponent {
           return ( 
                 <div className={"main-album-grid"} >
                     {this.props.number}
-                    <a name="albums"></a>
                     { this.state.layout  ? 
             
                         <GestureDetector 

@@ -20,6 +20,7 @@ class TrackInfo extends React.Component {
                         <div key={id} 
                             className="info-item">
                             {id} : {item[id]}
+                            
                         </div>
                         )
                     }
