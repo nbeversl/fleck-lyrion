@@ -28,8 +28,6 @@ class Album extends React.Component {
 
             });
         }
-        // const height = this.divElement.clientHeight;
-        // this.setState({ height });
     
     }
 
@@ -111,7 +109,6 @@ class Album extends React.Component {
         const DialogStyle = {
             height: 500,
         }
-        console.log(DialogStyle)
 
         return (
             <div className="album" ref={ (divElement) => {this.divElement = divElement}} >
@@ -127,6 +124,7 @@ class Album extends React.Component {
                               } 
                             { this.state.album.artwork_track_id === undefined ? 
                                 <div className="album-text-info">
+                                    
                                     <div className="album-title-text">{this.state.album.album}</div>
                                     <div className="album-artist-text">{this.state.album.artist}</div>
                                 </div>

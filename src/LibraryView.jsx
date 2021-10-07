@@ -1,8 +1,6 @@
 import * as React from "react";
 import AlbumGrid from './Views/AlbumGrid';
 import SearchResults from './Views/SearchResults';
-// import { Page } from 'react-custom-scrollbars';
-
 import { Page } from 'react-onsenui';
 
 class LibraryView extends React.Component {
@@ -71,9 +69,9 @@ class LibraryView extends React.Component {
 
                 }
         return (
-            <Page>
+            <Page 
+                onScroll={ this.props.hideToolbar}>
                {view}
-                
             </Page>
         )
         }

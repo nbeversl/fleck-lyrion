@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Album }  from '../Album';
-import { GestureDetector } from 'react-onsenui';
+import { Range, GestureDetector } from 'react-onsenui';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const GridResponsiveAlbum = React.forwardRef(( {style, className, ...props}, ref) => {
@@ -25,7 +25,7 @@ class AlbumGrid extends React.PureComponent {
         this.state = {
             shuffledAlbums : [],
             order:[],
-            cols : 3, 
+            cols : 5, 
             lastPinch : new Date().getTime(),
             genre: null,
             layout :null,
@@ -227,6 +227,14 @@ class AlbumGrid extends React.PureComponent {
         }); 
 
     }
+    handleAlbumSizeSlider(e) {
+        var sliderValue =  Math.round(e.target.value / 10);
+        if (sliderValue > 1 < 10 ) { 
+            this.setState({cols: 11 - sliderValue}) 
+            this.makeLayout(this.state.order);
+        };
+    }   
+    
 
     handlePinchOut() {
         var now = new Date().getTime();
@@ -258,9 +266,14 @@ class AlbumGrid extends React.PureComponent {
 
           return ( 
                 <div className={"main-album-grid"} >
-                    {this.props.number}
+                    <div className={"grid-size"}>
+                            <Range
+                                value={(10 - this.state.cols) * 10}
+                                onChange={ this.handleAlbumSizeSlider.bind(this)}
+                            />
+                        </div>
                     { this.state.layout  ? 
-            
+
                         <GestureDetector 
                             onPinchIn={this.handlePinchIn.bind(this)}
                             onPinchOut={this.handlePinchOut.bind(this)}>

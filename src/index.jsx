@@ -15,7 +15,7 @@ class MediaApp extends React.Component {
         super(props);
         this.state = {
             targetPlayer : 0,
-             elapsedTime: 0,
+            elapsedTime: 0,
             library : null,
             players_loop : [],
             fullscreen: false,
@@ -39,17 +39,12 @@ class MediaApp extends React.Component {
     }
 
     componentDidMount() {
-
-        
-        document.addEventListener("scroll", () => {
-            if (this.state.toolbarShowing && this.state.controlBarCouldHide) { this.setState({toolbarShowing :false}) }
-        });
         
         this.setState({ LMS : new LMS() }, () => {
             var l = new LMSLibrary(this.state.LMS);
             l.establishLibrary( (library) => {
                 this.setState({library : library}, () => {
-                    this.loadRandomGenre();
+                    // this.loadRandomGenre();
                 });
             });
             
@@ -117,9 +112,7 @@ class MediaApp extends React.Component {
                 selectOpen : false        
             }, () => {
                 if (callback) { callback(); }
-            }
-            
-            );
+            });
         } else {
             if (this.state.BrowserPlayer) {
                 this.setState({
@@ -169,7 +162,6 @@ class MediaApp extends React.Component {
 
 
     async handleGenreChange(genre) {
-        console.log(genre)
         // var storedLayout = await this.state.storage.get(genre);
         var storedLayout = null;
         this.loadAlbumsForGenre(genre, storedLayout);
@@ -205,11 +197,9 @@ class MediaApp extends React.Component {
 
 
     searchFor (item) {
-        
         this.setState({
             view:'search',
             genreSelected:null,
-            controlBarCouldHide: false,
         });
 
         this.state.library.searchAlbums(item, (result) => {
@@ -235,25 +225,38 @@ class MediaApp extends React.Component {
                     { this.state.players_loop.length > 0 && this.state.library ?
                         <div>
                             <div className={ "control-bar" + ( this.state.toolbarShowing ? "" : " hidden" ) } >
-                                <ControlBar
-                                    selectOpen={this.state.selectOpen}
-                                    togglePlayerSelect={this.togglePlayerSelect.bind(this)}
-                                    openSelect={this.openSelect.bind(this)}
-                                    targetPlayer={this.state.targetPlayer}
-                                    closeSelect={this.closeSelect.bind(this)}
-                                    switchPlayer={this.switchPlayer.bind(this)}      
-                                    toggleNowPlaying={this.toggleNowPlaying.bind(this)}
-                                    playerInstance={this.state.playerInstance}
-                                    players={this.state.players_loop ? this.state.players_loop : [] }
-                                    library={this.state.library}
-                                    checkPlayerInstance={this.checkPlayerInstance.bind(this)}
-                                    handleGenreChange={this.handleGenreChange.bind(this)}
-                                    genreSelected={this.state.genreSelected}
-                                    LMS={this.state.LMS}
-                                    handleViewChange={this.handleViewChange.bind(this)}
-                                    searchFor={this.searchFor.bind(this)}
-                                    setOrderType={this.setOrderType.bind(this)}
-                                />
+                                
+                            <GestureDetector
+                                onTap={() => { 
+                                this.setState({toolbarShowing : true });
+                                }}>  
+                             <div 
+                                onClick={ () => this.setState({toolbarShowing : true }) } 
+                                className="toolbar-activation-zone">
+                                
+                                        <ControlBar
+                                            selectOpen={this.state.selectOpen}
+                                            togglePlayerSelect={this.togglePlayerSelect.bind(this)}
+                                            openSelect={this.openSelect.bind(this)}
+                                            targetPlayer={this.state.targetPlayer}
+                                            closeSelect={this.closeSelect.bind(this)}
+                                            switchPlayer={this.switchPlayer.bind(this)}      
+                                            toggleNowPlaying={this.toggleNowPlaying.bind(this)}
+                                            playerInstance={this.state.playerInstance}
+                                            players={this.state.players_loop ? this.state.players_loop : [] }
+                                            library={this.state.library}
+                                            checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                                            handleGenreChange={this.handleGenreChange.bind(this)}
+                                            genreSelected={this.state.genreSelected}
+                                            LMS={this.state.LMS}
+                                            handleViewChange={this.handleViewChange.bind(this)}
+                                            searchFor={this.searchFor.bind(this)}
+                                            setOrderType={this.setOrderType.bind(this)}
+                                        />
+
+                                </div>
+                            </GestureDetector>
+                    
                             </div>
                                
                             { this.state.library.genres ?
@@ -273,6 +276,7 @@ class MediaApp extends React.Component {
                                         storeOrderChange={this.storeOrderChange.bind(this)}
                                         orderType={this.state.orderType}
                                         albumsMoveable={this.state.albumsMoveable}
+                                        hideToolbar={() => this.setState({toolbarShowing:false})}
                                         />
                                 </div>
                                 : null
@@ -286,18 +290,7 @@ class MediaApp extends React.Component {
                     </div>
                     }              
                
-                    <GestureDetector
-                        onTap={() => { 
-                            this.setState({toolbarShowing : true });
-                        }}   
-                        
-                        >  
-                         <div 
-                            onClick={ () => this.setState({toolbarShowing : true }) } 
-                            className="toolbar-activation-zone">
-                        
-                        </div>
-                    </GestureDetector>
+                    
 
             </div>
         );

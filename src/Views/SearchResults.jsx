@@ -36,7 +36,6 @@ class SearchResults extends React.Component {
                         <div> 
                             { this.props.searchResultsTracks.length ?
                                 <div>
-                                    <a href="#tracks"></a><h2>Tracks</h2>
                                     <TrackWithSourceAlbum 
                                         tracks={this.props.searchResultsTracks} 
                                         checkPlayerInstance={this.props.checkPlayerInstance}

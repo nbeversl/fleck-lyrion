@@ -6,11 +6,8 @@ import { ToolbarButton, ProgressCircular} from 'react-onsenui';
 class TrackListScrolling extends React.Component {
   
    playTrack(disc, trackNumber) {
-        console.log('trying to play')
     
         this.props.checkPlayerInstance( (playerInstance) => {
-            console.log('PLAYER INSTANCE INS')
-            console.log(playerInstance);
             if (playerInstance) {
                 playerInstance.playAlbumFromTrackAndContinue(
                 this.props.discs[disc][0], // disc doesn't matter, only passes the album ID 
@@ -40,7 +37,8 @@ class TrackListScrolling extends React.Component {
                     List.push(<div 
                             className={"disc-number"} 
                             key={"DISC-"+disc.toString()}>
-                                <hr></hr>DISC {disc}
+                                { disc != 1 ? <hr></hr> : null } 
+                                <div className="disc-number-text"> DISC {disc} </div>
                             </div>);
                 }
                 this.props.discs[disc].forEach( (track) =>

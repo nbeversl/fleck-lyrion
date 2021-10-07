@@ -28,7 +28,6 @@ class SearchBar extends React.Component {
                         value={this.state.searchString}
                         placeholder='search'
                     />
-                    <ToolbarButton className="search-clear" onClick={this.clearSearchString.bind(this) }>x</ToolbarButton>
                 </form>
             </div>
         )

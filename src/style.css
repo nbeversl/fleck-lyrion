@@ -80,8 +80,9 @@ ons-toolbar.toolbar-showing {
 img.album-image {
     width:100%;
     max-width:100%;
-    border-width:5px;
-    border-radius:6px;
+    border-width:2px;
+    border-radius:2px;
+    box-shadow: 7px 9px 3px rgba(0, 0, 0, 0.28);
 }
 
 ons-toolbar-button.show-toolbar-button {
@@ -196,6 +197,8 @@ ons-toolbar-button.show-toolbar-button {
     flex-wrap: wrap;
     padding:0px 20px 0px 20px;
     align-items: center;
+    justify-content: space-around;
+
 }
 
 button.genre-choice, button.search-button {
@@ -254,6 +257,7 @@ button {
 }
 .custom-den-controls {
     display:flex;
+    flex-wrap:wrap;
     max-width:400px;
 }
 .base-lms-controls {
@@ -394,9 +398,11 @@ ons-modal.album-modal {
 }
 .dialog {
     width:80%;
+    box-shadow:9px 11px 3px rgba(0, 0, 0, 0.28) ;
 }
 .dialog-container {
     max-height:100%;
+    height: 80vh;
 }
 .btn-icon {
     height:40px;
@@ -455,6 +461,7 @@ button.view-selector.composer-artist {
     justify-content: center;
     align-self: center;
     padding:0px 20px 0px 20px;
+    margin-top:20px;
 }
 
 .track-time{
@@ -493,7 +500,7 @@ button.view-selector.composer-artist {
     margin-right:4px;
 }
 .slider-volume  {
-   
+    margin-bottom:20px;
     min-width:200px;
 }
 .slider-volume ons-range {
@@ -530,11 +537,44 @@ ons-range.track-time {
 .toolbar-activation-zone {
     height:100px;
     width:100%;
-    z-index:200;
+    z-index:500;
     position:fixed;
     bottom:0;
 }
+
+.grid-size {
+    position:sticky;
+    top:20px;
+    margin-left:20px;
+    z-index:100;
+    width:200px;
+    border: solid;
+    border-width: .5px;
+    border-color: azure;
+    border-radius: 3px;
+}
+.grid-size input {
+    opacity:0.3;
+}
+.grid-size ons-range {
+    width:200px;
+}
+
+.player-selector-dialog .dialog {
+    width: 25%;
+    left: 15%;
+    top: none;
+    bottom:100px;
+}
+.disc-number {
+    font-size: 18px;
+    margin-bottom:15px;
+}
+.disc-number-text {
+    margin-left: 10px;
+}
 @media (max-width:800px){
+    .grid-size { display:none; }
     .page__content {
         margin-top: 35px;
     }
@@ -544,5 +584,19 @@ ons-range.track-time {
     #target, .control-content {
         flex-direction:column;
     }
+
+}
+
+@media (max-width:450px){
+   
+    .control-content {
+        width:100%;
+    }
+    .player-selector-dialog .dialog {
+        width: unset;
+        left: 50%;
+        top: 50%;
+    }
+
 
 }

@@ -79,7 +79,6 @@ class TrackWithSourceAlbum extends React.Component {
         });
         return (
             <div>
-                <a href="#tracks"></a><h2>Tracks</h2>
                 {List}
             </div>
         );

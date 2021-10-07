@@ -20,7 +20,8 @@ class ControlBar extends React.Component {
     }
 
     handleSeekChange (event)  {
-        var newPosition = Math.floor(this.props.playerStatus.duration * event.target.value / 100 );
+
+        var newPosition = Math.floor(this.state.playerStatus.duration * event.target.value / 100 );
         this.props.playerInstance.seek( newPosition);
     }
 
@@ -89,10 +90,10 @@ class ControlBar extends React.Component {
                                             </button>
                                         </Segment>
                                     </div>
-                                    <SearchBar searchFor={this.props.searchFor} />
                                 </div>
                                 : null
                             }
+                            <SearchBar searchFor={this.props.searchFor} />
                                
                     </div>    
                 </div>
