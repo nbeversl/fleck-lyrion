@@ -18,10 +18,7 @@ class MediaApp extends React.Component {
             elapsedTime: 0,
             library : null,
             players_loop : [],
-            fullscreen: false,
-            showNowPlaying : false,         
             selectOpen: false,
-            scrollY : 0,
             toolbarShowing: true,
             genreSelected : null,
             view: 'grid',
@@ -55,11 +52,7 @@ class MediaApp extends React.Component {
         });   
     }
 
-    // async setupStorage() {
-    //     const storage = new Storage();
-    //     await storage.create();
-    //     this.setState({storage:storage});
-    // }
+
 
     initBrowserPlayer() {
 
@@ -154,16 +147,8 @@ class MediaApp extends React.Component {
         this.setState({view:name});
     }
 
-
-    toggleNowPlaying() {
-        this.setState({showNowPlaying: ! this.state.showNowPlaying });
-    }
-
-
-
     async handleGenreChange(genre) {
-        // var storedLayout = await this.state.storage.get(genre);
-        var storedLayout = null;
+        var storedLayout = document.cookie || null;
         this.loadAlbumsForGenre(genre, storedLayout);
         this.setState({
             view:'grid',
@@ -173,8 +158,8 @@ class MediaApp extends React.Component {
     }
 
     storeOrderChange(storedLayout) {
-        // this.state.storage.set(this.state.genreSelected, storedLayout);
-        // this.setState({storedLayout : storedLayout})
+        document.cookie = storedLayout;
+        this.setState({storedLayout : storedLayout})
     }
     
 
@@ -194,8 +179,6 @@ class MediaApp extends React.Component {
 
     }
 
-
-
     searchFor (item) {
         this.setState({
             view:'search',
@@ -210,12 +193,13 @@ class MediaApp extends React.Component {
             this.setState({searchResultsTracks: result});
          });
 
-        this.state.library.searchContributors(item, (result) => {
-            this.setState({searchResultsContributors: result});
-         });
     }
 
-
+    revealToolbar() {
+        if (! this.state.toolbarShowing) {
+            this.setState({toolbarShowing : true });
+        }
+    }
 
     render ()  {      
         return (
@@ -227,11 +211,9 @@ class MediaApp extends React.Component {
                             <div className={ "control-bar" + ( this.state.toolbarShowing ? "" : " hidden" ) } >
                                 
                             <GestureDetector
-                                onTap={() => { 
-                                this.setState({toolbarShowing : true });
-                                }}>  
+                                onTap={this.revealToolbar.bind(this)}>  
                              <div 
-                                onClick={ () => this.setState({toolbarShowing : true }) } 
+                                onClick={this.revealToolbar.bind(this)} 
                                 className="toolbar-activation-zone">
                                 
                                         <ControlBar
@@ -241,7 +223,6 @@ class MediaApp extends React.Component {
                                             targetPlayer={this.state.targetPlayer}
                                             closeSelect={this.closeSelect.bind(this)}
                                             switchPlayer={this.switchPlayer.bind(this)}      
-                                            toggleNowPlaying={this.toggleNowPlaying.bind(this)}
                                             playerInstance={this.state.playerInstance}
                                             players={this.state.players_loop ? this.state.players_loop : [] }
                                             library={this.state.library}
@@ -269,14 +250,17 @@ class MediaApp extends React.Component {
                                         library={this.state.library}
                                         searchResultsAlbums={this.state.searchResultsAlbums}
                                         searchResultsTracks={this.state.searchResultsTracks}
-                                        searchResultsContributors={this.state.searchResultsContributors} 
                                         checkPlayerInstance={this.checkPlayerInstance.bind(this)}
                                         LMS={this.state.LMS}
                                         storedLayout={this.state.storedLayout}
                                         storeOrderChange={this.storeOrderChange.bind(this)}
                                         orderType={this.state.orderType}
                                         albumsMoveable={this.state.albumsMoveable}
-                                        hideToolbar={() => this.setState({toolbarShowing:false})}
+                                        hideToolbar={() => { 
+                                            if (this.state.toolbarShowing) {
+                                                this.setState({toolbarShowing:false})
+                                            }                                   
+                                            }}
                                         />
                                 </div>
                                 : null

@@ -57,7 +57,6 @@ class AlbumGrid extends React.PureComponent {
 
         if ( this.props.genre != this.state.genre 
             || ! areSame(albumDict, this.state.albumDict) ) {
-
             if (this.props.layout) {
                 this.setState({layout:this.props.layout})
             }
@@ -77,7 +76,6 @@ class AlbumGrid extends React.PureComponent {
     reArrange(initial) {
 
         if  ( initial || this.state.orderType != this.props.orderType) {
-
             this.setState({orderType:this.props.orderType}, ()=> {
 
                 switch (this.state.orderType) {
@@ -224,9 +222,9 @@ class AlbumGrid extends React.PureComponent {
         },() => {
             this.props.storeOrderChange({order:this.state.order, cols:cols});
             this.makeLayout(this.state.order);
-        }); 
-
+        });
     }
+
     handleAlbumSizeSlider(e) {
         var sliderValue =  Math.round(e.target.value / 10);
         if (sliderValue > 1 < 10 ) { 
@@ -235,7 +233,6 @@ class AlbumGrid extends React.PureComponent {
         };
     }   
     
-
     handlePinchOut() {
         var now = new Date().getTime();
         if (now < this.state.lastPinch + 500) { return }
@@ -263,7 +260,7 @@ class AlbumGrid extends React.PureComponent {
     render() {
       
         const ResponsiveGridLayout = WidthProvider(Responsive);
-
+        
           return ( 
                 <div className={"main-album-grid"} >
                     <div className={"grid-size"}>
@@ -290,7 +287,7 @@ class AlbumGrid extends React.PureComponent {
                                 >                    
                                 {this.state.row}
                             </ResponsiveGridLayout>
-                        </GestureDetector>
+                         </GestureDetector>
                       
                       :null
                     }

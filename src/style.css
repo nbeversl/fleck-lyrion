@@ -197,7 +197,7 @@ ons-toolbar-button.show-toolbar-button {
     flex-wrap: wrap;
     padding:0px 20px 0px 20px;
     align-items: center;
-    justify-content: space-around;
+   
 
 }
 
@@ -458,8 +458,6 @@ button.view-selector.composer-artist {
 
 .search-bar {
     display:flex;
-    justify-content: center;
-    align-self: center;
     padding:0px 20px 0px 20px;
     margin-top:20px;
 }
@@ -560,12 +558,12 @@ ons-range.track-time {
     width:200px;
 }
 
-.player-selector-dialog .dialog {
+/* .player-selector-dialog .dialog {
     width: 25%;
     left: 15%;
     top: none;
     bottom:100px;
-}
+} */
 .disc-number {
     font-size: 18px;
     margin-bottom:15px;
@@ -592,11 +590,17 @@ ons-range.track-time {
     .control-content {
         width:100%;
     }
-    .player-selector-dialog .dialog {
+    /* .player-selector-dialog .dialog {
         width: unset;
         left: 50%;
         top: 50%;
+    } */
+    .layout-and-search {
+        justify-content: space-around;
     }
-
+    .search-bar {
+        justify-content: center;
+        align-self: center;
+    }
 
 }

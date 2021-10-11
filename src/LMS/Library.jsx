@@ -24,7 +24,7 @@ class LMSLibrary {
 
     getAllAlbumsforGenre(id, callback) {
         this.titles = [];
-        this.LMS.request(["",["albums", "0", "50000", "genre_id:"+id.toString(), "tags:**id**ljatsS" ]], (r) => {
+        this.LMS.request(["",["albums", "0", "50000", "genre_id:"+id.toString(), "tags:**id****e**ljatsS" ]], (r) => {
             r.result.albums_loop.forEach( (album) => {
                     this.albums[album.id] = album;
                 });
@@ -73,6 +73,21 @@ class LMSLibrary {
         }
     }
 
+    getAlbumFromTrackID(TrackID, callback) {
+
+        var track = this.getTrackInfo(TrackID, (info) => {
+
+            if (track) {        
+                // this.LMS.request(["",["albums","0","100","album_id:"+albumID.toString(), "tags:ljaS"]], (r) => {
+            
+            // if (r.result.albums_loop) {
+            //     callback(r.result.albums_loop[0]);
+            // } 
+            }
+        });
+        
+    }
+
     searchTracks(searchString, callback) {
         
         this.LMS.request(["",["titles","0","100","search:"+searchString, "tags:id**e****o****t****m****u****a****l****J**"]],(r) => {           
@@ -91,7 +106,7 @@ class LMSLibrary {
     
     searchTracksByArtist(artist_id, callback) {
 
-        this.LMS.request(["",["titles","0","100","artist_id:"+artist_id, "tags:id**e****o****t****m****u****a****l**"]],(r) => {           
+        this.LMS.request(["",["titles","0","100","artist_id:"+artist_id, "tags:id**e****o****t****m****u****a****l****e**"]],(r) => {           
             callback(r.result.titles_loop);
         });
 

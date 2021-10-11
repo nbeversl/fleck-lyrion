@@ -17,11 +17,6 @@ class PlayerControls extends React.Component {
         }
     }
     
-    toggleNowPlaying() {
-       this.props.toggleNowPlaying();
-       this.setState({nowPlayingShowing: ! this.state.nowPlayingShowing});
-    }
-    
     setVolume(event) {    
         this.setState({volume : parseInt(event.target.value)})
         this.props.playerInstance.setVolume( this.state.volume );        
@@ -94,7 +89,8 @@ class PlayerControls extends React.Component {
                         <ToolbarButton 
                             className="player-control-button" 
                             onClick={() => {
-                                if ( this.props.playerInstance ) {                           
+                                if ( this.props.playerInstance ) {  
+                                                             
                                     this.setState({
                                         currentPlayerPlaying : this.state.currentPlayerPlaying ? false : true
                                     });
