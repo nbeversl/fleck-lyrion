@@ -48,7 +48,6 @@ class LibraryView extends React.Component {
                         storeOrderChange={this.props.storeOrderChange}
                         storedLayout={this.props.storedLayout}
                         orderType={this.props.orderType}
-                        moveable={this.props.albumsMoveable}
                         />
                     : null;
                     break;
@@ -59,7 +58,6 @@ class LibraryView extends React.Component {
                             screenWidth={this.props.screenWidth}
                             searchResultsAlbums={this.props.searchResultsAlbums}
                             searchResultsTracks={this.props.searchResultsTracks}
-                            searchResultsContributors={this.props.searchResultsContributors} 
                             library={this.props.library}
                             checkPlayerInstance={this.props.checkPlayerInstance}
                             LMS={this.props.LMS}

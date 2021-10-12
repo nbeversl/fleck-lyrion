@@ -1,4 +1,8 @@
 
+ons-button, ons-button.button--material {
+    background-color: transparent !important;
+}
+
 ons-toolbar {
     height:0px !important;
     position:fixed !important;
@@ -85,15 +89,7 @@ img.album-image {
     box-shadow: 7px 9px 3px rgba(0, 0, 0, 0.28);
 }
 
-ons-toolbar-button.show-toolbar-button {
-    position:fixed;
-    margin: 0 auto;
-    bottom:50px;
-    right:50px;
-    background-color: white;
-    opacity:0.5;
 
-}
 .handle-container {
     z-index:50;
     height:0px;   
@@ -524,7 +520,20 @@ button.view-selector.composer-artist {
 ons-range.track-time {
     width:50%;
 }
-
+ons-button.show-controlbar {
+    position: absolute;
+    bottom: 10px;
+    width:5%;
+    left:47.5%;
+    z-index: 500;
+    opacity:0.5;
+    border: solid;
+    border-color: #c0bac3;
+    border-width: .5px;
+    border-radius: 6px;
+    background-color:white !important;
+    
+}
 .button--large--cta {
     background-color:transparent !important;
 }

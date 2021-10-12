@@ -1,10 +1,10 @@
-import * as React from "react";
 import { render } from 'react-dom';
+import * as React from "react";
 import { Player } from './LMS/Player';
 import { LMS } from './LMS/server';
 import { LMSLibrary } from './LMS/Library';
 import { BrowserPlayer } from './BrowserPlayer';
-import { GestureDetector, ProgressCircular } from 'react-onsenui';
+import { Button, ProgressCircular } from 'react-onsenui';
 import { LibraryView } from './LibraryView';
 import { ControlBar } from './Toolbar/ControlBar';
 import './style.css';
@@ -18,20 +18,18 @@ class MediaApp extends React.Component {
             elapsedTime: 0,
             library : null,
             players_loop : [],
+            showNowPlaying : false,         
             selectOpen: false,
-            toolbarShowing: true,
             genreSelected : null,
             view: 'grid',
             searchResultsAlbums : null,
+            toolbarShowing: true,
             searchResultsTracks : null,
-            searchResultsContributors : null,
             LMS :null,
             storage : null,       
             storedLayout:null, 
             orderType: 'alpha',
-            albumsMoveable : false,
             BrowserPlayer : null,
-            controlBarCouldHide: true,
         }
     }
 
@@ -51,8 +49,6 @@ class MediaApp extends React.Component {
             
         });   
     }
-
-
 
     initBrowserPlayer() {
 
@@ -81,7 +77,6 @@ class MediaApp extends React.Component {
         if (type == 'shelf') { moveable = true; }
         this.setState({
             orderType:type,
-            albumsMoveable:moveable        
         });
     }
 
@@ -147,12 +142,18 @@ class MediaApp extends React.Component {
         this.setState({view:name});
     }
 
+
+    toggleNowPlaying() {
+        this.setState({showNowPlaying: ! this.state.showNowPlaying });
+    }
+
+
+
     async handleGenreChange(genre) {
         var storedLayout = document.cookie || null;
         this.loadAlbumsForGenre(genre, storedLayout);
         this.setState({
             view:'grid',
-            controlBarCouldHide:true,
         })
 
     }
@@ -208,37 +209,35 @@ class MediaApp extends React.Component {
                 <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"></link>
                     { this.state.players_loop.length > 0 && this.state.library ?
                         <div>
-                            <div className={ "control-bar" + ( this.state.toolbarShowing ? "" : " hidden" ) } >
-                                
-                            <GestureDetector
-                                onTap={this.revealToolbar.bind(this)}>  
-                             <div 
-                                onClick={this.revealToolbar.bind(this)} 
-                                className="toolbar-activation-zone">
-                                
-                                        <ControlBar
-                                            selectOpen={this.state.selectOpen}
-                                            togglePlayerSelect={this.togglePlayerSelect.bind(this)}
-                                            openSelect={this.openSelect.bind(this)}
-                                            targetPlayer={this.state.targetPlayer}
-                                            closeSelect={this.closeSelect.bind(this)}
-                                            switchPlayer={this.switchPlayer.bind(this)}      
-                                            playerInstance={this.state.playerInstance}
-                                            players={this.state.players_loop ? this.state.players_loop : [] }
-                                            library={this.state.library}
-                                            checkPlayerInstance={this.checkPlayerInstance.bind(this)}
-                                            handleGenreChange={this.handleGenreChange.bind(this)}
-                                            genreSelected={this.state.genreSelected}
-                                            LMS={this.state.LMS}
-                                            handleViewChange={this.handleViewChange.bind(this)}
-                                            searchFor={this.searchFor.bind(this)}
-                                            setOrderType={this.setOrderType.bind(this)}
-                                        />
 
-                                </div>
-                            </GestureDetector>
-                    
-                            </div>
+                           { this.state.toolbarShowing ?             
+                                <ControlBar
+                                    selectOpen={this.state.selectOpen}
+                                    togglePlayerSelect={this.togglePlayerSelect.bind(this)}
+                                    openSelect={this.openSelect.bind(this)}
+                                    targetPlayer={this.state.targetPlayer}
+                                    closeSelect={this.closeSelect.bind(this)}
+                                    switchPlayer={this.switchPlayer.bind(this)}      
+                                    toggleNowPlaying={this.toggleNowPlaying.bind(this)}
+                                    playerInstance={this.state.playerInstance}
+                                    players={this.state.players_loop ? this.state.players_loop : [] }
+                                    library={this.state.library}
+                                    checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                                    handleGenreChange={this.handleGenreChange.bind(this)}
+                                    genreSelected={this.state.genreSelected}
+                                    LMS={this.state.LMS}
+                                    handleViewChange={this.handleViewChange.bind(this)}
+                                    searchFor={this.searchFor.bind(this)}
+                                    setOrderType={this.setOrderType.bind(this)}
+                                />
+                                :                                
+                                <Button
+                                    className="show-controlbar"
+                                    onClick={ () => { this.setState({toolbarShowing:true })}}
+                                > Toolbar </Button>
+                            }
+                        
+                        
                                
                             { this.state.library.genres ?
                                 
@@ -255,7 +254,6 @@ class MediaApp extends React.Component {
                                         storedLayout={this.state.storedLayout}
                                         storeOrderChange={this.storeOrderChange.bind(this)}
                                         orderType={this.state.orderType}
-                                        albumsMoveable={this.state.albumsMoveable}
                                         hideToolbar={() => { 
                                             if (this.state.toolbarShowing) {
                                                 this.setState({toolbarShowing:false})
@@ -273,9 +271,6 @@ class MediaApp extends React.Component {
                         <ProgressCircular />
                     </div>
                     }              
-               
-                    
-
             </div>
         );
     }
