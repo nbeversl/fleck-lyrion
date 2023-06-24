@@ -33,6 +33,7 @@ class MediaApp extends React.Component {
       orderType: "alpha",
       BrowserPlayer: null,
       pingingPlayers: null,
+      columns: 5,
     };
   }
 
@@ -219,6 +220,12 @@ class MediaApp extends React.Component {
     });
   }
 
+  setColumns(columns) {
+    if (columns > 0) {
+      this.setState({ columns: 10 - columns });
+    }
+  }
+
   revealToolbar() {
     if (!this.state.toolbarShowing) {
       this.setState({ toolbarShowing: true });
@@ -248,6 +255,8 @@ class MediaApp extends React.Component {
                 handleViewChange={this.handleViewChange.bind(this)}
                 searchFor={this.searchFor.bind(this)}
                 setOrderType={this.setOrderType.bind(this)}
+                columns={this.state.columns}
+                setColumns={this.setColumns.bind(this)}
               />
             ) : (
               <Button
@@ -275,6 +284,8 @@ class MediaApp extends React.Component {
                   storedLayout={this.state.storedLayout}
                   storeOrderChange={this.storeOrderChange.bind(this)}
                   orderType={this.state.orderType}
+                  columns={this.state.columns}
+                  setColumns={this.setColumns.bind(this)}
                   hideToolbar={() => {
                     if (this.state.toolbarShowing) {
                       this.setState({ toolbarShowing: false });

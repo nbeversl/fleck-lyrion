@@ -43,6 +43,8 @@ class LibraryView extends React.Component {
             storeOrderChange={this.props.storeOrderChange}
             storedLayout={this.props.storedLayout}
             orderType={this.props.orderType}
+            columns={this.props.columns}
+            setColumns={this.props.setColumns}
           />
         ) : null;
         break;
@@ -57,6 +59,8 @@ class LibraryView extends React.Component {
             checkPlayerInstance={this.props.checkPlayerInstance}
             LMS={this.props.LMS}
             playerInstance={this.props.playerInstance}
+            columns={this.props.columns}
+            setColumns={this.props.setColumns}
           />
         );
         break;

@@ -3,7 +3,7 @@ import NowPlaying from "./NowPlaying";
 import { Toolbar, Segment } from "react-onsenui";
 import * as React from "react";
 import SearchBar from "./SearchBar";
-
+import { Range } from "react-onsenui";
 class ControlBar extends React.Component {
   constructor(props) {
     super(props);
@@ -106,6 +106,14 @@ class ControlBar extends React.Component {
               </div>
             ) : null}
             <SearchBar searchFor={this.props.searchFor} />
+            <div className={"grid-size"}>
+              <Range
+                value={(10 - this.props.columns) * 10}
+                onChange={(event) =>
+                  this.props.setColumns(parseInt(event.target.value / 10))
+                }
+              />
+            </div>
           </div>
         </div>
       </Toolbar>
