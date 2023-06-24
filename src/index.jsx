@@ -214,7 +214,7 @@ class MediaApp extends React.Component {
       this.setState({ searchResultsAlbums: result });
     });
 
-  checkPlayerInstance  this.state.library.searchTracks(item, (result) => {
+    this.state.library.searchTracks(item, (result) => {
       this.setState({ searchResultsTracks: result });
     });
   }
