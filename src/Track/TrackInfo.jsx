@@ -13,6 +13,15 @@ class TrackInfo extends React.Component {
     var List = [];
     this.props.trackInfo.forEach((item) => {
       Object.keys(item).forEach((id) => {
+        if (id == "duration") {
+          List.push(
+            <div key={id} className="info-item">
+              {id} : {secondsToMinutes(item[id])}
+            </div>
+          );
+          return;
+        }
+
         if (id !== "comment") {
           List.push(
             <div key={id} className="info-item">
@@ -47,6 +56,20 @@ class TrackInfo extends React.Component {
       </div>
     );
   }
+}
+
+function secondsToMinutes(seconds) {
+  seconds = Math.floor(seconds);
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds - minutes * 60;
+  return (
+    "" +
+    minutes +
+    ":" +
+    remainingSeconds.toLocaleString("en", {
+      minimumIntegerDigits: 1,
+    })
+  );
 }
 
 export default TrackInfo;

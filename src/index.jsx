@@ -39,7 +39,7 @@ class MediaApp extends React.Component {
       var l = new LMSLibrary(this.state.LMS);
       l.establishLibrary((library) => {
         this.setState({ library: library }, () => {
-          // this.loadRandomGenre();
+          this.loadRandomAlbums();
         });
       });
       this.getAvailablePlayers();
@@ -190,11 +190,15 @@ class MediaApp extends React.Component {
     );
   }
 
-  loadRandomGenre() {
-    var selection = Math.floor(
-      Math.random() * Object.keys(this.state.library.genres).length
-    );
-    this.handleGenreChange(Object.keys(this.state.library.genres)[selection]);
+  loadRandomAlbums() {
+    this.state.library.allAlbums((albums) => {
+      var randomAlbums = [];
+      for (var i = 0; i < 10; i++) {
+        var selection = Math.floor(Math.random() * Object.keys(albums).length);
+        randomAlbums.push(albums[selection]);
+      }
+      this.setState({ searchResultsAlbums: randomAlbums, view: "search" });
+    });
   }
 
   searchFor(item) {
