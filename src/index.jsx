@@ -9,6 +9,8 @@ import { Button, ProgressCircular } from "react-onsenui";
 import { LibraryView } from "./LibraryView";
 import { ControlBar } from "./Toolbar/ControlBar";
 import "./style.css";
+import "./OnsenCSS/onsenui-core.min.css";
+import "./OnsenCSS/onsen-css-components.min.css";
 
 class MediaApp extends React.Component {
   constructor(props) {
@@ -225,14 +227,6 @@ class MediaApp extends React.Component {
   render() {
     return (
       <div className="main">
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/onsenui/css/onsenui-core.min.css"
-        ></link>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/onsenui/css/onsen-css-components.min.css"
-        ></link>
         {this.state.players_loop.length > 0 && this.state.library ? (
           <div>
             {this.state.toolbarShowing ? (
