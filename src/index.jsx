@@ -75,6 +75,7 @@ class MediaApp extends React.Component {
       selectOpen: true,
     });
   }
+
   togglePlayerSelect() {
     this.state.selectOpen ? this.closeSelect() : this.openSelect();
   }
@@ -139,9 +140,9 @@ class MediaApp extends React.Component {
 
   checkPlayerInstance(callback) {
     if (!this.state.playerInstance) {
+      this.openSelect();
       this.setState({
         toolbarShowing: true,
-        selectOpen: true,
       });
       this.waitForPlayerInstance(callback);
     } else {
@@ -213,7 +214,7 @@ class MediaApp extends React.Component {
       this.setState({ searchResultsAlbums: result });
     });
 
-    this.state.library.searchTracks(item, (result) => {
+  checkPlayerInstance  this.state.library.searchTracks(item, (result) => {
       this.setState({ searchResultsTracks: result });
     });
   }
