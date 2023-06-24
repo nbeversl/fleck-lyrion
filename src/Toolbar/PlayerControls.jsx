@@ -58,7 +58,7 @@ class PlayerControls extends React.Component {
               <div className="custom-den-controls">
                 <ToolbarButton
                   className="player-control-button"
-                  onClick={this.state.yamaha.togglePower}
+                  onClick={this.state.yamaha.powerOn}
                 >
                   <img className={"btn-icon"} src={"./html/icon/power.png"} />
                 </ToolbarButton>

@@ -3,6 +3,7 @@ import * as React from "react";
 import { Player } from "./LMS/Player";
 import { LMS } from "./LMS/server";
 import { LMSLibrary } from "./LMS/Library";
+import { Yamaha } from "./Yamaha/Yamaha";
 import { BrowserPlayer } from "./BrowserPlayer";
 import { Button, ProgressCircular } from "react-onsenui";
 import { LibraryView } from "./LibraryView";
@@ -94,7 +95,6 @@ class MediaApp extends React.Component {
           availablePlayers.push(player);
         }
       });
-      console.log("GOT AVAILABLE PLAYERS");
       this.setState({ players_loop: availablePlayers });
     });
   }
@@ -104,6 +104,12 @@ class MediaApp extends React.Component {
 
     if (playerName !== "Browser") {
       newPlayer = new Player(this.state.LMS, playerName);
+
+      if (newPlayer.address == "Den") {
+        var yamaha = new Yamaha("http://10.0.0.68");
+        yamaha.powerOn();
+        setTimeout(yamaha.setMediaCenter, 3000);
+      }
 
       this.setState(
         {

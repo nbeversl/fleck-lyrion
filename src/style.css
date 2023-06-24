@@ -565,6 +565,11 @@ ons-button.show-controlbar {
 .disc-number-text {
   margin-left: 10px;
 }
+
+.track-info {
+  overflow-wrap: anywhere;
+  max-width: 100%;
+}
 @media (max-width: 800px) {
   .grid-size {
     display: none;
