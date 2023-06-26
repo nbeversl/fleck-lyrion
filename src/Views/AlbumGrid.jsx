@@ -31,7 +31,7 @@ class AlbumGrid extends React.PureComponent {
       layout: null,
       orderType: null,
       albumSize: 200,
-      columns: 5,
+      columns: null,
     };
   }
 
@@ -61,7 +61,7 @@ class AlbumGrid extends React.PureComponent {
     if (
       this.props.genre !== this.state.genre ||
       !areSame(albumDict, this.state.albumDict) ||
-      this.props.columns != this.state.columns
+      this.props.columns !== this.state.columns
     ) {
       if (this.props.layout) {
         this.setState({ layout: this.props.layout });
@@ -195,7 +195,7 @@ class AlbumGrid extends React.PureComponent {
         );
 
         a += 1;
-        if (a == this.props.cols) {
+        if (a == this.props.columns) {
           b += 1;
           a = 0;
         }
@@ -220,17 +220,11 @@ class AlbumGrid extends React.PureComponent {
     var cols = this.state.columns;
     if (cols < 10) {
       cols += 1;
+      this.props.setColumns(10 - cols);
     }
-    this.setColumns(cols);
-    this.setState(
-      {
-        lastPinch: now,
-      },
-      () => {
-        this.props.storeOrderChange({ order: this.state.order, cols: cols });
-        this.makeLayout(this.state.order);
-      }
-    );
+    this.setState({
+      lastPinch: now,
+    });
   }
 
   handlePinchOut() {
@@ -238,20 +232,15 @@ class AlbumGrid extends React.PureComponent {
     if (now < this.state.lastPinch + 500) {
       return;
     }
-    var cols = this.props.cols;
-    if (cols > 1) {
+    var cols = this.state.columns;
+    if (cols > 0) {
       cols -= 1;
+      this.props.setColumns(10 - cols);
     }
-    this.setState(
-      {
-        cols: cols,
-        lastPinch: now,
-      },
-      () => {
-        this.props.storeOrderChange({ order: this.state.order, cols: cols });
-        this.makeLayout(this.state.order);
-      }
-    );
+
+    this.setState({
+      lastPinch: now,
+    });
   }
 
   handleLayoutChange(layout, allLayouts) {
@@ -261,7 +250,10 @@ class AlbumGrid extends React.PureComponent {
     var newOrder = getAlbumOrderFromLayout(layout, this.state.albumDict);
     if (!arraysMatch(newOrder, this.state.order)) {
       this.makeLayout(newOrder, () => {
-        this.props.storeOrderChange({ order: newOrder, cols: this.props.cols });
+        this.props.storeOrderChange({
+          order: newOrder,
+          cols: this.props.columns,
+        });
       });
     }
   }
