@@ -50,17 +50,6 @@ class TrackWithDetails extends React.Component {
           >
             <img className={"btn-icon"} src={"./html/icon/play.png"} />
           </ToolbarButton>
-          <ToolbarButton
-            onClick={
-              this.props.addToPlaylist
-                ? () => {
-                    this.props.addToPlaylist(this.props.track.serverID);
-                  }
-                : null
-            }
-          >
-            +
-          </ToolbarButton>
           <ToolbarButton onClick={this.toggleTrackInfo.bind(this)}>
             <div className="info-i">
               <div className="i">i</div>
