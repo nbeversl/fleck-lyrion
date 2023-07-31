@@ -325,13 +325,15 @@ ons-toolbar-button.player-control-button {
 
 .album-info {
   display: flex;
+  margin: 0.5rem;
+  justify-content: space-between;
 }
 .album-info .text-info {
   flex-basis: 80%;
   color: black;
 }
 .mini-album-cover {
-  flex-basis: 20%;
+  width: 80px;
   margin: 5px 15px 5px 15px;
 }
 .mini-album-cover img {
@@ -602,4 +604,8 @@ ons-button.show-controlbar {
     justify-content: center;
     align-self: center;
   }
+}
+
+.duration {
+  margin-left: 0.5rem;
 }

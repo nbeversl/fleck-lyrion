@@ -2,6 +2,7 @@ import * as React from "react";
 import { ToolbarButton } from "react-onsenui";
 import "../style.css";
 import TrackInfo from "./TrackInfo";
+import secondsToMinutes from "../helpers.js";
 
 class TrackWithDetails extends React.Component {
   constructor(props) {
@@ -33,6 +34,9 @@ class TrackWithDetails extends React.Component {
         <div className="title-and-codec">
           <span className="track-title">
             {this.props.track.tracknum}: {this.props.track.title}
+          </span>
+          <span className="duration">
+            ( {secondsToMinutes(this.props.track.duration)} )
           </span>
           <span className="codec">
             {this.props.track.type === "flc" ? "FLAC" : this.props.track.type}

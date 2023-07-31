@@ -90,7 +90,7 @@ class LMSLibrary {
           "500",
           "album_id:" + albumID,
           "sort:tracknum",
-          "tags:**t****o****l****i****e**",
+          "tags:**t****o****l****i****e****d**",
         ],
       ],
       (r) => {

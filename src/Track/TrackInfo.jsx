@@ -1,5 +1,6 @@
 import * as React from "react";
 import ExtendedMetadata from "../Metadata/ExtendedMetadata";
+import secondsToMinutes from "../helpers.js";
 
 class TrackInfo extends React.Component {
   constructor(props) {
@@ -56,20 +57,6 @@ class TrackInfo extends React.Component {
       </div>
     );
   }
-}
-
-function secondsToMinutes(seconds) {
-  seconds = Math.floor(seconds);
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds - minutes * 60;
-  return (
-    "" +
-    minutes +
-    ":" +
-    remainingSeconds.toLocaleString("en", {
-      minimumIntegerDigits: 1,
-    })
-  );
 }
 
 export default TrackInfo;
