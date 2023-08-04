@@ -34,6 +34,7 @@ class MediaApp extends React.Component {
       BrowserPlayer: null,
       pingingPlayers: null,
       columns: 5,
+      searchString: "",
     };
   }
 
@@ -64,7 +65,7 @@ class MediaApp extends React.Component {
     clearInterval(pingingPlayers);
     this.setState({
       selectOpen: false,
-      pingingPlayers: pingingPlayers,
+      pingingPlayers: null,
     });
   }
 
@@ -105,7 +106,6 @@ class MediaApp extends React.Component {
 
   switchPlayer(playerName, callback) {
     var newPlayer;
-
     if (playerName !== "Browser") {
       newPlayer = new Player(this.state.LMS, playerName);
 
@@ -137,6 +137,7 @@ class MediaApp extends React.Component {
         this.initBrowserPlayer();
       }
     }
+    this.closeSelect();
   }
 
   checkPlayerInstance(callback) {
@@ -231,6 +232,9 @@ class MediaApp extends React.Component {
       this.setState({ toolbarShowing: true });
     }
   }
+  setSearchString(searchString) {
+    this.setState({ searchString: searchString });
+  }
 
   render() {
     return (
@@ -254,6 +258,8 @@ class MediaApp extends React.Component {
                 LMS={this.state.LMS}
                 handleViewChange={this.handleViewChange.bind(this)}
                 searchFor={this.searchFor.bind(this)}
+                setSearchString={this.setSearchString.bind(this)}
+                searchString={this.state.searchString}
                 setOrderType={this.setOrderType.bind(this)}
                 columns={this.state.columns}
                 setColumns={this.setColumns.bind(this)}

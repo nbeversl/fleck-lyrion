@@ -607,5 +607,6 @@ ons-button.show-controlbar {
 }
 
 .duration {
+  word-break: normal;
   margin-left: 0.5rem;
 }

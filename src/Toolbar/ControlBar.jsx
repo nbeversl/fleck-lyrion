@@ -40,6 +40,7 @@ class ControlBar extends React.Component {
         return;
       }
       this.setState({ playerStatus: status }, () => {
+        //// Bug is here -- this is what resets search
         this.timer = setTimeout(this.getPlayerStatus.bind(this), 5000);
       });
     });
@@ -63,7 +64,6 @@ class ControlBar extends React.Component {
               playerInstance={this.props.playerInstance}
               LMS={this.props.LMS}
             />
-
             <PlayerControls
               selectOpen={this.props.selectOpen}
               closeSelect={this.props.closeSelect}
@@ -105,7 +105,11 @@ class ControlBar extends React.Component {
                 </div>
               </div>
             ) : null}
-            <SearchBar searchFor={this.props.searchFor} />
+            <SearchBar
+              searchString={this.props.searchString}
+              setSearchString={this.props.setSearchString}
+              searchFor={this.props.searchFor}
+            />
             <div className={"grid-size"}>
               <Range
                 value={(10 - this.props.columns) * 10}
