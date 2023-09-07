@@ -99,10 +99,12 @@ class Player {
     };
     this.nextTrack = () => {
       this.LMS.request([this.address, ["playlist", "index", "+1"]], (r) => {});
+      this.playing = true;
     };
 
     this.previousTrack = () => {
       this.LMS.request([this.address, ["playlist", "index", "-1"]], (r) => {});
+      this.playing = true;
     };
 
     this.getPlayerStatus = (callback) => {

@@ -311,7 +311,8 @@ ons-toolbar-button.player-control-button {
   display: flex;
 }
 .now-playing-meta {
-  flex-basis: 80%;
+  white-space: normal;
+  gap: 4px;
 }
 .now-playing-meta,
 .control-buttons {
@@ -464,7 +465,6 @@ segment__button {
   display: flex;
   font-size: 12px;
   margin-top: 1em;
-  width: 98%;
   margin: 0 auto;
 }
 .now-playing-album-cover {

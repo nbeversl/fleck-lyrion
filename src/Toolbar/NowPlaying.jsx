@@ -71,81 +71,77 @@ class NowPlaying extends React.Component {
           parseInt(this.props.playerStatus.playlist_cur_index)
         ] ? (
           <div className={"now-playing"}>
-            <div className="info">
-              <div className="now-playing-album-cover">
-                <Album
-                  album={this.state.album}
-                  modal={true}
-                  library={this.props.library}
-                  checkPlayerInstance={this.props.checkPlayerInstance}
-                  LMS={this.props.LMS}
-                />
+            <div className="now-playing-album-cover">
+              <Album
+                album={this.state.album}
+                modal={true}
+                library={this.props.library}
+                checkPlayerInstance={this.props.checkPlayerInstance}
+                LMS={this.props.LMS}
+              />
+            </div>
+            <div className="now-playing-meta">
+              <div className="now-playing-artist">
+                {
+                  this.props.playerStatus.playlist_loop[
+                    parseInt(this.props.playerStatus.playlist_cur_index)
+                  ].artist
+                }
               </div>
-              <div className="now-playing-meta">
-                <div className="now-playing-artist">
+              <div className="now-playing-album-title">
+                {
+                  this.props.playerStatus.playlist_loop[
+                    parseInt(this.props.playerStatus.playlist_cur_index)
+                  ].album
+                }
+              </div>
+              {this.props.playerStatus.playlist_loop[
+                parseInt(this.props.playerStatus.playlist_cur_index)
+              ].disc ? (
+                <div className="now-playing-disc-number">
+                  {" "}
+                  Disc{" "}
                   {
                     this.props.playerStatus.playlist_loop[
                       parseInt(this.props.playerStatus.playlist_cur_index)
-                    ].artist
-                  }
+                    ].disc
+                  }{" "}
                 </div>
-                <div className="now-playing-album-title">
-                  {
-                    this.props.playerStatus.playlist_loop[
-                      parseInt(this.props.playerStatus.playlist_cur_index)
-                    ].album
-                  }
-                </div>
-                {this.props.playerStatus.playlist_loop[
-                  parseInt(this.props.playerStatus.playlist_cur_index)
-                ].disc ? (
-                  <div className="now-playing-disc-number">
-                    {" "}
-                    Disc{" "}
-                    {
-                      this.props.playerStatus.playlist_loop[
-                        parseInt(this.props.playerStatus.playlist_cur_index)
-                      ].disc
-                    }{" "}
-                  </div>
-                ) : null}
-                <div className="now-playing-track-name">
-                  <p>
-                    {
-                      this.props.playerStatus.playlist_loop[
-                        parseInt(this.props.playerStatus.playlist_cur_index)
-                      ].tracknum
-                    }
-                    .
-                    {
-                      this.props.playerStatus.playlist_loop[
-                        parseInt(this.props.playerStatus.playlist_cur_index)
-                      ].title
-                    }
-                  </p>
-                </div>
+              ) : null}
+              <div className="now-playing-track-name">
+                {
+                  this.props.playerStatus.playlist_loop[
+                    parseInt(this.props.playerStatus.playlist_cur_index)
+                  ].tracknum
+                }
+                .
+                {
+                  this.props.playerStatus.playlist_loop[
+                    parseInt(this.props.playerStatus.playlist_cur_index)
+                  ].title
+                }
+              </div>
 
-                {this.state.xid ? (
-                  <ExtendedMetadata
-                    meta={
-                      this.state.xid.discs[0][
-                        this.props.playerStatus.playlist_cur_index
-                      ]
-                    }
-                  />
-                ) : null}
-                <Range
-                  className="track-time"
-                  value={
-                    Math.floor(
-                      (this.props.playerStatus.time /
-                        this.props.playerStatus.duration) *
-                        100
-                    ) - 1
+              {this.state.xid ? (
+                <ExtendedMetadata
+                  meta={
+                    this.state.xid.discs[0][
+                      this.props.playerStatus.playlist_cur_index
+                    ]
                   }
-                  onChange={this.props.handleSeekChange}
                 />
-              </div>
+              ) : null}
+              <Range
+                className="track-time"
+                value={
+                  Math.floor(
+                    (this.props.playerStatus.time /
+                      this.props.playerStatus.duration) *
+                      100
+                  ) - 1
+                }
+                onChange={this.props.handleSeekChange}
+              />
             </div>
           </div>
         ) : null}
