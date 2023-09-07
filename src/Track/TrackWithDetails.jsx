@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ToolbarButton } from "react-onsenui";
 import "../style.css";
-import TrackInfo from "./TrackInfo";
+import TrackDetails from "./TrackDetails";
 import secondsToMinutes from "../helpers.js";
 
 class TrackWithDetails extends React.Component {
@@ -36,7 +36,7 @@ class TrackWithDetails extends React.Component {
             {this.props.track.tracknum}: {this.props.track.title}
           </span>
           <span className="duration">
-            ( {secondsToMinutes(this.props.track.duration)} )
+            ({secondsToMinutes(this.props.track.duration)})
           </span>
           <span className="codec">
             {this.props.track.type === "flc" ? "FLAC" : this.props.track.type}
@@ -58,7 +58,6 @@ class TrackWithDetails extends React.Component {
         </div>
         {this.state.trackInfo && this.state.showTrackInfo ? (
           <div>
-            <hr />
             <ToolbarButton
               className="ion-home color-primary item"
               onClick={() => {
@@ -69,7 +68,7 @@ class TrackWithDetails extends React.Component {
             >
               Download
             </ToolbarButton>
-            <TrackInfo
+            <TrackDetails
               trackInfo={this.state.trackInfo}
               disc={this.props.disc}
               track={this.props.track.tracknum}

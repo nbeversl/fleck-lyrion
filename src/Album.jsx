@@ -102,12 +102,7 @@ class Album extends React.Component {
     };
 
     return (
-      <div
-        className="album"
-        ref={(divElement) => {
-          this.divElement = divElement;
-        }}
-      >
+      <div className="album">
         {this.state.album ? (
           <div>
             <Button modifier="large--cta" onClick={this.handleOpen.bind(this)}>

@@ -41,7 +41,8 @@ ons-toolbar.toolbar-showing {
 }
 .grid-tracklist {
   font-size: 10px;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   z-index: 100;
   margin: 1em 2em 1em 2em;
   padding-bottom: 70px;
@@ -233,7 +234,7 @@ button.order-select {
   font-weight: 800;
   background: #f3ecec;
   border-radius: 3px;
-  margin-left: 5px;
+  margin-left: 10px;
   width: auto;
   height: 12px;
 }
@@ -353,6 +354,10 @@ ons-modal.album-modal {
   display: flex;
   flex-basis: 80%;
   flex-direction: column;
+}
+
+.grid-tracklist .track-details {
+  margin: 1rem;
 }
 .track-info-controls {
   display: flex;

@@ -2,7 +2,7 @@ import * as React from "react";
 import ExtendedMetadata from "../Metadata/ExtendedMetadata";
 import secondsToMinutes from "../helpers.js";
 
-class TrackInfo extends React.Component {
+class TrackDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +17,7 @@ class TrackInfo extends React.Component {
         if (id == "duration") {
           List.push(
             <div key={id} className="info-item">
-              {id} : {secondsToMinutes(item[id])}
+              <strong>{id}</strong> : {secondsToMinutes(item[id])}
             </div>
           );
           return;
@@ -26,7 +26,7 @@ class TrackInfo extends React.Component {
         if (id !== "comment") {
           List.push(
             <div key={id} className="info-item">
-              {id} : {item[id]}
+              <strong>{id}</strong> : {item[id]}
             </div>
           );
         }
@@ -45,7 +45,7 @@ class TrackInfo extends React.Component {
     });
 
     return (
-      <div className="track-info">
+      <div className="track-details">
         {List}
         {this.state.xid ? (
           <ExtendedMetadata
@@ -59,4 +59,4 @@ class TrackInfo extends React.Component {
   }
 }
 
-export default TrackInfo;
+export default TrackDetails;

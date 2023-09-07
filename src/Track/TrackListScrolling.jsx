@@ -36,7 +36,7 @@ class TrackListScrolling extends React.Component {
         keySuffix += 1;
         List.push(
           <div className={"disc-number"} key={"DISC-" + disc + keySuffix}>
-            {disc !== 1 ? <hr></hr> : null}
+            {disc !== "1" ? <hr></hr> : null}
             <div className="disc-number-text"> DISC {disc} </div>
           </div>
         );
