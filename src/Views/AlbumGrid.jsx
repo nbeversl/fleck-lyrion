@@ -262,7 +262,7 @@ class AlbumGrid extends React.PureComponent {
     const ResponsiveGridLayout = WidthProvider(Responsive);
 
     return (
-      <div className={"main-album-grid"}>
+      <div className={`main-album-grid ${this.props.theme}`}>
         {this.state.layout ? (
           <GestureDetector
             onPinchIn={this.handlePinchIn.bind(this)}
@@ -277,7 +277,7 @@ class AlbumGrid extends React.PureComponent {
                 xs: this.state.columns,
                 xxs: this.state.columns,
               }}
-              className="layout"
+              //   className="layout"
               compactType={"horizontal"}
               draggableHandle={".handle"}
               rowHeight={this.state.albumSize}

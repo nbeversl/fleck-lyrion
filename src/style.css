@@ -123,9 +123,15 @@ img.album-image {
   opacity: 0.95;
   bottom: 0;
   width: 100%;
-  background-color: white;
   box-shadow: -1px -5px 16px #888888;
   padding: 10px 0px 25px 0px;
+}
+
+.light-theme {
+  background-color: white;
+}
+.dark-theme {
+  background-color: black;
 }
 
 .control-bar.hidden {
@@ -182,7 +188,12 @@ img.album-image {
 .player-selector-dialog .dialog {
   height: auto !important;
 }
-.layout-and-search {
+.global-controls {
+  display: flex;
+}
+
+.alpha-shuffle,
+.theme-control {
   display: flex;
   flex-wrap: wrap;
   padding: 0px 20px 0px 20px;
@@ -199,7 +210,8 @@ button.search-button {
   margin: 5px 5px 5px 0px;
   padding: 2px 12px;
 }
-button.order-select {
+button.order-select,
+button.theme-select {
   width: 70px;
 }
 .search-clear {
@@ -604,7 +616,7 @@ ons-button.show-controlbar {
         left: 50%;
         top: 50%;
     } */
-  .layout-and-search {
+  .alpha-shuffle {
     justify-content: space-around;
   }
   .search-bar {

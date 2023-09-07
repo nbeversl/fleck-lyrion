@@ -35,6 +35,7 @@ class MediaApp extends React.Component {
       pingingPlayers: null,
       columns: 5,
       searchString: "",
+      theme: "light-theme",
     };
   }
 
@@ -236,9 +237,13 @@ class MediaApp extends React.Component {
     this.setState({ searchString: searchString });
   }
 
+  setTheme(theme) {
+    this.setState({ theme: theme });
+  }
+
   render() {
     return (
-      <div className="main">
+      <div className={`main ${this.state.theme}`}>
         {this.state.players_loop.length > 0 && this.state.library ? (
           <div>
             {this.state.toolbarShowing ? (
@@ -263,6 +268,8 @@ class MediaApp extends React.Component {
                 setOrderType={this.setOrderType.bind(this)}
                 columns={this.state.columns}
                 setColumns={this.setColumns.bind(this)}
+                setTheme={this.setTheme.bind(this)}
+                theme={this.state.theme}
               />
             ) : (
               <Button
@@ -291,6 +298,7 @@ class MediaApp extends React.Component {
                   storeOrderChange={this.storeOrderChange.bind(this)}
                   orderType={this.state.orderType}
                   columns={this.state.columns}
+                  theme={this.state.theme}
                   setColumns={this.setColumns.bind(this)}
                   hideToolbar={() => {
                     if (this.state.toolbarShowing) {

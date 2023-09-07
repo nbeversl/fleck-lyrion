@@ -25,6 +25,7 @@ class SearchResults extends React.Component {
               playerInstance={this.props.playerInstance}
               columns={this.props.columns}
               setColumns={this.props.setColumns}
+              theme={this.props.theme}
             />
           </div>
         ) : (

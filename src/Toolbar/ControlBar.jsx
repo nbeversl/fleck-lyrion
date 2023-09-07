@@ -52,7 +52,7 @@ class ControlBar extends React.Component {
           ref={(divElement) => {
             this.divElement = divElement;
           }}
-          className="control-bar"
+          className={`control-bar ${this.props.theme}`}
         >
           <div className={"control-content"}>
             <NowPlaying
@@ -78,10 +78,10 @@ class ControlBar extends React.Component {
               genreSelected={this.props.genreSelected}
               controlBarHeight={this.state.height}
             />
-            {this.props.genreSelected ? (
-              <div className="layout-and-search">
-                <div className="grid-controls">
-                  <Segment index={1}>
+            <div className="global-controls">
+              {this.props.genreSelected ? (
+                <div className="alpha-shuffle">
+                  <Segment activeIndex={1}>
                     <button
                       className="order-select"
                       onClick={() => this.props.setOrderType("shuffle")}
@@ -102,8 +102,24 @@ class ControlBar extends React.Component {
                     </button> */}
                   </Segment>
                 </div>
+              ) : null}
+              <div className="theme-control">
+                <Segment activeIndex={0}>
+                  <button
+                    className="theme-select"
+                    onClick={() => this.props.setTheme("light-theme")}
+                  >
+                    Light
+                  </button>
+                  <button
+                    className="theme-select"
+                    onClick={() => this.props.setTheme("dark-theme")}
+                  >
+                    Dark
+                  </button>
+                </Segment>
               </div>
-            ) : null}
+            </div>
             <SearchBar
               searchString={this.props.searchString}
               setSearchString={this.props.setSearchString}
