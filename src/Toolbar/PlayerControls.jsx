@@ -11,7 +11,7 @@ class PlayerControls extends React.Component {
       volume: null,
       yamahaVolume: -0,
       nowPlayingShowing: false,
-      yamaha: new Yamaha("http://10.0.0.68"),
+      yamaha: new Yamaha("http://10.0.0.68:80"),
       currentPlayerPlaying: false,
     };
   }
@@ -58,13 +58,6 @@ class PlayerControls extends React.Component {
               <div className="custom-den-controls">
                 <ToolbarButton
                   className="player-control-button"
-                  onClick={this.state.yamaha.powerOn}
-                >
-                  <img className={"btn-icon"} src={"./html/icon/power.png"} />
-                </ToolbarButton>
-
-                <ToolbarButton
-                  className="player-control-button"
                   onClick={this.state.yamaha.volumeDown}
                 >
                   <img className={"btn-icon"} src={"./html/icon/minus.png"} />
@@ -75,20 +68,6 @@ class PlayerControls extends React.Component {
                   onClick={this.state.yamaha.volumeUp}
                 >
                   <img className={"btn-icon"} src={"./html/icon/plus.png"} />
-                </ToolbarButton>
-
-                <ToolbarButton
-                  className="player-control-button"
-                  onClick={this.state.yamaha.setAppleTV}
-                >
-                  <img className={"btn-icon"} src={"./html/icon/apple.png"} />
-                </ToolbarButton>
-
-                <ToolbarButton
-                  className="player-control-button"
-                  onClick={this.state.yamaha.setMediaCenter}
-                >
-                  <img className={"btn-icon"} src={"./html/icon/bug.png"} />
                 </ToolbarButton>
               </div>
             ) : null}
