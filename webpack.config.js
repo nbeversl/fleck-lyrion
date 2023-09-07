@@ -4,8 +4,10 @@ module.exports = {
   entry: "./src/index.jsx",
   output: {
     filename: "main.js",
-    path: "/Volumes/Media ( Main )/lms-boulez-theme-master",
+    //path: "/Volumes/Media ( Main )/lms-boulez-theme-master",
     // path: path.resolve(__dirname, "dist")
+    // path: "/Volumes/Media ( Main )/lms-boulez-theme-master/main.js"
+    path: "/Volumes/Macintosh HD-1/Library/PreferencePanes/Squeezebox.prefPane/Contents/server/HTML/lms-boulez-theme-master",
   },
   resolve: {
     extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -27,13 +29,13 @@ module.exports = {
         test: /\.css$/,
         use: [{ loader: "style-loader" }, { loader: "css-loader" }],
       },
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "source-map-loader",
-      },
+      // {
+      //   enforce: "pre",
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   //   loader: "source-map-loader",
+      // },
     ],
   },
-  devtool: "source-map",
+  //   devtool: "source-map",
 };

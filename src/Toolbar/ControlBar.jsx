@@ -40,7 +40,6 @@ class ControlBar extends React.Component {
         return;
       }
       this.setState({ playerStatus: status }, () => {
-        //// Bug is here -- this is what resets search
         this.timer = setTimeout(this.getPlayerStatus.bind(this), 5000);
       });
     });
