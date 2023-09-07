@@ -130,6 +130,7 @@ class PlayerControls extends React.Component {
                   value={this.props.playerInstance.volume}
                   onChange={this.setVolume.bind(this)}
                 />
+                <label>LMS Player Volume</label>
               </div>
             ) : null}
           </div>
