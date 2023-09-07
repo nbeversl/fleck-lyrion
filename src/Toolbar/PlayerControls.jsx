@@ -12,7 +12,6 @@ class PlayerControls extends React.Component {
       yamahaVolume: -0,
       nowPlayingShowing: false,
       yamaha: new Yamaha("http://10.0.0.68:80"),
-      currentPlayerPlaying: false,
     };
   }
 
@@ -20,6 +19,7 @@ class PlayerControls extends React.Component {
     this.setState({ volume: parseInt(event.target.value) });
     this.props.playerInstance.setVolume(this.state.volume);
   }
+
   handleBackButton() {
     if (this.props.playerStatus.time < 3) {
       this.props.playerInstance.previousTrack();
@@ -76,16 +76,11 @@ class PlayerControls extends React.Component {
                 className="player-control-button"
                 onClick={() => {
                   if (this.props.playerInstance) {
-                    this.setState({
-                      currentPlayerPlaying: this.state.currentPlayerPlaying
-                        ? false
-                        : true,
-                    });
-                    this.props.playerInstance.pause();
+                    this.props.playerInstance.playOrPause();
                   }
                 }}
               >
-                {!this.state.currentPlayerPlaying ? (
+                {this.props.playerInstance.playing ? (
                   <img className={"btn-icon"} src={"./html/icon/pause.png"} />
                 ) : (
                   <img className={"btn-icon"} src={"./html/icon/play.png"} />
