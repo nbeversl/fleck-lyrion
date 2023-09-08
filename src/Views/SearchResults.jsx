@@ -15,19 +15,17 @@ class SearchResults extends React.Component {
     return (
       <div>
         {this.props.searchResultsAlbums ? (
-          <div>
-            <AlbumGrid
-              albumList={this.props.searchResultsAlbums}
-              library={this.props.library}
-              LMS={this.props.LMS}
-              orderType={"alpha"}
-              checkPlayerInstance={this.props.checkPlayerInstance}
-              playerInstance={this.props.playerInstance}
-              columns={this.props.columns}
-              setColumns={this.props.setColumns}
-              theme={this.props.theme}
-            />
-          </div>
+          <AlbumGrid
+            albumList={this.props.searchResultsAlbums}
+            library={this.props.library}
+            LMS={this.props.LMS}
+            orderType={"alpha"}
+            checkPlayerInstance={this.props.checkPlayerInstance}
+            playerInstance={this.props.playerInstance}
+            columns={this.props.columns}
+            setColumns={this.props.setColumns}
+            theme={this.props.theme}
+          />
         ) : (
           <ProgressCircular />
         )}
@@ -41,6 +39,7 @@ class SearchResults extends React.Component {
                   library={this.props.library}
                   LMS={this.props.LMS}
                   playerInstance={this.props.playerInstance}
+                  theme={this.props.theme}
                 />
               </div>
             ) : (

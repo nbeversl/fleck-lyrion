@@ -137,7 +137,7 @@ class Album extends React.Component {
                 onCancel={this.handleClose.bind(this)}
                 isCancelable={true}
               >
-                <div style={DialogStyle}>
+                <div style={DialogStyle} className={this.props.theme}>
                   {this.state.discs ? (
                     <div className="tracklist">
                       <TrackListScrolling

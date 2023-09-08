@@ -203,7 +203,10 @@ class MediaApp extends React.Component {
         var selection = Math.floor(Math.random() * Object.keys(albums).length);
         randomAlbums.push(albums[selection]);
       }
-      this.setState({ searchResultsAlbums: randomAlbums, view: "search" });
+      this.setState({
+        searchResultsAlbums: randomAlbums,
+        view: "search",
+      });
     });
   }
 
@@ -273,6 +276,7 @@ class MediaApp extends React.Component {
                 setSearchString={this.setSearchString.bind(this)}
                 searchString={this.state.searchString}
                 setOrderType={this.setOrderType.bind(this)}
+                orderType={this.state.orderType}
                 columns={this.state.columns}
                 setColumns={this.setColumns.bind(this)}
                 setTheme={this.setTheme.bind(this)}

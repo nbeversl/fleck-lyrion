@@ -58,7 +58,6 @@ ons-toolbar.toolbar-showing {
 .album-title-text {
   position: relative;
   top: 20px;
-  color: black;
 }
 
 .album-text-info {
@@ -142,6 +141,7 @@ img.album-image {
 }
 .dark-theme {
   background-color: black;
+  color: #a39191;
 }
 .control-bar.dark-theme {
   box-shadow: 0px -10px 20px 0px #3e3434;
@@ -360,7 +360,9 @@ ons-toolbar-button.player-control-button {
 }
 .album-info .text-info {
   flex-basis: 80%;
-  color: black;
+}
+.dark-theme .album-info {
+  color: #a39191;
 }
 .mini-album-cover {
   width: 80px;
@@ -480,7 +482,9 @@ segment__button {
   padding: 0px 20px 0px 20px;
   margin-top: 20px;
 }
-
+.dark-theme .search-bar input {
+  background-color: #272727;
+}
 .track-time {
   padding: 10px 0px 10px 0px;
   width: 80%;
@@ -533,12 +537,10 @@ segment__button {
 .tracklist-artist {
   font-weight: 800;
   margin-left: 10px;
-  color: black;
 }
 .tracklist-album-title {
   margin-left: 10px;
   font-style: italic;
-  color: black;
 }
 ons-range.track-time {
   width: 50%;
@@ -577,10 +579,6 @@ ons-button.show-controlbar {
   margin-left: 20px;
   z-index: 100;
   width: 200px;
-  border: solid;
-  border-width: 0.5px;
-  border-color: azure;
-  border-radius: 3px;
 }
 .grid-size input {
   opacity: 0.3;
