@@ -14,6 +14,7 @@ const GridResponsiveAlbum = React.forwardRef(
           library={props.library}
           LMS={props.LMS}
           moveToTop={props.moveToTop}
+          theme={props.theme}
         />
       </div>
     );
@@ -32,6 +33,7 @@ class AlbumGrid extends React.PureComponent {
       orderType: null,
       albumSize: 200,
       columns: null,
+      theme: null,
     };
   }
 
@@ -43,6 +45,7 @@ class AlbumGrid extends React.PureComponent {
         genre: this.props.genre,
         orderType: this.props.orderType,
         columns: this.props.columns,
+        theme: this.props.theme,
       },
       () => {
         this.reArrange(true);
@@ -61,7 +64,8 @@ class AlbumGrid extends React.PureComponent {
     if (
       this.props.genre !== this.state.genre ||
       !areSame(albumDict, this.state.albumDict) ||
-      this.props.columns !== this.state.columns
+      this.props.columns !== this.state.columns ||
+      this.props.theme !== this.state.theme
     ) {
       if (this.props.layout) {
         this.setState({ layout: this.props.layout });
@@ -72,6 +76,7 @@ class AlbumGrid extends React.PureComponent {
           albumDict: albumDict,
           genre: this.props.genre,
           columns: this.props.columns,
+          theme: this.props.theme,
         },
         () => {
           this.reArrange(true);
@@ -157,6 +162,7 @@ class AlbumGrid extends React.PureComponent {
             LMS={this.props.LMS}
             moveToTop={this.moveToTop.bind(this)}
             moveable={this.props.moveable}
+            theme={this.state.theme}
           />
         </div>
       );
@@ -267,6 +273,7 @@ class AlbumGrid extends React.PureComponent {
           <GestureDetector
             onPinchIn={this.handlePinchIn.bind(this)}
             onPinchOut={this.handlePinchOut.bind(this)}
+            theme={this.props.theme}
           >
             <ResponsiveGridLayout
               breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
@@ -280,6 +287,7 @@ class AlbumGrid extends React.PureComponent {
               //   className="layout"
               compactType={"horizontal"}
               draggableHandle={".handle"}
+              theme={this.props.theme}
               rowHeight={this.state.albumSize}
               layouts={{
                 lg: this.state.layout,

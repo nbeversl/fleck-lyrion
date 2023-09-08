@@ -240,8 +240,8 @@ class MediaApp extends React.Component {
     this.setState({ searchString: searchString });
   }
 
-  setTheme(theme) {
-    this.setState({ theme: theme });
+  setTheme(newTheme) {
+    this.setState({ theme: newTheme });
   }
 
   handlePageClick(e) {
