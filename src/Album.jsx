@@ -74,7 +74,8 @@ class Album extends React.Component {
     });
   }
 
-  handleOpen() {
+  handleOpen(e) {
+    e.stopPropagation();
     this.getMyTracks(this.props.library);
     this.setState({ modalOpen: true });
   }

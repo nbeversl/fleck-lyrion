@@ -241,9 +241,16 @@ class MediaApp extends React.Component {
     this.setState({ theme: theme });
   }
 
+  handlePageClick(e) {
+    this.setState({ toolbarShowing: true });
+  }
+
   render() {
     return (
-      <div className={`main ${this.state.theme}`}>
+      <div
+        onClick={this.handlePageClick.bind(this)}
+        className={`main ${this.state.theme}`}
+      >
         {this.state.players_loop.length > 0 && this.state.library ? (
           <div>
             {this.state.toolbarShowing ? (
@@ -271,17 +278,7 @@ class MediaApp extends React.Component {
                 setTheme={this.setTheme.bind(this)}
                 theme={this.state.theme}
               />
-            ) : (
-              <Button
-                className="show-controlbar"
-                onClick={() => {
-                  this.setState({ toolbarShowing: true });
-                }}
-              >
-                {" "}
-                Toolbar{" "}
-              </Button>
-            )}
+            ) : null}
 
             {this.state.library.genres ? (
               <div className="library-view">
