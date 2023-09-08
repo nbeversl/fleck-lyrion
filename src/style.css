@@ -80,11 +80,21 @@ ons-toolbar.toolbar-showing {
   overflow: hidden;
 }
 img.album-image {
-  width: 100%;
+  width: 98%;
   max-width: 100%;
   border-width: 2px;
   border-radius: 2px;
-  box-shadow: 7px 9px 3px rgba(0, 0, 0, 0.28);
+  border: solid 1px #8f858559;
+  /* box-shadow: 7px 9px 3px rgba(0, 0, 0, 0.28); */
+}
+
+.dark-theme img.album-image {
+  width: 98%;
+  max-width: 100%;
+  border-width: 2px;
+  border-radius: 2px;
+  border: solid 1px #8f858559;
+  /* box-shadow: 7px 9px 3px rgba(0, 0, 0, 0.28); */
 }
 
 .handle-container {
@@ -131,6 +141,12 @@ img.album-image {
   background-color: white;
 }
 .dark-theme {
+  background-color: black;
+}
+.control-bar.dark-theme {
+  box-shadow: 0px -10px 20px 0px #3e3434;
+}
+.dark-theme .page__background {
   background-color: black;
 }
 

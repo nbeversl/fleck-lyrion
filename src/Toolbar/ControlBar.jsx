@@ -81,18 +81,18 @@ class ControlBar extends React.Component {
             <div className="global-controls">
               {this.props.genreSelected ? (
                 <div className="alpha-shuffle">
-                  <Segment activeIndex={1}>
-                    <button
-                      className="order-select"
-                      onClick={() => this.props.setOrderType("shuffle")}
-                    >
-                      Shuffle
-                    </button>
+                  <Segment activeIndex={0}>
                     <button
                       className="order-select"
                       onClick={() => this.props.setOrderType("alpha")}
                     >
                       Alpha
+                    </button>
+                    <button
+                      className="order-select"
+                      onClick={() => this.props.setOrderType("shuffle")}
+                    >
+                      Shuffle
                     </button>
                     {/* <button
                       className="order-select"
