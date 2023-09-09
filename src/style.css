@@ -197,9 +197,7 @@ img.album-image {
 .player-selector ons-toolbar-button {
   margin: 0 auto;
 }
-.player-selector-dialog .dialog {
-  height: auto !important;
-}
+
 .global-controls {
   display: flex;
 }
@@ -420,15 +418,24 @@ ons-modal.album-modal {
   min-height: 50% !important;
   box-shadow: 9px 11px 3px rgba(0, 0, 0, 0.28);
 }
-.dialog-container {
-  max-height: 100%;
-  height: 80vh;
-}
-.dialog-container > div {
-  overflow: unset !important;
-  height: 50vh !important;
+.player-selector-dialog .dialog {
+  height: auto !important;
 }
 
+.album-modal .dialog-container {
+  margin-top: -100%;
+  height: 100vh;
+}
+/* .dialog-container > div {
+  overflow: unset !important;
+  height: 80vh !important;
+  width: 80wv !important;
+} */
+.album-modal .dialog {
+  width: 40%;
+  height: 0;
+  padding-top: 40%;
+}
 .btn-icon {
   height: 40px;
 }

@@ -14,9 +14,6 @@ class PlayerSelector extends React.Component {
     return (
       <div className="player-selector">
         <ToolbarButton
-          //     ref={(btn) => {
-          //       this.btn = btn;
-          //     }}
           onClick={() => {
             this.props.togglePlayerSelect();
             this.setState({

@@ -81,7 +81,7 @@ class ControlBar extends React.Component {
             <div className="global-controls">
               {this.props.genreSelected ? (
                 <div className="alpha-shuffle">
-                  <Segment activeIndex={0}>
+                  <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
                     <button
                       className="order-select"
                       onClick={() => this.props.setOrderType("alpha")}
@@ -104,7 +104,7 @@ class ControlBar extends React.Component {
                 </div>
               ) : null}
               <div className="theme-control">
-                <Segment activeIndex={0}>
+                <Segment index={this.props.theme === "light-theme" ? 0 : 1}>
                   <button
                     className="theme-select"
                     onClick={() => this.props.setTheme("light-theme")}
@@ -128,9 +128,10 @@ class ControlBar extends React.Component {
             <div className={"grid-size"}>
               <Range
                 value={(10 - this.props.columns) * 10}
-                onChange={(event) =>
-                  this.props.setColumns(parseInt(event.target.value / 10))
-                }
+                onChange={(event) => {
+                  event.stopPropagation();
+                  this.props.setColumns(parseInt(event.target.value / 10));
+                }}
               />
               <label>Grid Size</label>
             </div>

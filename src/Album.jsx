@@ -91,15 +91,12 @@ class Album extends React.Component {
       backgroundImage: this.state.album
         ? "url('/music/" + this.state.album.artwork_track_id + "/cover.jpg')"
         : "",
-      backgroundSize: "cover",
+      backgroundSize: "contain",
     };
 
     var handleStyle = {
       width: this.props.albumWidth / 5,
       height: this.props.albumWidth / 5,
-    };
-    const DialogStyle = {
-      height: 500,
     };
 
     return (
@@ -132,12 +129,13 @@ class Album extends React.Component {
             </Button>
             {this.state.modalOpen ? (
               <Dialog
+                className="album-modal"
                 isOpen={true}
                 animation={"none"}
                 onCancel={this.handleClose.bind(this)}
                 isCancelable={true}
               >
-                <div style={DialogStyle} className={this.props.theme}>
+                <div className={this.props.theme}>
                   {this.state.discs ? (
                     <div className="tracklist">
                       <TrackListScrolling
