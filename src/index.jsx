@@ -5,7 +5,7 @@ import { LMS } from "./LMS/server";
 import { LMSLibrary } from "./LMS/Library";
 import { Yamaha } from "./Yamaha/Yamaha";
 import { BrowserPlayer } from "./BrowserPlayer";
-import { Button, ProgressCircular } from "react-onsenui";
+import { ProgressCircular } from "react-onsenui";
 import { LibraryView } from "./LibraryView";
 import { ControlBar } from "./Toolbar/ControlBar";
 import "./style.css";
@@ -232,9 +232,7 @@ class MediaApp extends React.Component {
   }
 
   revealToolbar() {
-    if (!this.state.toolbarShowing) {
-      this.setState({ toolbarShowing: true });
-    }
+    this.setState({ toolbarShowing: true });
   }
   setSearchString(searchString) {
     this.setState({ searchString: searchString });
@@ -244,14 +242,10 @@ class MediaApp extends React.Component {
     this.setState({ theme: newTheme });
   }
 
-  handlePageClick(e) {
-    this.setState({ toolbarShowing: true });
-  }
-
   render() {
     return (
       <div
-        onClick={this.handlePageClick.bind(this)}
+        onClick={this.revealToolbar.bind(this)}
         className={`main ${this.state.theme}`}
       >
         {this.state.players_loop.length > 0 && this.state.library ? (
@@ -306,6 +300,7 @@ class MediaApp extends React.Component {
                       this.setState({ toolbarShowing: false });
                     }
                   }}
+                  revealToolbar={this.revealToolbar.bind(this)}
                 />
               </div>
             ) : null}

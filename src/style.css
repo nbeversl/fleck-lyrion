@@ -83,8 +83,6 @@ img.album-image {
   max-width: 100%;
   border-width: 2px;
   border-radius: 2px;
-  border: solid 1px #8f858559;
-  /* box-shadow: 7px 9px 3px rgba(0, 0, 0, 0.28); */
 }
 
 .dark-theme img.album-image {
@@ -92,8 +90,6 @@ img.album-image {
   max-width: 100%;
   border-width: 2px;
   border-radius: 2px;
-  border: solid 1px #8f858559;
-  /* box-shadow: 7px 9px 3px rgba(0, 0, 0, 0.28); */
 }
 
 .handle-container {
@@ -415,7 +411,7 @@ ons-modal.album-modal {
 }
 .dialog {
   width: 80%;
-  min-height: 50% !important;
+  min-height: 100px;
   box-shadow: 9px 11px 3px rgba(0, 0, 0, 0.28);
 }
 .player-selector-dialog .dialog {
