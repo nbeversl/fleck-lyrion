@@ -44,13 +44,13 @@ class TrackListScrolling extends React.Component {
 
     /* Alows for errors or duplicates in disc/track numbering */
     var keySuffix = 0;
-
+    var discInModal = 1;
     numDiscs.forEach((disc) => {
       if (numDiscs.length > 1) {
         keySuffix += 1;
         List.push(
           <div className={"disc-number"} key={"DISC-" + disc + keySuffix}>
-            {disc !== "1" ? <hr></hr> : null}
+            {discInModal !== 1 ? <hr></hr> : null}
             <div className="disc-number-text"> DISC {disc} </div>
           </div>
         );
@@ -73,6 +73,7 @@ class TrackListScrolling extends React.Component {
           />
         );
         serverID++;
+        discInModal++;
       });
     });
 
