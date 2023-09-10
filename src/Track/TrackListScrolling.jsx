@@ -1,9 +1,16 @@
 import * as React from "react";
 import { Scrollbars } from "react-custom-scrollbars";
 import TrackWithDetails from "./TrackWithDetails";
-import { ToolbarButton, ProgressCircular } from "react-onsenui";
+import { ToolbarButton, Button, ProgressCircular, Modal } from "react-onsenui";
 
 class TrackListScrolling extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      albumArtModalOpen: false,
+    };
+  }
+
   playTrack(disc, trackNumber) {
     this.props.checkPlayerInstance((playerInstance) => {
       if (playerInstance) {
@@ -13,6 +20,13 @@ class TrackListScrolling extends React.Component {
         );
       }
     });
+  }
+
+  handleAlbumArtModal() {
+    console.log("clicked");
+    console.log(this.state.albumArtModalOpen);
+
+    this.setState({ albumArtModalOpen: !this.state.albumArtModalOpen });
   }
 
   render() {
@@ -64,6 +78,12 @@ class TrackListScrolling extends React.Component {
 
     return (
       <div className="tracklist-container">
+        <Modal
+          onClick={this.handleAlbumArtModal.bind(this)}
+          isOpen={this.state.albumArtModalOpen}
+        >
+          <img src={this.props.cover} className="album-image-modal" />
+        </Modal>
         {this.props.discs ? (
           <Scrollbars style={tracklistStyle}>
             {this.props.moveable ? (
@@ -86,9 +106,12 @@ class TrackListScrolling extends React.Component {
                   {this.props.album.album}
                 </div>
               </div>
-              <div className="mini-album-cover">
+              <Button
+                onClick={this.handleAlbumArtModal.bind(this)}
+                className="mini-album-cover"
+              >
                 <img src={this.props.cover} />
-              </div>
+              </Button>
             </div>
             <hr />
             <div className="grid-tracklist">{List}</div>

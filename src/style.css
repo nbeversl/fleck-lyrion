@@ -85,6 +85,10 @@ img.album-image {
   border-radius: 2px;
 }
 
+img.album-image-modal {
+  width: 100%;
+}
+
 .dark-theme img.album-image {
   width: 98%;
   max-width: 100%;

@@ -156,7 +156,6 @@ class Album extends React.Component {
                         )}
                         LMS={this.props.LMS}
                       />
-
                       <div
                         className={"album-background-image"}
                         style={backgroundImageStyle}
