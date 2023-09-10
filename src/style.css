@@ -363,10 +363,6 @@ ons-toolbar-button.player-control-button {
   height: 80px;
 }
 
-ons-modal.album-modal {
-  width: 300px;
-  height: 300px;
-}
 .track-container {
   display: flex;
   flex-direction: row;
@@ -422,12 +418,10 @@ ons-modal.album-modal {
   margin-top: -100%;
   height: 100vh;
 }
-/* .dialog-container > div {
-  overflow: unset !important;
-  height: 80vh !important;
-  width: 80wv !important;
-} */
+
 .album-modal .dialog {
+  min-width: none;
+  min-height: none;
   width: 40%;
   height: 0;
   padding-top: 40%;
@@ -630,6 +624,11 @@ ons-button.show-controlbar {
   #target,
   .control-content {
     flex-direction: column;
+  }
+  .album-modal .dialog {
+    width: 90%;
+    height: 0;
+    padding-top: 90%;
   }
 }
 
