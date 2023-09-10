@@ -358,9 +358,9 @@ ons-toolbar-button.player-control-button {
 .dark-theme .album-info {
   color: #a39191;
 }
-.mini-album-cover {
-  width: 80px;
+.mini-album-cover.button {
   margin: 5px 15px 5px 15px;
+  padding: 0;
 }
 .mini-album-cover img {
   width: auto;
