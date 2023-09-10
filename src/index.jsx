@@ -40,6 +40,13 @@ class MediaApp extends React.Component {
   }
 
   componentDidMount() {
+    var viewWidth = window.innerWidth;
+    if (viewWidth < 500) {
+      this.setState({ columns: 2 });
+    } else {
+      this.setState({ columns: 5 });
+    }
+
     this.setState({ LMS: new LMS() }, () => {
       var l = new LMSLibrary(this.state.LMS);
       l.establishLibrary((library) => {
@@ -256,77 +263,73 @@ class MediaApp extends React.Component {
 
   render() {
     return (
-      <body className={`main ${this.state.theme}`}>
-        <div
-          onClick={this.revealToolbar.bind(this)}
-          className={`main ${this.state.theme}`}
-        >
-          {this.state.players_loop.length > 0 && this.state.library ? (
-            <div>
-              {this.state.toolbarShowing ? (
-                <ControlBar
-                  selectOpen={this.state.selectOpen}
-                  closeSelect={this.closeSelect.bind(this)}
-                  togglePlayerSelect={this.togglePlayerSelect.bind(this)}
-                  targetPlayer={this.state.targetPlayer}
-                  switchPlayer={this.switchPlayer.bind(this)}
-                  toggleNowPlaying={this.toggleNowPlaying.bind(this)}
-                  playerInstance={this.state.playerInstance}
-                  players={
-                    this.state.players_loop ? this.state.players_loop : []
-                  }
-                  library={this.state.library}
-                  checkPlayerInstance={this.checkPlayerInstance.bind(this)}
-                  handleGenreChange={this.handleGenreChange.bind(this)}
+      <div
+        onClick={this.revealToolbar.bind(this)}
+        className={`main ${this.state.theme}`}
+      >
+        {this.state.players_loop.length > 0 && this.state.library ? (
+          <div>
+            {this.state.toolbarShowing ? (
+              <ControlBar
+                selectOpen={this.state.selectOpen}
+                closeSelect={this.closeSelect.bind(this)}
+                togglePlayerSelect={this.togglePlayerSelect.bind(this)}
+                targetPlayer={this.state.targetPlayer}
+                switchPlayer={this.switchPlayer.bind(this)}
+                toggleNowPlaying={this.toggleNowPlaying.bind(this)}
+                playerInstance={this.state.playerInstance}
+                players={this.state.players_loop ? this.state.players_loop : []}
+                library={this.state.library}
+                checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                handleGenreChange={this.handleGenreChange.bind(this)}
+                genreSelected={this.state.genreSelected}
+                LMS={this.state.LMS}
+                handleViewChange={this.handleViewChange.bind(this)}
+                searchFor={this.searchFor.bind(this)}
+                setSearchString={this.setSearchString.bind(this)}
+                searchString={this.state.searchString}
+                setOrderType={this.setOrderType.bind(this)}
+                orderType={this.state.orderType}
+                columns={this.state.columns}
+                setColumns={this.setColumns.bind(this)}
+                setTheme={this.setTheme.bind(this)}
+                theme={this.state.theme}
+              />
+            ) : null}
+
+            {this.state.library.genres ? (
+              <div className="library-view">
+                <LibraryView
+                  view={this.state.view}
                   genreSelected={this.state.genreSelected}
+                  playerInstance={this.state.playerInstance}
+                  library={this.state.library}
+                  searchResultsAlbums={this.state.searchResultsAlbums}
+                  searchResultsTracks={this.state.searchResultsTracks}
+                  checkPlayerInstance={this.checkPlayerInstance.bind(this)}
                   LMS={this.state.LMS}
-                  handleViewChange={this.handleViewChange.bind(this)}
-                  searchFor={this.searchFor.bind(this)}
-                  setSearchString={this.setSearchString.bind(this)}
-                  searchString={this.state.searchString}
-                  setOrderType={this.setOrderType.bind(this)}
+                  storedLayout={this.state.storedLayout}
+                  storeOrderChange={this.storeOrderChange.bind(this)}
                   orderType={this.state.orderType}
                   columns={this.state.columns}
-                  setColumns={this.setColumns.bind(this)}
-                  setTheme={this.setTheme.bind(this)}
                   theme={this.state.theme}
+                  setColumns={this.setColumns.bind(this)}
+                  hideToolbar={() => {
+                    if (this.state.toolbarShowing) {
+                      this.setState({ toolbarShowing: false });
+                    }
+                  }}
+                  revealToolbar={this.revealToolbar.bind(this)}
                 />
-              ) : null}
-
-              {this.state.library.genres ? (
-                <div className="library-view">
-                  <LibraryView
-                    view={this.state.view}
-                    genreSelected={this.state.genreSelected}
-                    playerInstance={this.state.playerInstance}
-                    library={this.state.library}
-                    searchResultsAlbums={this.state.searchResultsAlbums}
-                    searchResultsTracks={this.state.searchResultsTracks}
-                    checkPlayerInstance={this.checkPlayerInstance.bind(this)}
-                    LMS={this.state.LMS}
-                    storedLayout={this.state.storedLayout}
-                    storeOrderChange={this.storeOrderChange.bind(this)}
-                    orderType={this.state.orderType}
-                    columns={this.state.columns}
-                    theme={this.state.theme}
-                    setColumns={this.setColumns.bind(this)}
-                    hideToolbar={() => {
-                      if (this.state.toolbarShowing) {
-                        this.setState({ toolbarShowing: false });
-                      }
-                    }}
-                    revealToolbar={this.revealToolbar.bind(this)}
-                  />
-                </div>
-              ) : null}
-            </div>
-          ) : (
-            <div className="loading-message">
-              <ProgressCircular />
-            </div>
-          )}
-        </div>
-      </body>
+              </div>
+            ) : null}
+          </div>
+        ) : (
+          <div className="loading-message">
+            <ProgressCircular />
+          </div>
+        )}
+      </div>
     );
   }
 }
