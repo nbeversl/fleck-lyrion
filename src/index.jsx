@@ -56,6 +56,13 @@ class MediaApp extends React.Component {
       });
       this.getAvailablePlayers();
     });
+    const themeSetting = /theme=[^;]+/;
+    let cookie = document.cookie;
+    let theme = cookie.match(themeSetting);
+    if (theme) {
+      theme = theme[0].replace("theme=", "");
+      this.setState({ theme: theme });
+    }
   }
 
   initBrowserPlayer() {
@@ -259,6 +266,7 @@ class MediaApp extends React.Component {
       default:
         break;
     }
+    document.cookie = "theme=" + newTheme;
   }
 
   render() {

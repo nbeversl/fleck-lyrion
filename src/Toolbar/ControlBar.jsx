@@ -79,30 +79,6 @@ class ControlBar extends React.Component {
               controlBarHeight={this.state.height}
             />
             <div className="global-controls">
-              {this.props.genreSelected ? (
-                <div className="alpha-shuffle">
-                  <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
-                    <button
-                      className="order-select"
-                      onClick={() => this.props.setOrderType("alpha")}
-                    >
-                      Alpha
-                    </button>
-                    <button
-                      className="order-select"
-                      onClick={() => this.props.setOrderType("shuffle")}
-                    >
-                      Shuffle
-                    </button>
-                    {/* <button
-                      className="order-select"
-                      onClick={() => this.props.setOrderType("shelf")}
-                    >
-                      Shelf
-                    </button> */}
-                  </Segment>
-                </div>
-              ) : null}
               <div className="theme-control">
                 <Segment index={this.props.theme === "light-theme" ? 0 : 1}>
                   <button
@@ -119,6 +95,30 @@ class ControlBar extends React.Component {
                   </button>
                 </Segment>
               </div>
+              {this.props.genreSelected ? (
+                <div className="alpha-shuffle">
+                  <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
+                    <button
+                      className="order-select"
+                      onClick={() => this.props.setOrderType("alpha")}
+                    >
+                      Alpha
+                    </button>
+                    <button
+                      className="order-select"
+                      onClick={() => this.props.setOrderType("shuffle")}
+                    >
+                      Shuffle
+                    </button>
+                    {/* <button
+                  className="order-select"
+                  onClick={() => this.props.setOrderType("shelf")}
+                >
+                  Shelf
+                </button> */}
+                  </Segment>
+                </div>
+              ) : null}
             </div>
             <SearchBar
               searchString={this.props.searchString}
