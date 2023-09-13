@@ -77,6 +77,7 @@ class ControlBar extends React.Component {
               handleGenreChange={this.props.handleGenreChange}
               genreSelected={this.props.genreSelected}
               controlBarHeight={this.state.height}
+              theme={this.props.theme}
             />
             <div className="global-controls">
               <div className="theme-control">

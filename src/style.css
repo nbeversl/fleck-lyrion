@@ -89,13 +89,6 @@ img.album-image-modal {
   width: 100%;
 }
 
-.dark-theme img.album-image {
-  width: 98%;
-  max-width: 100%;
-  border-width: 2px;
-  border-radius: 2px;
-}
-
 .handle-container {
   z-index: 50;
   height: 0px;
@@ -141,11 +134,6 @@ img.album-image-modal {
   background-color: #d9d9d9 !important;
 }
 
-.control-bar.dark-theme {
-  box-shadow: 0px -10px 20px 0px #3e3434;
-  background-color: black;
-}
-
 .control-bar.hidden {
   visibility: hidden;
   opacity: 0;
@@ -170,7 +158,6 @@ img.album-image-modal {
   width: 100%;
   z-index: 100;
   max-width: 100%;
-  /* background-color: white; */
 }
 
 .genre-selector {
@@ -182,6 +169,10 @@ img.album-image-modal {
   flex-basis: 50%;
   padding: 0px 10px 0px 10px;
   white-space: normal;
+  flex-grow: 0;
+  padding: 10px 20px 10px 20px;
+  margin: 0 auto;
+  white-space: nowrap;
 }
 
 .player-selector {
@@ -355,9 +346,7 @@ ons-toolbar-button.player-control-button {
 .album-info .text-info {
   flex-basis: 80%;
 }
-.dark-theme .album-info {
-  color: #a39191;
-}
+
 .mini-album-cover.button {
   margin: 5px 15px 5px 15px;
   padding: 0;
@@ -458,12 +447,6 @@ ons-toolbar-button.player-control-button {
   font-size: 0.8em;
 }
 
-.genre-selector {
-  flex-grow: 0;
-  padding: 10px 20px 10px 20px;
-  margin: 0 auto;
-  white-space: nowrap;
-}
 .player-selector {
   flex-grow: 0;
   padding: 10px 20px 10px 20px;
@@ -485,16 +468,7 @@ segment__button {
   padding: 0px 20px 0px 20px;
   margin-top: 20px;
 }
-.dark-theme .search-bar input {
-  background-color: #272727;
-}
-.dark-theme .page__background {
-  background-color: black;
-}
-.dark-theme {
-  background-color: black;
-  color: #a39191;
-}
+
 .track-time {
   padding: 10px 0px 10px 0px;
   width: 80%;
@@ -615,6 +589,41 @@ ons-button.show-controlbar {
   overflow-wrap: anywhere;
   max-width: 100%;
 }
+
+/* 
+   Dark Theme 
+*/
+
+.dialog .dark-theme .list-item {
+  background-color: black !important;
+  color: white !important;
+}
+.dark-theme .search-bar input {
+  background-color: #272727;
+}
+.dark-theme .page__background {
+  background-color: black;
+}
+.dark-theme {
+  background-color: black;
+  color: #a39191;
+}
+.dark-theme img.album-image {
+  width: 98%;
+  max-width: 100%;
+  border-width: 2px;
+  border-radius: 2px;
+}
+
+.control-bar.dark-theme {
+  box-shadow: 0px -10px 20px 0px #3e3434;
+  background-color: black;
+}
+
+.dark-theme .album-info {
+  color: #a39191;
+}
+
 @media (max-width: 800px) {
   .grid-size {
     display: none;

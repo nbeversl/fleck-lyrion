@@ -49,6 +49,7 @@ class PlayerControls extends React.Component {
               handleGenreChange={this.props.handleGenreChange.bind(this)}
               genreSelected={this.props.genreSelected}
               controlBarHeight={this.props.controlBarHeight}
+              theme={this.props.theme}
             />
           ) : null}
         </div>

@@ -266,7 +266,10 @@ class MediaApp extends React.Component {
       default:
         break;
     }
-    document.cookie = "theme=" + newTheme;
+    var expiration_date = new Date();
+    expiration_date.setFullYear(expiration_date.getFullYear() + 1);
+    document.cookie =
+      "theme=" + newTheme + "; expires=" + expiration_date.toUTCString();
   }
 
   render() {
