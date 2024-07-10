@@ -31,12 +31,13 @@ class MediaApp extends React.Component {
       storage: null,
       storedLayout: null,
       orderType: "alpha",
-      BrowserPlayer: null,
       pingingPlayers: null,
       columns: 5,
       searchString: "",
       theme: "light-theme",
+      playerInstance: null,
     };
+    this.browserPlayerRef = React.createRef();
   }
 
   componentDidMount() {
@@ -63,16 +64,6 @@ class MediaApp extends React.Component {
       theme = theme[0].replace("theme=", "");
       this.setState({ theme: theme });
     }
-  }
-
-  initBrowserPlayer() {
-    var newPlayer = new BrowserPlayer(this.state.LMS);
-    this.setState({
-      BrowserPlayer: newPlayer,
-      targetPlayer: "Browser",
-      playerInstance: newPlayer,
-      selectOpen: false,
-    });
   }
 
   closeSelect() {
@@ -143,15 +134,12 @@ class MediaApp extends React.Component {
         }
       );
     } else {
-      if (this.state.BrowserPlayer) {
-        this.setState({
-          targetPlayer: "Browser",
-          playerInstance: this.state.BrowserPlayer,
-        });
-      } else {
-        this.initBrowserPlayer();
-      }
+      this.setState({
+        targetPlayer: "Browser",
+        playerInstance: this.browserPlayerRef.current,
+      });
     }
+    console.log(this.playerInstance)
     this.closeSelect();
   }
 
@@ -334,8 +322,15 @@ class MediaApp extends React.Component {
                 />
               </div>
             ) : null}
+
+            
+              <BrowserPlayer 
+              ref={this.browserPlayerRef}
+              LMS={this.state.LMS}
+              />
+              
           </div>
-        ) : (
+          ) : (
           <div className="loading-message">
             <ProgressCircular />
           </div>
