@@ -3,6 +3,7 @@ import { ToolbarButton } from "react-onsenui";
 import "../style.css";
 import TrackDetails from "./TrackDetails";
 import secondsToMinutes from "../helpers.js";
+import Play from '../svg/Play';
 
 class TrackWithDetails extends React.Component {
   constructor(props) {
@@ -48,10 +49,10 @@ class TrackWithDetails extends React.Component {
               this.props.playTrack(this.props.disc, this.props.track.serverID);
             }}
           >
-            <img className={"btn-icon"} src={"./html/icon/play.png"} />
+            <Play className={"btn-icon"} />
           </ToolbarButton>
           <ToolbarButton onClick={this.toggleTrackInfo.bind(this)}>
-            <div className="info-i">
+            <div className="info-i btn-icon">
               <div className="i">i</div>
             </div>
           </ToolbarButton>

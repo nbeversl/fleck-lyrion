@@ -70,11 +70,7 @@ class LibraryView extends React.Component {
         break;
     }
     return (
-      <Page
-        onScroll={() => {
-          this.props.hideToolbar();
-        }}
-      >
+      <Page onScroll={this.props.hideToolbar} onClick={this.props.hideToolbar}>
         {view}
       </Page>
     );

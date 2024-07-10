@@ -3,6 +3,13 @@ import { Yamaha } from "../Yamaha/Yamaha";
 import { Range, ToolbarButton } from "react-onsenui";
 import { GenreMenu } from "./GenreMenu";
 import { PlayerSelector } from "./PlayerSelector";
+import Play from '../svg/Play';
+import Pause from '../svg/Pause';
+import Stop from '../svg/Stop';
+import Forward from '../svg/Forward';
+import Backward from '../svg/Backward';
+import Next from '../svg/Next';
+import Previous from '../svg/Previous';
 
 class PlayerControls extends React.Component {
   constructor(props) {
@@ -82,23 +89,18 @@ class PlayerControls extends React.Component {
                 }}
               >
                 {this.props.playerInstance.playing ? (
-                  <img className={"btn-icon"} src={"./html/icon/pause.png"} />
+                  <Pause className={"btn-icon"} />
                 ) : (
-                  <img className={"btn-icon"} src={"./html/icon/play.png"} />
+                  <Play className={"btn-icon"} />
                 )}
               </ToolbarButton>
 
               <ToolbarButton onClick={this.props.playerInstance.skipBackward}>
-                <img
-                  className={"btn-icon"}
-                  src={"./html/icon/10sec_backward-512.png"}
-                />
+                <Backward className={"btn-icon"} />
               </ToolbarButton>
 
               <ToolbarButton onClick={this.props.playerInstance.skipForward}>
-                <img
-                  className={"btn-icon"}
-                  src={"./html/icon/10sec_forward-512.png"}
+                <Forward className={"btn-icon"}
                 />
               </ToolbarButton>
 
@@ -110,7 +112,7 @@ class PlayerControls extends React.Component {
                     : null
                 }
               >
-                <img className={"btn-icon"} src={"./html/icon/previous.png"} />
+                <Previous className={"btn-icon"} />
               </ToolbarButton>
 
               <ToolbarButton
@@ -121,7 +123,7 @@ class PlayerControls extends React.Component {
                     : null
                 }
               >
-                <img className={"btn-icon"} src={"./html/icon/next.png"} />
+                <Next className={"btn-icon"} />
               </ToolbarButton>
             </div>
 

@@ -83,6 +83,7 @@ img.album-image {
   max-width: 100%;
   border-width: 2px;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 img.album-image-modal {
@@ -290,6 +291,7 @@ ons-toolbar-button.player-control-button {
   font-weight: 700;
   font-family: ui-serif;
   text-align: center;
+  align-items: center;
 }
 .i {
   display: flex;
@@ -413,14 +415,15 @@ ons-toolbar-button.player-control-button {
 }
 
 .album-modal .dialog {
-  min-width: none;
-  min-height: none;
-  width: 40%;
+  width: 90%;
+  max-width: 700px;
   height: 0;
-  padding-top: 40%;
+  padding-top: min(700px, 90%);
 }
 .btn-icon {
-  height: 40px;
+  width: 3rem;
+  stroke: #0076FF;
+  cursor: pointer;
 }
 .selectors {
   display: flex;
@@ -600,6 +603,7 @@ ons-button.show-controlbar {
 }
 .dark-theme .search-bar input {
   background-color: #272727;
+  color: white;
 }
 .dark-theme .page__background {
   background-color: black;
@@ -613,6 +617,11 @@ ons-button.show-controlbar {
   max-width: 100%;
   border-width: 2px;
   border-radius: 2px;
+}
+
+.dark-theme .btn-icon  {
+  stroke: #0076FF;
+
 }
 
 .control-bar.dark-theme {
