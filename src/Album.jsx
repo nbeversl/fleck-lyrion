@@ -102,7 +102,7 @@ class Album extends React.Component {
     return (
       <div className="album">
         {this.state.album ? (
-          <div>
+          <>
             <Button modifier="large--cta" onClick={this.handleOpen.bind(this)}>
               {this.props.moveable ? (
                 <div className="handle-container">
@@ -119,12 +119,15 @@ class Album extends React.Component {
                   </div>
                 </div>
               ) : (
-                <img
-                  src={this.props.LMS.albumArtwork(
-                    this.state.album.artwork_track_id
-                  )}
+                <div
+                  style={{
+                    backgroundImage: `url("${this.props.LMS.albumArtwork(
+                    this.state.album.artwork_track_id)}")`
+                  }}
                   className="album-image"
-                />
+                >
+                  
+                </div>
               )}
             </Button>
             {this.state.modalOpen ? (
@@ -169,7 +172,7 @@ class Album extends React.Component {
                 </div>
               </Dialog>
             ) : null}
-          </div>
+          </>
         ) : null}
       </div>
     );

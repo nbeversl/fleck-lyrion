@@ -30,9 +30,9 @@ class SearchResults extends React.Component {
           <ProgressCircular />
         )}
         {this.props.searchResultsTracks ? (
-          <div>
+          <>
             {this.props.searchResultsTracks.length ? (
-              <div>
+              <div className="search-results-tracks">
                 <TrackWithSourceAlbum
                   tracks={this.props.searchResultsTracks}
                   checkPlayerInstance={this.props.checkPlayerInstance}
@@ -45,7 +45,7 @@ class SearchResults extends React.Component {
             ) : (
               <div>No Tracks Found</div>
             )}
-          </div>
+          </>
         ) : (
           <ProgressCircular />
         )}

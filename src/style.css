@@ -54,6 +54,17 @@ ons-toolbar.toolbar-showing {
 .main-album-grid {
   width: 100%;
 }
+.album,
+.album ons-button,
+.album .album-image {
+  height: 100%;
+}
+.album .album-image {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+}
 
 .album-title-text {
   position: relative;
@@ -494,6 +505,7 @@ segment__button {
   position: relative;
   flex-basis: 10%;
 }
+
 .now-playing-album-cover ons-button {
   padding: 0px;
 }

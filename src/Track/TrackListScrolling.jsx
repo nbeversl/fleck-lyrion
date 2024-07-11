@@ -23,9 +23,6 @@ class TrackListScrolling extends React.Component {
   }
 
   handleAlbumArtModal() {
-    console.log("clicked");
-    console.log(this.state.albumArtModalOpen);
-
     this.setState({ albumArtModalOpen: !this.state.albumArtModalOpen });
   }
 

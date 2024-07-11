@@ -6,8 +6,8 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 const GridResponsiveAlbum = React.forwardRef(
   ({ style, className, ...props }, ref) => {
     return (
-      <div style={{ ...style }} className={className} ref={ref}>
-        <Album
+      <Album
+        style={{ ...style }} className={className} ref={ref}
           moveable={props.moveable}
           album={props.album}
           checkPlayerInstance={props.checkPlayerInstance}
@@ -15,8 +15,7 @@ const GridResponsiveAlbum = React.forwardRef(
           LMS={props.LMS}
           moveToTop={props.moveToTop}
           theme={props.theme}
-        />
-      </div>
+      />
     );
   }
 );

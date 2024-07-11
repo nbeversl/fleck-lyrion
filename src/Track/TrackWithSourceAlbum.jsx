@@ -2,6 +2,7 @@ import * as React from "react";
 import { ToolbarButton , Card } from 'react-onsenui';
 import '../style.css';
 import { Album } from '../Album';
+import Play from '../svg/Play';
 
 class TrackWithSourceAlbum extends React.Component {
     constructor(props) {
@@ -29,7 +30,7 @@ class TrackWithSourceAlbum extends React.Component {
                                 <span className="track-title"> {track.title} </span> 
                                 <span className="codec"> { track.type === 'flc' ? 'FLAC' : track.type } </span>
                             </div>
-                            {/* <a href={"/music/"+track.id+"/download/"}>↓</a> */}
+                            <a href={"/music/"+track.id+"/download/"}>↓</a> 
                             <div><b>Artist</b>: {track.artist}</div>
                             <div><b>Album</b>: {track.album} {track.album_id} </div>
                             <div>
@@ -37,7 +38,7 @@ class TrackWithSourceAlbum extends React.Component {
                                 <span><b>Track</b>: {track.tracknum} </span>
                             </div>
                             <ToolbarButton onClick={ () => { this.playTrack(track.id) } } >
-                                <img className={"btn-icon"} src={"/html/icon/play.png"} />
+                                <Play className={"btn-icon"} />
                             </ToolbarButton>
 
                         </div>

@@ -23,6 +23,15 @@ class TrackDetails extends React.Component {
           return;
         }
 
+        if (id == "url") {
+          List.push(
+            <div key={id} className="info-item">
+              <strong>{id}</strong> : {decodeURI(item[id]).replace("file://", "")}
+            </div>
+          );
+          return
+        }
+
         if (id !== "comment") {
           List.push(
             <div key={id} className="info-item">
@@ -30,6 +39,7 @@ class TrackDetails extends React.Component {
             </div>
           );
         }
+
         if (id === "comment") {
           if (this.state.xid == null) {
             try {
