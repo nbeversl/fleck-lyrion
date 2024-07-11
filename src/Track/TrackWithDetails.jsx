@@ -14,6 +14,16 @@ class TrackWithDetails extends React.Component {
     };
   }
 
+  download() {
+    if (!this.state.trackInfo) {
+      this.props.library.getTrackInfo(this.props.track.id, (r) => {
+        this.setState({ trackInfo: r });
+        window.open(this.props.LMS.getTrack(this.state.trackInfo[0].id.toString()));
+      });
+    }
+
+  }
+
   toggleTrackInfo() {
     if (!this.state.trackInfo) {
       this.props.library.getTrackInfo(this.props.track.id, (r) => {
@@ -45,6 +55,12 @@ class TrackWithDetails extends React.Component {
           >
             <Play className={"btn-icon"} />
           </ToolbarButton>
+          <ToolbarButton
+              className="ion-home color-primary item"
+              onClick={this.download.bind(this)}
+            >
+            Download
+          </ToolbarButton>
           <ToolbarButton onClick={this.toggleTrackInfo.bind(this)}>
             <div className="info-i btn-icon">
               <div className="i">i</div>
@@ -53,16 +69,7 @@ class TrackWithDetails extends React.Component {
         </div>
         {this.state.trackInfo && this.state.showTrackInfo ? (
           <div>
-            <ToolbarButton
-              className="ion-home color-primary item"
-              onClick={() => {
-                window.open(
-                  this.props.LMS.getTrack(this.state.trackInfo[0].id.toString())
-                );
-              }}
-            >
-              Download
-            </ToolbarButton>
+            
             <TrackDetails
               trackInfo={this.state.trackInfo}
               disc={this.props.disc}

@@ -26,17 +26,17 @@ class TrackListScrolling extends React.Component {
     this.setState({ albumArtModalOpen: !this.state.albumArtModalOpen });
   }
 
-  downloadAlbum() {
-    const numDiscs = Object.keys(this.props.discs)
-    numDiscs.forEach(disc => {
-      this.props.discs[disc].forEach((track) => {
-        setTimeout( () => {
-          window.open(this.props.LMS.getTrack(track.id.toString()));
-        }, 1000);
+  // downloadAlbum() {
+  //   const numDiscs = Object.keys(this.props.discs)
+  //   numDiscs.forEach(disc => {
+  //     this.props.discs[disc].forEach((track) => {
+  //       setTimeout( () => {
+  //         window.open(this.props.LMS.getTrack(track.id.toString()));
+  //       }, 1000);
 
-        })
-    });
-  }
+  //       })
+  //   });
+  // }
 
   render() {
     const tracklistStyle = {
