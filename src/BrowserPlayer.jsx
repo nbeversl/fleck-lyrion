@@ -111,15 +111,15 @@ class BrowserPlayer {
     };
 
     this.skipForward = () => {
-      setCurrentTime( currentTime => { 
-        return currentTime + 10
-      }) 
+      if (this.audio) {
+        this.audio.currentTime = this.audio.currentTime + 10 
+      }
     };
 
     this.skipBackward = () => {
-      setCurrentTime( currentTime => { 
-          return currentTime - 10
-      }) 
+      if (this.audio) {
+        this.audio.currentTime = this.audio.currentTime - 10 
+      }
     };
 
   }

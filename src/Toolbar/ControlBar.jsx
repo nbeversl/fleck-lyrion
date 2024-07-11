@@ -36,7 +36,6 @@ class ControlBar extends React.Component {
       return;
     }
     this.props.playerInstance.getPlayerStatus((status) => {
-      console.log(status)
       if (!this._ismounted) {
         return;
       }

@@ -139,7 +139,6 @@ class MediaApp extends React.Component {
         selectOpen: false,
       });
     }
-    // console.log(this.playerInstance)
     this.closeSelect();
   }
 
