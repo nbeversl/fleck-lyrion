@@ -40,7 +40,6 @@ class BrowserPlayer {
         (r) => {
           this.currentIndex = parseInt(startNumber);
           this.tracks = r.result.titles_loop;
-          this.playing = true;
           this.playCurrentTrack()
       });
     }
@@ -51,8 +50,10 @@ class BrowserPlayer {
       }
       this.currentTrack = this.LMS.getTrack(this.tracks[this.currentIndex].id.toString())     
       this.audio = new Audio(this.currentTrack)
+      this.audio.addEventListener('ended', this.nextTrack);
       this.audio.load()
-      this.audio.play()      
+      this.audio.play()   
+      this.playing = true   
     }
 
     this.playOrPause = () => {
@@ -65,7 +66,9 @@ class BrowserPlayer {
     }
 
     this.setVolume = (value) => {
-      this.audio.volume = value / 100;
+      if (this.audio) {
+        this.audio.volume = value / 100;
+      }
     }
 
     this.nextTrack =  () => {
@@ -87,27 +90,10 @@ class BrowserPlayer {
       noSleep.enable();
     }
 
-    this.playAlbum = (albumTitle) => {
-      this.LMS.request(
-        [this.address, ["playlist", "loadalbum", "*", "*", albumTitle]],
-        (r) => {
-          console.log(r)
-        }
-      );
-    }
-
     this.playTrack = (id) => {
-      this.LMS.request([this.address, ["playlist", "clear"]], (r) => {
-        this.LMS.request(
-          [
-            address,
-            ["playlistcontrol", "cmd:add", "track_id:" + id.toString()],
-          ],
-          (r) => {
-            console.log(r)
-          }
-        );
-      });
+      this.tracks = [id.toString()]
+      this.currentIndex = 0
+      this.playCurrentTrack()
     };
 
     this.skipForward = () => {
@@ -123,7 +109,6 @@ class BrowserPlayer {
     };
 
   }
-
 }
 
 export { BrowserPlayer };

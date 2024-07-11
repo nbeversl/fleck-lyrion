@@ -29,15 +29,6 @@ class Player {
       this.playing = false;
     };
 
-    this.playAlbum = (albumTitle) => {
-      this.LMS.request(
-        [this.address, ["playlist", "loadalbum", "*", "*", albumTitle]],
-        (r) => {
-          this.play();
-        }
-      );
-    };
-
     this.playTrack = (id) => {
       this.LMS.request([this.address, ["playlist", "clear"]], (r) => {
         this.LMS.request(
