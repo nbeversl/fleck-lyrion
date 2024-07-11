@@ -17,6 +17,10 @@ ons-toolbar.toolbar-showing {
   display: inline-block;
 }
 
+ons-toolbar-button, button {
+  cursor: pointer;
+}
+
 .react-grid-item {
   overflow: hidden;
 }
@@ -59,6 +63,7 @@ ons-toolbar.toolbar-showing {
 .album .album-image {
   height: 100%;
 }
+
 .album .album-image {
   background-size: contain;
   background-repeat: no-repeat;
@@ -263,6 +268,10 @@ button.theme-select {
   flex-grow: 1;
 }
 
+.track-buttons {
+  display: flex;
+  align-items: center;
+}
 .view-and-search-selector ons-segment {
   margin-bottom: 20px;
   min-width: 120px;
@@ -319,6 +328,7 @@ ons-toolbar-button.player-control-button {
   font-family: ui-serif;
   text-align: center;
   align-items: center;
+  cursor: pointer;
 }
 .i {
   display: flex;
@@ -396,14 +406,18 @@ ons-toolbar-button.player-control-button {
 }
 
 .grid-tracklist .track-details {
-  margin: 1rem;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 .track-info-controls {
   display: flex;
+  align-items: center;
 }
 .tracklist-album {
   width: 100%;
-  flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
 }
 .track-container .track-info .track-title {
   font-size: 1.4em;
@@ -648,19 +662,30 @@ ons-button.show-controlbar {
   border-width: 2px;
   border-radius: 2px;
 }
+.dark-theme .dialog {
+  border: 1px solid #404040;
+}
 
 .dark-theme .btn-icon  {
   stroke: #0076FF;
 
 }
-
+.dark-theme button.search-clear-button {
+  color: white;
+}
 .control-bar.dark-theme {
-  box-shadow: 0px -10px 20px 0px #3e3434;
+  box-shadow: -1px -6px 20px 0px #0b0530;
   background-color: black;
 }
 
 .dark-theme .album-info {
   color: #a39191;
+}
+
+.dark-theme .card {
+  background-color: black;
+  border: 1px solid #404040;
+  color: rgb(179, 177, 177);
 }
 
 @media (max-width: 800px) {
@@ -695,6 +720,13 @@ ons-button.show-controlbar {
     justify-content: center;
     align-self: center;
   }
+  .album,
+  .album ons-button,
+  .album .album-image {
+    height: 5rem;
+    padding: 0;
+  }
+
 }
 
 .duration {

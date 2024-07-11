@@ -4,6 +4,7 @@ import "../style.css";
 import TrackDetails from "./TrackDetails";
 import secondsToMinutes from "../helpers.js";
 import Play from '../svg/Play';
+import Download from '../svg/Download';
 
 class TrackWithDetails extends React.Component {
   constructor(props) {
@@ -55,17 +56,18 @@ class TrackWithDetails extends React.Component {
           >
             <Play className={"btn-icon"} />
           </ToolbarButton>
+          <ToolbarButton onClick={this.toggleTrackInfo.bind(this)}>
+            <div className="info-i">
+              <div className="i">i</div>
+            </div>
+          </ToolbarButton>
           <ToolbarButton
               className="ion-home color-primary item"
               onClick={this.download.bind(this)}
             >
-            Download
+            <Download className="btn-icon" />
           </ToolbarButton>
-          <ToolbarButton onClick={this.toggleTrackInfo.bind(this)}>
-            <div className="info-i btn-icon">
-              <div className="i">i</div>
-            </div>
-          </ToolbarButton>
+          
         </div>
         {this.state.trackInfo && this.state.showTrackInfo ? (
           <div>
