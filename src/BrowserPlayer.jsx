@@ -4,7 +4,7 @@ import React, { useState, useRef, forwardRef, useImperativeHandle, useEffect } f
 const BrowserPlayer = forwardRef((props, ref) => {
 
   const audioRef = useRef(null); // Ref to access the <audio> element
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [playing, setPlaying] = useState(false)
   const address = ""
   const [tracks, setTracks] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -15,49 +15,28 @@ const BrowserPlayer = forwardRef((props, ref) => {
   const [isLoading, setIsLoading] = useState(true);
   const LMS = props.LMS
 
+  // document.addEventListener("click", enableNoSleep, false);
+
   // Expose methods through ref
 
   useImperativeHandle(ref, () => ({
     // Method to play or pause the audio
+    
     getPlayerStatus: (callback) => {
-      LMS.request(
-        [
-          address,
-          [
-            "status",
-            "0",
-            "100",
-            "tags:duration,time, mode, **playlist index**, **l**,**J**,**K**",
-          ],
-        ],
-        (r) => {
-          callback(r.result);
-        }
-      );
+      
     },
-    // Method to set a new audio source and play it
-    setAudioSource: (newSrc) => {
-      setSrc(newSrc);
-      if (audioRef.current) {
-        audioRef.current.load(); // Reload the audio element with the new source
-        audioRef.current.play(); // Start playing the new audio
-        setIsPlaying(true);
-      }
-    },
+
     // Method to seek to a specific time in the audio
-    seekTo: (time) => {
+    seek: (time) => {
       if (audioRef.current) {
         audioRef.current.currentTime = time;
         setCurrentTime(time);
       }
     },
+
     // Method to get current playback time
     getCurrentTime: () => {
       return currentTime;
-    },
-    // Method to check if audio is currently playing
-    isPlaying: () => {
-      return isPlaying;
     },
 
     playAlbumFromTrackAndContinue: (track, startNumber) => {
@@ -80,15 +59,29 @@ const BrowserPlayer = forwardRef((props, ref) => {
           startNumber = parseInt(startNumber);
           setCurrentIndex(startNumber);
           setTracks(r.result.titles_loop);
+          setPlaying(true)
           setIsLoading(false)
       });
     },
 
-    play: () => {
-      setIsPlaying(true);
-      console.log(src)
-      console.log(audioRef)
-      
+     playOrPause: () => {
+      switch (playing) {
+        case false:
+          console.log(playing)
+          console.log('PLAYING')
+          // audioRef.current.play();
+          setPlaying(true)
+          console.log(playing)
+          break;
+        case true:
+          console.log('PAUSIGN')
+          // audioRef.current.pause();
+          // setPlaying(false)
+          break;
+        default:
+          console.log('DEFAULAT')
+          break;
+      }
     },
 
     setVolume: (value) => {
@@ -112,21 +105,31 @@ const BrowserPlayer = forwardRef((props, ref) => {
   }));
 
   useEffect(() => {
-    // Ensure tracks and currentIndex are updated before setting sourceTrack
     if (!isLoading && tracks.length > 0 && currentIndex >= 0 && currentIndex < tracks.length) {
-      console.log(tracks)
+      console.log('SETTING SOURCE TRACT')
       setSourceTrack(LMS.getTrack(tracks[currentIndex].id.toString()))
     }
   }, [isLoading, tracks, currentIndex, LMS]); // Dependencies include isLoading, tracks, currentIndex, LMS
-
 
   useEffect(() => {
     if (src) {
       audioRef.current.load()
       audioRef.current.play()
+      console.log(src)
+      console.log("FROM USEEFFECT", playing)
     }
   }, [src]);
 
+
+
+  useEffect(() => {
+    console.log("src changed:", src);
+  }, [src]);
+  
+  useEffect(() => {
+    console.log("playing changed:", playing);
+  }, [playing]);
+ 
   const clearPlaylist = () => {
     setTracks([]);
   };
@@ -136,28 +139,16 @@ const BrowserPlayer = forwardRef((props, ref) => {
     noSleep.enable();
   }
 
-  document.addEventListener("click", enableNoSleep, false);
-
- 
-
-  const pause = () => {
-    if (isPlaying) {
-      audioRef.current.pause();      
-      setIsPlaying(false);
-      clearTimeout(showingElapsedTime);
-    } else  {
-      audioRef.current.play();      
-    }
-  }
-
   const handleEnded = () => {
-    setIsPlaying(false);
+    // setPlaying(false);
   }
 
   const playAlbum = (albumTitle) => {
     this.LMS.request(
       [this.address, ["playlist", "loadalbum", "*", "*", albumTitle]],
-      (r) => {}
+      (r) => {
+        console.log(r)
+      }
     );
   }
 
@@ -181,21 +172,21 @@ const BrowserPlayer = forwardRef((props, ref) => {
   };
 
   const skipBackward = () => {
-      seek(this.playerInstance.seek() - 10);
+      seek(playerInstance.seek() - 10);
       audioRef.current.currentTime = seekTime;
 
-      this.playerStatus.time -= 10;
+      playerStatus.time -= 10;
     };
 
   const seek = (position) => {
   };
 
   const showElapsedTime = () => {
-      playerStatus.time = this.playerInstance.seek();
+      playerStatus.time = seek();
       playerStatus.duration = this.playerInstance.duration();
-      playerStatus.playlist_loop = this.tracks;
-      playerStatus.playlist_cur_index = this.currentIndex;
-      showingElapsedTime = setTimeout(this.showElapsedTime, 1000);
+      playerStatus.playlist_loop = tracks;
+      playerStatus.playlist_cur_index = currentIndex;
+      showingElapsedTime = setTimeout(showElapsedTime, 1000);
   };
 
   return (

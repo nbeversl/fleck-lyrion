@@ -137,9 +137,10 @@ class MediaApp extends React.Component {
       this.setState({
         targetPlayer: "Browser",
         playerInstance: this.browserPlayerRef.current,
+        selectOpen: false,
       });
     }
-    console.log(this.playerInstance)
+    // console.log(this.playerInstance)
     this.closeSelect();
   }
 
