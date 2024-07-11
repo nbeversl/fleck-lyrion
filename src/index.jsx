@@ -37,7 +37,6 @@ class MediaApp extends React.Component {
       theme: "light-theme",
       playerInstance: null,
     };
-    this.browserPlayerRef = React.createRef();
   }
 
   componentDidMount() {
@@ -136,7 +135,7 @@ class MediaApp extends React.Component {
     } else {
       this.setState({
         targetPlayer: "Browser",
-        playerInstance: this.browserPlayerRef.current,
+        playerInstance: new BrowserPlayer(this.state.LMS),
         selectOpen: false,
       });
     }
@@ -323,12 +322,6 @@ class MediaApp extends React.Component {
                 />
               </div>
             ) : null}
-
-            
-              <BrowserPlayer 
-              ref={this.browserPlayerRef}
-              LMS={this.state.LMS}
-              />
               
           </div>
           ) : (
