@@ -10,9 +10,12 @@ const BrowserPlayer = forwardRef((props, ref) => {
   const [currentIndex, setCurrentIndex] = useState(null);
   const noSleep = new NoSleep();
   const [showingElapsedTime, setShowingElapsedTime] = useState(null);
-  const [playerStatus, setPlayerStatus] = useState({});
+  const [time, setTime] = useState(0)
+  const [duration, setDuration] = useState(null)
   const [src, setSourceTrack] = useState(null);
+  const [readyToPlay, setReadyToPlay] = useState(false); // State to track if audio is ready to play
   const [isLoading, setIsLoading] = useState(true);
+  const [audioLoaded, setAudioLoaded] = useState(false)
   const LMS = props.LMS
 
   // document.addEventListener("click", enableNoSleep, false);
@@ -23,13 +26,17 @@ const BrowserPlayer = forwardRef((props, ref) => {
     // Method to play or pause the audio
     
     getPlayerStatus: (callback) => {
-      
+      callback({
+        time: audioRef.current ? audioRef.current.currentTime : 0,
+        duration: duration,
+        playlist_loop : tracks,
+        playlist_cur_index : currentIndex
+      })
     },
 
     // Method to seek to a specific time in the audio
     seek: (time) => {
       if (audioRef.current) {
-        audioRef.current.currentTime = time;
         setCurrentTime(time);
       }
     },
@@ -40,6 +47,7 @@ const BrowserPlayer = forwardRef((props, ref) => {
     },
 
     playAlbumFromTrackAndContinue: (track, startNumber) => {
+      console.log('RUNNING')
       var albumID = track.album_id;
       setIsLoading(true)
       LMS.request(
@@ -55,84 +63,101 @@ const BrowserPlayer = forwardRef((props, ref) => {
           ],
         ],
         (r) => {
-          clearPlaylist();
           startNumber = parseInt(startNumber);
           setCurrentIndex(startNumber);
           setTracks(r.result.titles_loop);
-          setPlaying(true)
           setIsLoading(false)
+          setPlaying(true)
       });
     },
 
-     playOrPause: () => {
-      switch (playing) {
-        case false:
-          console.log(playing)
-          console.log('PLAYING')
-          // audioRef.current.play();
-          setPlaying(true)
-          console.log(playing)
-          break;
-        case true:
-          console.log('PAUSIGN')
-          // audioRef.current.pause();
-          // setPlaying(false)
-          break;
-        default:
-          console.log('DEFAULAT')
-          break;
-      }
+    playOrPause: () => {
+      if (!audioRef.current) return;
+
+      // Use the functional form of setState to ensure we have the latest state value
+      setPlaying(prevPlaying => {
+        if (prevPlaying) {
+          setTime(audioRef.current.currentTime)
+          audioRef.current.pause(); // Pause the audio
+        } else {
+          console.log(time)
+          audioRef.current.currentTime = time;
+          audioRef.current.play(); // Play the audio
+        }
+        return !prevPlaying; // Return the new state, which is the opposite of the previous state
+      });
     },
 
     setVolume: (value) => {
-      playerInstance.volume(value / 100);
+      audioRef.current.volume = value / 100;
     },
 
     nextTrack: () => {
-      clearPlaylist();
       if (currentIndex < tracks.length - 1) {
         setCurrentIndex(currentIndex+1);
       }
     },
 
     previousTrack: () => {
-      clearPlaylist();
       if (currentIndex > 0) {
         setCurrentIndex(currentIndex-1);
       }
     }
 
   }));
+  useEffect(() => {
+    console.log('TIME TCHANGED', time)
+  },[time])
 
   useEffect(() => {
     if (!isLoading && tracks.length > 0 && currentIndex >= 0 && currentIndex < tracks.length) {
-      console.log('SETTING SOURCE TRACT')
       setSourceTrack(LMS.getTrack(tracks[currentIndex].id.toString()))
+      setAudioLoaded(false)
     }
   }, [isLoading, tracks, currentIndex, LMS]); // Dependencies include isLoading, tracks, currentIndex, LMS
 
   useEffect(() => {
-    if (src) {
-      audioRef.current.load()
-      audioRef.current.play()
-      console.log(src)
-      console.log("FROM USEEFFECT", playing)
+    if (src && audioRef.current) {
+      if (!audioLoaded) {
+        console.log('LOADING');
+        audioRef.current.src = src; // Set the src directly
+        audioRef.current.load();
+        setAudioLoaded(true);
+      }
+      if (playing) {
+        audioRef.current.play();
+      }
     }
-  }, [src]);
-
-
-
-  useEffect(() => {
-    console.log("src changed:", src);
-  }, [src]);
+  }, [src, playing, audioLoaded]);
   
   useEffect(() => {
     console.log("playing changed:", playing);
   }, [playing]);
- 
-  const clearPlaylist = () => {
-    setTracks([]);
-  };
+  
+  // Update duration and time when metadata and timeupdate events occur
+  useEffect(() => {
+    if (audioRef.current) {
+      const updateDuration = () => setDuration(audioRef.current.duration);
+      const updateTime = () => setTime(audioRef.current.currentTime);
+      const handleCanPlayThrough = () => {
+        setReadyToPlay(true); // Audio is ready to play
+        if (playing) {
+          audioRef.current.currentTime = time; // Ensure the current time is set
+          audioRef.current.play();
+        }
+      };
+
+      audioRef.current.addEventListener('loadedmetadata', updateDuration);
+      audioRef.current.addEventListener('timeupdate', updateTime);
+      audioRef.current.addEventListener('canplaythrough', handleCanPlayThrough);
+
+      return () => {
+        audioRef.current.removeEventListener('loadedmetadata', updateDuration);
+        audioRef.current.removeEventListener('timeupdate', updateTime);
+        audioRef.current.removeEventListener('canplaythrough', handleCanPlayThrough);
+      };
+    }
+  }, [playing, time]);
 
   const enableNoSleep = () => {
     document.removeEventListener("click", enableNoSleep, false);
@@ -140,7 +165,7 @@ const BrowserPlayer = forwardRef((props, ref) => {
   }
 
   const handleEnded = () => {
-    // setPlaying(false);
+    nextTrack();
   }
 
   const playAlbum = (albumTitle) => {
@@ -198,7 +223,7 @@ const BrowserPlayer = forwardRef((props, ref) => {
             ref={audioRef}
             onEnded={handleEnded}>    
             <source
-              src={src}
+              src={`${src}#t=${time}`}
               type="audio/flac"
               />
             Your browser does not support the audio element.
