@@ -139,22 +139,13 @@ const BrowserPlayer = forwardRef((props, ref) => {
     if (audioRef.current) {
       const updateDuration = () => setDuration(audioRef.current.duration);
       const updateTime = () => setTime(audioRef.current.currentTime);
-      const handleCanPlayThrough = () => {
-        setReadyToPlay(true); // Audio is ready to play
-        if (playing) {
-          audioRef.current.currentTime = time; // Ensure the current time is set
-          audioRef.current.play();
-        }
-      };
 
       audioRef.current.addEventListener('loadedmetadata', updateDuration);
       audioRef.current.addEventListener('timeupdate', updateTime);
-      audioRef.current.addEventListener('canplaythrough', handleCanPlayThrough);
 
       return () => {
         audioRef.current.removeEventListener('loadedmetadata', updateDuration);
         audioRef.current.removeEventListener('timeupdate', updateTime);
-        audioRef.current.removeEventListener('canplaythrough', handleCanPlayThrough);
       };
     }
   }, [playing, time]);
