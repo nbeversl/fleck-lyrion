@@ -19,6 +19,11 @@ class SearchBar extends React.Component {
             placeholder="search"
           />
         </form>
+        <button
+          className="search-clear-button"
+          onClick={() => { this.props.setSearchString("")}}>
+          x
+        </button>
       </div>
     );
   }
