@@ -22,12 +22,6 @@ class TrackWithDetails extends React.Component {
     }
     this.setState({ showTrackInfo: !this.state.showTrackInfo });
   }
-  tryDownload() {
-    this.props.library.getTrackInfo(this.props.track.id, (r) => {
-      this.setState({ trackInfo: r });
-      this.props.LMS.getTrack(this.state.trackInfo[0].id.toString());
-    });
-  }
 
   render() {
     return (
