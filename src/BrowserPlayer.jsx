@@ -91,9 +91,21 @@ class BrowserPlayer {
     }
 
     this.playTrack = (id) => {
-      this.tracks = [id.toString()]
-      this.currentIndex = 0
-      this.playCurrentTrack()
+      this.LMS.request(
+        [
+          "",
+          [
+            "tracks",
+            "0",
+            "10",
+            "track_id:" + id.toString(),
+          ],
+        ],
+        (r) => {
+          this.currentIndex = 0;
+          this.tracks = r.result.titles_loop;
+          this.playCurrentTrack()
+      });
     };
 
     this.skipForward = () => {
