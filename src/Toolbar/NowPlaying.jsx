@@ -10,7 +10,7 @@ class NowPlaying extends React.Component {
     this.state = {
       xid: null,
       trackInfo: null,
-      album: null,
+      album: null
     };
   }
   componentDidMount() {
@@ -19,7 +19,6 @@ class NowPlaying extends React.Component {
   componentDidUpdate() {
     this.getAlbumInfo();
   }
-
   getTrackInfo() {
     if (
       this.props.playerStatus &&
@@ -139,17 +138,11 @@ class NowPlaying extends React.Component {
                   }
                 />
               ) : null}
-              <Range
-                className="track-time"
-                value={
-                  Math.floor(
-                    (this.props.playerStatus.time /
-                      this.props.playerStatus.duration) *
-                      100
-                  ) - 1
-                }
-                onChange={this.props.handleSeekChange}
-              />
+              {/* <Range
+              //   className="track-time"
+              //   value={this.props.trackPosition - 1}
+              //   onInput={this.props.handleSeekChange}
+              // >*/}
             </div>
           </div>
         ) : null}

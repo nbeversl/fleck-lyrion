@@ -4,12 +4,14 @@ import { Toolbar, Segment } from "react-onsenui";
 import * as React from "react";
 import SearchBar from "./SearchBar";
 import { Range } from "react-onsenui";
+
 class ControlBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       playerStatus: null,
       height: 0,
+      trackPosition: 0,
     };
   }
   componentDidMount() {
@@ -18,16 +20,20 @@ class ControlBar extends React.Component {
     this.setState({ height });
     this.getPlayerStatus();
   }
+
   componentWillUnmount() {
     this._ismounted = false;
     clearTimeout(this.timer);
   }
 
   handleSeekChange(event) {
+    console.log(event)
+    return
     var newPosition = Math.floor(
       (this.state.playerStatus.duration * event.target.value) / 100
     );
     this.props.playerInstance.seek(newPosition);
+    this.setState({trackPosition : newPosition})
   }
 
   getPlayerStatus() {
@@ -39,7 +45,11 @@ class ControlBar extends React.Component {
       if (!this._ismounted) {
         return;
       }
-      this.setState({ playerStatus: status }, () => {
+      var newPosition = Math.floor((playerStatus.duration * playerStatus.time) / 100);
+      this.setState({ 
+        playerStatus: status,
+        // trackPosition: newPosition 
+        }, () => {
         this.timer = setTimeout(this.getPlayerStatus.bind(this), 5000);
       });
     });
@@ -63,6 +73,7 @@ class ControlBar extends React.Component {
               playerInstance={this.props.playerInstance}
               LMS={this.props.LMS}
               theme={this.props.theme}
+              trackPosition={this.state.trackPosition}
             />
             <PlayerControls
               selectOpen={this.props.selectOpen}
@@ -112,12 +123,12 @@ class ControlBar extends React.Component {
                     >
                       Shuffle
                     </button>
-                    {/* <button
-                  className="order-select"
-                  onClick={() => this.props.setOrderType("shelf")}
-                >
-                  Shelf
-                </button> */}
+                    <button
+                      className="order-select"
+                      onClick={() => this.props.setOrderType("shelf")}
+                    >
+                      Shelf
+                    </button> 
                   </Segment>
                 </div>
               ) : null}
@@ -143,28 +154,4 @@ class ControlBar extends React.Component {
     );
   }
 }
-
-class ViewSelector extends React.Component {
-  render() {
-    return (
-      <div className="view-and-search-selector">
-        <Segment index={0}>
-          <button
-            className="view-selector grid"
-            onClick={() => this.props.handleViewChange("grid")}
-          >
-            Grid
-          </button>
-          <button
-            className="view-selector composer-artist"
-            onClick={() => this.props.handleViewChange("composer-list")}
-          >
-            Composer/Artist
-          </button>
-        </Segment>
-      </div>
-    );
-  }
-}
-
 export { ControlBar };

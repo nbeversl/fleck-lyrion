@@ -453,6 +453,7 @@ ons-toolbar-button.player-control-button {
   min-height: 100px;
   box-shadow: 9px 11px 3px rgba(0, 0, 0, 0.28);
 }
+
 .player-selector-dialog .dialog {
   height: auto !important;
 }

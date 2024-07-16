@@ -92,6 +92,8 @@ class Album extends React.Component {
         ? "url('/music/" + this.state.album.artwork_track_id + "/cover.jpg')"
         : "",
       backgroundSize: "contain",
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "center",
     };
 
     var handleStyle = {

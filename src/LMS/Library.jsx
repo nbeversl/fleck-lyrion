@@ -218,6 +218,7 @@ class LMSLibrary {
         ],
       ],
       (r) => {
+        console.log('FROM LIBRARY COMPONENT', r)
         callback(r.result.songinfo_loop);
       }
     );
