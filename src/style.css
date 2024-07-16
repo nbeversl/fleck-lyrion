@@ -648,7 +648,7 @@ ons-button.show-controlbar {
   color: white;
 }
 .dark-theme .list-item:hover {
-  background-color: blue;
+  background-color: #a39191;
 }
 
 .dark-theme .search-bar input {
@@ -670,7 +670,7 @@ ons-button.show-controlbar {
   cursor: pointer;
 }
 .list-item:hover {
-  background-color: blue;
+  background-color: #807d7d40;
 }
 
 .dark-theme.album-modal .dialog-container {

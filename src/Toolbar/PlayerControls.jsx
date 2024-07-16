@@ -128,7 +128,7 @@ class PlayerControls extends React.Component {
               </ToolbarButton>
             </div>
 
-            {this.props.playerInstance.volume != null ? (
+            {! [null, "Browser"].includes(this.props.targetPlayer)  ? (
               <div className={"slider-volume"}>
                 <Range
                   value={this.props.playerInstance.volume}
