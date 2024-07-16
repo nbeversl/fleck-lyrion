@@ -21,7 +21,7 @@ class BrowserPlayer {
     },
 
     this.seek = (time) => {
-      // this.audio.currentTime = time;
+      this.audio.currentTime = time;
     }
 
     this.playAlbumFromTrackAndContinue = (track, startNumber) => {
