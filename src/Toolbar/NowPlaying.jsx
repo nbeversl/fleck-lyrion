@@ -2,7 +2,7 @@ import * as React from "react";
 import "../style.css";
 import { Album } from "../Album";
 import ExtendedMetadata from "../Metadata/ExtendedMetadata";
-import { Range } from "react-onsenui";
+import { Range, ProgressCircular } from "react-onsenui";
 
 class NowPlaying extends React.Component {
   constructor(props) {
@@ -21,19 +21,23 @@ class NowPlaying extends React.Component {
   }
 
   getTrackInfo() {
+    if (
+      this.props.playerStatus &&
+      this.props.playerStatus.playlist_cur_index != undefined &&
+      this.props.playerStatus.playlist_loop[
+        parseInt(this.props.playerStatus.playlist_cur_index)
+      ] != undefined &&
+      this.props.playerStatus.playlist_loop.length == 1
+    ) 
     this.props.library.getTrackInfo(
       this.props.playerStatus.playlist_loop[
         parseInt(this.props.playerStatus.playlist_cur_index)
       ].id,
       (r) => {
-        this.setState({ trackInfo: r });
-        try {
-          var strucMeta = JSON.parse(r.comment);
-          this.setState({ xid: strucMeta });
-        } catch (e) {
-          console.log("Could not parse comment to JSON");
-          console.log(e);
-        }
+        console.log(r)
+        if (this.state.trackInfo != r) {
+          this.setState({ trackInfo: r });
+        }   
       }
     );
   }
@@ -71,6 +75,9 @@ class NowPlaying extends React.Component {
           parseInt(this.props.playerStatus.playlist_cur_index)
         ] ? (
           <div className={"now-playing"}>
+          { this.props.playerInstance && this.props.playerInstance.isLoading ? 
+                <ProgressCircular indeterminate /> : null
+            }
             <div className="now-playing-album-cover">
               <Album
                 album={this.state.album}

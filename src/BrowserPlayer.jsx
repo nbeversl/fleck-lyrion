@@ -25,6 +25,7 @@ class BrowserPlayer {
     }
 
     this.playAlbumFromTrackAndContinue = (track, startNumber) => {
+      this.isLoading = true
       var albumID = track.album_id;
       this.LMS.request(
         [
@@ -46,6 +47,7 @@ class BrowserPlayer {
     }
 
     this.playCurrentTrack = () => {
+      this.isLoading = true 
       if (this.audio) {
         this.audio.pause();
       }
@@ -54,7 +56,8 @@ class BrowserPlayer {
       this.audio.addEventListener('ended', this.nextTrack);
       this.audio.load()
       this.audio.play()   
-      this.playing = true   
+      this.playing = true
+      this.isLoading = false 
     }
 
     this.playOrPause = () => {
@@ -92,6 +95,7 @@ class BrowserPlayer {
     }
 
     this.playTrack = (id) => {
+      this.isLoading = true
       this.LMS.request(
         [
           "",

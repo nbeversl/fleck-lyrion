@@ -365,6 +365,8 @@ ons-toolbar-button.player-control-button {
 .now-playing-meta {
   white-space: normal;
   gap: 4px;
+  flex-grow: 1;
+  min-height: 5rem;
 }
 .now-playing-meta,
 .control-buttons {
@@ -580,7 +582,7 @@ segment__button {
   font-style: italic;
 }
 ons-range.track-time {
-  width: 50%;
+  width: 100%;
 }
 ons-button.show-controlbar {
   position: fixed;
@@ -643,6 +645,10 @@ ons-button.show-controlbar {
    Dark Theme 
 */
 
+.dark-theme .dialog {
+  border: 1px solid #404040;
+  box-shadow: -1px -6px 20px 0px #0b0530;
+}
 .dark-theme .dialog .list-item {
   background-color: black;
   color: white;
@@ -658,7 +664,9 @@ ons-button.show-controlbar {
 .dark-theme .page__background {
   background-color: black;
 }
-
+.dark-theme .toolbar {
+  color: #a39191;;
+}
 .dark-theme img.album-image {
   width: 98%;
   max-width: 100%;

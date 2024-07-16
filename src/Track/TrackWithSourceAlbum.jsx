@@ -10,6 +10,7 @@ class TrackWithSourceAlbum extends React.Component {
         super(props)
         this.state = {
             albums : {},
+            isLoading: false,
         }
     }
 

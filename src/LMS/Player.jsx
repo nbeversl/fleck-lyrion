@@ -5,6 +5,7 @@ class Player {
     this.volume = 0;
     this.LMS = LMS;
     this.playing = false;
+    this.isLoading = false;
 
     this.playOrPause = () => {
       switch (this.playing) {
@@ -30,6 +31,7 @@ class Player {
     };
 
     this.playTrack = (id) => {
+      this.isLoading = true
       this.LMS.request([this.address, ["playlist", "clear"]], (r) => {
         this.LMS.request(
           [
@@ -39,6 +41,7 @@ class Player {
           (r) => {
             this.LMS.request([this.address, ["play"]]);
             this.playing = true;
+            this.isLoading = false
           }
         );
       });
@@ -74,6 +77,7 @@ class Player {
     };
 
     this.playAlbumFromTrackAndContinue = (track, startNumber) => {
+      this.isLoading = true
       var albumID = track.album_id;
       this.LMS.request([this.address, ["playlist", "clear"]], (r) => {
         this.LMS.request(
@@ -84,6 +88,7 @@ class Player {
               ["playlist", "index", "+" + startNumber.toString()],
             ]);
             this.playing = true;
+            this.isLoading = false
           }
         );
       });
