@@ -618,12 +618,6 @@ ons-button.show-controlbar {
   width: 200px;
 }
 
-/* .player-selector-dialog .dialog {
-    width: 25%;
-    left: 15%;
-    top: none;
-    bottom:100px;
-} */
 .disc-number {
   font-size: 18px;
   margin-bottom: 15px;
@@ -641,10 +635,14 @@ ons-button.show-controlbar {
    Dark Theme 
 */
 
-.dialog .dark-theme .list-item {
-  background-color: black !important;
-  color: white !important;
+.dark-theme .dialog .list-item {
+  background-color: black;
+  color: white;
 }
+.dark-theme .list-item:hover {
+  background-color: blue;
+}
+
 .dark-theme .search-bar input {
   background-color: #272727;
   color: white;
@@ -652,36 +650,40 @@ ons-button.show-controlbar {
 .dark-theme .page__background {
   background-color: black;
 }
-.dark-theme {
-  background-color: black;
-  color: #a39191;
-}
+
 .dark-theme img.album-image {
   width: 98%;
   max-width: 100%;
   border-width: 2px;
   border-radius: 2px;
 }
-.dark-theme .dialog {
+
+.list-item {
+  cursor: pointer;
+}
+.list-item:hover {
+  background-color: blue;
+}
+
+.dark-theme.album-modal .dialog-container {
   border: 1px solid #404040;
+  background-color: black;
+  color: white;
 }
 
 .dark-theme .btn-icon  {
   stroke: #0076FF;
-
 }
 .dark-theme button.search-clear-button {
   color: white;
 }
-.control-bar.dark-theme {
+.dark-theme.control-bar {
   box-shadow: -1px -6px 20px 0px #0b0530;
   background-color: black;
 }
-
 .dark-theme .album-info {
   color: #a39191;
 }
-
 .dark-theme .card {
   background-color: black;
   border: 1px solid #404040;
@@ -720,13 +722,6 @@ ons-button.show-controlbar {
     justify-content: center;
     align-self: center;
   }
-  .album,
-  .album ons-button,
-  .album .album-image {
-    height: 5rem;
-    padding: 0;
-  }
-
 }
 
 .duration {

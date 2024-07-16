@@ -12,7 +12,7 @@ class PlayerSelector extends React.Component {
 
   render() {
     return (
-      <div className="player-selector">
+      <div className={"player-selector " + this.props.theme}>
         <ToolbarButton
           onClick={() => {
             this.props.togglePlayerSelect();
@@ -28,13 +28,13 @@ class PlayerSelector extends React.Component {
         </ToolbarButton>
 
         <Dialog
-          className={"player-selector-dialog"}
+          className={"player-selector-dialog " + this.props.theme}
           isOpen={this.props.selectOpen}
           onCancel={this.props.closeSelect}
           getTarget={() => this.state.target}
           isCancelable={true}
         >
-          <div style={{ textAlign: "center", opacity: 0.5 }}>
+          <div style={{ textAlign: "center" }}>
             <List
               dataSource={[{ name: "Browser" }].concat(...this.props.players)}
               renderRow={(row, idx) => (

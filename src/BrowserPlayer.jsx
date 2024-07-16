@@ -9,6 +9,7 @@ class BrowserPlayer {
     this.currentIndex = 0
     this.playing = false;
     this.audio = null;
+    this.isLoading = false;
 
     this.getPlayerStatus = (callback) => {
       callback({

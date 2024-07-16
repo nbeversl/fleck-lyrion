@@ -47,6 +47,7 @@ class PlayerControls extends React.Component {
             selectedPlayer={this.props.targetPlayer}
             switchPlayer={this.props.switchPlayer}
             getPlayerStatus={this.props.getPlayerStatus}
+            theme={this.props.theme}
           />
           {this.props.library && this.props.library.genres ? (
             <GenreMenu

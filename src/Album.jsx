@@ -126,50 +126,47 @@ class Album extends React.Component {
                   }}
                   className="album-image"
                 >
-                  
                 </div>
               )}
             </Button>
             {this.state.modalOpen ? (
               <Dialog
-                className="album-modal"
+                className={"album-modal " + this.props.theme}
                 isOpen={true}
                 animation={"none"}
                 onCancel={this.handleClose.bind(this)}
                 isCancelable={true}
               >
-                <div className={this.props.theme}>
-                  {this.state.discs ? (
-                    <div className="tracklist">
-                      <TrackListScrolling
-                        moveable={this.props.moveable}
-                        moveToTop={this.props.moveToTop}
-                        playerInstance={this.props.playerInstance}
-                        discs={this.state.discs}
-                        album={this.state.album}
-                        addToPlaylist={
-                          this.props.playerInstance
-                            ? this.props.playerInstance.addTrack
-                            : null
-                        }
-                        checkPlayerInstance={this.props.checkPlayerInstance}
-                        library={this.props.library}
-                        cover={this.props.LMS.albumArtwork(
-                          this.state.album.artwork_track_id
-                        )}
-                        LMS={this.props.LMS}
-                      />
-                      <div
-                        className={"album-background-image"}
-                        style={backgroundImageStyle}
-                      />
-                    </div>
-                  ) : (
-                    <div className="album-loading">
-                      <ProgressCircular />
-                    </div>
-                  )}
-                </div>
+                {this.state.discs ? (
+                  <div className="tracklist">
+                    <TrackListScrolling
+                      moveable={this.props.moveable}
+                      moveToTop={this.props.moveToTop}
+                      playerInstance={this.props.playerInstance}
+                      discs={this.state.discs}
+                      album={this.state.album}
+                      addToPlaylist={
+                        this.props.playerInstance
+                          ? this.props.playerInstance.addTrack
+                          : null
+                      }
+                      checkPlayerInstance={this.props.checkPlayerInstance}
+                      library={this.props.library}
+                      cover={this.props.LMS.albumArtwork(
+                        this.state.album.artwork_track_id
+                      )}
+                      LMS={this.props.LMS}
+                    />
+                    <div
+                      className={"album-background-image"}
+                      style={backgroundImageStyle}
+                    />
+                  </div>
+                ) : (
+                  <div className="album-loading">
+                    <ProgressCircular />
+                  </div>
+                )}
               </Dialog>
             ) : null}
           </>

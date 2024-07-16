@@ -62,6 +62,7 @@ class ControlBar extends React.Component {
               checkPlayerInstance={this.props.checkPlayerInstance}
               playerInstance={this.props.playerInstance}
               LMS={this.props.LMS}
+              theme={this.props.theme}
             />
             <PlayerControls
               selectOpen={this.props.selectOpen}

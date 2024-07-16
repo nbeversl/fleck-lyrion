@@ -75,6 +75,7 @@ class NowPlaying extends React.Component {
               <Album
                 album={this.state.album}
                 modal={true}
+                theme={this.props.theme}
                 library={this.props.library}
                 checkPlayerInstance={this.props.checkPlayerInstance}
                 LMS={this.props.LMS}
