@@ -28,7 +28,6 @@ class ControlBar extends React.Component {
 
   handleSeekChange(event) {
     console.log(event)
-    return
     var newPosition = Math.floor(
       (this.state.playerStatus.duration * event.target.value) / 100
     );
@@ -37,7 +36,7 @@ class ControlBar extends React.Component {
   }
 
   getPlayerStatus() {
-    if (!this.props.targetPlayer) {
+    if (! this.props.targetPlayer) {
       this.timer = setTimeout(this.getPlayerStatus.bind(this), 5000);
       return;
     }
@@ -45,10 +44,10 @@ class ControlBar extends React.Component {
       if (!this._ismounted) {
         return;
       }
-      var newPosition = Math.floor((playerStatus.duration * playerStatus.time) / 100);
+      var newPosition = Math.floor((status.duration * status.time) / 100);
       this.setState({ 
         playerStatus: status,
-        // trackPosition: newPosition 
+        trackPosition: newPosition 
         }, () => {
         this.timer = setTimeout(this.getPlayerStatus.bind(this), 5000);
       });

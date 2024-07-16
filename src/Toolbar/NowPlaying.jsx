@@ -138,11 +138,11 @@ class NowPlaying extends React.Component {
                   }
                 />
               ) : null}
-              {/* <Range
-              //   className="track-time"
-              //   value={this.props.trackPosition - 1}
-              //   onInput={this.props.handleSeekChange}
-              // >*/}
+               <Range
+                className="track-time"
+                value={this.props.trackPosition - 1}
+                onInput={this.props.handleSeekChange}
+               />
             </div>
           </div>
         ) : null}
