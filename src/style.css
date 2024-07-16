@@ -398,11 +398,16 @@ ons-toolbar-button.player-control-button {
 .track-container {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
+
 .track-container .track-info {
   display: flex;
   flex-basis: 80%;
   flex-direction: column;
+}
+.track-container .tracklist-album {
+  flex-grow: 1;
 }
 
 .grid-tracklist .track-details {
@@ -466,6 +471,9 @@ ons-toolbar-button.player-control-button {
   stroke: #0076FF;
   cursor: pointer;
 }
+.btn-icon.download {
+  height: 2rem;
+} 
 .selectors {
   display: flex;
   flex-direction: row;

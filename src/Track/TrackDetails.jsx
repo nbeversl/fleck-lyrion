@@ -20,7 +20,7 @@ class TrackDetails extends React.Component {
               <strong>{id}</strong> : {secondsToMinutes(item[id])}
             </div>
           );
-          return;
+          return
         }
 
         if (id == "url") {
@@ -38,6 +38,7 @@ class TrackDetails extends React.Component {
               <strong>{id}</strong> : {item[id]}
             </div>
           );
+          return
         }
 
         if (id === "comment") {

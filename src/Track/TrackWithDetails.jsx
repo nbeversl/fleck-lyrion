@@ -65,13 +65,12 @@ class TrackWithDetails extends React.Component {
               className="ion-home color-primary item"
               onClick={this.download.bind(this)}
             >
-            <Download className="btn-icon" />
+            <Download className="btn-icon download" />
           </ToolbarButton>
           
         </div>
         {this.state.trackInfo && this.state.showTrackInfo ? (
           <div>
-            
             <TrackDetails
               trackInfo={this.state.trackInfo}
               disc={this.props.disc}

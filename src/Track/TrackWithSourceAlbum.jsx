@@ -44,10 +44,10 @@ class TrackWithSourceAlbum extends React.Component {
                                 </ToolbarButton>
 
                                 <a href={"/music/"+track.id+"/download/"}>
-                                    <Download className="btn-icon" />;
+                                    <Download className="btn-icon download" />
                                 </a> 
+                                
                             </div>
-
                         </div>
 
                         <div className="tracklist-album">                    
