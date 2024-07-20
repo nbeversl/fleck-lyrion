@@ -651,10 +651,6 @@ ons-button.show-controlbar {
    Dark Theme 
 */
 
-.dark-theme .dialog {
-  border: 1px solid #404040;
-  box-shadow: -1px -6px 20px 0px #0b0530;
-}
 .dark-theme .dialog .list-item {
   background-color: black;
   color: white;
