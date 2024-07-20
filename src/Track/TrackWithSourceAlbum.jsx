@@ -58,6 +58,7 @@ class TrackWithSourceAlbum extends React.Component {
                                 library={this.props.library}
                                 LMS={this.props.LMS}
                                 handle={false}
+                                theme={this.props.theme}
                             />
                         </div> 
                     </div>  
