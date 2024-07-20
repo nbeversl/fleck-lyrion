@@ -1,6 +1,7 @@
 import * as React from "react";
 import TrackListScrolling from "./Track/TrackListScrolling";
 import { ProgressCircular, Button, Dialog } from "react-onsenui";
+import Disc from './svg/Disc';
 
 class Album extends React.Component {
   constructor(props) {
@@ -111,13 +112,16 @@ class Album extends React.Component {
                   <div style={handleStyle} className="handle"></div>
                 </div>
               ) : null}
-              {this.state.album.artwork_track_id === undefined ? (
-                <div className="album-text-info">
-                  <div className="album-title-text">
-                    {this.state.album.album}
-                  </div>
-                  <div className="album-artist-text">
-                    {this.state.album.artist}
+              { this.state.album.artwork_track_id === undefined ? (
+                <div className="album-no-artwork">
+                  <Disc />
+                  <div className="album-text-info">
+                    <div className="album-title-text">
+                      {this.state.album.album}
+                    </div>
+                    <div className="album-artist-text">
+                      {this.state.album.artist}
+                    </div>
                   </div>
                 </div>
               ) : (

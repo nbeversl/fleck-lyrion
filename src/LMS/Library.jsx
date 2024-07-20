@@ -122,7 +122,11 @@ class LMSLibrary {
       this.LMS.request(
         [
           "",
-          ["albums", "0", "100", "album_id:" + albumID.toString(), "tags:ljaS"],
+          ["albums",
+            "0",
+            "100",
+            "album_id:" + albumID.toString(),
+            "tags:ljaSt"],
         ],
         (r) => {
           if (r.result.albums_loop) {

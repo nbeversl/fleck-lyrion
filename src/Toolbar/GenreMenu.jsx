@@ -38,33 +38,32 @@ class GenreMenu extends React.Component {
           animationOptions={{ duration: 0.1, delay: 0 }}
           isOpen={this.state.selectOpen}
           onCancel={() => this.setState({ selectOpen: false })}
+          className={this.props.theme}
           cancelable
         >
-          <div className={this.props.theme}>
-            <Scrollbars style={DialogStyle}>
-              <div className="content">
-                <List
-                  dataSource={Object.keys(this.props.genres)}
-                  renderRow={(row, idx) => (
-                    <ListItem
-                      key={idx}
-                      onClick={(e) => {
-                        this.setState({
-                          genreSelected: row,
-                          selectOpen: false,
-                        });
-                        this.props.handleGenreChange(row);
-                      }}
-                      modifier="tappable"
-                      tappable={true}
-                    >
-                      {row}
-                    </ListItem>
-                  )}
-                />
-              </div>
-            </Scrollbars>
-          </div>
+          <Scrollbars style={DialogStyle}>
+            <div className="content">
+              <List
+                dataSource={Object.keys(this.props.genres)}
+                renderRow={(row, idx) => (
+                  <ListItem
+                    key={idx}
+                    onClick={(e) => {
+                      this.setState({
+                        genreSelected: row,
+                        selectOpen: false,
+                      });
+                      this.props.handleGenreChange(row);
+                    }}
+                    modifier="tappable"
+                    tappable={true}
+                  >
+                    {row}
+                  </ListItem>
+                )}
+              />
+            </div>
+          </Scrollbars>
         </Dialog>
       </div>
     );

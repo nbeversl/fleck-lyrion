@@ -4,6 +4,7 @@ import '../style.css';
 import { Album } from '../Album';
 import Play from '../svg/Play';
 import Download from '../svg/Download';
+import secondsToMinutes from "../helpers.js";
 
 class TrackWithSourceAlbum extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class TrackWithSourceAlbum extends React.Component {
             albums : {},
             isLoading: false,
         }
+
     }
 
     playTrack(trackID) {
@@ -23,21 +25,24 @@ class TrackWithSourceAlbum extends React.Component {
     render() {
         let List = [];  
         this.props.tracks.forEach( (track) => {
-
             List.push( 
                 <Card key={track.id} >  
                     <div className="track-container">         
                         <div className="track-info">
-                            <div>
+                            <div className="title-codec-duration">
                                 <span className="track-title"> {track.title} </span> 
+                                <span className="duration"> ({ secondsToMinutes(track.duration) }) </span>
                                 <span className="codec"> { track.type === 'flc' ? 'FLAC' : track.type } </span>
                             </div>
                             
                             <div><b>Artist</b>: {track.artist}</div>
-                            <div><b>Album</b>: {track.album} {track.album_id} </div>
+                            <div><b>Album</b>: {track.album} </div>
                             <div>
                                 { track.disc ? <span><b>Disc</b>: {track.disc}; </span> : null }                            
                                 <span><b>Track</b>: {track.tracknum} </span>
+                            </div>
+                            <div>
+                                { decodeURI(track.url).replace("file://", "") }
                             </div>
                             <div className="track-buttons">
                                 <ToolbarButton onClick={ () => { this.playTrack(track.id) } } >
