@@ -7,11 +7,18 @@ class SearchBar extends React.Component {
     this.props.searchFor(this.props.searchString);
   }
 
+  clearSearchString(e) {
+    this.props.setSearchString("")
+    var input = document.getElementById('searchInput');
+    input.focus();
+  }
+
   render() {
     return (
       <div className="search-bar">
         <form onSubmit={this.handleSubmit.bind(this)}>
           <SearchInput
+            id="searchInput"
             onInput={(event) => {
               this.props.setSearchString(event.target.value);
             }}
@@ -21,7 +28,7 @@ class SearchBar extends React.Component {
         </form>
         <button
           className="search-clear-button"
-          onClick={() => { this.props.setSearchString("")}}>
+          onClick={(e) => { this.clearSearchString(e)}} >
           x
         </button>
       </div>
