@@ -1,5 +1,4 @@
 import React from "react";
-import { Yamaha } from "../Yamaha/Yamaha";
 import { Range, ToolbarButton } from "react-onsenui";
 import { GenreMenu } from "./GenreMenu";
 import { PlayerSelector } from "./PlayerSelector";
@@ -16,9 +15,7 @@ class PlayerControls extends React.Component {
     super(props);
     this.state = {
       volume: null,
-      yamahaVolume: -0,
       nowPlayingShowing: false,
-      yamaha: new Yamaha("http://10.0.0.68:80"),
     };
   }
 
@@ -63,23 +60,6 @@ class PlayerControls extends React.Component {
         </div>
         {this.props.playerInstance ? (
           <div className="player-controls">
-            {this.props.playerInstance.address == "Den" ? (
-              <div className="custom-den-controls">
-                <ToolbarButton
-                  className="player-control-button"
-                  onClick={this.state.yamaha.volumeDown}
-                >
-                  <img className={"btn-icon"} src={"./html/icon/minus.png"} />
-                </ToolbarButton>
-
-                <ToolbarButton
-                  className="player-control-button"
-                  onClick={this.state.yamaha.volumeUp}
-                >
-                  <img className={"btn-icon"} src={"./html/icon/plus.png"} />
-                </ToolbarButton>
-              </div>
-            ) : null}
             <div className="base-lms-controls">
               <ToolbarButton
                 className="player-control-button"
