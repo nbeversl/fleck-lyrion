@@ -104,18 +104,13 @@ ons-toolbar-button, button {
 .album {
   overflow: hidden;
 }
-img.album-image {
-  width: 98%;
-  max-width: 100%;
-  border-width: 2px;
-  border-radius: 2px;
-  cursor: pointer;
-}
 
-img.album-image-modal {
-  width: 100%;
+.album-image {
+  background-position: center;
 }
-
+.modal__content {
+  height: 100vh;
+}
 .handle-container {
   z-index: 50;
   height: 0px;
@@ -737,9 +732,13 @@ ons-button.show-controlbar {
     height: 0;
     padding-top: 90%;
   }
+  .album-image {
+    background-position: top !important;
+  }
 }
 
 @media (max-width: 450px) {
+
   .control-content {
     width: 100%;
   }

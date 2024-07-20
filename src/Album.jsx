@@ -94,7 +94,6 @@ class Album extends React.Component {
         : "",
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
-      backgroundPosition: "center",
     };
 
     var handleStyle = {

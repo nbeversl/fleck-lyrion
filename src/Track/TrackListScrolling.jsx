@@ -78,9 +78,14 @@ class TrackListScrolling extends React.Component {
       <div className="tracklist-container">
         <Modal
           onClick={this.handleAlbumArtModal.bind(this)}
-          isOpen={this.state.albumArtModalOpen}
-        >
-          <img src={this.props.cover} className="album-image-modal" />
+          isOpen={this.state.albumArtModalOpen}> 
+          <div style={{ 
+              backgroundImage: `url("${this.props.cover}")`,
+              height: "100vh",
+              backgroundPosition: "center",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat", }}
+              className="album-image-modal"></div>
         </Modal>
         {this.props.discs ? (
           <Scrollbars style={tracklistStyle}>
