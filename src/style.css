@@ -1,3 +1,7 @@
+body {
+  height: 100vh;
+}
+
 ons-button,
 ons-button.button--material {
   background-color: transparent !important;
