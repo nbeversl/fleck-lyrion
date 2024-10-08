@@ -258,7 +258,7 @@ class MediaApp extends React.Component {
         onClick={this.revealToolbar.bind(this)}
         className={`main ${this.state.theme}`}
       >
-        {this.state.players_loop.length > 0 && this.state.library ? (
+        {this.state.library ? (
           <div>
             {this.state.toolbarShowing ? (
               <ControlBar
