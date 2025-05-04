@@ -139,7 +139,7 @@ class ControlBar extends React.Component {
               />
 
               <div className="hide-control-bar-button-container">
-                <ToolbarButton>
+                <ToolbarButton onClick={this.props.hideToolbar} >
                   <ChevronDoubleDown className={"btn-icon hide-control-bar-button"} />
                 </ToolbarButton>
               </div>

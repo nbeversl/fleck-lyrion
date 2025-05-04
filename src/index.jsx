@@ -254,10 +254,7 @@ class MediaApp extends React.Component {
 
   render() {
     return (
-      <div
-        onClick={this.revealToolbar.bind(this)}
-        className={`main ${this.state.theme}`}
-      >
+      <div className={`main ${this.state.theme}`}>
         {this.state.library ? (
           <div>
             {this.state.toolbarShowing ? (
@@ -285,6 +282,11 @@ class MediaApp extends React.Component {
                 setColumns={this.setColumns.bind(this)}
                 setTheme={this.setTheme.bind(this)}
                 theme={this.state.theme}
+                hideToolbar={() => {
+                    if (this.state.toolbarShowing) {
+                      this.setState({ toolbarShowing: false });
+                    }
+                  }}
               />
             ) : null}
 
