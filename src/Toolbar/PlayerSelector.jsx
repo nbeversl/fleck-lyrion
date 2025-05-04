@@ -36,7 +36,7 @@ class PlayerSelector extends React.Component {
         >
           <div style={{ textAlign: "center" }}>
             <List
-              dataSource={[{ name: "Browser" }].concat(...this.props.players)}
+              dataSource={[{ name: "Browser (this device)" }].concat(...this.props.players)}
               renderRow={(row, idx) => (
                 <ListItem
                   key={row.name}

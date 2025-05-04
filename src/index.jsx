@@ -110,7 +110,7 @@ class MediaApp extends React.Component {
 
   switchPlayer(playerName, callback) {
     var newPlayer;
-    if (playerName !== "Browser") {
+    if (playerName !== "Browser (this device)") {
       newPlayer = new Player(this.state.LMS, playerName);
 
       this.setState(
