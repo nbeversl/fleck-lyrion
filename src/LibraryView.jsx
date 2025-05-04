@@ -1,7 +1,8 @@
 import * as React from "react";
 import AlbumGrid from "./Views/AlbumGrid";
 import SearchResults from "./Views/SearchResults";
-import { Page } from "react-onsenui";
+import { Page, ToolbarButton } from "react-onsenui";
+import ChevronDoubleUp from "./svg/ChevronDoubleUp";
 
 class LibraryView extends React.Component {
   constructor(props) {
@@ -70,8 +71,17 @@ class LibraryView extends React.Component {
         break;
     }
     return (
-      <Page onScroll={this.props.hideToolbar} onClick={this.props.hideToolbar}>
+      <Page onScroll={this.props.hideToolbar}>
         {view}
+        { ! this.props.toolbarShowing ?
+          <div className="show-control-bar-button-container">
+            <ToolbarButton onClick={this.props.revealToolbar} >
+              <ChevronDoubleUp className={"btn-icon show-control-bar-button"} />
+            </ToolbarButton>
+          </div>
+          :
+          <></>
+        }
       </Page>
     );
   }

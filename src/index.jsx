@@ -307,6 +307,7 @@ class MediaApp extends React.Component {
                   columns={this.state.columns}
                   theme={this.state.theme}
                   setColumns={this.setColumns.bind(this)}
+                  toolbarShowing={this.toolbarShowing}
                   hideToolbar={() => {
                     if (this.state.toolbarShowing) {
                       this.setState({ toolbarShowing: false });
