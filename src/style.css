@@ -755,6 +755,21 @@ ons-button.show-controlbar {
   word-break: normal;
 }
 
+.hide-control-bar-button-container {
+  width: 0;
+  height: 0;
+  overflow: visible;
+}
+
+.hide-control-bar-button {
+  width: 5rem;
+  position: absolute;
+  right: 2.5rem;
+}
+.search-and-hide {
+  
+}
+
 label {
   display: flex;
   justify-content: center;

@@ -101,9 +101,8 @@ class PlayerControls extends React.Component {
                 onClick={
                   this.props.playerInstance
                     ? this.props.playerInstance.nextTrack
-                    : null
-                }
-              >
+                    : null 
+                  }>
                 <Next className={"btn-icon"} />
               </ToolbarButton>
             </div>

@@ -1,9 +1,10 @@
 import { PlayerControls } from "./PlayerControls";
 import NowPlaying from "./NowPlaying";
-import { Toolbar, Segment } from "react-onsenui";
+import { Toolbar, ToolbarButton, Segment } from "react-onsenui";
 import * as React from "react";
 import SearchBar from "./SearchBar";
 import { Range } from "react-onsenui";
+import ChevronDoubleDown from "../svg/ChevronDoubleDown";
 
 class ControlBar extends React.Component {
   constructor(props) {
@@ -130,11 +131,19 @@ class ControlBar extends React.Component {
                 </div>
               ) : null}
             </div>
-            <SearchBar
-              searchString={this.props.searchString}
-              setSearchString={this.props.setSearchString}
-              searchFor={this.props.searchFor}
-            />
+            <div className="search-and-hide">
+              <SearchBar
+                searchString={this.props.searchString}
+                setSearchString={this.props.setSearchString}
+                searchFor={this.props.searchFor}
+              />
+
+              <div className="hide-control-bar-button-container">
+                <ToolbarButton>
+                  <ChevronDoubleDown className={"btn-icon hide-control-bar-button"} />
+                </ToolbarButton>
+              </div>
+            </div>
             <div className={"grid-size"}>
               <Range
                 value={(10 - this.props.columns) * 10}
