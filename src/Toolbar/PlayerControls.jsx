@@ -16,7 +16,27 @@ class PlayerControls extends React.Component {
     this.state = {
       volume: null,
       nowPlayingShowing: false,
+      isPlaying: null,
     };
+  }
+
+  componentDidMount() {
+    this.setState({ isPlaying: this.props.playerInstance?.playing })
+  }
+
+  componentDidUpdate() {
+    if (this.props.playerInstance && 
+      (this.props.playerInstance.playing != this.state.isPlaying)) {
+      this.setState({ isPlaying: this.props.playerInstance?.playing });
+      }
+  }
+
+  playOrPause() {
+    if (this.props.playerInstance) {
+        this.props.playerInstance.playOrPause();
+      }
+    // for UI only; the player instance will update this if it is wrong
+    this.setState({ isPlaying : ! this.state.isPlaying }) 
   }
 
   setVolume(event) {
@@ -63,17 +83,13 @@ class PlayerControls extends React.Component {
             <div className="base-lms-controls">
               <ToolbarButton
                 className="player-control-button"
-                onClick={() => {
-                  if (this.props.playerInstance) {
-                    this.props.playerInstance.playOrPause();
-                  }
-                }}
+                onClick={this.playOrPause.bind(this)}
               >
-                {this.props.playerInstance.playing ? (
+                {this.state.isPlaying ?
                   <Pause className={"btn-icon"} />
-                ) : (
+                  :
                   <Play className={"btn-icon"} />
-                )}
+                }
               </ToolbarButton>
 
               <ToolbarButton onClick={this.props.playerInstance.skipBackward}>
