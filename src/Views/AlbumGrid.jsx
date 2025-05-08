@@ -132,27 +132,15 @@ class AlbumGrid extends React.PureComponent {
   }
 
   makeLayout(order, callback) {
-    var row = [];
-    var layout = [];
-    var a = 0;
-    var b = 0;
-    var keys = [];
+    var albums = [];
 
     order.forEach((album_id) => {
-      keys.push(album_id);
 
       if (!Object.keys(this.state.albumDict).includes(album_id)) {
         return;
       }
-      layout.push({
-        x: a,
-        y: b,
-        i: album_id,
-        w: 1,
-        h: 1,
-      });
-
-      row.push(
+      
+      albums.push(
         <div key={album_id}>
           <GridResponsiveAlbum
             album={this.state.albumDict[album_id]}
@@ -165,52 +153,10 @@ class AlbumGrid extends React.PureComponent {
           />
         </div>
       );
-
-      a += 1;
-      if (a == this.state.columns) {
-        b += 1;
-        a = 0;
-      }
-    });
-
-    Object.keys(this.state.albumDict).forEach((album_id) => {
-      if (keys.includes(album_id)) {
-        return;
-      }
-      if (!order.includes(album_id)) {
-        layout.push({
-          x: a,
-          y: b,
-          i: album_id,
-          w: 1,
-          h: 1,
-        });
-
-        row.push(
-          <div key={album_id}>
-            <GridResponsiveAlbum
-              album={this.state.albumDict[album_id]}
-              checkPlayerInstance={this.props.checkPlayerInstance}
-              library={this.props.library}
-              LMS={this.props.LMS}
-              moveToTop={this.moveToTop.bind(this)}
-              moveable={this.props.moveable}
-            />
-          </div>
-        );
-
-        a += 1;
-        if (a == this.props.columns) {
-          b += 1;
-          a = 0;
-        }
-      }
     });
 
     this.setState({
-      order: order,
-      row: row,
-      layout: layout,
+      albums: albums,
     });
     if (callback) {
       callback();
@@ -265,41 +211,21 @@ class AlbumGrid extends React.PureComponent {
 
   render() {
     const ResponsiveGridLayout = WidthProvider(Responsive);
-
     return (
       <div className={`main-album-grid ${this.props.theme}`}>
-        {this.state.layout ? (
+        {this.state.albums ? (
           <GestureDetector
             onPinchIn={this.handlePinchIn.bind(this)}
             onPinchOut={this.handlePinchOut.bind(this)}
             theme={this.props.theme}
           >
-            <ResponsiveGridLayout
-              breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-              cols={{
-                lg: this.state.columns,
-                md: this.state.columns,
-                sm: this.state.columns,
-                xs: this.state.columns,
-                xxs: this.state.columns,
-              }}
-              //   className="layout"
-              compactType={"horizontal"}
-              draggableHandle={".handle"}
+            <div className={`album-grid-css album-grid-${this.state.columns}`}
               theme={this.props.theme}
-              rowHeight={this.state.albumSize}
-              layouts={{
-                lg: this.state.layout,
-                md: this.state.layout,
-                sm: this.state.layout,
-                xs: this.state.layout,
-                xxs: this.state.layout,
-              }}
-              onDragStop={this.handleLayoutChange.bind(this)}
-              onWidthChange={this.handleWidthChange.bind(this)}
-            >
-              {this.state.row}
-            </ResponsiveGridLayout>
+              // onDragStop={this.handleLayoutChange.bind(this)}
+              // onWidthChange={this.handleWidthChange.bind(this)}
+              >
+              {this.state.albums}
+            </div>
           </GestureDetector>
         ) : null}
       </div>
@@ -338,16 +264,6 @@ function getAlbumOrderFromLayout(layout, albumDict) {
 
   //future == send this from client
   const maxColumns = 10;
-
-  layout.forEach((item) => {
-    if (!(item.y in grid)) {
-      grid[parseInt(item.y)] = {};
-    }
-    if (!yValues.includes(parseInt(item.y))) {
-      yValues.push(parseInt(item.y));
-    }
-    grid[parseInt(item.y)][parseInt(item.x)] = item.i;
-  });
 
   yValues.sort(function (a, b) {
     return a - b;
