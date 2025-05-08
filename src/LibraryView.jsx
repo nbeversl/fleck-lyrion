@@ -2,7 +2,7 @@ import * as React from "react";
 import AlbumGrid from "./Views/AlbumGrid";
 import SearchResults from "./Views/SearchResults";
 import { Page, ToolbarButton } from "react-onsenui";
-import ChevronDoubleUp from "./svg/ChevronDoubleUp";
+import ControlPanelIcon from "./svg/ControlPanelIcon";
 
 class LibraryView extends React.Component {
   constructor(props) {
@@ -74,11 +74,10 @@ class LibraryView extends React.Component {
       <Page onScroll={this.props.hideToolbar}>
         {view}
         { ! this.props.toolbarShowing ?
-          <div className="show-control-bar-button-container">
-            <ToolbarButton onClick={this.props.revealToolbar} >
-              <ChevronDoubleUp className={"btn-icon show-control-bar-button"} />
-            </ToolbarButton>
-          </div>
+          <ToolbarButton className="show-control-bar-button"
+            onClick={this.props.revealToolbar} >
+            <ControlPanelIcon className={"btn-icon show-control-bar-button"} />
+          </ToolbarButton>
           :
           <></>
         }

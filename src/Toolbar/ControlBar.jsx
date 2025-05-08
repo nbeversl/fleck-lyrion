@@ -4,7 +4,7 @@ import { Toolbar, ToolbarButton, Segment } from "react-onsenui";
 import * as React from "react";
 import SearchBar from "./SearchBar";
 import { Range } from "react-onsenui";
-import ChevronDoubleDown from "../svg/ChevronDoubleDown";
+import CloseIcon from "../svg/CloseIcon";
 
 class ControlBar extends React.Component {
   constructor(props) {
@@ -138,11 +138,10 @@ class ControlBar extends React.Component {
                 searchFor={this.props.searchFor}
               />
 
-              <div className="hide-control-bar-button-container">
-                <ToolbarButton onClick={this.props.hideToolbar} >
-                  <ChevronDoubleDown className={"btn-icon hide-control-bar-button"} />
-                </ToolbarButton>
-              </div>
+              <ToolbarButton className="hide-control-bar-button" 
+              onClick={this.props.hideToolbar} >
+                <CloseIcon className={"btn-icon"} />
+              </ToolbarButton>
             </div>
             <div className={"grid-size"}>
               <Range

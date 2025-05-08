@@ -1,7 +1,7 @@
 export default function Forward({ className, ...props }) {
   return (
     <>
-    <svg className={className}  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M15.9601 10.8301H12.9001L12.1401 13.1201H14.4301C15.2701 13.1201 15.9601 13.8001 15.9601 14.6501C15.9601 15.4901 15.2801 16.1801 14.4301 16.1801H12.1401" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M9.54004 16.17V10.8301L8.04004 12.5001"  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M13.98 4.46997L12 2"  strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
