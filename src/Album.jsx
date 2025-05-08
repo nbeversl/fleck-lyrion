@@ -124,14 +124,12 @@ class Album extends React.Component {
                   </div>
                 </div>
               ) : (
-                <div
-                  style={{
-                    backgroundImage: `url("${this.props.LMS.albumArtwork(
-                    this.state.album.artwork_track_id)}")`
-                  }}
+                <img
                   className="album-image"
-                >
-                </div>
+                  src={this.props.LMS.albumArtwork(this.state.album.artwork_track_id)}
+                  alt="Album Cover"
+                  loading="lazy"
+                />
               )}
             </Button>
             {this.state.modalOpen ? (
