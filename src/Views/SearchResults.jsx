@@ -20,6 +20,7 @@ class SearchResults extends React.Component {
             library={this.props.library}
             LMS={this.props.LMS}
             orderType={"alpha"}
+            hideToolbar={this.props.hideToolbar}
             checkPlayerInstance={this.props.checkPlayerInstance}
             playerInstance={this.props.playerInstance}
             columns={this.props.columns}

@@ -200,7 +200,7 @@ class AlbumGrid extends React.PureComponent {
             onPinchIn={this.handlePinchIn.bind(this)}
             onPinchOut={this.handlePinchOut.bind(this)}
             theme={this.props.theme}
-          >
+            onScroll={this.props.hideToolbar}>
             <div className={`album-grid-css album-grid-${this.state.columns}`}
               theme={this.props.theme}
               // onDragStop={this.handleLayoutChange.bind(this)}

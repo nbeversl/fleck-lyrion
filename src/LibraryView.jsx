@@ -36,6 +36,7 @@ class LibraryView extends React.Component {
             albumList={
               this.props.library.genres[this.props.genreSelected].albums
             }
+            hideToolbar={this.props.hideToolbar}
             genre={this.props.genreSelected}
             clickHandler={this.handleAlbumChange}
             library={this.props.library}
@@ -58,6 +59,7 @@ class LibraryView extends React.Component {
             searchResultsAlbums={this.props.searchResultsAlbums}
             searchResultsTracks={this.props.searchResultsTracks}
             library={this.props.library}
+            hideToolbar={this.props.hideToolbar}
             checkPlayerInstance={this.props.checkPlayerInstance}
             LMS={this.props.LMS}
             playerInstance={this.props.playerInstance}
@@ -71,7 +73,7 @@ class LibraryView extends React.Component {
         break;
     }
     return (
-      <Page onScroll={this.props.hideToolbar}>
+      <Page>
         {view}
         { ! this.props.toolbarShowing ?
           <ToolbarButton className="show-control-bar-button"

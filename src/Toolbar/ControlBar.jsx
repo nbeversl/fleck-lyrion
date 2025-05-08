@@ -139,7 +139,7 @@ class ControlBar extends React.Component {
               />
 
               <ToolbarButton className="hide-control-bar-button" 
-              onClick={this.props.hideToolbar} >
+                onClick={this.props.hideToolbar} >
                 <CloseIcon className={"btn-icon"} />
               </ToolbarButton>
             </div>
