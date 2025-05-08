@@ -70,28 +70,25 @@ ons-toolbar-button, button {
 }
 .album-grid-css {
   display: grid;
- 
   gap: 16px;
   padding: 16px;
   overflow-x: auto;
+  width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  width: 100%;
-}
-
-.album,
-.album ons-button,
-.album .album-image {
-  height: 100%;
+  grid-template-columns: repeat(5, 1fr);
+  box-sizing: border-box;
+  position: relative;
+  height: 0;
+  padding-bottom: 100%; 
 }
 
 .album .album-image {
-  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
   max-width: 100%;
-  object-fit:contain;
+  object-fit: cover;
 }
 
 .album-grid-1 {
@@ -152,10 +149,6 @@ ons-toolbar-button, button {
 /* 
     Album Grid view images and containers 
 */
-
-.album {
-  overflow: hidden;
-}
 
 .album-image {
   background-position: center;

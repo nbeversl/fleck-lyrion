@@ -3,23 +3,6 @@ import { Album } from "../Album";
 import { GestureDetector } from "react-onsenui";
 import { Responsive, WidthProvider } from "react-grid-layout";
 
-const GridResponsiveAlbum = React.forwardRef(
-  ({ style, className, ...props }, ref) => {
-    return (
-      <Album
-        style={{ ...style }} className={className} ref={ref}
-          moveable={props.moveable}
-          album={props.album}
-          checkPlayerInstance={props.checkPlayerInstance}
-          library={props.library}
-          LMS={props.LMS}
-          moveToTop={props.moveToTop}
-          theme={props.theme}
-      />
-    );
-  }
-);
-
 class AlbumGrid extends React.PureComponent {
   constructor(props) {
     super(props);
@@ -139,19 +122,18 @@ class AlbumGrid extends React.PureComponent {
       if (!Object.keys(this.state.albumDict).includes(album_id)) {
         return;
       }
-      
+
       albums.push(
-        <div key={album_id}>
-          <GridResponsiveAlbum
-            album={this.state.albumDict[album_id]}
-            checkPlayerInstance={this.props.checkPlayerInstance}
-            library={this.props.library}
-            LMS={this.props.LMS}
-            moveToTop={this.moveToTop.bind(this)}
-            moveable={this.props.moveable}
-            theme={this.state.theme}
-          />
-        </div>
+        <Album
+          key={album_id}
+          moveable={this.props.moveable}
+          album={this.state.albumDict[album_id]}
+          checkPlayerInstance={this.props.checkPlayerInstance}
+          library={this.props.library}
+          LMS={this.props.LMS}
+          moveToTop={this.props.moveToTop}
+          theme={this.state.theme}
+        />
       );
     });
 

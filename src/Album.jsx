@@ -27,6 +27,11 @@ class Album extends React.Component {
     }
   }
 
+  getAlbumArt() {
+    const albumArtwork = this.props.LMS.albumArtwork(this.state.album.artwork_track_id)
+    return albumArtwork
+  }
+
   componentDidUpdate() {
     if (this.props.getFromId) {
       if (this.state.album && this.state.album.id == this.props.getFromId) {
@@ -127,7 +132,6 @@ class Album extends React.Component {
                 <img
                   className="album-image"
                   src={this.props.LMS.albumArtwork(this.state.album.artwork_track_id)}
-                  alt="Album Cover"
                   loading="lazy"
                 />
               )}
@@ -155,9 +159,7 @@ class Album extends React.Component {
                       }
                       checkPlayerInstance={this.props.checkPlayerInstance}
                       library={this.props.library}
-                      cover={this.props.LMS.albumArtwork(
-                        this.state.album.artwork_track_id
-                      )}
+                      cover={this.getAlbumArt}
                       LMS={this.props.LMS}
                     />
                     <div
