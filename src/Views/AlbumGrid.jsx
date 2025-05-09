@@ -13,7 +13,6 @@ class AlbumGrid extends React.PureComponent {
       genre: null,
       layout: null,
       orderType: null,
-      albumSize: 200,
       columns: null,
       theme: null,
     };
@@ -33,12 +32,6 @@ class AlbumGrid extends React.PureComponent {
         this.reArrange(true);
       }
     );
-  }
-
-  handleWidthChange(containerWidth, margin, cols, containerPadding) {
-    this.setState({
-      albumSize: containerWidth / cols,
-    });
   }
 
   componentDidUpdate() {
@@ -176,21 +169,6 @@ class AlbumGrid extends React.PureComponent {
     });
   }
 
-  handleLayoutChange(layout, allLayouts) {
-    if (this.state.orderType !== "shelf") {
-      return;
-    }
-    var newOrder = getAlbumOrderFromLayout(layout, this.state.albumDict);
-    if (!arraysMatch(newOrder, this.state.order)) {
-      this.makeLayout(newOrder, () => {
-        this.props.storeOrderChange({
-          order: newOrder,
-          cols: this.props.columns,
-        });
-      });
-    }
-  }
-
   render() {
     const ResponsiveGridLayout = WidthProvider(Responsive);
     return (
@@ -202,10 +180,7 @@ class AlbumGrid extends React.PureComponent {
             theme={this.props.theme}
             onScroll={this.props.hideToolbar}>
             <div className={`album-grid-css album-grid-${this.state.columns}`}
-              theme={this.props.theme}
-              // onDragStop={this.handleLayoutChange.bind(this)}
-              // onWidthChange={this.handleWidthChange.bind(this)}
-              >
+              theme={this.props.theme}>
               {this.state.albums}
             </div>
           </GestureDetector>
