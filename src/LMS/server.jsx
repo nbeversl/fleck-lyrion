@@ -27,14 +27,6 @@ class LMS {
     
     }
 
-    albumArtwork(trackID) {
-        if (trackID) {
-            return '/music/'+trackID.toString()+'/cover.jpg'
-        }
-        return '';
-
-    }
-
     getTrack(trackID) {
         return '/music/' + trackID.toString() +'/download/.flac';
     }

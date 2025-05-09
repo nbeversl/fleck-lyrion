@@ -24,6 +24,10 @@ class LMSLibrary {
             ],
           ],
           (r) => {
+            // todo refactor DRY
+            r.result.albums_loop.forEach((album) => {
+              album.albumArtURL = '/music/'+ album.artwork_track_id+'/cover.jpg'
+            });
             this.genres[item.genre].albums = r.result.albums_loop;
           }
         );
@@ -50,6 +54,8 @@ class LMSLibrary {
       (r) => {
         r.result.albums_loop.forEach((album) => {
           this.albums[album.id] = album;
+          album.albumArtURL = '/music/'+ album.artwork_track_id+'/cover.jpg'
+          this.albums[album.id].albumArtURL = '/music/'+ album.artwork_track_id+'/cover.jpg'
         });
         if (callback) {
           callback();
@@ -81,6 +87,9 @@ class LMSLibrary {
   }
 
   getAlbumTracks(albumID, callback) {
+    if (this.albums[albumID].tracks) {
+      return this.albums[albumID].tracks
+    }
     this.LMS.request(
       [
         "",
@@ -94,6 +103,7 @@ class LMSLibrary {
         ],
       ],
       (r) => {
+        this.albums[albumID].tracks = r.result.titles_loop
         callback(r.result.titles_loop);
       }
     );
@@ -102,6 +112,7 @@ class LMSLibrary {
   allAlbums(callback) {
     this.LMS.request(["", ["albums", "0", "10000", "tags:lj"]], (r) => {
       r.result.albums_loop.forEach((album) => {
+        album.albumArtURL = '/music/'+ album.artwork_track_id+'/cover.jpg'
         this.albums[album.id] = album;
       });
       callback(r.result.albums_loop || []);
@@ -130,7 +141,9 @@ class LMSLibrary {
         ],
         (r) => {
           if (r.result.albums_loop) {
-            callback(r.result.albums_loop[0]);
+            const firstResult = r.result.albums_loop[0]
+            firstResult.albumArtURL = '/music/'+firstResult.artwork_track_id+'/cover.jpg'
+            callback(firstResult);
           }
         }
       );
@@ -222,7 +235,6 @@ class LMSLibrary {
         ],
       ],
       (r) => {
-        console.log('FROM LIBRARY COMPONENT', r)
         callback(r.result.songinfo_loop);
       }
     );
