@@ -118,11 +118,6 @@ class Album extends React.Component {
         {this.state.album ? (
           <>
             <Button modifier="large--cta" onClick={this.handleOpen.bind(this)}>
-              {this.props.moveable ? (
-                <div className="handle-container">
-                  <div className="handle"></div>
-                </div>
-              ) : null}
               { this.state.album.artwork_track_id === undefined ? (
                 <div className="album-no-artwork">
                   <Disc />
@@ -154,8 +149,6 @@ class Album extends React.Component {
                 {this.state.discs ? (
                   <div className="tracklist">
                     <TrackListScrolling
-                      moveable={this.props.moveable}
-                      moveToTop={this.props.moveToTop}
                       playerInstance={this.props.playerInstance}
                       discs={this.state.discs}
                       album={this.state.album}

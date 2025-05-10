@@ -86,16 +86,6 @@ class MediaApp extends React.Component {
     this.state.playerSelectOpen ? this.closeSelect() : this.openPlayerSelect();
   }
 
-  setOrderType(type) {
-    var moveable = false;
-    if (type == "shelf") {
-      moveable = true;
-    }
-    this.setState({
-      orderType: type,
-    });
-  }
-
   getAvailablePlayers() {
     this.state.LMS.request(["", ["serverstatus", "0", "20"]], (response) => {
       var availablePlayers = [];
@@ -275,7 +265,6 @@ class MediaApp extends React.Component {
                 searchFor={this.searchFor.bind(this)}
                 setSearchString={this.setSearchString.bind(this)}
                 searchString={this.state.searchString}
-                setOrderType={this.setOrderType.bind(this)}
                 orderType={this.state.orderType}
                 columns={this.state.columns}
                 setColumns={this.setColumns.bind(this)}

@@ -22,7 +22,6 @@ class ArtistComposer extends React.Component {
       <Card>
         {this.props.composerName}
         <AlbumGrid
-          moveable={false}
           albumList={this.props.albumList}
           order={order}
           orderType={"alpha"}

@@ -77,17 +77,6 @@ class TrackListScrolling extends React.Component {
         </Modal>
         {this.props.discs ? (
           <Scrollbars style={tracklistStyle}>
-            {this.props.moveable ? (
-              <ToolbarButton
-                onClick={() => {
-                  this.props.moveToTop(this.props.album.id);
-                  this.setState({ modalOpen: false });
-                }}
-              >
-                Move to top
-              </ToolbarButton>
-            ) : null}
-
             <div className="album-info">
               <div className="text-info">
                 <div className="tracklist-artist">

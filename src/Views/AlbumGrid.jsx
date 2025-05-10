@@ -136,13 +136,11 @@ class AlbumGrid extends React.PureComponent {
               {this.state.albums.map( (album) =>
                  <Album
                     key={album.id}
-                    moveable={this.props.moveable}
                     album={this.state.albumDict[album.id]}
                     checkPlayerInstance={this.props.checkPlayerInstance}
                     playerInstance={this.props.playerInstance}
                     library={this.props.library}
                     LMS={this.props.LMS}
-                    moveToTop={this.props.moveToTop}
                     theme={this.state.theme}
                   />
                 )}
