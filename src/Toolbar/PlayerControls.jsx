@@ -112,14 +112,13 @@ class PlayerControls extends React.Component {
           </div>
           {this.props.playerInstance?.trackSelected &&
             <div className={"slider-volume"}>
-              {! [null, "Browser"].includes(this.props.targetPlayer) &&
-              this.props.playerInstance?.trackSelected &&
+              { this.props.playerInstance?.trackSelected &&
                 <div>
                   <Range
-                    value={this.props.playerInstance?.volume}
+                    value={this.props.playerInstance.volume}
                     onChange={this.setVolume.bind(this)}
                   />
-                  <label>LMS Player Volume</label>
+                  <label>Player Volume</label>
                 </div>
               }
             </div>

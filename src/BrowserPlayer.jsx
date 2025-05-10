@@ -11,6 +11,7 @@ class BrowserPlayer {
     this.audio = null;
     this.isLoading = false;
     this.trackSelected = false;
+    this.volume = 0
 
     this.getPlayerStatus = (callback) => {
       callback({
@@ -76,6 +77,7 @@ class BrowserPlayer {
       if (this.audio) {
         this.audio.volume = value / 100;
       }
+      this.volume = value
     }
 
     this.nextTrack =  () => {
