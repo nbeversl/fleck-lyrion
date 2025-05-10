@@ -23,6 +23,8 @@ ons-toolbar.toolbar-showing {
 
 ons-toolbar-button, button {
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .title-codec-duration {
@@ -831,11 +833,16 @@ ons-button.show-controlbar {
   bottom: 10%;
   z-index: 2000;
 }
-.show-control-bar-button {
-  width: 2.5rem;
+.fixed-buttons {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.show-control-bar-button {
+  width: 2.5rem;
 }
 
 label {

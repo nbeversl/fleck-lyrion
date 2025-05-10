@@ -311,6 +311,7 @@ class MediaApp extends React.Component {
                   searchResultsTracks={this.state.searchResultsTracks}
                   checkPlayerInstance={this.checkPlayerInstance.bind(this)}
                   LMS={this.state.LMS}
+                  loadRandomAlbums={this.loadRandomAlbums.bind(this)}
                   storedLayout={this.state.storedLayout}
                   storeOrderChange={this.storeOrderChange.bind(this)}
                   orderType={this.state.orderType}
