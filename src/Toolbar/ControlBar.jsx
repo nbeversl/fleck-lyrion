@@ -121,12 +121,6 @@ class ControlBar extends React.Component {
                     >
                       Shuffle
                     </button>
-                    <button
-                      className="order-select"
-                      onClick={() => this.props.setOrderType("shelf")}
-                    >
-                      Shelf
-                    </button> 
                   </Segment>
                 </div>
               ) : null}
