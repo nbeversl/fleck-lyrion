@@ -1,7 +1,8 @@
 import * as React from "react";
 import TrackListScrolling from "./Track/TrackListScrolling";
-import { ProgressCircular, Button, Dialog } from "react-onsenui";
+import { ProgressCircular, ToolbarButton, Button, Dialog } from "react-onsenui";
 import Disc from './svg/Disc';
+import CloseIcon from "./svg/CloseIcon";
 
 class Album extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class Album extends React.Component {
       height: 0,
     };
   }
+
   componentDidMount() {
     if (this.props.getFromId) {
       this.props.library.getAlbumFromID(this.props.getFromId, (album) => {
@@ -173,6 +175,10 @@ class Album extends React.Component {
                     <ProgressCircular />
                   </div>
                 )}
+                <ToolbarButton className="hide-album-modal-button" 
+                  onClick={this.handleClose.bind(this)} >
+                  <CloseIcon className={"btn-icon"} />
+                </ToolbarButton>
               </Dialog>
             ) : null}
           </>

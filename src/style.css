@@ -815,6 +815,13 @@ ons-button.show-controlbar {
   bottom: 1rem;
 }
 
+.hide-album-modal-button {
+  width: 2.5rem;
+  position: fixed;
+  right: .5rem;
+  bottom: 10%;
+  z-index: 2000;
+}
 .show-control-bar-button {
   width: 2.5rem;
   position: fixed;
