@@ -12,7 +12,7 @@ type TrackDetailsProps = {
 const TrackDetails = ({ trackInfo, disc, track }: TrackDetailsProps) => {
 
   const [xid, updateXid] = useState<object | null>(null);
-  const [list, setList] = useState<JSX.Element[]>([]);
+  const [trackDetails, setTrackDetails] = useState<JSX.Element[]>([]);
 
   useEffect(() => {
     let list: JSX.Element[] = [];
@@ -36,22 +36,15 @@ const TrackDetails = ({ trackInfo, disc, track }: TrackDetailsProps) => {
               <strong>{id}</strong> : {item[id]}
             </div>
           );
-        } else if (id === "comment" && xid === null) {
-          try {
-            const strucMeta = JSON.parse(item[id]);
-            updateXid(strucMeta);
-          } catch (e) {
-            console.log("Could not parse comment to JSON", e);
-          }
         }
       });
     })
-    setList(list)
-  })
+    setTrackDetails(list)
+  }, [trackInfo])
 
   return (
     <div className="track-details">
-      {list}
+      {trackDetails}
     </div>
   );
 }
