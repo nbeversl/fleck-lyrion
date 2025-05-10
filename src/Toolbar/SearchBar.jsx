@@ -23,7 +23,6 @@ class SearchBar extends React.Component {
               this.props.setSearchString(event.target.value);
             }}
             value={this.props.searchString}
-            placeholder="search"
           />
         </form>
         <button

@@ -286,20 +286,20 @@ button.search-button {
 }
 button.search-clear-button {
   border: none;
-  margin-left: -1.5rem;
   z-index: 90;
   min-width: 1rem !important;
   background: #c1c1c19e;
   border-radius: 1rem;
-  height: 1rem;
-  align-self: center;
-  display: flex;
-  align-items: center;
-  width: 1rem;
-  justify-content: center;
+  height: 1.5rem;
+  width: 1.5rem;
   cursor: pointer;
   color: #8c8c8c;
+  opacity: .8;
+  position: absolute;
+  right: .5rem; 
+  top: .5rem;
 }
+
 button.order-select,
 button.theme-select {
   width: 70px;
@@ -307,6 +307,10 @@ button.theme-select {
 .search {
   display: flex;
   align-items: center;
+}
+input.search-input {
+  height: 2.5rem;
+  font-size: 1.25rem;
 }
 .search-clear {
   background-color: #dcdcdc;
@@ -570,7 +574,7 @@ segment__button {
 }
 
 .search-bar {
-  display: flex;
+  position: relative;
 }
 
 .track-time {
@@ -745,7 +749,7 @@ ons-button.show-controlbar {
 }
 .dark-theme button.search-clear-button {
   color: white;
-}
+}  
 .dark-theme.control-bar {
   box-shadow: -1px -6px 20px 0px #0b0530;
   background-color: black;
