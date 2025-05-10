@@ -1,6 +1,5 @@
 import React from "react";
 import { Range, ToolbarButton } from "react-onsenui";
-import { GenreMenu } from "./GenreMenu";
 import { PlayerSelector } from "./PlayerSelector";
 import Play from '../svg/Play';
 import Pause from '../svg/Pause';
@@ -55,7 +54,6 @@ class PlayerControls extends React.Component {
   render() {
     return (
       <div className="player-bar">
-        <div className="selectors">
           <PlayerSelector
             togglePlayerSelect={this.props.togglePlayerSelect}
             playerSelectOpen={this.props.playerSelectOpen}
@@ -66,18 +64,6 @@ class PlayerControls extends React.Component {
             getPlayerStatus={this.props.getPlayerStatus}
             theme={this.props.theme}
           />
-          {this.props.library && this.props.library.genres ? (
-            <GenreMenu
-              genres={this.props.library.genres}
-              library={this.props.library}
-              screenWidth={this.state.screenWidth}
-              handleGenreChange={this.props.handleGenreChange.bind(this)}
-              genreSelected={this.props.genreSelected}
-              controlBarHeight={this.props.controlBarHeight}
-              theme={this.props.theme}
-            />
-          ) : null}
-        </div>
         {this.props.playerInstance ? (
           <div className="player-controls">
             <div className="base-lms-controls">

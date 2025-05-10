@@ -38,7 +38,6 @@ ons-toolbar-button, button {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto;
 }
 
 .tracklist hr {
@@ -199,7 +198,7 @@ ons-toolbar-button, button {
   bottom: 0;
   width: 100%;
   box-shadow: -1px -5px 16px #888888;
-  padding: 10px 0px 25px 0px;
+  padding: 10px 10px 25px 10px;
   background-color: white;
 }
 
@@ -239,22 +238,20 @@ ons-toolbar-button, button {
   flex-direction: row;
   display: flex;
   align-self: center;
-  flex-basis: 50%;
-  padding: 0px 10px 0px 10px;
   white-space: normal;
   flex-grow: 0;
-  padding: 10px 20px 10px 20px;
   margin: 0 auto;
   white-space: nowrap;
 }
 
+.genre-menu {
+  
+}
 .player-selector {
   font-size: 40px !important;
   display: flex;
   text-align: center;
   flex-direction: row;
-  flex-basis: 50%;
-  padding: 0px 10px 0px 10px;
   align-self: center;
   white-space: normal;
 }
@@ -303,6 +300,10 @@ button.search-clear-button {
 button.order-select,
 button.theme-select {
   width: 70px;
+}
+.search {
+  display: flex;
+  align-items: center;
 }
 .search-clear {
   background-color: #dcdcdc;
@@ -555,11 +556,6 @@ ons-toolbar-button.player-control-button {
   font-size: 0.8em;
 }
 
-.player-selector {
-  flex-grow: 0;
-  padding: 10px 20px 10px 20px;
-  white-space: nowrap;
-}
 button.view-selector.composer-artist {
   min-width: 80px !important;
 }
@@ -574,7 +570,6 @@ segment__button {
 .search-bar {
   display: flex;
   padding: 0px 20px 0px 20px;
-  margin-top: 20px;
 }
 
 .track-time {
@@ -672,6 +667,8 @@ ons-button.show-controlbar {
 }
 
 .grid-size {
+  display: flex;
+  align-items: center;
   position: sticky;
   top: 20px;
   margin-left: 20px;

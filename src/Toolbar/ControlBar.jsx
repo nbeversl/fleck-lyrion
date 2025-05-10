@@ -1,6 +1,7 @@
 import { PlayerControls } from "./PlayerControls";
 import NowPlaying from "./NowPlaying.tsx";
 import { Toolbar, ToolbarButton, Segment } from "react-onsenui";
+import { GenreMenu } from "./GenreMenu";
 import * as React from "react";
 import SearchBar from "./SearchBar";
 import { Range } from "react-onsenui";
@@ -91,6 +92,23 @@ class ControlBar extends React.Component {
               theme={this.props.theme}
             />
             <div className="global-controls">
+              <div className="genre-selector">
+                {this.props.library && this.props.library.genres ? (
+                  <GenreMenu
+                    genres={this.props.library.genres}
+                    library={this.props.library}
+                    screenWidth={this.state.screenWidth}
+                    handleGenreChange={this.props.handleGenreChange.bind(this)}
+                    genreSelected={this.props.genreSelected}
+                    controlBarHeight={this.props.controlBarHeight}
+                    theme={this.props.theme}
+                  />
+                  ) : null}
+                <ToolbarButton
+                  onClick={this.props.loadRandomAlbums}>
+                  <Randomize className={"btn-icon"} />
+                </ToolbarButton>
+              </div>
               <div className="theme-control">
                 <Segment index={this.props.theme === "light-theme" ? 0 : 1}>
                   <button
@@ -106,12 +124,7 @@ class ControlBar extends React.Component {
                     Dark
                   </button>
                 </Segment>
-
               </div>
-                <ToolbarButton
-                  onClick={this.props.loadRandomAlbums}>
-                  <Randomize className={"btn-icon"} />
-                </ToolbarButton>
               {this.props.genreSelected ? (
                 <div className="alpha-shuffle">
                   <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
@@ -128,30 +141,30 @@ class ControlBar extends React.Component {
                   </Segment>
                 </div>
               ) : null}
-            </div>
-            <div className="search-and-hide">
-              <SearchBar
-                searchString={this.props.searchString}
-                setSearchString={this.props.setSearchString}
-                searchFor={this.props.searchFor}
-              />
-              <ToolbarButton className="hide-control-bar-button" 
-                onClick={this.props.hideToolbar} >
-                <CloseIcon className={"btn-icon"} />
-              </ToolbarButton>
-            </div>
-            <div className={"grid-size"}>
-              <Range
-                value={(10 - this.props.columns) * 10}
-                onChange={(event) => {
-                  event.stopPropagation();
-                  this.props.setColumns(10 - (parseInt(event.target.value / 10)));
-                }}
-              />
-              <label>Grid Size</label>
+              <div className="search">
+                <SearchBar
+                  searchString={this.props.searchString}
+                  setSearchString={this.props.setSearchString}
+                  searchFor={this.props.searchFor}
+                />
+                <ToolbarButton className="hide-control-bar-button" 
+                  onClick={this.props.hideToolbar} >
+                  <CloseIcon className={"btn-icon"} />
+                </ToolbarButton>
+              </div>
+              <div className={"grid-size"}>
+                <Range
+                  value={(10 - this.props.columns) * 10}
+                  onChange={(event) => {
+                    event.stopPropagation();
+                    this.props.setColumns(10 - (parseInt(event.target.value / 10)));
+                  }}
+                />
+                <label>Grid Size</label>
+              </div>
             </div>
           </div>
-        </div>
+        </div>          
       </Toolbar>
     );
   }

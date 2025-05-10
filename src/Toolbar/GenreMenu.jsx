@@ -38,7 +38,7 @@ class GenreMenu extends React.Component {
           animationOptions={{ duration: 0.1, delay: 0 }}
           isOpen={this.state.playerSelectOpen}
           onCancel={() => this.setState({ playerSelectOpen: false })}
-          className={this.props.theme}
+          className={`${this.props.theme} genre-menu`} 
           cancelable
         >
           <Scrollbars style={DialogStyle}>
