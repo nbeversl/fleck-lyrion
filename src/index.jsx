@@ -176,10 +176,15 @@ class MediaApp extends React.Component {
     this.state.library.allAlbums((albums) => {
       var randomAlbums = [];
       let numberChosen = 50
+      let selection = Math.floor(Math.random() * Object.keys(albums).length);
       if (numberChosen > Object.keys(albums).length) numberChosen = Object.keys(albums).length - 1
+      let selectionsChosen = []
       for (var i = 0; i < numberChosen; i++) {
-        var selection = Math.floor(Math.random() * Object.keys(albums).length);
+        while(selectionsChosen.includes(selection) && selectionsChosen.length < Object.keys(albums).length) {
+          var selection = Math.floor(Math.random() * Object.keys(albums).length);
+        }
         randomAlbums.push(albums[selection]);
+        selectionsChosen.push(selection)
       }
       this.setState({
         genreSelected: null,
