@@ -5,6 +5,7 @@ import * as React from "react";
 import SearchBar from "./SearchBar";
 import { Range } from "react-onsenui";
 import CloseIcon from "../svg/CloseIcon";
+import Randomize from "../svg/Randomize";
 
 class ControlBar extends React.Component {
   constructor(props) {
@@ -105,20 +106,23 @@ class ControlBar extends React.Component {
                     Dark
                   </button>
                 </Segment>
+
               </div>
+                <ToolbarButton
+                  onClick={this.props.loadRandomAlbums}>
+                  <Randomize className={"btn-icon"} />
+                </ToolbarButton>
               {this.props.genreSelected ? (
                 <div className="alpha-shuffle">
                   <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
                     <button
                       className="order-select"
-                      onClick={() => this.props.setOrderType("alpha")}
-                    >
+                      onClick={() => this.props.setOrderType("alpha")}>
                       Alpha
                     </button>
                     <button
                       className="order-select"
-                      onClick={() => this.props.setOrderType("shuffle")}
-                    >
+                      onClick={() => this.props.setOrderType("shuffle")}>
                       Shuffle
                     </button>
                   </Segment>

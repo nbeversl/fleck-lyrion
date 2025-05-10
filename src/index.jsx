@@ -175,11 +175,14 @@ class MediaApp extends React.Component {
   loadRandomAlbums() {
     this.state.library.allAlbums((albums) => {
       var randomAlbums = [];
-      for (var i = 0; i < 10; i++) {
+      let numberChosen = 50
+      if (numberChosen > Object.keys(albums).length) numberChosen = Object.keys(albums).length - 1
+      for (var i = 0; i < numberChosen; i++) {
         var selection = Math.floor(Math.random() * Object.keys(albums).length);
         randomAlbums.push(albums[selection]);
       }
       this.setState({
+        genreSelected: null,
         searchResultsAlbums: randomAlbums,
         view: "search",
       });
@@ -235,6 +238,7 @@ class MediaApp extends React.Component {
           <div>
             {this.state.toolbarShowing ? (
               <ControlBar
+                loadRandomAlbums={this.loadRandomAlbums.bind(this)}
                 playerSelectOpen={this.state.playerSelectOpen}
                 closeSelect={this.closeSelect.bind(this)}
                 togglePlayerSelect={this.togglePlayerSelect.bind(this)}
