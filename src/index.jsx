@@ -181,7 +181,7 @@ class MediaApp extends React.Component {
       let selectionsChosen = []
       for (var i = 0; i < numberChosen; i++) {
         while(selectionsChosen.includes(selection) && selectionsChosen.length < Object.keys(albums).length) {
-          var selection = Math.floor(Math.random() * Object.keys(albums).length);
+          selection = Math.floor(Math.random() * Object.keys(albums).length);
         }
         randomAlbums.push(albums[selection]);
         selectionsChosen.push(selection)
