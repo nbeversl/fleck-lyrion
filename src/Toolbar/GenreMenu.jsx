@@ -28,10 +28,7 @@ class GenreMenu extends React.Component {
           className="order-select"
           onClick={() => this.setState({ playerSelectOpen: !this.state.playerSelectOpen })}
         >
-          <div>
-            <b>Genre</b>
-          </div>{" "}
-          {this.state.genreSelected ? this.state.genreSelected : null}
+          <b>Genre</b> {this.state.genreSelected ? ': '+ this.state.genreSelected : null}
         </ToolbarButton>
 
         <Dialog
