@@ -10,6 +10,7 @@ class BrowserPlayer {
     this.playing = false;
     this.audio = null;
     this.isLoading = false;
+    this.trackSelected = false;
 
     this.getPlayerStatus = (callback) => {
       callback({
@@ -42,6 +43,7 @@ class BrowserPlayer {
         (r) => {
           this.currentIndex = parseInt(startNumber);
           this.tracks = r.result.titles_loop;
+          this.trackSelected = true;
           this.playCurrentTrack()
       });
     }
@@ -107,6 +109,7 @@ class BrowserPlayer {
           ],
         ],
         (r) => {
+          this.trackSelected = false;
           this.currentIndex = 0;
           this.tracks = r.result.titles_loop;
           this.playCurrentTrack()

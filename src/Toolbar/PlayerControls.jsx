@@ -64,8 +64,8 @@ class PlayerControls extends React.Component {
             getPlayerStatus={this.props.getPlayerStatus}
             theme={this.props.theme}
           />
-        {this.props.playerInstance?.tracks?.length ? (
-          <div className="player-controls">
+        <div className="player-controls">
+          {this.props.playerInstance?.trackSelected &&
             <div className="base-lms-controls">
               <ToolbarButton
                 className="player-control-button"
@@ -108,19 +108,23 @@ class PlayerControls extends React.Component {
                 <Next className={"btn-icon"} />
               </ToolbarButton>
             </div>
-
-            {! [null, "Browser"].includes(this.props.targetPlayer)  ? (
-              <div className={"slider-volume"}>
-                <Range
-                  value={this.props.playerInstance.volume}
-                  onChange={this.setVolume.bind(this)}
-                />
-                <label>LMS Player Volume</label>
-              </div>
-            ) : null}
+             }
           </div>
-        ) : null}
-      </div>
+          {this.props.playerInstance?.trackSelected &&
+            <div className={"slider-volume"}>
+              {! [null, "Browser"].includes(this.props.targetPlayer) &&
+              this.props.playerInstance?.trackSelected &&
+                <div>
+                  <Range
+                    value={this.props.playerInstance?.volume}
+                    onChange={this.setVolume.bind(this)}
+                  />
+                  <label>LMS Player Volume</label>
+                </div>
+              }
+            </div>
+          }
+        </div>
     );
   }
 }

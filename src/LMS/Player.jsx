@@ -6,6 +6,7 @@ class Player {
     this.LMS = LMS;
     this.playing = false;
     this.isLoading = false;
+    this.trackSelected = false;
 
     this.playOrPause = () => {
       switch (this.playing) {
@@ -41,6 +42,7 @@ class Player {
           (r) => {
             this.LMS.request([this.address, ["play"]]);
             this.playing = true;
+            this.trackSelected = true;
             this.isLoading = false
           }
         );
@@ -87,6 +89,7 @@ class Player {
               this.address,
               ["playlist", "index", "+" + startNumber.toString()],
             ]);
+            this.trackSelected = true;
             this.playing = true;
             this.isLoading = false
           }
