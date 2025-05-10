@@ -848,12 +848,11 @@ label {
 }
 
 @media (max-width: 800px) {
-
-  .grid-size {
-    display: none;
-  }
   .page__content {
     margin-top: 35px;
+  }
+  .now-playing-container {
+    width: 95%;
   }
   #target,
   .control-content {
@@ -867,13 +866,13 @@ label {
   }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 450px) {
+  .grid-size {
+    display: none;
+  }
   .global-controls,
   .player-bar {
     justify-content: center;
-  }
-  .now-playing-container {
-    width: 100%;
   }
   .now-playing-album-cover {
     width: 6rem;
