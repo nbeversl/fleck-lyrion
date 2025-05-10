@@ -202,6 +202,8 @@ class MediaApp extends React.Component {
     this.setState({
       view: "search",
       genreSelected: null,
+      searchResultsAlbums: [],
+      searchResultsTracks: []
     });
 
     const albumResults = await this.state.library.searchAlbums(item)

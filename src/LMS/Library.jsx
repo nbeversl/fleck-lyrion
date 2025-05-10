@@ -162,10 +162,13 @@ class LMSLibrary {
       this.LMS.request(
       ["", ["albums", "0", "100", "search:" + searchString, "tags:ljaS"]],
       (r) => {
-        const albums = r.result.albums_loop.map( (album) => {
-          album = assignAlbumArt(album)
-          return album
-        }) 
+        let albums = [] 
+        if (r?.result?.albums_loop) {
+          albums = r.result.albums_loop.map( (album) => {
+            album = assignAlbumArt(album)
+            return album
+          }) 
+        }
         resolve(albums || []);
       })
     });
