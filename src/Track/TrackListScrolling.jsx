@@ -90,7 +90,7 @@ class TrackListScrolling extends React.Component {
                 onClick={this.handleAlbumArtModal.bind(this)}
                 className="mini-album-cover"
               >
-                <img src={this.props.cover} />
+               { this.props.cover && <img src={this.props.cover} /> }
               </Button>
             </div>
             <hr />

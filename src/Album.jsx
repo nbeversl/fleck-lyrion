@@ -118,7 +118,7 @@ class Album extends React.Component {
         {this.state.album ? (
           <>
             <Button modifier="large--cta" onClick={this.handleOpen.bind(this)}>
-              { this.state.album.artwork_track_id === undefined ? (
+              { this.state.album.albumArtURL == false ? (
                 <div className="album-no-artwork">
                   <Disc />
                   <div className="album-text-info">
@@ -130,7 +130,7 @@ class Album extends React.Component {
                     </div>
                   </div>
                 </div>
-              ) : (
+              ) : ( 
                 <img
                   className="album-image"
                   src={this.state.album.albumArtURL}
