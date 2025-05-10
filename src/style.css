@@ -240,7 +240,6 @@ ons-toolbar-button, button {
   align-self: center;
   white-space: normal;
   flex-grow: 0;
-  margin: 0 auto;
   white-space: nowrap;
 }
 
@@ -261,13 +260,15 @@ ons-toolbar-button, button {
 
 .global-controls {
   display: flex;
+  column-gap: 2rem;
+  row-gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .alpha-shuffle,
 .theme-control {
   display: flex;
   flex-wrap: wrap;
-  padding: 0px 20px 0px 20px;
   align-items: center;
 }
 
@@ -528,6 +529,9 @@ ons-toolbar-button.player-control-button {
   stroke: #0076FF;
   cursor: pointer;
 }
+.btn-icon.randomize-icon {
+  width: 2rem;
+}
 .btn-icon.download {
   height: 2rem;
 } 
@@ -569,7 +573,6 @@ segment__button {
 
 .search-bar {
   display: flex;
-  padding: 0px 20px 0px 20px;
 }
 
 .track-time {
@@ -668,10 +671,10 @@ ons-button.show-controlbar {
 
 .grid-size {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+
+  justify-content: center;
   position: sticky;
-  top: 20px;
-  margin-left: 20px;
   z-index: 100;
   width: 200px;
 }
@@ -772,9 +775,6 @@ ons-button.show-controlbar {
   .page__content {
     margin-top: 35px;
   }
-  .player-bar {
-    flex-direction: column;
-  }
   #target,
   .control-content {
     flex-direction: column;
@@ -807,9 +807,9 @@ ons-button.show-controlbar {
 
 .hide-control-bar-button {
   width: 2.5rem;
-  position: absolute;
-  right: 1rem;
-  bottom: 1rem;
+  position: fixed;
+  right: .5rem;
+  bottom: .5rem;
 }
 
 .hide-album-modal-button {

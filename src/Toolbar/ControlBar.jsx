@@ -106,8 +106,15 @@ class ControlBar extends React.Component {
                   ) : null}
                 <ToolbarButton
                   onClick={this.props.loadRandomAlbums}>
-                  <Randomize className={"btn-icon"} />
+                  <Randomize className={"btn-icon randomize-icon"} />
                 </ToolbarButton>
+              </div>
+              <div className="search">
+                <SearchBar
+                  searchString={this.props.searchString}
+                  setSearchString={this.props.setSearchString}
+                  searchFor={this.props.searchFor}
+                />
               </div>
               <div className="theme-control">
                 <Segment index={this.props.theme === "light-theme" ? 0 : 1}>
@@ -141,17 +148,6 @@ class ControlBar extends React.Component {
                   </Segment>
                 </div>
               ) : null}
-              <div className="search">
-                <SearchBar
-                  searchString={this.props.searchString}
-                  setSearchString={this.props.setSearchString}
-                  searchFor={this.props.searchFor}
-                />
-                <ToolbarButton className="hide-control-bar-button" 
-                  onClick={this.props.hideToolbar} >
-                  <CloseIcon className={"btn-icon"} />
-                </ToolbarButton>
-              </div>
               <div className={"grid-size"}>
                 <Range
                   value={(10 - this.props.columns) * 10}
@@ -162,6 +158,10 @@ class ControlBar extends React.Component {
                 />
                 <label>Grid Size</label>
               </div>
+              <ToolbarButton className="hide-control-bar-button" 
+                  onClick={this.props.hideToolbar} >
+                  <CloseIcon className={"btn-icon"} />
+              </ToolbarButton>
             </div>
           </div>
         </div>          
