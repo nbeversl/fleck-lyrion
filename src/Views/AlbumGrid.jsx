@@ -62,26 +62,16 @@ class AlbumGrid extends React.PureComponent {
     }
   }
 
+  makeLayout() {
+    this.setState({
+      albums: this.props.albumList,
+    });
+  }
+
   reArrange(initial) {
     if (initial || this.state.orderType !== this.props.orderType) {
       this.setState({ orderType: this.props.orderType }, () => {
         switch (this.state.orderType) {
-          case "shelf":
-            if (this.props.storedLayout) {
-              this.setState(
-                {
-                  cols: this.props.storedLayout.cols,
-                },
-                () => {
-                  this.makeLayout(this.props.storedLayout.order);
-                }
-              );
-            } else {
-              var order = Object.keys(this.state.albumDict);
-              this.makeLayout(order);
-            }
-            break;
-
           case "alpha":
             var order = Object.keys(this.state.albumDict);
             this.makeLayout(order);
@@ -97,44 +87,6 @@ class AlbumGrid extends React.PureComponent {
             break;
         }
       });
-    }
-  }
-
-  moveToTop(id) {
-    var order = this.state.order;
-    order.pop(id.toString());
-    order.unshift(id.toString());
-    this.makeLayout(order);
-  }
-
-  makeLayout(order, callback) {
-    var albums = [];
-
-    order.forEach((album_id) => {
-
-      if (!Object.keys(this.state.albumDict).includes(album_id)) {
-        return;
-      }
-
-      albums.push(
-        <Album
-          key={album_id}
-          moveable={this.props.moveable}
-          album={this.state.albumDict[album_id]}
-          checkPlayerInstance={this.props.checkPlayerInstance}
-          library={this.props.library}
-          LMS={this.props.LMS}
-          moveToTop={this.props.moveToTop}
-          theme={this.state.theme}
-        />
-      );
-    });
-
-    this.setState({
-      albums: albums,
-    });
-    if (callback) {
-      callback();
     }
   }
 
@@ -181,7 +133,19 @@ class AlbumGrid extends React.PureComponent {
             onScroll={this.props.hideToolbar}>
             <div className={`album-grid-css album-grid-${this.state.columns}`}
               theme={this.props.theme}>
-              {this.state.albums}
+              {this.state.albums.map( (album) =>
+                 <Album
+                    key={album.id}
+                    moveable={this.props.moveable}
+                    album={this.state.albumDict[album.id]}
+                    checkPlayerInstance={this.props.checkPlayerInstance}
+                    playerInstance={this.props.playerInstance}
+                    library={this.props.library}
+                    LMS={this.props.LMS}
+                    moveToTop={this.props.moveToTop}
+                    theme={this.state.theme}
+                  />
+                )}
             </div>
           </GestureDetector>
         ) : null}

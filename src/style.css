@@ -87,8 +87,6 @@ ons-toolbar-button, button {
   grid-template-columns: repeat(5, 1fr);
   box-sizing: border-box;
   position: relative;
-  height: 0;
-  padding-bottom: 100%; 
 }
 
 .album .album-image {

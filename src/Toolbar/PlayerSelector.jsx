@@ -49,8 +49,7 @@ class PlayerSelector extends React.Component {
                     });
                   }}
                   modifier="tappable"
-                  tappable={true}
-                >
+                  tappable={true}>
                   {row.name}
                 </ListItem>
               )}

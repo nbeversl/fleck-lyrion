@@ -39,6 +39,7 @@ class LibraryView extends React.Component {
             hideToolbar={this.props.hideToolbar}
             genre={this.props.genreSelected}
             clickHandler={this.handleAlbumChange}
+            playerInstance={this.props.playerInstance}
             library={this.props.library}
             checkPlayerInstance={this.props.checkPlayerInstance}
             LMS={this.props.LMS}

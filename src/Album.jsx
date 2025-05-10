@@ -69,9 +69,7 @@ class Album extends React.Component {
       });
       this.setState({
         discs: discs,
-      });
-
-      this.setState({ modalOpen: true });
+        modalOpen: true });
     });
   }
 
@@ -86,7 +84,7 @@ class Album extends React.Component {
         }
       });
     } else {
-      this.props.playerInstanceplayAlbumFromTrackAndContinue(
+      this.props.playerInstance.playAlbumFromTrackAndContinue(
         disc, // disc doesn't matter, only passes the album ID
         trackNumber);
     }

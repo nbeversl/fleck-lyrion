@@ -73,7 +73,7 @@ class MediaApp extends React.Component {
     });
   }
 
-  openSelect() {
+  openPlayerSelect() {
     this.setState({ playerSelectOpen: true });
     var pingingPlayers = setInterval(this.getAvailablePlayers.bind(this), 3000);
     this.setState({
@@ -83,7 +83,7 @@ class MediaApp extends React.Component {
   }
 
   togglePlayerSelect() {
-    this.state.playerSelectOpen ? this.closeSelect() : this.openSelect();
+    this.state.playerSelectOpen ? this.closeSelect() : this.openPlayerSelect();
   }
 
   setOrderType(type) {
@@ -112,7 +112,6 @@ class MediaApp extends React.Component {
     var newPlayer;
     if (playerName !== "Browser (this device)") {
       newPlayer = new Player(this.state.LMS, playerName);
-
       this.setState(
         {
           targetPlayer: playerName,
@@ -137,7 +136,7 @@ class MediaApp extends React.Component {
 
   checkPlayerInstance(callback) {
     if (!this.state.playerInstance) {
-      this.openSelect();
+      this.openPlayerSelect();
       this.setState({
         toolbarShowing: true,
       });
