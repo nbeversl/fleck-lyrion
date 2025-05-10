@@ -2,7 +2,7 @@ import { Album } from "../Album";
 import { LMSLibrary } from "../LMS/Library"; 
 import AlbumType from "../types/AlbumType.tsx";
 import ExtendedMetadata from "../Metadata/ExtendedMetadata";
-import { Range, ProgressCircular } from "react-onsenui";
+import { Range } from "react-onsenui";
 import { useEffect, useState } from "react";
 
 type NowPlayingProps = {
@@ -66,7 +66,6 @@ const NowPlaying = ({
       playerStatus.playlist_cur_index != undefined && // can be 0
       playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)] ? (
         <div className={"now-playing"}>
-        { playerInstance && playerInstance.isLoading ? <ProgressCircular indeterminate /> : null }
           <div className="now-playing-album-cover">
             <Album
               album={albumPlaying}
@@ -85,33 +84,35 @@ const NowPlaying = ({
             <div className="now-playing-album-title">
               { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].album }
             </div>
-            { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].disc ? (
+            { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].disc &&
               <div className="now-playing-disc-number">
                 {" "}
                 Disc{" "}
                 { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].disc}
                 {" "}
               </div>
-            ) : null}
+            }
             <div className="now-playing-track-name">
               { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].tracknum }
               {". "}
               { playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)].title }
             </div>
-            {xid ? (
+            {xid &&
               <ExtendedMetadata meta={xid.discs[0][playerStatus?.playlist_cur_index]} />
-            ) : null}
-            <div className="track-range">
-               <Range
-                className="track-time"
-                value={trackPosition - 1}
-                onInput={handleSeekChange}
-               />
-              <div className="timings">
-                <div className="elapsed">{formatTime(playerStatus.time)}</div>
-                <div className="remaining">{formatTime(playerStatus.duration - playerStatus.time)}</div>
+            }
+            { playerStatus.time &&
+              <div className="track-range">
+                 <Range
+                  className="track-time"
+                  value={trackPosition - 1}
+                  onInput={handleSeekChange}
+                 />
+                <div className="timings">
+                  <div className="elapsed">{formatTime(playerStatus.time)}</div>
+                  <div className="remaining">{formatTime(playerStatus.duration - playerStatus.time)}</div>
+                </div>
               </div>
-            </div>
+            }
           </div>
         </div>
       ) : null}
