@@ -21,7 +21,7 @@ class PlayerSelector extends React.Component {
             });
           }}
         >
-          <b>Player</b> {this.state.activePlayer ? ': '+ this.state.activePlayer : null}
+          <b>Player</b> {this.state.activePlayer ? ': '+ this.state.activePlayer : '(select)'}
         </ToolbarButton>
 
         <Dialog
