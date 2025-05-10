@@ -22,7 +22,6 @@ class TrackWithDetails extends React.Component {
         window.open(this.props.LMS.getTrack(this.state.trackInfo[0].id.toString()));
       });
     }
-
   }
 
   toggleTrackInfo() {
@@ -51,7 +50,7 @@ class TrackWithDetails extends React.Component {
         <div className="track-info-controls">
           <ToolbarButton
             onClick={() => {
-              this.props.playTrack(this.props.disc, this.props.track.serverID);
+              this.props.handlePlay(this.props.disc, this.props.track.tracknum);
             }}
           >
             <Play className={"btn-icon"} />

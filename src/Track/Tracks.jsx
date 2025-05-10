@@ -18,7 +18,7 @@ class TrackList extends React.Component {
                 List.push( 
                     <li key={this.state.tracks[number].id}>
                         {this.state.tracks[number].title} ({this.state.tracks[number].type})
-                        <Button onClick={() => this.props.playerInstance.playTrack(this.state.tracks[number].id)}>play</Button>
+                        <Button onClick={() => this.props.playerInstance.playAlbumFromTrackAndContinue(track, track.tracknum)}>play</Button>
                     </li>
                 );
             });
@@ -33,10 +33,11 @@ class TrackList extends React.Component {
 
 class TrackWithSourceAlbum extends React.Component {
     //
-    playTrack(trackID) {
+    playTrack(track) {
+        console.log(track)
         var that = this;
         this.props.checkPlayerInstance( () => {
-            that.props.playerInstance.playTrack(trackID); });
+            that.props.playerInstance.playAlbumFromTrackAndContinue(track, track.tracknum); });
     }
 
     render() {
@@ -54,7 +55,8 @@ class TrackWithSourceAlbum extends React.Component {
                             </span>
 
                             <div className="">
-                                <Button onClick={ () => { this.playTrack(track.id) } } >
+                                <Button onClick={ () => { 
+                                    this.props.playerInstance.playAlbumFromTrackAndContinue(track, track.tracknum) } } >
                                     <img className={"btn-icon"} src={"./html/icon/play.png"} />
                                 </Button>
                            
@@ -101,7 +103,8 @@ class TrackWithDetails extends React.Component {
                         : this.props.track.type }                            
                 </div>
                 <Button 
-                    onClick={ () => { this.props.playTrack(this.props.disc, this.props.track.serverID) } } >Play
+                    onClick={ () => { 
+                        this.props.playerInstance.playAlbumFromTrackAndContinuer(this.props.disc, this.props.track.tracknum) } } >Play
                 </Button>
                 <a href={"/music/"+this.props.track.id+"/download/"}>↓</a>
             </div>

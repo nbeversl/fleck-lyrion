@@ -13,13 +13,14 @@ class TrackWithSourceAlbum extends React.Component {
             albums : {},
             isLoading: false,
         }
-
     }
 
-    playTrack(trackID) {
+    playTrack(track) {
         var that = this;
+        console.log(track.tracknum - 1)
         this.props.checkPlayerInstance( () => {
-            that.props.playerInstance.playTrack(trackID); });
+            that.props.playerInstance.playAlbumFromTrackAndContinue(track, track.tracknum - 1); 
+        });
     }
 
     render() {
@@ -45,7 +46,7 @@ class TrackWithSourceAlbum extends React.Component {
                                 { decodeURI(track.url).replace("file://", "") }
                             </div>
                             <div className="track-buttons">
-                                <ToolbarButton onClick={ () => { this.playTrack(track.id) } } >
+                                <ToolbarButton onClick={ () => { this.playTrack(track) } } >
                                     <Play className={"btn-icon"} />
                                 </ToolbarButton>
 

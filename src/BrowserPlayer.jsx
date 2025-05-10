@@ -26,6 +26,7 @@ class BrowserPlayer {
     }
 
     this.playAlbumFromTrackAndContinue = (track, startNumber) => {
+
       this.isLoading = true
       var albumID = track.album_id;
       this.LMS.request(
@@ -96,7 +97,7 @@ class BrowserPlayer {
       noSleep.enable();
     }
 
-    this.playTrack = (id) => {
+    this.playTrack = (track) => {
       this.isLoading = true
       this.LMS.request(
         [
@@ -105,11 +106,11 @@ class BrowserPlayer {
             "tracks",
             "0",
             "10",
-            "track_id:" + id.toString(),
+            "track_id:" + track.id.toString(),
           ],
         ],
         (r) => {
-          this.trackSelected = false;
+          this.trackSelected = true;
           this.currentIndex = 0;
           this.tracks = r.result.titles_loop;
           this.playCurrentTrack()

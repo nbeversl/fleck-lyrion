@@ -166,6 +166,7 @@ class LMSLibrary {
         if (r?.result?.albums_loop) {
           albums = r.result.albums_loop.map( (album) => {
             album = assignAlbumArt(album)
+            this.albums[album.id] = album
             return album
           }) 
         }

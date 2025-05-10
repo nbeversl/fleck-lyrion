@@ -31,13 +31,14 @@ class Player {
       this.playing = false;
     };
 
-    this.playTrack = (id) => {
+    this.playTrack = (track) => {
+        
       this.isLoading = true
       this.LMS.request([this.address, ["playlist", "clear"]], (r) => {
         this.LMS.request(
           [
             this.address,
-            ["playlistcontrol", "cmd:add", "track_id:" + id.toString()],
+            ["playlistcontrol", "cmd:add", "track_id:" + track.id.toString()],
           ],
           (r) => {
             this.LMS.request([this.address, ["play"]]);
