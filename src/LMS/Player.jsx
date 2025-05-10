@@ -135,11 +135,11 @@ class Player {
     };
 
     this.skipForward = () => {
-      this.seek("+10");
+      this.seek("+15");
     };
 
     this.skipBackward = () => {
-      this.seek("-10");
+      this.seek("-15");
     };
 
     this.getVolume();

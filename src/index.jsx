@@ -35,6 +35,7 @@ class MediaApp extends React.Component {
       searchString: "",
       theme: "light-theme",
       playerInstance: null,
+      browserPlayer: null
     };
   }
 
@@ -68,6 +69,15 @@ class MediaApp extends React.Component {
       playerSelectOpen: false,
       pingingPlayers: null,
     });
+  }
+
+  getBrowserPlayer() {
+    if (! this.state.browserPlayer) {
+      const playerInstance = new BrowserPlayer(this.state.LMS)
+      this.setState({browserPlayer: playerInstance})
+      return playerInstance
+    }
+    return this.state.browserPlayer
   }
 
   openPlayerSelect() {
@@ -114,7 +124,7 @@ class MediaApp extends React.Component {
     } else {
       this.setState({
         targetPlayer: "Browser",
-        playerInstance: new BrowserPlayer(this.state.LMS),
+        playerInstance: this.getBrowserPlayer(),
         playerSelectOpen: false,
       });
     }

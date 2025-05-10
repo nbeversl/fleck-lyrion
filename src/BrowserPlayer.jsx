@@ -119,13 +119,13 @@ class BrowserPlayer {
 
     this.skipForward = () => {
       if (this.audio) {
-        this.audio.currentTime = this.audio.currentTime + 10 
+        this.audio.currentTime = this.audio.currentTime + 15 
       }
     };
 
     this.skipBackward = () => {
       if (this.audio) {
-        this.audio.currentTime = this.audio.currentTime - 10 
+        this.audio.currentTime = this.audio.currentTime - 15
       }
     };
 
