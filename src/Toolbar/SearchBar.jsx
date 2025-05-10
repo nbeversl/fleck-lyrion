@@ -9,7 +9,9 @@ class SearchBar extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.findAndFocusInput, 0);
+    if (!/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+      setTimeout(this.findAndFocusInput, 0);
+    }
   }
 
   findAndFocusInput = () => {
