@@ -453,6 +453,7 @@ ons-toolbar-button.player-control-button {
 .player-bar {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 1.5rem;
 }
 
 .card {
@@ -655,7 +656,6 @@ segment__button {
 .slider-volume {
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
   min-width: 200px;
 }
 .slider-volume ons-range {
@@ -871,16 +871,17 @@ label {
   .album-image {
     background-position: top !important;
   }
+  .global-controls,
+  .player-bar {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 450px) {
   .grid-size {
     display: none;
   }
-  .global-controls,
-  .player-bar {
-    justify-content: center;
-  }
+  
   .now-playing-album-cover {
     width: 6rem;
   }
