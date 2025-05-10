@@ -40,54 +40,35 @@ const NowPlaying = ({
   }, [playerStatus])
 
   const getTrackInfo = () => {
-    if (
-      playerStatus && playerStatus?.playlist_cur_index != undefined &&
-      playerStatus.playlist_loop[
-        parseInt(playerStatus?.playlist_cur_index)
-      ] != undefined &&
-      playerStatus.playlist_loop.length == 1
-    ) 
-    library.getTrackInfo(
-      playerStatus.playlist_loop[
-        parseInt(playerStatus?.playlist_cur_index)
-      ].id,
-      (r: object) => {
-        if (trackInfo != r) { setTrackInfo(r) }   
-      }
-    );
+    if (playerStatus && playerStatus?.playlist_cur_index != undefined &&
+      playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)] != undefined &&
+      playerStatus.playlist_loop.length == 1) 
+        library.getTrackInfo(
+          playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)].id,
+          (r: object) => { if (trackInfo != r) setTrackInfo(r) });
   }
 
   const getAlbumInfo = () => {
-    if (
-      playerStatus &&
+    if (playerStatus &&
       playerStatus.playlist_cur_index != undefined &&
-      playerStatus.playlist_loop[
-        parseInt(playerStatus.playlist_cur_index)
-      ] != undefined
-    ) {
+      playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)] != undefined
+    ) 
       library.getAlbumFromID(
-        playerStatus.playlist_loop[
-          parseInt(playerStatus.playlist_cur_index)
-        ].album_id,
+        playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].album_id,
         (album: AlbumType) => {
-          if (!albumPlaying || album.id != albumPlaying.id) {
-            setAlbumPlaying(album)
-          }
-        }
-      );
-    }
+          if (!albumPlaying || album.id != albumPlaying.id) {setAlbumPlaying(album) }
+        });
   }
+
   return (
     <div className="now-playing-container">
       {playerStatus &&
       playerStatus.playlist_loop &&
       playerStatus.playlist_cur_index != undefined && // can be 0
-      playerStatus.playlist_loop[
-        parseInt(playerStatus.playlist_cur_index)
-      ] ? (
+      playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)] ? (
         <div className={"now-playing"}>
         { playerInstance && playerInstance.isLoading ? 
-              <ProgressCircular indeterminate /> : null
+            <ProgressCircular indeterminate /> : null
           }
           <div className="now-playing-album-cover">
             <Album
@@ -102,52 +83,25 @@ const NowPlaying = ({
           </div>
           <div className="now-playing-meta">
             <div className="now-playing-artist">
-              {
-                playerStatus.playlist_loop[
-                  parseInt(playerStatus.playlist_cur_index)
-                ].artist
-              }
+              { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].artist }
             </div>
             <div className="now-playing-album-title">
-              {
-                playerStatus.playlist_loop[
-                  parseInt(playerStatus.playlist_cur_index)
-                ].album
-              }
+              { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].album }
             </div>
-            {playerStatus.playlist_loop[
-              parseInt(playerStatus.playlist_cur_index)
-            ].disc ? (
+            { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].disc ? (
               <div className="now-playing-disc-number">
                 {" "}
                 Disc{" "}
-                {
-                  playerStatus.playlist_loop[
-                    parseInt(playerStatus.playlist_cur_index)
-                  ].disc
-                }{" "}
+                { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].disc}
+                {" "}
               </div>
             ) : null}
             <div className="now-playing-track-name">
-              {
-                playerStatus.playlist_loop[
-                  parseInt(playerStatus.playlist_cur_index)
-                ].tracknum
-              }
-              .
-              { playerStatus.playlist_loop[
-                  parseInt(playerStatus?.playlist_cur_index)
-                ].title
-              }
+              { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].tracknum }
+              { playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)].title }
             </div>
-
             {xid ? (
-              <ExtendedMetadata
-                meta={
-                  xid.discs[0][
-                  playerStatus?.playlist_cur_index]
-                }
-              />
+              <ExtendedMetadata meta={xid.discs[0][playerStatus?.playlist_cur_index]} />
             ) : null}
              <Range
               className="track-time"
