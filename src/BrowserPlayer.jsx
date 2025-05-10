@@ -39,7 +39,7 @@ class BrowserPlayer {
             "100",
             "album_id:" + albumID,
             "sort:tracknum",
-            "tags:**e**",
+            "tags:**t****o****l****i****e****m****a****e**",
           ],
         ],
         (r) => {

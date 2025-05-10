@@ -60,9 +60,9 @@ class Album extends React.Component {
   }
 
   getMyTracks() {
-    this.props.library.getAlbumTracks(this.state.album.id, (result) => {
+    this.props.library.getAlbumTracks(this.state.album.id, (tracks) => {
       var discs = {};
-      result.forEach((track) => {
+      tracks.forEach((track) => {
         var disc = track.disc;
         if (!disc) {
           disc = "1";
