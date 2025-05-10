@@ -83,8 +83,12 @@ class LMSLibrary {
   }
 
   async searchLibraryByContrutor(contributor) {
-    const r = await this.searchContributors(contributor);
-    console.log(r) 
+    const artists = await this.searchContributors(contributor);
+    const trackResults = await Promise.all(
+      artists.map( (artist) => this.searchTracksByArtist(artist.id))
+    );
+    const allTracks = trackResults.map(result => result.titles_loop).flat();
+    return allTracks;
   }
 
   getAlbumTracks(albumID, callback) {
@@ -180,7 +184,7 @@ class LMSLibrary {
     );
   }
 
-  searchContributors(searchString, callback) {
+  async searchContributors(searchString, callback) {
     return new Promise( (resolve) => {
       this.LMS.request(
         ["", ["artists", "0", "100", "search:" + searchString]],
@@ -190,22 +194,22 @@ class LMSLibrary {
     })
   }
 
-  searchTracksByArtist(artist_id, callback) {
-    this.LMS.request(
-      [
-        "",
+  async searchTracksByArtist(artist_id, callback) {
+    return new Promise( (resolve) => {
+      this.LMS.request(
         [
-          "titles",
-          "0",
-          "100",
-          "artist_id:" + artist_id,
-          "tags:id**e****o****t****m****u****a****l****e**",
+          "",
+          [
+            "titles",
+            "0",
+            "100",
+            "artist_id:" + artist_id,
+            "tags:id**e****o****t****m****u****a****l****e**",
+          ],
         ],
-      ],
-      (r) => {
-        callback(r.result.titles_loop);
-      }
-    );
+        (r) => { resolve(r.result) }
+      );
+    })
   }
 
   searchAlbumsByArtist(artist_id, callback) {

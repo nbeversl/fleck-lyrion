@@ -198,7 +198,7 @@ class MediaApp extends React.Component {
     });
   }
 
-  searchFor(item) {
+  async searchFor(item) {
     this.setState({
       view: "search",
       genreSelected: null,
@@ -209,10 +209,13 @@ class MediaApp extends React.Component {
     });
 
     this.state.library.searchTracks(item, (result) => {
-      this.setState({ searchResultsTracks: result });
-    });
-
-    this.state.library.searchLibraryByContrutor(item, null)
+      this.setState({ searchResultsTracks: result }, async () => {
+         const additionalTracks = await this.state.library.searchLibraryByContrutor(item);
+         this.setState( (prevState) => {
+            searchResultsTracks: [...prevState.searchResultsTracks, ...additionalTracks]
+          });
+       })
+    })
   }
 
   setColumns(columns) {
