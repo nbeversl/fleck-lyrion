@@ -44,6 +44,9 @@ class Album extends React.Component {
         this.setState({
           album: this.props.album,
         });
+        if (this.state.modalOpen && ! this.state.discs) {
+          this.getMyTracks()
+        }
         return;
       }
       if (this.props.album.id != this.state.album.id) {

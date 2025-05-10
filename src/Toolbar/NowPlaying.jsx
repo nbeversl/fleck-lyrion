@@ -55,9 +55,7 @@ class NowPlaying extends React.Component {
         ].album_id,
         (album) => {
           if (!this.state.album || album.id != this.state.album.id) {
-            this.setState({
-              album: album,
-            });
+            this.setState({ album: album });
           }
         }
       );
@@ -84,7 +82,9 @@ class NowPlaying extends React.Component {
                 theme={this.props.theme}
                 library={this.props.library}
                 checkPlayerInstance={this.props.checkPlayerInstance}
+                playerInstance={this.props.playerInstance}
                 LMS={this.props.LMS}
+                moveToTop={this.props.moveToTop}
               />
             </div>
             <div className="now-playing-meta">

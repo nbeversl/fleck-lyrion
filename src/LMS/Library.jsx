@@ -88,7 +88,7 @@ class LMSLibrary {
 
   getAlbumTracks(albumID, callback) {
     if (this.albums[albumID].tracks) {
-      return this.albums[albumID].tracks
+      callback(this.albums[albumID].tracks)
     }
     this.LMS.request(
       [
