@@ -27,6 +27,7 @@ class MediaApp extends React.Component {
       toolbarShowing: true,
       searchResultsTracks: null,
       LMS: null,
+      columns: 5,
       storage: null,
       storedLayout: null,
       orderType: "alpha",
@@ -54,6 +55,9 @@ class MediaApp extends React.Component {
     if (theme) {
       theme = theme[0].replace("theme=", "");
       this.setState({ theme: theme });
+    }
+    if (window.screen.width < 450) {
+      this.setState({columns: 2})
     }
   }
 

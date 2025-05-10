@@ -13,7 +13,6 @@ class AlbumGrid extends React.PureComponent {
       genre: null,
       layout: null,
       orderType: null,
-      columns: null,
       theme: null,
     };
   }
@@ -92,33 +91,16 @@ class AlbumGrid extends React.PureComponent {
 
   handlePinchIn() {
     var now = new Date().getTime();
-    if (now < this.state.lastPinch + 500) {
-      return;
-    }
-    var cols = this.state.columns;
-    if (cols < 10) {
-      cols += 1;
-      this.props.setColumns(10 - cols);
-    }
-    this.setState({
-      lastPinch: now,
-    });
+    if (now < this.state.lastPinch + 500) return;
+    this.setState({ lastPinch: now });
+    this.props.setColumns(this.props.columns - 1)
   }
 
-  handlePinchOut() {
+  handlePinchOut() {    
     var now = new Date().getTime();
-    if (now < this.state.lastPinch + 500) {
-      return;
-    }
-    var cols = this.state.columns;
-    if (cols > 0) {
-      cols -= 1;
-      this.props.setColumns(10 - cols);
-    }
-
-    this.setState({
-      lastPinch: now,
-    });
+    if (now < this.state.lastPinch + 500) return;
+    this.props.setColumns(this.props.columns + 1)
+    this.setState({ lastPinch: now });
   }
 
   render() {
@@ -131,7 +113,7 @@ class AlbumGrid extends React.PureComponent {
             onPinchOut={this.handlePinchOut.bind(this)}
             theme={this.props.theme}
             onScroll={this.props.hideToolbar}>
-            <div className={`album-grid-css album-grid-${this.state.columns}`}
+            <div className={`album-grid-css album-grid-${this.props.columns}`}
               theme={this.props.theme}>
               {this.state.albums.map( (album) =>
                  <Album
