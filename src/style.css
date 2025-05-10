@@ -46,6 +46,14 @@ ons-toolbar-button, button {
   margin-bottom: 5px;
 }
 
+.alum-modal .scrolling-tracklist {
+  width: 100%;
+  position: absolute !important;
+  z-index: 100;
+  overflow: hidden;
+  max-width: 100%;
+
+}
 .album-title-text-default {
   height: 100px;
   font-size: 14px;
@@ -501,7 +509,6 @@ ons-toolbar-button.player-control-button {
 .dialog {
   width: 80%;
   min-height: 100px;
-  box-shadow: 9px 11px 3px rgba(0, 0, 0, 0.28);
 }
 
 .player-selector-dialog .dialog {
@@ -511,6 +518,7 @@ ons-toolbar-button.player-control-button {
 .album-modal .dialog-container {
   margin-top: -100%;
   height: 100vh;
+  box-shadow: 9px 11px 3px rgba(0, 0, 0, 0.28);
 }
 
 .album-modal .dialog {
@@ -721,6 +729,12 @@ ons-button.show-controlbar {
   border-radius: 2px;
 }
 
+.album-image-modal {
+  height: 100vh;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .list-item {
   cursor: pointer;
 }

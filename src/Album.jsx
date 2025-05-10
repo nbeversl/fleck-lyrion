@@ -75,6 +75,23 @@ class Album extends React.Component {
     });
   }
 
+  handlePlay(disc, trackNumber) {
+    if (!this.props.playerInstance) {
+      this.setState({modalOpen : false })
+      this.props.checkPlayerInstance((playerInstance) => {
+        if (playerInstance) {
+          playerInstance.playAlbumFromTrackAndContinue(
+            disc, // disc doesn't matter, only passes the album ID
+            trackNumber);
+        }
+      });
+    } else {
+      this.props.playerInstanceplayAlbumFromTrackAndContinue(
+        disc, // disc doesn't matter, only passes the album ID
+        trackNumber);
+    }
+  }
+
   handleOpen(e) {
     e.stopPropagation();
     this.getMyTracks(this.props.library);
@@ -95,12 +112,6 @@ class Album extends React.Component {
       backgroundSize: "cover",
       backgroundRepeat: "no-repeat",
     };
-
-    var handleStyle = {
-      width: this.props.albumWidth / 5,
-      height: this.props.albumWidth / 5,
-    };
-
     return (
       <div className="album">
         {this.state.album ? (
@@ -108,7 +119,7 @@ class Album extends React.Component {
             <Button modifier="large--cta" onClick={this.handleOpen.bind(this)}>
               {this.props.moveable ? (
                 <div className="handle-container">
-                  <div style={handleStyle} className="handle"></div>
+                  <div className="handle"></div>
                 </div>
               ) : null}
               { this.state.album.artwork_track_id === undefined ? (
@@ -152,6 +163,7 @@ class Album extends React.Component {
                           ? this.props.playerInstance.addTrack
                           : null
                       }
+                      handlePlay={this.handlePlay.bind(this)}
                       checkPlayerInstance={this.props.checkPlayerInstance}
                       library={this.props.library}
                       cover={this.state.album.albumArtURL}

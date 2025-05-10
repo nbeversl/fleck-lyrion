@@ -58,7 +58,7 @@ class PlayerControls extends React.Component {
         <div className="selectors">
           <PlayerSelector
             togglePlayerSelect={this.props.togglePlayerSelect}
-            selectOpen={this.props.selectOpen}
+            playerSelectOpen={this.props.playerSelectOpen}
             closeSelect={this.props.closeSelect}
             players={this.props.players}
             selectedPlayer={this.props.targetPlayer}

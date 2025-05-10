@@ -10,7 +10,7 @@ class GenreMenu extends React.Component {
       trackList: [],
       albumSelected: null,
       albumSelectedID: null,
-      selectOpen: false,
+      playerSelectOpen: false,
       genreSelected: this.props.genreSelected,
       target: null,
     };
@@ -26,7 +26,7 @@ class GenreMenu extends React.Component {
       <div className="genre-selector">
         <ToolbarButton
           className="order-select"
-          onClick={() => this.setState({ selectOpen: !this.state.selectOpen })}
+          onClick={() => this.setState({ playerSelectOpen: !this.state.playerSelectOpen })}
         >
           <div>
             <b>Genre</b>
@@ -36,8 +36,8 @@ class GenreMenu extends React.Component {
 
         <Dialog
           animationOptions={{ duration: 0.1, delay: 0 }}
-          isOpen={this.state.selectOpen}
-          onCancel={() => this.setState({ selectOpen: false })}
+          isOpen={this.state.playerSelectOpen}
+          onCancel={() => this.setState({ playerSelectOpen: false })}
           className={this.props.theme}
           cancelable
         >
@@ -51,7 +51,7 @@ class GenreMenu extends React.Component {
                     onClick={(e) => {
                       this.setState({
                         genreSelected: row,
-                        selectOpen: false,
+                        playerSelectOpen: false,
                       });
                       this.props.handleGenreChange(row);
                     }}

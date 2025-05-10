@@ -74,7 +74,7 @@ class ControlBar extends React.Component {
               trackPosition={this.state.trackPosition}
             />
             <PlayerControls
-              selectOpen={this.props.selectOpen}
+              playerSelectOpen={this.props.playerSelectOpen}
               closeSelect={this.props.closeSelect}
               togglePlayerSelect={this.props.togglePlayerSelect}
               targetPlayer={this.props.targetPlayer}

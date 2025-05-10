@@ -11,17 +11,6 @@ class TrackListScrolling extends React.Component {
     };
   }
 
-  playTrack(disc, trackNumber) {
-    this.props.checkPlayerInstance((playerInstance) => {
-      if (playerInstance) {
-        playerInstance.playAlbumFromTrackAndContinue(
-          this.props.discs[disc][0], // disc doesn't matter, only passes the album ID
-          trackNumber
-        );
-      }
-    });
-  }
-
   handleAlbumArtModal() {
     this.setState({ albumArtModalOpen: !this.state.albumArtModalOpen });
   }
@@ -63,7 +52,7 @@ class TrackListScrolling extends React.Component {
             disc={disc}
             track={track}
             trackNumber={trackNumber}
-            playTrack={this.playTrack.bind(this)}
+            playTrack={() => this.props.handlePlay(this.props.discs[disc][0], trackNumber)}
             addToPlaylist={this.props.addToPlaylist}
             library={this.props.library}
             LMS={this.props.LMS}

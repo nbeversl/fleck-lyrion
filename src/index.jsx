@@ -20,7 +20,7 @@ class MediaApp extends React.Component {
       library: null,
       players_loop: [],
       showNowPlaying: false,
-      selectOpen: false,
+      playerSelectOpen: false,
       genreSelected: null,
       view: "grid",
       searchResultsAlbums: null,
@@ -68,22 +68,22 @@ class MediaApp extends React.Component {
     var pingingPlayers = this.state.pingingPlayers;
     clearInterval(pingingPlayers);
     this.setState({
-      selectOpen: false,
+      playerSelectOpen: false,
       pingingPlayers: null,
     });
   }
 
   openSelect() {
-    this.setState({ selectOpen: true });
+    this.setState({ playerSelectOpen: true });
     var pingingPlayers = setInterval(this.getAvailablePlayers.bind(this), 3000);
     this.setState({
       pingingPlayers: pingingPlayers,
-      selectOpen: true,
+      playerSelectOpen: true,
     });
   }
 
   togglePlayerSelect() {
-    this.state.selectOpen ? this.closeSelect() : this.openSelect();
+    this.state.playerSelectOpen ? this.closeSelect() : this.openSelect();
   }
 
   setOrderType(type) {
@@ -117,7 +117,7 @@ class MediaApp extends React.Component {
         {
           targetPlayer: playerName,
           playerInstance: newPlayer,
-          selectOpen: false,
+          playerSelectOpen: false,
         },
         () => {
           if (callback) {
@@ -129,7 +129,7 @@ class MediaApp extends React.Component {
       this.setState({
         targetPlayer: "Browser",
         playerInstance: new BrowserPlayer(this.state.LMS),
-        selectOpen: false,
+        playerSelectOpen: false,
       });
     }
     this.closeSelect();
@@ -259,7 +259,7 @@ class MediaApp extends React.Component {
           <div>
             {this.state.toolbarShowing ? (
               <ControlBar
-                selectOpen={this.state.selectOpen}
+                playerSelectOpen={this.state.playerSelectOpen}
                 closeSelect={this.closeSelect.bind(this)}
                 togglePlayerSelect={this.togglePlayerSelect.bind(this)}
                 targetPlayer={this.state.targetPlayer}
