@@ -211,6 +211,8 @@ class MediaApp extends React.Component {
     this.state.library.searchTracks(item, (result) => {
       this.setState({ searchResultsTracks: result });
     });
+
+    this.state.library.searchLibraryByContrutor(item, null)
   }
 
   setColumns(columns) {

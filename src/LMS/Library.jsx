@@ -82,6 +82,11 @@ class LMSLibrary {
     );
   }
 
+  async searchLibraryByContrutor(contributor) {
+    const r = await this.searchContributors(contributor);
+    console.log(r) 
+  }
+
   getAlbumTracks(albumID, callback) {
     if (this.albums[albumID].tracks) {
       callback(this.albums[albumID].tracks)
@@ -176,12 +181,13 @@ class LMSLibrary {
   }
 
   searchContributors(searchString, callback) {
-    this.LMS.request(
-      ["", ["artists", "0", "100", "search:" + searchString]],
-      (r) => {
-        callback(r.result.artists_loop || []);
-      }
-    );
+    return new Promise( (resolve) => {
+      this.LMS.request(
+        ["", ["artists", "0", "100", "search:" + searchString]],
+        (r) => {
+          resolve(r.result.artists_loop || []);
+        })
+    })
   }
 
   searchTracksByArtist(artist_id, callback) {
