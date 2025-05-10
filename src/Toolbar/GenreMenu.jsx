@@ -16,6 +16,12 @@ class GenreMenu extends React.Component {
     };
   }
 
+  componentDidUpdate() {
+    if (this.props.genreSelected != this.state.genreSelected) {
+      this.setState({genreSelected: this.props.genreSelected})
+    }
+  }
+
   render() {
     const DialogStyle = {
       height: window.innerHeight - 200,
