@@ -31,7 +31,6 @@ class MediaApp extends React.Component {
       storedLayout: null,
       orderType: "alpha",
       pingingPlayers: null,
-      columns: 5,
       searchString: "",
       theme: "light-theme",
       playerInstance: null,
@@ -39,12 +38,6 @@ class MediaApp extends React.Component {
   }
 
   componentDidMount() {
-    var viewWidth = window.innerWidth;
-    if (viewWidth < 500) {
-      this.setState({ columns: 2 });
-    } else {
-      this.setState({ columns: 5 });
-    }
 
     this.setState({ LMS: new LMS() }, () => {
       var l = new LMSLibrary(this.state.LMS);
@@ -208,12 +201,6 @@ class MediaApp extends React.Component {
     });
   }
 
-  setColumns(columns) {
-    if (10 > columns > 0) {
-      this.setState({ columns: 10 - columns });
-    }
-  }
-
   revealToolbar() {
     this.setState({ toolbarShowing: true });
   }
@@ -266,8 +253,6 @@ class MediaApp extends React.Component {
                 setSearchString={this.setSearchString.bind(this)}
                 searchString={this.state.searchString}
                 orderType={this.state.orderType}
-                columns={this.state.columns}
-                setColumns={this.setColumns.bind(this)}
                 setTheme={this.setTheme.bind(this)}
                 theme={this.state.theme}
                 hideToolbar={() => {
@@ -292,9 +277,7 @@ class MediaApp extends React.Component {
                   storedLayout={this.state.storedLayout}
                   storeOrderChange={this.storeOrderChange.bind(this)}
                   orderType={this.state.orderType}
-                  columns={this.state.columns}
                   theme={this.state.theme}
-                  setColumns={this.setColumns.bind(this)}
                   toolbarShowing={this.state.toolbarShowing}
                   hideToolbar={() => {
                     if (this.state.toolbarShowing) {
