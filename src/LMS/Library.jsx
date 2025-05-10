@@ -82,15 +82,6 @@ class LMSLibrary {
     );
   }
 
-  async searchLibraryByContrutor(contributor) {
-    const artists = await this.searchContributors(contributor);
-    const trackResults = await Promise.all(
-      artists.map( (artist) => this.searchTracksByArtist(artist.id))
-    );
-    const allTracks = trackResults.map(result => result.titles_loop).flat();
-    return allTracks;
-  }
-
   getAlbumTracks(albumID, callback) {
     if (this.albums[albumID].tracks) {
       callback(this.albums[albumID].tracks)
@@ -124,15 +115,6 @@ class LMSLibrary {
     });
   }
 
-  searchAlbums(searchString, callback) {
-    this.LMS.request(
-      ["", ["albums", "0", "100", "search:" + searchString, "tags:ljaS"]],
-      (r) => {
-        callback(r.result.albums_loop || []);
-      }
-    );
-  }
-
   getAlbumFromID(albumID, callback) {
     if (albumID) {
       this.LMS.request(
@@ -163,6 +145,29 @@ class LMSLibrary {
         //     callback(r.result.albums_loop[0]);
         // }
       }
+    });
+  }
+
+ async searchLibraryByContributor(contributor) {
+    const artists = await this.searchContributors(contributor);
+    const trackResults = await Promise.all(
+      artists.map( (artist) => this.searchTracksByArtist(artist.id))
+    );
+    const allTracks = trackResults.map(result => result.titles_loop).flat();
+    return allTracks;
+  }
+  
+  searchAlbums(searchString, callback) {
+    return new Promise( (resolve) => {
+      this.LMS.request(
+      ["", ["albums", "0", "100", "search:" + searchString, "tags:ljaS"]],
+      (r) => {
+        const albums = r.result.albums_loop.map( (album) => {
+          album = assignAlbumArt(album)
+          return album
+        }) 
+        resolve(albums || []);
+      })
     });
   }
 
