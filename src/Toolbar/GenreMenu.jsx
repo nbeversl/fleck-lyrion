@@ -18,7 +18,7 @@ class GenreMenu extends React.Component {
 
   render() {
     const DialogStyle = {
-      height: window.innerHeight - this.props.controlBarHeight - 200,
+      height: window.innerHeight - 200,
       top: "40%",
     };
 
