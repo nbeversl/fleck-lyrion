@@ -5,6 +5,7 @@ class SearchBar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.searchFor(this.props.searchString);
+    this.clearSearchString()
   }
 
   clearSearchString(e) {
