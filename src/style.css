@@ -401,6 +401,7 @@ ons-toolbar-button.player-control-button {
 
 .player-bar {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .card {
@@ -428,7 +429,6 @@ ons-toolbar-button.player-control-button {
 .control-buttons {
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
 }
 .playing-inset > div {
   height: 100px;
@@ -795,6 +795,7 @@ label {
 }
 
 @media (max-width: 800px) {
+
   .grid-size {
     display: none;
   }
@@ -814,15 +815,19 @@ label {
 }
 
 @media (max-width: 450px) {
+  .global-controls,
+  .player-bar {
+    justify-content: center;
+  }
   .now-playing-container {
     width: 100%;
   }
   .now-playing-album-cover {
     width: 6rem;
-    margin-right: 1rem;
   }
   .now-playing-meta {
     width: auto;
+    margin-right: 1rem;
   }
   .control-content {
     width: 100%;
