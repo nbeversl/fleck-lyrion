@@ -36,7 +36,7 @@ class ControlBar extends React.Component {
 
   getPlayerStatus() {
     if (! this.props.targetPlayer) {
-      this.timer = setTimeout(this.getPlayerStatus.bind(this), 5000);
+      this.timer = setTimeout(this.getPlayerStatus.bind(this), 1000);
       return;
     }
     this.props.playerInstance.getPlayerStatus((status) => {
@@ -46,9 +46,9 @@ class ControlBar extends React.Component {
       var newPosition = Math.floor((status.time / status.duration) * 100);
       this.setState({ 
         playerStatus: status,
-        trackPosition: newPosition 
+        trackPosition: newPosition,
         }, () => {
-        this.timer = setTimeout(this.getPlayerStatus.bind(this), 5000);
+        this.timer = setTimeout(this.getPlayerStatus.bind(this), 1000);
       });
     });
   }
@@ -131,7 +131,6 @@ class ControlBar extends React.Component {
                 setSearchString={this.props.setSearchString}
                 searchFor={this.props.searchFor}
               />
-
               <ToolbarButton className="hide-control-bar-button" 
                 onClick={this.props.hideToolbar} >
                 <CloseIcon className={"btn-icon"} />

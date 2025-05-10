@@ -620,6 +620,11 @@ segment__button {
 .slider-volume ons-range {
   width: 100%;
 }
+
+.track-range .timings {
+  display: flex;
+  justify-content: space-between;
+}
 .loading-text {
   font-size: 5em;
 }
