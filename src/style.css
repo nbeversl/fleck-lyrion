@@ -514,16 +514,13 @@ ons-toolbar-button.player-control-button {
 }
 
 .album-modal .dialog-container {
-  margin-top: -100%;
-  height: 100vh;
   box-shadow: 9px 11px 3px rgba(0, 0, 0, 0.28);
 }
 
 .album-modal .dialog {
   width: 90%;
   max-width: 700px;
-  height: 0;
-  padding-top: min(700px, 90%);
+  height: 90%;
 }
 .btn-icon {
   width: 3rem;
@@ -782,8 +779,6 @@ ons-button.show-controlbar {
   }
   .album-modal .dialog {
     width: 90%;
-    height: 0;
-    padding-top: 90%;
   }
   .album-image {
     background-position: top !important;

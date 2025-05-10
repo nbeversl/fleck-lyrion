@@ -70,7 +70,6 @@ class TrackListScrolling extends React.Component {
           isOpen={this.state.albumArtModalOpen}> 
           <div style={{ 
               backgroundImage: `url("${this.props.cover}")`,
-              height: "100vh",
               backgroundPosition: "center",
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat", }}
