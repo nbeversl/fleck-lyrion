@@ -119,8 +119,6 @@ class Player {
         ],
         (r) => {
           callback(r.result);
-          //Need to duplicate this in Browser Player
-          console.log(r.result)
         }
       );
     };
