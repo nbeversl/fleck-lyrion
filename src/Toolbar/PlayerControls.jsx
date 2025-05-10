@@ -64,7 +64,7 @@ class PlayerControls extends React.Component {
             getPlayerStatus={this.props.getPlayerStatus}
             theme={this.props.theme}
           />
-        {this.props.playerInstance ? (
+        {this.props.playerInstance?.tracks?.length ? (
           <div className="player-controls">
             <div className="base-lms-controls">
               <ToolbarButton
