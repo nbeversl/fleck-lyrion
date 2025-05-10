@@ -1,5 +1,5 @@
 import { PlayerControls } from "./PlayerControls";
-import NowPlaying from "./NowPlaying";
+import NowPlaying from "./NowPlaying.tsx";
 import { Toolbar, ToolbarButton, Segment } from "react-onsenui";
 import * as React from "react";
 import SearchBar from "./SearchBar";
