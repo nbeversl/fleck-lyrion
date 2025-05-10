@@ -264,7 +264,9 @@ ons-toolbar-button, button {
   row-gap: 1rem;
   flex-wrap: wrap;
 }
-
+.now-playing-container {
+  width: 80%;
+}
 .alpha-shuffle,
 .theme-control {
   display: flex;
@@ -403,10 +405,6 @@ ons-toolbar-button.player-control-button {
 
 .card {
   color: black;
-}
-
-.now-playing {
-  display: block;
 }
 
 .now-playing > img {
@@ -585,22 +583,16 @@ segment__button {
 }
 .now-playing {
   display: flex;
-  font-size: 12px;
-  margin-top: 1em;
-  margin: 0 auto;
+  gap: 1rem;
+  font-size: .8rem;
 }
 .now-playing-album-cover {
   min-width: 100px;
   max-width: 100%;
-  float: right;
-  transition: 0.2s;
   position: relative;
-  flex-basis: 10%;
+  width: 12rem;
 }
 
-.now-playing-album-cover ons-button {
-  padding: 0px;
-}
 .library-view {
   z-index: 100;
 }
@@ -768,39 +760,6 @@ ons-button.show-controlbar {
   color: rgb(179, 177, 177);
 }
 
-@media (max-width: 800px) {
-  .grid-size {
-    display: none;
-  }
-  .page__content {
-    margin-top: 35px;
-  }
-  #target,
-  .control-content {
-    flex-direction: column;
-  }
-  .album-modal .dialog {
-    width: 90%;
-  }
-  .album-image {
-    background-position: top !important;
-  }
-}
-
-@media (max-width: 450px) {
-
-  .control-content {
-    width: 100%;
-  }
-  .alpha-shuffle {
-    justify-content: space-around;
-  }
-  .search-bar {
-    justify-content: center;
-    align-self: center;
-  }
-}
-
 .duration {
   word-break: normal;
 }
@@ -834,3 +793,46 @@ label {
   font-family: sans-serif;
   margin-top: -8px;
 }
+
+@media (max-width: 800px) {
+  .grid-size {
+    display: none;
+  }
+  .page__content {
+    margin-top: 35px;
+  }
+  #target,
+  .control-content {
+    flex-direction: column;
+  }
+  .album-modal .dialog {
+    width: 90%;
+  }
+  .album-image {
+    background-position: top !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .now-playing-container {
+    width: 100%;
+  }
+  .now-playing-album-cover {
+    width: 6rem;
+    margin-right: 1rem;
+  }
+  .now-playing-meta {
+    width: auto;
+  }
+  .control-content {
+    width: 100%;
+  }
+  .alpha-shuffle {
+    justify-content: space-around;
+  }
+  .search-bar {
+    justify-content: center;
+    align-self: center;
+  }
+}
+
