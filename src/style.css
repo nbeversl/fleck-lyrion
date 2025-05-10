@@ -96,35 +96,80 @@ ons-toolbar-button, button {
   object-fit: cover;
 }
 
-.album-grid-1 {
+.album-grid-css .button--large--cta {
+  padding: 0;
+}
+.album-grid-0 {
   grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+}
+.album-grid-1 {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
 .album-grid-2 {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 .album-grid-3 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
 }
 .album-grid-4 {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
 }
 .album-grid-5 {
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  gap: 2rem;
 }
 .album-grid-6 {
-  grid-template-columns: repeat(6, 1fr);
-}
-.album-grid-7 {
   grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+}
+
+.album-grid-7 {
+  grid-template-columns: repeat(8, 1fr);
+  gap: 1rem;
 }
 .album-grid-8 {
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(9, 1fr);
+  gap: 1rem;
+}
+.album-grid-8 .album-text-info {
+  font-size: .5rem;
 }
 .album-grid-9 {
-  grid-template-columns: repeat(9, 1fr);
-}
-.album-grid-10 {
   grid-template-columns: repeat(10, 1fr);
+  gap: 1rem;
+}
+
+.album-grid-0 .album-text-info {
+  font-size: 4rem;
+  line-height: 4.25rem;
+}
+
+.album-grid-1 .album-text-info {
+  font-size: 4rem;
+  line-height: 4.25rem;
+}
+.album-grid-2 .album-text-info {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+
+.album-grid-3 .album-text-info,
+.album-grid-4 .album-text-info,
+.album-grid-5 .album-text-info {
+  font-size: .75rem;
+  line-height: 1rem;
+}
+.album-grid-6 .album-text-info,
+.album-grid-7 .album-text-info,
+.album-grid-8 .album-text-info,
+.album-grid-9 .album-text-info {
+  font-size: .5rem;
+  line-height: 1rem;
 }
 
 .disc-icon {
@@ -133,9 +178,12 @@ ons-toolbar-button, button {
 .album-no-artwork {  
   position: relative;
 }
+
 .album-text-info {
   position: absolute;
   top: 0;
+  font-size: 1rem;
+  color: black;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -702,6 +750,10 @@ ons-button.show-controlbar {
 
 .dark-theme .dialog .list-item {
   background-color: black;
+  color: white;
+}
+
+.dark-theme .album-text-info {
   color: white;
 }
 .dark-theme .list-item:hover {
