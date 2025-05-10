@@ -28,54 +28,45 @@ class LibraryView extends React.Component {
     }
   }
   render() {
-    var view;
-    switch (this.state.view) {
-      case "grid":
-        view = this.props.genreSelected ? (
-          <AlbumGrid
-            albumList={
-              this.props.library.genres[this.props.genreSelected].albums
-            }
-            hideToolbar={this.props.hideToolbar}
-            genre={this.props.genreSelected}
-            clickHandler={this.handleAlbumChange}
-            playerInstance={this.props.playerInstance}
-            library={this.props.library}
-            checkPlayerInstance={this.props.checkPlayerInstance}
-            LMS={this.props.LMS}
-            storeOrderChange={this.props.storeOrderChange}
-            storedLayout={this.props.storedLayout}
-            orderType={this.props.orderType}
-            columns={this.props.columns}
-            setColumns={this.props.setColumns}
-            theme={this.props.theme}
-          />
-        ) : null;
-        break;
-
-      case "search":
-        view = (
-          <SearchResults
-            screenWidth={this.props.screenWidth}
-            searchResultsAlbums={this.props.searchResultsAlbums}
-            searchResultsTracks={this.props.searchResultsTracks}
-            library={this.props.library}
-            hideToolbar={this.props.hideToolbar}
-            checkPlayerInstance={this.props.checkPlayerInstance}
-            LMS={this.props.LMS}
-            playerInstance={this.props.playerInstance}
-            columns={this.props.columns}
-            setColumns={this.props.setColumns}
-            theme={this.props.theme}
-          />
-        );
-        break;
-      default:
-        break;
-    }
     return (
       <Page>
-        {view}
+        {this.state.view == "grid" && this.props.genreSelected && 
+          <AlbumGrid
+              albumList={
+                this.props.library.genres[this.props.genreSelected].albums
+              }
+              hideToolbar={this.props.hideToolbar}
+              genre={this.props.genreSelected}
+              clickHandler={this.handleAlbumChange}
+              playerInstance={this.props.playerInstance}
+              library={this.props.library}
+              checkPlayerInstance={this.props.checkPlayerInstance}
+              LMS={this.props.LMS}
+              storeOrderChange={this.props.storeOrderChange}
+              storedLayout={this.props.storedLayout}
+              orderType={this.props.orderType}
+              columns={this.props.columns}
+              setColumns={this.props.setColumns}
+              theme={this.props.theme}
+            />
+          }
+
+        {this.state.view == "search"  &&
+          <SearchResults
+              screenWidth={this.props.screenWidth}
+              searchResultsAlbums={this.props.searchResultsAlbums}
+              searchResultsTracks={this.props.searchResultsTracks}
+              library={this.props.library}
+              hideToolbar={this.props.hideToolbar}
+              checkPlayerInstance={this.props.checkPlayerInstance}
+              LMS={this.props.LMS}
+              playerInstance={this.props.playerInstance}
+              columns={this.props.columns}
+              setColumns={this.props.setColumns}
+              theme={this.props.theme}
+            />
+        }
+        
         { ! this.props.toolbarShowing ?
           <ToolbarButton className="show-control-bar-button"
             onClick={this.props.revealToolbar} >
