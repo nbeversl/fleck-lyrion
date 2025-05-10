@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ToolbarButton } from "react-onsenui";
 import "../style.css";
-import TrackDetails from "./TrackDetails";
+import TrackDetails from "./TrackDetails.tsx";
 import secondsToMinutes from "../helpers.js";
 import Play from '../svg/Play';
 import Download from '../svg/Download';
