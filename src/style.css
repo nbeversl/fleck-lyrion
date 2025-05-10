@@ -144,15 +144,12 @@ ons-toolbar-button, button {
   gap: 1rem;
 }
 
-.album-grid-0 .album-text-info {
-  font-size: 4rem;
-  line-height: 4.25rem;
-}
-
+.album-grid-0 .album-text-info,
 .album-grid-1 .album-text-info {
   font-size: 4rem;
   line-height: 4.25rem;
 }
+
 .album-grid-2 .album-text-info {
   font-size: 1.5rem;
   line-height: 1.75rem;
@@ -870,7 +867,7 @@ label {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 800px) {
   .global-controls,
   .player-bar {
     justify-content: center;
@@ -894,6 +891,31 @@ label {
   .search-bar {
     justify-content: center;
     align-self: center;
+  }
+
+  .album-grid-0 .album-text-info,
+  .album-grid-1 .album-text-info {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  .album-grid-2 .album-text-info {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+
+  .album-grid-3 .album-text-info,
+  .album-grid-4 .album-text-info,
+  .album-grid-5 .album-text-info {
+    font-size: .4rem;
+    line-height: .5rem;
+  }
+  .album-grid-6 .album-text-info,
+  .album-grid-7 .album-text-info,
+  .album-grid-8 .album-text-info,
+  .album-grid-9 .album-text-info {
+    font-size: .25rem;
+    line-height: .4rem;
   }
 }
 
