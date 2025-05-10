@@ -13,7 +13,7 @@ class ControlBar extends React.Component {
     this.state = {
       playerStatus: null,
       height: 0,
-      trackPosition: 0,
+      trackPosition: 1,
     };
   }
   componentDidMount() {

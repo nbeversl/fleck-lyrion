@@ -215,7 +215,7 @@ class MediaApp extends React.Component {
 
   setColumns(columns) {
     if (10 > columns > 0) {
-      this.setState({ columns: 10 - columns });
+      this.setState({ columns: columns });
     }
   }
 

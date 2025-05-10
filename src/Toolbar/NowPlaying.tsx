@@ -95,6 +95,7 @@ const NowPlaying = ({
             ) : null}
             <div className="now-playing-track-name">
               { playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].tracknum }
+              {". "}
               { playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)].title }
             </div>
             {xid ? (

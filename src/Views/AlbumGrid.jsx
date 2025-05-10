@@ -93,14 +93,14 @@ class AlbumGrid extends React.PureComponent {
     var now = new Date().getTime();
     if (now < this.state.lastPinch + 500) return;
     this.setState({ lastPinch: now });
-    this.props.setColumns(this.props.columns - 1)
+    this.props.setColumns(this.props.columns + 1)
   }
 
   handlePinchOut() {    
     var now = new Date().getTime();
     if (now < this.state.lastPinch + 500) return;
-    this.props.setColumns(this.props.columns + 1)
     this.setState({ lastPinch: now });
+    this.props.setColumns(this.props.columns - 1)
   }
 
   render() {
