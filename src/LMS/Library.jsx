@@ -45,7 +45,7 @@ class LMSLibrary {
           "0",
           "50000",
           "genre_id:" + id.toString(),
-          "tags:**id****e**ljatsS",
+          "tags:**a****id****e**ljatsS",
         ],
       ],
       (r) => {
@@ -69,7 +69,7 @@ class LMSLibrary {
           "0",
           "10000",
           "genre_id:" + id.toString(),
-          "tags:**t****o****l****i****e****m**",
+          "tags:**t****o****l****i****e****m****a**",
         ],
       ],
       (r) => {
@@ -106,7 +106,7 @@ class LMSLibrary {
   }
 
   allAlbums(callback) {
-    this.LMS.request(["", ["albums", "0", "10000", "tags:lj"]], (r) => {
+    this.LMS.request(["", ["albums", "0", "10000", "tags:lj**a**"]], (r) => {
       r.result.albums_loop.forEach((album) => {
         album = assignAlbumArt(album)
         this.albums[album.id] = album;
