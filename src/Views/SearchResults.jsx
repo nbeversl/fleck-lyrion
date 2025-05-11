@@ -32,7 +32,7 @@ class SearchResults extends React.Component {
         )}
         {this.props.searchResultsTracks ? (
           <>
-            {this.props.searchResultsTracks.length ? (
+            {this.props.searchResultsTracks.length && 
               <div className="search-results-tracks">
                 <TrackWithSourceAlbum
                   tracks={this.props.searchResultsTracks}
@@ -43,9 +43,7 @@ class SearchResults extends React.Component {
                   theme={this.props.theme}
                 />
               </div>
-            ) : (
-              <div>No Tracks Found</div>
-            )}
+            }
           </>
         ) : (
           <ProgressCircular />

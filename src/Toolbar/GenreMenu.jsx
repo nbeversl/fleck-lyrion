@@ -17,18 +17,6 @@ class GenreMenu extends React.Component {
     }
   }
 
-  handleCancel() {
-    // empty.
-    // handles an issue with OnsenUI with internal state
-  }
-
-  onPostHideWorkaround() {
-    // handles an issue with OnsenUI with internal state
-    if (this.state.isOpen) {
-      this.setState({ isOpen: false });
-    }
-  }
-
   render() {
     const DialogStyle = {
       height: window.innerHeight - 200,
@@ -46,8 +34,6 @@ class GenreMenu extends React.Component {
         <Dialog
           animation={"none"}
           isOpen={this.state.isOpen}
-          onCancel={this.handleCancel}
-          onPostHide={this.onPostHideWorkaround.bind(this)}
           className={`${this.props.theme} genre-menu`}>
           <Scrollbars style={DialogStyle}>
             <div className="content">
