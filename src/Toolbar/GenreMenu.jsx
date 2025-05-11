@@ -6,7 +6,7 @@ class GenreMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerSelectOpen: false,
+      isOpen: false,
       genreSelected: this.props.genreSelected,
     };
   }
@@ -14,6 +14,13 @@ class GenreMenu extends React.Component {
   componentDidUpdate() {
     if (this.props.genreSelected != this.state.genreSelected) {
       this.setState({genreSelected: this.props.genreSelected})
+    }
+  }
+
+  onCancel() {
+    // handles an issue with OnsenUI with internal state
+    if (this.state.isOpen) {
+      this.setState({ isOpen: false });
     }
   }
 
@@ -27,13 +34,13 @@ class GenreMenu extends React.Component {
       <div className="genre-selector">
         <ToolbarButton
           className="order-select"
-          onClick={() => this.setState({ playerSelectOpen: !this.state.playerSelectOpen })}>
+          onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
           <b>Genre</b> {this.state.genreSelected ? ': '+ this.state.genreSelected : '(select)'}
         </ToolbarButton>
 
         <Dialog
-          isOpen={this.state.playerSelectOpen}
-          onCancel={() => this.setState({ playerSelectOpen: false })}
+          isOpen={this.state.isOpen}
+          onCancel={this.onCancel.bind(this)}
           className={`${this.props.theme} genre-menu`} 
           cancelable>
           <Scrollbars style={DialogStyle}>
@@ -46,7 +53,7 @@ class GenreMenu extends React.Component {
                     onClick={(e) => {
                       this.setState({
                         genreSelected: row,
-                        playerSelectOpen: false,
+                        isOpen: false,
                       });
                       this.props.handleGenreChange(row);
                     }}
