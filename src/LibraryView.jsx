@@ -13,6 +13,7 @@ class LibraryView extends React.Component {
     this.state = {
       view: null,
       isPlaying: false,
+      lastScroll: new Date().getTime(),
     };
   }
   handleAlbumChange(id, name) {
@@ -30,6 +31,9 @@ class LibraryView extends React.Component {
     // for UI only; the player instance will update this if it is wrong
     this.setState({ isPlaying : ! this.state.isPlaying }) 
   }
+  handleScroll() {
+    this.props.hideToolbar()
+  }
 
   componentDidMount() {
     this.setState({ view: this.props.view });
@@ -46,7 +50,7 @@ class LibraryView extends React.Component {
   }
   render() {
     return (
-      <Page onClick={this.props.hideToolbar}>
+      <Page onScroll={this.handleScroll.bind(this)}>
         {this.state.view == "grid" && this.props.genreSelected && 
           <AlbumGrid
               albumList={

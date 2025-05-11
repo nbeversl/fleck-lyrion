@@ -143,6 +143,7 @@ class ControlBar extends React.Component {
                   onChange={(event) => {
                     event.stopPropagation();
                     this.props.setColumns(10 - (parseInt(event.target.value / 10)));
+                    this.props.trackGridChange()
                   }}
                 />
                 <label>Grid Size</label>

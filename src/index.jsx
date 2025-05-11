@@ -35,7 +35,8 @@ class MediaApp extends React.Component {
       searchString: "",
       theme: null,
       playerInstance: null,
-      browserPlayer: null
+      browserPlayer: null,
+      lastGridChange:  Math.floor(Date.now() / 1000),
     };
   }
 
@@ -240,6 +241,17 @@ class MediaApp extends React.Component {
     this.setState({ searchString: searchString });
   }
 
+  trackGridChange() {
+    this.setState({ lastGridChange: Math.floor(Date.now() / 1000) })
+  }
+
+  handleHideToolbar() {
+    let now =  Math.floor(Date.now() / 1000)
+    if ((now - this.state.lastGridChange > 1) && this.state.toolbarShowing) {
+      this.setState({ toolbarShowing: false });
+    }
+  }
+
   setTheme(newTheme) {
     this.setState({ theme: newTheme });
     var element = document.getElementsByTagName("body")[0];
@@ -256,7 +268,7 @@ class MediaApp extends React.Component {
       <div className={`main ${this.state.theme}`}>
         {this.state.library ? (
           <div>
-            {this.state.toolbarShowing ? (
+            {this.state.toolbarShowing &&
               <ControlBar
                 loadRandomAlbums={this.loadRandomAlbums.bind(this)}
                 playerSelectOpen={this.state.playerSelectOpen}
@@ -278,18 +290,14 @@ class MediaApp extends React.Component {
                 searchString={this.state.searchString}
                 orderType={this.state.orderType}
                 columns={this.state.columns}
+                trackGridChange={this.trackGridChange.bind(this)}
                 setColumns={this.setColumns.bind(this)}
                 setTheme={this.setTheme.bind(this)}
                 theme={this.state.theme}
-                hideToolbar={() => {
-                    if (this.state.toolbarShowing) {
-                      this.setState({ toolbarShowing: false });
-                    }
-                  }}
+                hideToolbar={this.handleHideToolbar.bind(this)}
               />
-            ) : null}
-
-            {this.state.library.genres ? (
+            }
+            {this.state.library.genres &&
               <div className="library-view">
                 <LibraryView
                   view={this.state.view}
@@ -308,16 +316,11 @@ class MediaApp extends React.Component {
                   theme={this.state.theme}
                   setColumns={this.setColumns.bind(this)}
                   toolbarShowing={this.state.toolbarShowing}
-                  hideToolbar={() => {
-                    if (this.state.toolbarShowing) {
-                      this.setState({ toolbarShowing: false });
-                    }
-                  }}
+                  hideToolbar={this.handleHideToolbar.bind(this)}
                   revealToolbar={this.revealToolbar.bind(this)}
                 />
               </div>
-            ) : null}
-              
+            }  
           </div>
           ) : (
           <div className="loading-message">
