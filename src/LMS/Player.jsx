@@ -9,16 +9,8 @@ class Player {
     this.trackSelected = false;
 
     this.playOrPause = () => {
-      switch (this.playing) {
-        case false:
-          this.play();
-          break;
-        case true:
-          this.pause();
-          break;
-        default:
-          break;
-      }
+      if (! this.playing) this.play();
+      else this.pause();
     };
 
     this.play = () => {
