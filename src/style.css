@@ -657,6 +657,7 @@ segment__button {
   display: flex;
   flex-direction: column;
   min-width: 200px;
+  justify-content: center;
 }
 .slider-volume ons-range {
   width: 100%;

@@ -13,15 +13,14 @@ class ControlBar extends React.Component {
     super(props);
     this.state = {
       playerStatus: null,
-      height: 0,
       trackPosition: 1,
     };
   }
   componentDidMount() {
     this._ismounted = true;
     const height = this.divElement.clientHeight;
-    this.setState({ height });
     this.getPlayerStatus();
+    this.setState({height: })
   }
 
   componentWillUnmount() {
