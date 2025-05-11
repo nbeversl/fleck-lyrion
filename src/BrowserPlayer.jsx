@@ -18,7 +18,8 @@ class BrowserPlayer {
         time: this.audio ? this.audio.currentTime : 0,
         duration: this.audio ? this.audio.duration : 0,
         playlist_loop : this.tracks,
-        playlist_cur_index : this.currentIndex
+        playlist_cur_index : this.currentIndex,
+        volume: this.volume
       })
     },
 
@@ -59,7 +60,8 @@ class BrowserPlayer {
       this.audio = new Audio(this.currentTrack)
       this.audio.addEventListener('ended', this.nextTrack);
       this.audio.load()
-      this.audio.play()   
+      this.audio.play()
+      this.volume = this.audio.volume
       this.playing = true
       this.isLoading = false 
     }
