@@ -202,6 +202,7 @@ class MediaApp extends React.Component {
       }
       this.setState({
         genreSelected: null,
+        searchResultsTracks: [],
         searchResultsAlbums: randomAlbums,
         view: "search",
       });
