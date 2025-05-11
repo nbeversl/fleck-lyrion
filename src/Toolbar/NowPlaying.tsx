@@ -97,10 +97,7 @@ const NowPlaying = ({
               {". "}
               { playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)].title }
             </div>
-            {xid &&
-              <ExtendedMetadata meta={xid.discs[0][playerStatus?.playlist_cur_index]} />
-            }
-            { playerStatus.time && playerStatus.time != 0 &&
+            { playerStatus.time &&
               <div className="track-range">
                  <Range
                   className="track-time"
@@ -109,7 +106,7 @@ const NowPlaying = ({
                  />
                 <div className="timings">
                   <div className="elapsed">{formatTime(playerStatus.time)}</div>
-                  <div className="remaining">{formatTime(playerStatus.duration - playerStatus.time)}</div>
+                  <div className="remaining"> { playerStatus.duration > 0 && formatTime(playerStatus.duration - playerStatus.time)}</div>
                 </div>
               </div>
             }
@@ -121,6 +118,7 @@ const NowPlaying = ({
 }
 
 const formatTime = (seconds: number) => {
+  if (seconds < 1 ) return '0:00'
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
