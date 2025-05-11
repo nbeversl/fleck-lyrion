@@ -30,7 +30,6 @@ class BrowserPlayer {
     this.playAlbumFromTrackAndContinue = (track, startNumber) => {
 
       this.isLoading = true
-      var albumID = track.album_id;
       this.LMS.request(
         [
           "",
@@ -38,14 +37,16 @@ class BrowserPlayer {
             "titles",
             "0",
             "100",
-            "album_id:" + albumID,
+            "album_id:" + track.album_id,
             "sort:tracknum",
             "tags:**t****o****l****i****e****m****a****e**",
           ],
         ],
         (r) => {
-          this.currentIndex = parseInt(startNumber);
           this.tracks = r.result.titles_loop;
+          for (let i=0; i< this.tracks.length; i++) {
+            if (this.tracks[i].id == track.id) this.currentIndex = i;
+          }
           this.trackSelected = true;
           this.playCurrentTrack()
       });

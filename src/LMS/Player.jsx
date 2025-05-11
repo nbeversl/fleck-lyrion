@@ -86,13 +86,18 @@ class Player {
         this.LMS.request(
           [this.address, ["playlist", "addtracks", "album.id=" + albumID]],
           (r) => {
-            this.LMS.request([
-              this.address,
-              ["playlist", "index", "+" + startNumber.toString()],
-            ]);
-            this.trackSelected = true;
-            this.playing = true;
-            this.isLoading = false
+            this.getPlayerStatus( (result) => {
+              for (let i=0; i< result.playlist_loop.length; i++) {
+                if (result.playlist_loop[i].id == track.id) startNumber = i;
+              }
+              this.LMS.request([
+                this.address,
+                ["playlist", "index", "+" + startNumber.toString()],
+              ]);
+              this.trackSelected = true;
+              this.playing = true;
+              this.isLoading = false
+            }) 
           }
         );
       });

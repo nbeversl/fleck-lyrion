@@ -52,7 +52,7 @@ class TrackListScrolling extends React.Component {
             disc={disc}
             track={track}
             trackNumber={trackNumber}
-            handlePlay={() => this.props.handlePlay(this.props.discs[disc][0], trackNumber-1)}
+            handlePlay={() => this.props.handlePlay(track, trackNumber-1)}
             addToPlaylist={this.props.addToPlaylist}
             library={this.props.library}
             LMS={this.props.LMS}
