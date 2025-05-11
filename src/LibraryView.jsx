@@ -46,7 +46,7 @@ class LibraryView extends React.Component {
   }
   render() {
     return (
-      <Page>
+      <Page onClick={this.props.hideToolbar}>
         {this.state.view == "grid" && this.props.genreSelected && 
           <AlbumGrid
               albumList={

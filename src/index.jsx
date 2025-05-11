@@ -133,9 +133,7 @@ class MediaApp extends React.Component {
   checkPlayerInstance(callback) {
     if (!this.state.playerInstance) {
       this.openPlayerSelect();
-      this.setState({
-        toolbarShowing: true,
-      });
+      this.setState({ toolbarShowing: true });
       this.waitForPlayerInstance(callback);
     } else {
       callback(this.state.playerInstance);

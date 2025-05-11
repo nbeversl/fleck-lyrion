@@ -90,7 +90,7 @@ class ControlBar extends React.Component {
             />
             <div className="global-controls">
               <div className="genre-selector">
-                {this.props.library && this.props.library.genres ? (
+                {this.props.library && this.props.library.genres && 
                   <GenreMenu
                     genres={this.props.library.genres}
                     library={this.props.library}
@@ -99,8 +99,7 @@ class ControlBar extends React.Component {
                     genreSelected={this.props.genreSelected}
                     controlBarHeight={this.props.controlBarHeight}
                     theme={this.props.theme}
-                  />
-                  ) : null}
+                  /> }
                 <ToolbarButton
                   onClick={this.props.loadRandomAlbums}>
                   <Randomize className={"btn-icon randomize-icon"} />
