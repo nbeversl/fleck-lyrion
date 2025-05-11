@@ -6,13 +6,8 @@ class GenreMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      genresTable: [],
-      trackList: [],
-      albumSelected: null,
-      albumSelectedID: null,
       playerSelectOpen: false,
       genreSelected: this.props.genreSelected,
-      target: null,
     };
   }
 
@@ -32,18 +27,15 @@ class GenreMenu extends React.Component {
       <div className="genre-selector">
         <ToolbarButton
           className="order-select"
-          onClick={() => this.setState({ playerSelectOpen: !this.state.playerSelectOpen })}
-        >
+          onClick={() => this.setState({ playerSelectOpen: !this.state.playerSelectOpen })}>
           <b>Genre</b> {this.state.genreSelected ? ': '+ this.state.genreSelected : '(select)'}
         </ToolbarButton>
 
         <Dialog
-          animationOptions={{ duration: 0.1, delay: 0 }}
           isOpen={this.state.playerSelectOpen}
           onCancel={() => this.setState({ playerSelectOpen: false })}
           className={`${this.props.theme} genre-menu`} 
-          cancelable
-        >
+          cancelable>
           <Scrollbars style={DialogStyle}>
             <div className="content">
               <List
