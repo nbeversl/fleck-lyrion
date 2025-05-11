@@ -8,7 +8,7 @@ class BrowserPlayer {
     this.LMS = LMS;
     this.currentIndex = 0
     this.playing = false;
-    this.audio = null;
+    this.audio = new Audio();
     this.isLoading = false;
     this.trackSelected = false;
     this.volume = 0
@@ -57,8 +57,8 @@ class BrowserPlayer {
         this.audio.pause();
       }
       this.currentTrack = this.LMS.getTrack(this.tracks[this.currentIndex].id.toString())     
-      this.audio = new Audio(this.currentTrack)
       this.audio.addEventListener('ended', this.nextTrack);
+      this.audio.src = this.currentTrack
       this.audio.load()
       this.audio.play()
       this.volume = this.audio.volume
