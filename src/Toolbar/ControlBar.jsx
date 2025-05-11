@@ -105,6 +105,7 @@ class ControlBar extends React.Component {
                   setSearchString={this.props.setSearchString}
                   searchFor={this.props.searchFor}
                 />
+                <div className="segments">
                 <Segment className="theme-control" 
                 index={this.props.theme === "light-theme" ? 0 : 1}>
                   <button
@@ -121,22 +122,23 @@ class ControlBar extends React.Component {
                   </button>
                 </Segment>
             
-              {this.props.genreSelected ? (
-                <div className="alpha-shuffle">
-                  <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
-                    <button
-                      className="order-select"
-                      onClick={() => this.props.setOrderType("alpha")}>
-                      Alpha
-                    </button>
-                    <button
-                      className="order-select"
-                      onClick={() => this.props.setOrderType("shuffle")}>
-                      Shuffle
-                    </button>
-                  </Segment>
-                </div>
-              ) : null}
+                {this.props.genreSelected &&
+                  <div className="alpha-shuffle">
+                    <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
+                      <button
+                        className="order-select"
+                        onClick={() => this.props.setOrderType("alpha")}>
+                        Alpha
+                      </button>
+                      <button
+                        className="order-select"
+                        onClick={() => this.props.setOrderType("shuffle")}>
+                        Shuffle
+                      </button>
+                    </Segment>
+                  </div>
+                }
+              </div>
               <div className={"grid-size"}>
                 <Range
                   value={(10 - this.props.columns) * 10}
