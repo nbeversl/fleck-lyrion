@@ -160,11 +160,10 @@ class MediaApp extends React.Component {
   }
 
   async handleGenreChange(genre) {
+    this.trackGridChange()
     var storedLayout = document.cookie || null;
     this.loadAlbumsForGenre(genre, storedLayout);
-    this.setState({
-      view: "grid",
-    });
+    this.setState({ view: "grid" });
   }
 
   storeOrderChange(storedLayout) {
