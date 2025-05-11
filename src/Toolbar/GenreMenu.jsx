@@ -17,7 +17,12 @@ class GenreMenu extends React.Component {
     }
   }
 
-  onCancel() {
+  handleCancel() {
+    // empty.
+    // handles an issue with OnsenUI with internal state
+  }
+
+  onPostHideWorkaround() {
     // handles an issue with OnsenUI with internal state
     if (this.state.isOpen) {
       this.setState({ isOpen: false });
@@ -34,15 +39,15 @@ class GenreMenu extends React.Component {
       <div className="genre-selector">
         <ToolbarButton
           className="order-select"
-          onClick={() => this.setState({ isOpen: !this.state.isOpen })}>
+          onClick={() => this.setState({ isOpen: true })}>
           <b>Genre</b> {this.state.genreSelected ? ': '+ this.state.genreSelected : '(select)'}
         </ToolbarButton>
 
         <Dialog
           isOpen={this.state.isOpen}
-          onCancel={this.onCancel.bind(this)}
-          className={`${this.props.theme} genre-menu`} 
-          cancelable>
+          onCancel={this.handleCancel}
+          onPostHide={this.onPostHideWorkaround.bind(this)}
+          className={`${this.props.theme} genre-menu`}>
           <Scrollbars style={DialogStyle}>
             <div className="content">
               <List
