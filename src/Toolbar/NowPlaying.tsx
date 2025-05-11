@@ -100,7 +100,7 @@ const NowPlaying = ({
             {xid &&
               <ExtendedMetadata meta={xid.discs[0][playerStatus?.playlist_cur_index]} />
             }
-            { playerStatus.time &&
+            { playerStatus.time && playerStatus.time != 0 &&
               <div className="track-range">
                  <Range
                   className="track-time"
