@@ -18,9 +18,7 @@ class ControlBar extends React.Component {
   }
   componentDidMount() {
     this._ismounted = true;
-    const height = this.divElement.clientHeight;
     this.getPlayerStatus();
-    this.setState({height: })
   }
 
   componentWillUnmount() {
