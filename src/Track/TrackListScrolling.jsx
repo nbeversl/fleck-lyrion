@@ -85,6 +85,11 @@ class TrackListScrolling extends React.Component {
                 <div className="tracklist-album-title">
                   {this.props.album.album}
                 </div>
+                { Object.keys(this.props.discs).length > 1 && 
+                  <div className="tracklist-num-discs">
+                    ({Object.keys(this.props.discs).length} Discs)
+                  </div>
+                }
               </div>
               <Button
                 onClick={this.handleAlbumArtModal.bind(this)}

@@ -494,6 +494,7 @@ ons-toolbar-button.player-control-button {
 }
 .album-info .text-info {
   flex-basis: 80%;
+  padding:.25rem;
 }
 
 .mini-album-cover.button {
@@ -676,10 +677,8 @@ segment__button {
 
 .tracklist-artist {
   font-weight: 800;
-  margin-left: 10px;
 }
 .tracklist-album-title {
-  margin-left: 10px;
   font-style: italic;
 }
 ons-range.track-time {
