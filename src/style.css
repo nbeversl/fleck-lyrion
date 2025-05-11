@@ -44,6 +44,7 @@ ons-toolbar-button, button {
 }
 
 .player-controls {
+  margin-top:1rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -287,7 +288,7 @@ ons-toolbar-button, button {
   max-width: 100%;
 }
 
-.genre-selector {
+.genre {
   font-size: 40px !important;
   text-align: center;
   flex-direction: row;
@@ -298,9 +299,6 @@ ons-toolbar-button, button {
   white-space: nowrap;
 }
 
-.genre-menu {
-  
-}
 .player-selector {
   font-size: 40px !important;
   display: flex;
@@ -309,8 +307,13 @@ ons-toolbar-button, button {
   align-self: center;
   white-space: normal;
 }
-.player-selector ons-toolbar-button {
-  margin: 0 auto;
+
+.player-selector ons-toolbar-button,
+.genre-selector ons-toolbar-button {
+  padding: .5rem 1rem;
+  border: 1px solid rgb(0, 118, 255); 
+  border-radius: 3px;
+  font-weight: 300;
 }
 
 .global-controls {
@@ -321,6 +324,7 @@ ons-toolbar-button, button {
 }
 .now-playing-container {
   width: 80%;
+  margin-bottom: 1rem;
 }
 .alpha-shuffle,
 .theme-control {

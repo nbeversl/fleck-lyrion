@@ -6,7 +6,6 @@ import * as React from "react";
 import SearchBar from "./SearchBar";
 import { Range } from "react-onsenui";
 import CloseIcon from "../svg/CloseIcon";
-import Randomize from "../svg/Randomize";
 
 class ControlBar extends React.Component {
   constructor(props) {
@@ -89,7 +88,6 @@ class ControlBar extends React.Component {
               theme={this.props.theme}
             />
             <div className="global-controls">
-              <div className="genre-selector">
                 {this.props.library && this.props.library.genres && 
                   <GenreMenu
                     genres={this.props.library.genres}
@@ -100,20 +98,15 @@ class ControlBar extends React.Component {
                     controlBarHeight={this.props.controlBarHeight}
                     theme={this.props.theme}
                   /> }
-                <ToolbarButton
-                  onClick={this.props.loadRandomAlbums}>
-                  <Randomize className={"btn-icon randomize-icon"} />
-                </ToolbarButton>
-              </div>
-              <div className="search">
+
                 <SearchBar
+                  className="search"
                   searchString={this.props.searchString}
                   setSearchString={this.props.setSearchString}
                   searchFor={this.props.searchFor}
                 />
-              </div>
-              <div className="theme-control">
-                <Segment index={this.props.theme === "light-theme" ? 0 : 1}>
+                <Segment className="theme-control" 
+                index={this.props.theme === "light-theme" ? 0 : 1}>
                   <button
                     className="theme-select"
                     onClick={() => this.props.setTheme("light-theme")}
@@ -127,7 +120,7 @@ class ControlBar extends React.Component {
                     Dark
                   </button>
                 </Segment>
-              </div>
+            
               {this.props.genreSelected ? (
                 <div className="alpha-shuffle">
                   <Segment index={this.props.orderType == "alpha" ? 0 : 1}>
