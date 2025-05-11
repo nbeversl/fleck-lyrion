@@ -44,6 +44,7 @@ class GenreMenu extends React.Component {
         </ToolbarButton>
 
         <Dialog
+          animation={"none"}
           isOpen={this.state.isOpen}
           onCancel={this.handleCancel}
           onPostHide={this.onPostHideWorkaround.bind(this)}
