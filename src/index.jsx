@@ -33,7 +33,7 @@ class MediaApp extends React.Component {
       orderType: "alpha",
       pingingPlayers: null,
       searchString: "",
-      theme: "light-theme",
+      theme: null,
       playerInstance: null,
       browserPlayer: null
     };
@@ -53,10 +53,9 @@ class MediaApp extends React.Component {
     const themeSetting = /theme=[^;]+/;
     let cookie = document.cookie;
     let theme = cookie.match(themeSetting);
-    if (theme) {
-      theme = theme[0].replace("theme=", "");
-      this.setState({ theme: theme });
-    }
+    if (theme) theme[0].replace("theme=", "");
+    else theme ="light-theme";
+    this.setTheme(theme);
     if (window.screen.width < 450) {
       this.setState({columns: 2})
     }
@@ -247,20 +246,11 @@ class MediaApp extends React.Component {
     this.setState({ theme: newTheme });
     var element = document.getElementsByTagName("body")[0];
     element.classList.add(newTheme);
-    switch (newTheme) {
-      case "light-theme":
-        element.classList.remove("dark-theme");
-        break;
-      case "dark-theme":
-        element.classList.remove("light-theme");
-        break;
-      default:
-        break;
-    }
+    if (newTheme == "light-theme") element.classList.remove("dark-theme");
+    if (newTheme == "dark-theme") element.classList.remove("light-theme");
     var expiration_date = new Date();
     expiration_date.setFullYear(expiration_date.getFullYear() + 1);
-    document.cookie =
-      "theme=" + newTheme + "; expires=" + expiration_date.toUTCString();
+    document.cookie = "theme=" + newTheme + "; expires=" + expiration_date.toUTCString();
   }
 
   render() {

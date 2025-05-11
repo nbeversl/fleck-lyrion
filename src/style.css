@@ -2,6 +2,14 @@ body {
   height: 100vh;
 }
 
+body.dark-theme {
+  background-color: black;
+}
+
+body.light-theme {
+  background-color: #d9d9d9;
+}
+
 ons-button,
 ons-button.button--material {
   background-color: transparent !important;
@@ -880,6 +888,9 @@ label {
 @media (max-width: 450px) {
   .grid-size {
     display: none;
+  }
+  .global-controls {
+    margin-bottom: 2.5rem;
   }
   
   .now-playing-album-cover {
