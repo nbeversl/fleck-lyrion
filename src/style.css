@@ -243,7 +243,6 @@ ons-toolbar-button, button {
 .album-cover {
   overflow: hidden;
 }
-
 .control-bar {
   visibility: visible;
   display: flex;
@@ -568,9 +567,8 @@ ons-toolbar-button.player-control-button {
 .player-selector-dialog .dialog {
   height: auto !important;
 }
-
-.album-modal .dialog-container {
-  box-shadow: 9px 11px 3px rgba(0, 0, 0, 0.28);
+.dark-theme .dialog {
+  box-shadow: 0px 0px 20px 3px #0b0530;
 }
 
 .album-modal .dialog {
@@ -789,13 +787,19 @@ ons-button.show-controlbar {
   background-size: contain;
   background-repeat: no-repeat;
 }
-.list-item {
+ons-list-item.list-item {
   cursor: pointer;
+  border-bottom: 1px solid grey;
+  padding: 0rem .75rem;
 }
 .list-item:hover {
   background-color: #807d7d40;
 }
 
+.dark-theme .dialog-container {
+  background-color: black;
+  
+}
 .dark-theme.album-modal .dialog-container {
   border: 1px solid #404040;
   background-color: black;
