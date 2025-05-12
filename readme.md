@@ -6,8 +6,8 @@ Though LMS is feature rich with many contributed extensions, it is also appealin
 
 This theme is for users who:
 
-- Like album art and mostly want to view their library by disc. In track view, each track has direct access to its full album in a single click.
-- Want the option of a simple and elegant library browser with controls minimal and hidden. The many other features remain accessible through the default or any other theme desired.
+- Like album art and mostly want to view their library by disc. In track view, each track listing provides access to its album in a single click.
+- Want the option of a simple and elegant library browser with controls minimal or hidden. The many other features remain accessible through the default or any other theme desired.
 - Want as few clicks/taps as possible to access library and playback
 
 ## Demo
