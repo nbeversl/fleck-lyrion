@@ -253,7 +253,7 @@ ons-toolbar-button, button {
   bottom: 0;
   width: 100%;
   box-shadow: -1px -5px 16px #888888;
-  padding: 10px 10px 25px 10px;
+  padding: 1rem;
   background-color: white;
 }
 
@@ -911,6 +911,7 @@ label {
   }
   .control-content {
     width: 100%;
+    margin-right: 0;
   }
   .alpha-shuffle {
     justify-content: space-around;
