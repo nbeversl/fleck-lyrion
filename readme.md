@@ -1,6 +1,4 @@
-# Fleck Theme for Lyrion Media Server (formerly Logitech Media Server)
-
-This theme provides a minimalist frontend for Lyrion Media Server (formerly Logitech Media Server) with 
+# Fleck Theme for Lyrion Media Server
 
 ## About
 
