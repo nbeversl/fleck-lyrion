@@ -10,6 +10,10 @@ This theme is for users who:
 - Want the option of a simple and elegant library browser with controls minimal and hidden. The many other features remain accessible through the default or any other theme desired.
 - Want as few clicks/taps as possible to access library and playback
 
+## Demo
+
+A live demo is at https://fleck-theme.org/. Note that the demo does not play music and no audio files are hosted there.
+
 ## Features
 
 - Remote controls all LMS players on the network
