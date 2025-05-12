@@ -21,6 +21,7 @@ class MediaApp extends React.Component {
       showNowPlaying: false,
       playerSelectOpen: false,
       genreSelected: null,
+      genreSelectOpen: false,
       view: "grid",
       searchResultsAlbums: null,
       toolbarShowing: true,
@@ -61,7 +62,7 @@ class MediaApp extends React.Component {
     }
   }
 
-  closeSelect() {
+  closePlayerSelect() {
     var pingingPlayers = this.state.pingingPlayers;
     clearInterval(pingingPlayers);
     this.setState({
