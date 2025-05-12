@@ -574,7 +574,7 @@ ons-toolbar-button.player-control-button {
 .album-modal .dialog {
   width: 90%;
   max-width: 700px;
-  height: 90%;
+  height: 80vh;
 }
 .btn-icon {
   width: 3rem;
@@ -837,11 +837,12 @@ ons-list-item.list-item {
   padding: 0rem .5rem .5rem 0rem;
 }
 
-.hide-album-modal-button {
+ons-toolbar-button.hide-album-modal-button {
   width: 2.5rem;
   position: fixed;
-  right: 0rem;
-  bottom: 10%;
+  right: 0;
+  bottom: 0;
+  padding: 0 .5rem .5rem 0;
   z-index: 2000;
 }
 .fixed-buttons {
