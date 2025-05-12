@@ -789,7 +789,6 @@ ons-button.show-controlbar {
 }
 ons-list-item.list-item {
   cursor: pointer;
-  border-bottom: 1px solid grey;
   padding: 0rem .75rem;
 }
 .list-item:hover {
@@ -838,11 +837,12 @@ ons-list-item.list-item {
   padding: 0rem .5rem .5rem 0rem;
 }
 
-.hide-album-modal-button {
+.toolbar-button.hide-album-modal-button {
   width: 2.5rem;
   position: fixed;
-  right: .5rem;
-  bottom: 10%;
+  right: 0;
+  bottom: 2rem;
+  padding: 0rem .5rem .5rem 0rem;
   z-index: 2000;
 }
 .fixed-buttons {
