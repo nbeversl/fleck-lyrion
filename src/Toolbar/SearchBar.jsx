@@ -37,7 +37,8 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-        <form className="search-bar" onSubmit={this.handleSubmit.bind(this)}>
+      <div className="search-bar">
+        <form  onSubmit={this.handleSubmit.bind(this)}>
           <SearchInput
             ref={(ref) => {
               this.searchInputComponent = ref;
@@ -48,12 +49,13 @@ class SearchBar extends React.Component {
             }}
             value={this.props.searchString}
           />
-           <button
-            className="search-clear-button"
-            onClick={(e) => { this.clearSearchString(e)}} >
-            <CloseIcon className="btn-icon" />
-          </button>
         </form>
+        <button
+          className="search-clear-button"
+          onClick={(e) => { this.clearSearchString(e)}} >
+          <CloseIcon className="btn-icon" />
+        </button>
+      </div>
     );
   }
 }
