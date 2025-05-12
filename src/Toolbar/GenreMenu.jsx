@@ -3,19 +3,6 @@ import { Dialog, List, ListItem, ToolbarButton } from "react-onsenui";
 import { Scrollbars } from "react-custom-scrollbars";
 
 class GenreMenu extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: false,
-      genreSelected: this.props.genreSelected,
-    };
-  }
-
-  componentDidUpdate() {
-    if (this.props.genreSelected != this.state.genreSelected) {
-      this.setState({genreSelected: this.props.genreSelected})
-    }
-  }
 
   render() {
     const DialogStyle = {
@@ -27,14 +14,19 @@ class GenreMenu extends React.Component {
       <div className="genre-selector">
         <ToolbarButton
           className="order-select"
-          onClick={() => this.setState({ isOpen: true })}>
-          <b>Genre</b> {this.state.genreSelected ? ': '+ this.state.genreSelected : ''}
+          onClick={() => {
+            this.props.toggleGenreSelect();
+            this.setState({target: this.btn });
+          }}>
+          <b>Genre</b> {this.props.genreSelected ? ': '+ this.props.genreSelected : ''}
         </ToolbarButton>
-
         <Dialog
           animation={"none"}
-          isOpen={this.state.isOpen}
-          className={`${this.props.theme} genre-menu`}>
+          className={"player-selector-dialog " + this.props.theme}
+          isOpen={this.props.genreSelectOpen}
+          onCancel={this.props.closeGenreSelect}
+          getTarget={() => this.state.target}
+          cancelable={true}>
           <Scrollbars style={DialogStyle}>
             <div className="content">
               <List

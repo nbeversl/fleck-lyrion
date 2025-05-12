@@ -89,8 +89,21 @@ class MediaApp extends React.Component {
   }
 
   togglePlayerSelect() {
-    this.state.playerSelectOpen ? this.closeSelect() : this.openPlayerSelect();
+    this.state.playerSelectOpen ? this.closePlayerSelect() : this.openPlayerSelect();
   }
+
+  toggleGenreSelect() {
+    this.state.genreSelectOpen ? this.closeGenreSelect() : this.openGenreSelect();
+  }
+
+  closeGenreSelect() {
+    this.setState({ genreSelectOpen : false })
+  }
+
+  openGenreSelect() {
+    this.setState({ genreSelectOpen : true })
+  }
+
 
   getAvailablePlayers() {
     this.state.LMS.request(["", ["serverstatus", "0", "20"]], (response) => {
@@ -127,7 +140,7 @@ class MediaApp extends React.Component {
         playerSelectOpen: false,
       });
     }
-    this.closeSelect();
+    this.closePlayerSelect();
   }
 
   checkPlayerInstance(callback) {
@@ -270,7 +283,7 @@ class MediaApp extends React.Component {
               <ControlBar
                 loadRandomAlbums={this.loadRandomAlbums.bind(this)}
                 playerSelectOpen={this.state.playerSelectOpen}
-                closeSelect={this.closeSelect.bind(this)}
+                closeSelect={this.closePlayerSelect.bind(this)}
                 togglePlayerSelect={this.togglePlayerSelect.bind(this)}
                 targetPlayer={this.state.targetPlayer}
                 switchPlayer={this.switchPlayer.bind(this)}
@@ -278,9 +291,11 @@ class MediaApp extends React.Component {
                 playerInstance={this.state.playerInstance}
                 players={this.state.players_loop ? this.state.players_loop : []}
                 library={this.state.library}
+                genreSelectOpen={this.state.genreSelectOpen}
                 checkPlayerInstance={this.checkPlayerInstance.bind(this)}
                 handleGenreChange={this.handleGenreChange.bind(this)}
                 genreSelected={this.state.genreSelected}
+                toggleGenreSelect={this.toggleGenreSelect.bind(this)}
                 LMS={this.state.LMS}
                 handleViewChange={this.handleViewChange.bind(this)}
                 searchFor={this.searchFor.bind(this)}

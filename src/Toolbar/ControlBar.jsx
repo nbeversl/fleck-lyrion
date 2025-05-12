@@ -67,13 +67,14 @@ class ControlBar extends React.Component {
               library={this.props.library}
               checkPlayerInstance={this.props.checkPlayerInstance}
               playerInstance={this.props.playerInstance}
+              genreSelected={this.props.genreSelected}
               LMS={this.props.LMS}
               theme={this.props.theme}
               trackPosition={this.state.trackPosition}
             />
             <PlayerControls
               playerSelectOpen={this.props.playerSelectOpen}
-              closeSelect={this.props.closeSelect}
+              closePlayerSelect={this.props.closePlayerSelect}
               togglePlayerSelect={this.props.togglePlayerSelect}
               targetPlayer={this.props.targetPlayer}
               switchPlayer={this.props.switchPlayer}
@@ -92,6 +93,8 @@ class ControlBar extends React.Component {
                   <GenreMenu
                     genres={this.props.library.genres}
                     library={this.props.library}
+                    toggleGenreSelect={this.props.toggleGenreSelect}
+                    genreSelectOpen={this.props.genreSelectOpen}
                     screenWidth={this.state.screenWidth}
                     handleGenreChange={this.props.handleGenreChange.bind(this)}
                     genreSelected={this.props.genreSelected}

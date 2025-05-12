@@ -23,15 +23,13 @@ class PlayerSelector extends React.Component {
         >
           <b>Player</b> {this.state.activePlayer ? ': '+ this.state.activePlayer : ''}
         </ToolbarButton>
-
         <Dialog
           animation={"none"}
           className={"player-selector-dialog " + this.props.theme}
           isOpen={this.props.playerSelectOpen}
-          onCancel={this.props.closeSelect}
+          onCancel={this.props.closePlayerSelect}
           getTarget={() => this.state.target}
-          cancelable={true}
-        >
+          cancelable={true}>
           <div style={{ textAlign: "center" }}>
             <List
               dataSource={[{ name: "Browser (this device)" }].concat(...this.props.players)}
