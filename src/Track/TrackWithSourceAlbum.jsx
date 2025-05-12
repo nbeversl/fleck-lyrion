@@ -1,6 +1,5 @@
 import * as React from "react";
 import { ToolbarButton , Card } from 'react-onsenui';
-import '../style.css';
 import { Album } from '../Album';
 import Play from '../svg/Play';
 import Download from '../svg/Download';
