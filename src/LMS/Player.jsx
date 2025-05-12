@@ -116,6 +116,14 @@ class Player {
           ],
         ],
         (r) => {
+          if ( r.result &&
+            r.result.playlist_loop &&
+            r.result.playlist_cur_index != undefined && // can be 0
+            r.result.playlist_loop[parseInt(r.result.playlist_cur_index)] ) {
+              this.trackSelected = true
+            } else {
+              this.trackSelected = false              
+            }
           callback(r.result);
         }
       );
