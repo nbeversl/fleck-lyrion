@@ -912,6 +912,9 @@ label {
     width: auto;
     margin-right: 1rem;
   }
+  .control-bar {
+    padding: 0;
+  }
   .control-content {
     width: 100%;
     margin-right: 0;
