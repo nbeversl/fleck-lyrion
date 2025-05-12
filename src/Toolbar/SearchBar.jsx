@@ -1,5 +1,6 @@
 import * as React from "react";
 import { SearchInput } from "react-onsenui";
+import CloseIcon from "../svg/CloseIcon";
 
 class SearchBar extends React.Component {
 
@@ -36,8 +37,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className="search-bar">
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <form className="search-bar" onSubmit={this.handleSubmit.bind(this)}>
           <SearchInput
             ref={(ref) => {
               this.searchInputComponent = ref;
@@ -48,13 +48,12 @@ class SearchBar extends React.Component {
             }}
             value={this.props.searchString}
           />
+           <button
+            className="search-clear-button"
+            onClick={(e) => { this.clearSearchString(e)}} >
+            <CloseIcon className="btn-icon" />
+          </button>
         </form>
-        <button
-          className="search-clear-button"
-          onClick={(e) => { this.clearSearchString(e)}} >
-          x
-        </button>
-      </div>
     );
   }
 }

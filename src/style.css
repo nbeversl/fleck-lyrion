@@ -343,19 +343,12 @@ button.search-button {
   padding: 2px 12px;
 }
 button.search-clear-button {
-  border: none;
   z-index: 90;
-  min-width: 1rem !important;
-  background: #c1c1c19e;
-  border-radius: 1rem;
-  height: 1.5rem;
-  width: 1.5rem;
+  background: transparent;
+  width: 2rem;
   cursor: pointer;
-  color: #8c8c8c;
-  opacity: .8;
-  position: absolute;
-  right: .5rem; 
-  top: .5rem;
+  border: none;
+  margin-left: -2.5rem;
 }
 
 button.order-select,
@@ -606,6 +599,9 @@ ons-toolbar-button.player-control-button {
   height: auto;
 }
 
+.control-content {
+  margin-right: 4rem;
+}
 .drawer-button {
   position: fixed;
   top: 30px;
@@ -634,6 +630,7 @@ segment__button {
 
 .search-bar {
   position: relative;
+  display: flex;
 }
 
 .track-time {
@@ -829,11 +826,12 @@ ons-button.show-controlbar {
   word-break: normal;
 }
 
-.hide-control-bar-button {
+.toolbar-button.hide-control-bar-button {
   width: 2.5rem;
   position: fixed;
-  right: .5rem;
-  bottom: .5rem;
+  right: 0;
+  bottom: 0;
+  padding: 0rem .5rem .5rem 0rem;
 }
 
 .hide-album-modal-button {
