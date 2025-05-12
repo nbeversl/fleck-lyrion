@@ -913,7 +913,7 @@ label {
     margin-right: 1rem;
   }
   .control-bar {
-    padding: 0;
+    padding: 1rem 0 0 0;
   }
   .control-content {
     width: 100%;
