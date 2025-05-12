@@ -1,4 +1,4 @@
-# Boulez Theme for Lyrion Media Server (formerly Logitech Media Server)
+# Fleck Theme for Lyrion Media Server (formerly Logitech Media Server)
 
 This theme provides a minimalist frontend for Lyrion Media Server (formerly Logitech Media Server) with 
 
