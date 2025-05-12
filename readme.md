@@ -37,4 +37,4 @@ For a ready-made theme with built code ready to run, download instead https://gi
 
 ## Issues
 
-Post issues at https://github.com/nbeversl/fleck-theme 
+Post issues at https://github.com/nbeversl/fleck-theme/issues
