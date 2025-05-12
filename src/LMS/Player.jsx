@@ -124,6 +124,11 @@ class Player {
             } else {
               this.trackSelected = false              
             }
+            if (r.result.mode == "play") {
+              this.playing = true
+            } else {
+              this.playing = false
+            }
           callback(r.result);
         }
       );
