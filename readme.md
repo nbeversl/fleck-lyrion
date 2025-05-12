@@ -1,6 +1,6 @@
 # Fleck Theme for Lyrion Media Server
 
-[Lyrion Music Server](https://lyrion.org/) (formerly Logitech Media Server) began as a server for Squeezebox devices [Slim Devices](https://en.wikipedia.org/wiki/Squeezebox_(network_music_player)) and was made [open source](https://github.com/LMS-Community) when these devices were discontinued. It remains a widely used alternative to commercially licensed media servers.
+[Lyrion Music Server](https://lyrion.org/) (formerly Logitech Media Server) began as a server for Squeezebox and [Slim Devices](https://en.wikipedia.org/wiki/Squeezebox_(network_music_player)) and was made [open source](https://github.com/LMS-Community) when these devices were discontinued. It remains a widely used alternative to commercially licensed media servers.
 
 Though LMS is feature rich with many contributed extensions, it is also appealing for its **stability**.
 
