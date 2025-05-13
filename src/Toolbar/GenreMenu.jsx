@@ -3,6 +3,19 @@ import { Dialog, List, ListItem, ToolbarButton } from "react-onsenui";
 import { Scrollbars } from "react-custom-scrollbars";
 
 class GenreMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOpen: false,
+    };
+  }
+
+  handleClose() {
+    this.setState({isOpen: false})
+  }
+  handleOpen() {
+    this.setState({isOpen: true})
+  }
 
   render() {
     const DialogStyle = {
@@ -14,43 +27,41 @@ class GenreMenu extends React.Component {
       <div className="genre-selector">
         <ToolbarButton
           className="order-select"
-          onClick={() => {
-            this.props.toggleGenreSelect();
-            this.setState({target: this.btn });
-          }}>
+          onClick={this.handleOpen.bind(this)}>
           <b>Genre</b> {this.props.genreSelected ? ': '+ this.props.genreSelected : ''}
         </ToolbarButton>
-        <Dialog
-          animation={"none"}
-          className={"player-selector-dialog " + this.props.theme}
-          isOpen={this.props.genreSelectOpen}
-          onCancel={this.props.closeGenreSelect}
-          getTarget={() => this.state.target}
-          cancelable={true}>
-          <Scrollbars style={DialogStyle}>
-            <div className="content">
-              <List
-                dataSource={Object.keys(this.props.genres)}
-                renderRow={(row, idx) => (
-                  <ListItem
-                    key={idx}
-                    onClick={(e) => {
-                      this.setState({
-                        genreSelected: row,
-                        isOpen: false,
-                      });
-                      this.props.handleGenreChange(row);
-                    }}
-                    modifier="tappable"
-                    tappable={true}
-                  >
-                    {row}
-                  </ListItem>
-                )}
-              />
-            </div>
-          </Scrollbars>
-        </Dialog>
+        {this.state.isOpen &&
+          <Dialog
+            animation={"none"}
+            className={"genre-selector-dialog " + this.props.theme}
+            isOpen={true}
+            onCancel={this.handleClose.bind(this)}
+            isCancelable={true}>
+            <Scrollbars style={DialogStyle}>
+              <div className="content">
+                <List
+                  dataSource={Object.keys(this.props.genres)}
+                  renderRow={(row, idx) => (
+                    <ListItem
+                      key={idx}
+                      onClick={(e) => {
+                        this.setState({
+                          genreSelected: row,
+                          isOpen: false,
+                        });
+                        this.props.handleGenreChange(row);
+                      }}
+                      modifier="tappable"
+                      tappable={true}
+                    >
+                      {row}
+                    </ListItem>
+                  )}
+                />
+              </div>
+            </Scrollbars>
+          </Dialog>
+        }
       </div>
     );
   }
