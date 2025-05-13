@@ -794,7 +794,9 @@ ons-list-item.list-item {
 .list-item:hover {
   background-color: #807d7d40;
 }
-
+ons-dialog .dialog-container {
+  min-height: unset;
+}
 .dark-theme .dialog-container {
   background-color: black;
   
