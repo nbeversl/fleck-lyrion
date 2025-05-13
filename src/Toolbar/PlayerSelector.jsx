@@ -7,30 +7,21 @@ class PlayerSelector extends React.Component {
     super(props);
     this.state = {
       activePlayer: this.props.selectedPlayer,
-      isOpen: false,
     };
-  }
-  handleClose() {
-    this.setState({isOpen: false})
-  }
-  handleOpen(e) {
-    console.log("CLICKED")
-    e.stopPropagation();
-    this.setState({isOpen: true})
   }
 
   render() {
     return (
       <div className={"player-selector " + this.props.theme}>
-        <ToolbarButton onClick={this.handleOpen.bind(this)}>
+        <ToolbarButton onClick={this.props.openPlayerSelect}>
           <b>Player</b> {this.state.activePlayer ? ': '+ this.state.activePlayer : ''}
         </ToolbarButton>
 
-        {this.state.isOpen &&
+        {this.props.playerSelectOpen &&
           <Dialog
             animation={"none"}
             className={"player-selector-dialog " + this.props.theme}
-            onCancel={this.handleClose.bind(this)}
+            onCancel={this.props.closePlayerSelect}
             isCancelable={true}
             isOpen={true}>
             <div style={{ textAlign: "center" }}>

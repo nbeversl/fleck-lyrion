@@ -89,10 +89,6 @@ class MediaApp extends React.Component {
     });
   }
 
-  togglePlayerSelect() {
-    this.state.playerSelectOpen ? this.closePlayerSelect() : this.openPlayerSelect();
-  }
-
   toggleGenreSelect() {
     this.state.genreSelectOpen ? this.closeGenreSelect() : this.openGenreSelect();
   }
@@ -278,8 +274,8 @@ class MediaApp extends React.Component {
               <ControlBar
                 loadRandomAlbums={this.loadRandomAlbums.bind(this)}
                 playerSelectOpen={this.state.playerSelectOpen}
-                closeSelect={this.closePlayerSelect.bind(this)}
-                togglePlayerSelect={this.togglePlayerSelect.bind(this)}
+                closePlayerSelect={this.closePlayerSelect.bind(this)}
+                openPlayerSelect={this.openPlayerSelect.bind(this)}
                 targetPlayer={this.state.targetPlayer}
                 switchPlayer={this.switchPlayer.bind(this)}
                 toggleNowPlaying={this.toggleNowPlaying.bind(this)}

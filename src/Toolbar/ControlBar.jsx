@@ -75,7 +75,7 @@ class ControlBar extends React.Component {
             <PlayerControls
               playerSelectOpen={this.props.playerSelectOpen}
               closePlayerSelect={this.props.closePlayerSelect}
-              togglePlayerSelect={this.props.togglePlayerSelect}
+              openPlayerSelect={this.props.openPlayerSelect}
               targetPlayer={this.props.targetPlayer}
               switchPlayer={this.props.switchPlayer}
               getPlayerStatus={this.getPlayerStatus.bind(this)}
