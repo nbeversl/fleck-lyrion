@@ -149,31 +149,45 @@ class LMSLibrary {
   }
 
   async fullSearch(searchString) {
+    // get matching tracks for search string
     const searchResultsByTrack = await this.searchTracks(searchString)
+
+    // get matching artists for search string
     const artists = await this.searchContributors(searchString);
-    const trackResults = await Promise.all(
-      artists.map( (artist) => this.searchTracksByArtist(artist.id))
-    );
-    const albumResults = await Promise.all(
-      artists.map( (artist) => this.searchAlbumsByArtist(artist.id))
-    );
+
+    // get matching tracks for matching artists
+    const trackResults = await Promise.all(artists.map( (artist) => this.searchTracksByArtist(artist.id)));
+
+    // consolidate tracks
     const searchResultsTracks = [ ...searchResultsByTrack, ...trackResults.map(result => result.titles_loop).flat()];
-    let searchResultsAlbums = albumResults.map(result => result.albums_loop).flat();
+
+    // get matching albums for matching artists and flatten
+    const albumResultsForArtists = await Promise.all(artists.map( (artist) => this.searchAlbumsByArtist(artist.id)));
+    let searchResultsAlbums = albumResultsForArtists.map(result => result.albums_loop).flat();
+
+    // get matching albums for search string
+    const albumResults = await this.searchAlbums(searchString)
+
+    // consolidate albums and remove duplicates
+    searchResultsAlbums = [...albumResults, ...albumResultsForArtists]
+    searchResultsAlbums = searchResultsAlbums.filter((value, index, self) => self.indexOf(value) === index);
+
+    // get art for albums
     searchResultsAlbums = searchResultsAlbums.map( (album) => assignAlbumArt(album) )
     return { searchResultsTracks, searchResultsAlbums };
   }
 
-  searchAlbums(searchString, callback) {
+  searchAlbums(searchString) {
     return new Promise( (resolve) => {
       this.LMS.request(
       ["", ["albums", "0", "100", "search:" + searchString, "tags:ljaS"]],
       (r) => {
         let albums = [] 
         if (r?.result?.albums_loop) {
-          albums = r.result.albums_loop.map( (album) => {
+          r.result.albums_loop.map( (album) => {
             album = assignAlbumArt(album)
             this.albums[album.id] = album
-            return album
+            albums.push(album)
           }) 
         }
         resolve(albums || []);
