@@ -35,26 +35,20 @@ class Album extends React.Component {
         return;
       }
       this.props.library.getAlbumFromID(this.props.getFromId, (album) => {
-        this.setState({
-          album: album,
-        });
+        this.setState({album: album, });
       });
     }
 
     if (this.props.album) {
       if (!this.state.album) {
-        this.setState({
-          album: this.props.album,
-        });
+        this.setState({album: this.props.album});
         if (this.state.modalOpen && ! this.state.discs) {
           this.getMyTracks()
         }
         return;
       }
       if (this.props.album.id != this.state.album.id) {
-        this.setState({
-          album: this.props.album,
-        });
+        this.setState({album: this.props.album });
       }
     }
   }
