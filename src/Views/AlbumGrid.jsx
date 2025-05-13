@@ -35,12 +35,9 @@ class AlbumGrid extends React.PureComponent {
   componentDidUpdate() {
     var albumDict = makeAlbumDict(this.props.albumList);
     if ( !areSame(albumDict, this.state.albumDict) ||
-      this.props.theme !== this.state.theme
+      this.props.theme !== this.state.theme ||
+      this.props.orderType != this.state.orderType
     ) {
-      if (this.props.layout) {
-        this.setState({ layout: this.props.layout });
-      }
-
       this.setState({
           albumDict: albumDict,
           theme: this.props.theme,
@@ -52,40 +49,38 @@ class AlbumGrid extends React.PureComponent {
     }
   }
 
-  makeLayout() {
+  makeLayout(order) {
+    var albumDict = makeAlbumDict(this.props.albumList);
+    if (!order) {      
+      var order = Object.keys(albumDict);
+    }
     let albums = []
     let keys = []
     let suffix = 1;
-    this.props.albumList.map( (album) => {
-      if (keys.includes(album.id)) {
-        album.key = album.id.toString() + '-' + suffix.toString()
-        suffix++
-      } else {
-        album.key = album.id
-      }
-      keys.push(album.key)
-      albums.push(album)
-    })
+    for (let i=0; i<order.length; i++) {
+      let album = albumDict[order[i]];
+        if (keys.includes(album.id)) {
+          album.key = album.id.toString() + '-' + suffix.toString()
+          suffix++
+        } else {
+          album.key = album.id
+        }
+        keys.push(album.key)
+        albums.push(album)
+    }
     this.setState({albums: albums});
   }
 
   reArrange(initial) {
     if (initial || this.state.orderType !== this.props.orderType) {
       this.setState({ orderType: this.props.orderType }, () => {
-        switch (this.state.orderType) {
-          case "alpha":
-            var order = Object.keys(this.state.albumDict);
-            this.makeLayout(order);
-            break;
-
-          case "shuffle":
-            var albumDict = makeAlbumDict(this.props.albumList);
-            var order = Object.keys(albumDict);
-            order = shuffle(order);
-            this.makeLayout(order);
-            break;
-          default:
-            break;
+        if (this.state.orderType == "alpha") {
+            this.makeLayout();
+        } else {
+          var albumDict = makeAlbumDict(this.props.albumList);
+          var order = Object.keys(albumDict);
+          order = shuffle(order);
+          this.makeLayout(order);
         }
       });
     }

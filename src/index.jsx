@@ -80,6 +80,10 @@ class MediaApp extends React.Component {
     return this.state.browserPlayer
   }
 
+  setOrderType(type) {
+    this.setState({orderType: type});
+  }
+
   openPlayerSelect() {
     this.setState({ playerSelectOpen: true });
     var pingingPlayers = setInterval(this.getAvailablePlayers.bind(this), 3000);
@@ -292,6 +296,7 @@ class MediaApp extends React.Component {
                 searchFor={this.searchFor.bind(this)}
                 setSearchString={this.setSearchString.bind(this)}
                 searchString={this.state.searchString}
+                setOrderType={this.setOrderType.bind(this)}
                 orderType={this.state.orderType}
                 columns={this.state.columns}
                 trackGridChange={this.trackGridChange.bind(this)}
