@@ -10,7 +10,6 @@ class AlbumGrid extends React.PureComponent {
       shuffledAlbums: [],
       order: [],
       lastPinch: new Date().getTime(),
-      genre: null,
       layout: null,
       orderType: null,
       theme: null,
@@ -18,11 +17,11 @@ class AlbumGrid extends React.PureComponent {
   }
 
   componentDidMount() {
+    this.makeLayout()
     var albumDict = makeAlbumDict(this.props.albumList);
     this.setState(
       {
         albumDict: albumDict,
-        genre: this.props.genre,
         orderType: this.props.orderType,
         columns: this.props.columns,
         theme: this.props.theme,
@@ -35,26 +34,18 @@ class AlbumGrid extends React.PureComponent {
 
   componentDidUpdate() {
     var albumDict = makeAlbumDict(this.props.albumList);
-    if (
-      this.props.genre !== this.state.genre ||
-      !areSame(albumDict, this.state.albumDict) ||
-      this.props.columns !== this.state.columns ||
+    if ( !areSame(albumDict, this.state.albumDict) ||
       this.props.theme !== this.state.theme
     ) {
       if (this.props.layout) {
         this.setState({ layout: this.props.layout });
       }
 
-      this.setState(
-        {
+      this.setState({
           albumDict: albumDict,
-          genre: this.props.genre,
-          columns: this.props.columns,
           theme: this.props.theme,
         },
-        () => {
-          this.reArrange(true);
-        }
+        () => {this.reArrange(true); }
       );
     } else {
       this.reArrange();
@@ -62,9 +53,20 @@ class AlbumGrid extends React.PureComponent {
   }
 
   makeLayout() {
-    this.setState({
-      albums: this.props.albumList,
-    });
+    let albums = []
+    let keys = []
+    let suffix = 1;
+    this.props.albumList.map( (album) => {
+      if (keys.includes(album.id)) {
+        album.key = album.id.toString() + '-' + suffix.toString()
+        suffix++
+      } else {
+        album.key = album.id
+      }
+      keys.push(album.key)
+      albums.push(album)
+    })
+    this.setState({albums: albums});
   }
 
   reArrange(initial) {
@@ -117,7 +119,7 @@ class AlbumGrid extends React.PureComponent {
               theme={this.props.theme}>
               {this.state.albums.map( (album) =>
                  <Album
-                    key={album.id}
+                    key={album.key}
                     album={this.state.albumDict[album.id]}
                     checkPlayerInstance={this.props.checkPlayerInstance}
                     playerInstance={this.props.playerInstance}

@@ -148,15 +148,21 @@ class LMSLibrary {
     });
   }
 
- async searchLibraryByContributor(contributor) {
-    const artists = await this.searchContributors(contributor);
+  async fullSearch(searchString) {
+    const searchResultsByTrack = await this.searchTracks(searchString)
+    const artists = await this.searchContributors(searchString);
     const trackResults = await Promise.all(
       artists.map( (artist) => this.searchTracksByArtist(artist.id))
     );
-    const allTracks = trackResults.map(result => result.titles_loop).flat();
-    return allTracks;
+    const albumResults = await Promise.all(
+      artists.map( (artist) => this.searchAlbumsByArtist(artist.id))
+    );
+    const searchResultsTracks = [ ...searchResultsByTrack, ...trackResults.map(result => result.titles_loop).flat()];
+    let searchResultsAlbums = albumResults.map(result => result.albums_loop).flat();
+    searchResultsAlbums = searchResultsAlbums.map( (album) => assignAlbumArt(album) )
+    return { searchResultsTracks, searchResultsAlbums };
   }
-  
+
   searchAlbums(searchString, callback) {
     return new Promise( (resolve) => {
       this.LMS.request(
@@ -176,21 +182,22 @@ class LMSLibrary {
   }
 
   searchTracks(searchString, callback) {
-    this.LMS.request(
-      [
-        "",
+    return new Promise( (resolve) => { 
+      this.LMS.request(
         [
-          "titles",
-          "0",
-          "100",
-          "search:" + searchString,
-          "tags:id**e****o****t****m****u****a****l****J**",
+          "",
+          [
+            "titles",
+            "0",
+            "100",
+            "search:" + searchString,
+            "tags:id**e****o****t****m****u****a****l****J**",
+          ],
         ],
-      ],
-      (r) => {
-        callback(r.result.titles_loop || []);
-      }
-    );
+        (r) => {
+          resolve(r.result.titles_loop || []);
+        })
+    })
   }
 
   async searchContributors(searchString, callback) {
@@ -222,12 +229,17 @@ class LMSLibrary {
   }
 
   searchAlbumsByArtist(artist_id, callback) {
-    this.LMS.request(
-      ["", ["albums", "0", "100", "artist_id:" + artist_id, "tags:idjtla"]],
-      (r) => {
-        callback(r.result.albums_loop);
-      }
-    );
+    return new Promise ( (resolve) => {
+        this.LMS.request([
+          "", 
+          [
+            "albums",
+            "0",
+            "100",
+            "artist_id:" + artist_id,
+            "tags:idjtla"]],
+        (r) => { resolve(r.result) });
+    });
   }
 
   getPlaylists(callback) {

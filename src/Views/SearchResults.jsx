@@ -4,12 +4,6 @@ import AlbumGrid from "./AlbumGrid";
 import { ProgressCircular } from "react-onsenui";
 
 class SearchResults extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      artistResults: [],
-    };
-  }
 
   render() {
     return (

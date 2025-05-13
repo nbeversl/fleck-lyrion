@@ -227,17 +227,11 @@ class MediaApp extends React.Component {
       searchResultsTracks: []
     });
 
-    const albumResults = await this.state.library.searchAlbums(item)
-    this.setState({ searchResultsAlbums: albumResults });
-
-    this.state.library.searchTracks(item, (result) => {
-      this.setState({ searchResultsTracks: result }, async () => {
-         const additionalTracks = await this.state.library.searchLibraryByContributor(item);
-         this.setState( (prevState) => {
-            searchResultsTracks: [...prevState.searchResultsTracks, ...additionalTracks]
-          });
-       })
-    })
+   const {searchResultsTracks, searchResultsAlbums } = await this.state.library.fullSearch(item);
+   this.setState({
+      searchResultsTracks: searchResultsTracks,
+      searchResultsAlbums: searchResultsAlbums
+    });
   }
 
   setColumns(columns) {

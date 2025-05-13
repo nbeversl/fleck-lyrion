@@ -24,9 +24,18 @@ class TrackWithSourceAlbum extends React.Component {
 
     render() {
         let List = [];  
-        this.props.tracks.forEach( (track) => {
+        let keys = []
+        let suffix = 1;
+        this.props.tracks.map( (track) => {
+            if (keys.includes(track.id)) {
+                track.key = track.id.toString() + '-' + suffix.toString()
+                suffix++
+              } else {
+                track.key = track.id
+              }
+              keys.push(track.key)
             List.push( 
-                <Card key={track.id} >  
+                <Card key={track.key}> 
                     <div className="track-container">         
                         <div className="track-info">
                             <div className="title-codec-duration">
