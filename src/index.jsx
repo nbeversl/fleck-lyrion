@@ -7,6 +7,7 @@ import { BrowserPlayer } from "./BrowserPlayer";
 import { ProgressCircular } from "react-onsenui";
 import { LibraryView } from "./LibraryView";
 import { ControlBar } from "./Toolbar/ControlBar";
+import "./style.css"; // development only
 import "./OnsenCSS/onsenui-core.min.css";
 import "./OnsenCSS/onsen-css-components.min.css";
 
