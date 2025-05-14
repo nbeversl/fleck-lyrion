@@ -160,16 +160,18 @@ class LMSLibrary {
 
     // consolidate tracks
     const searchResultsTracks = [ ...searchResultsByTrack, ...trackResults.map(result => result.titles_loop).flat()];
-
     // get matching albums for matching artists and flatten
     const albumResultsForArtists = await Promise.all(artists.map( (artist) => this.searchAlbumsByArtist(artist.id)));
-    let searchResultsAlbums = albumResultsForArtists.map(result => result.albums_loop).flat();
+    let searchResultsAlbums = []
+    albumResultsForArtists.map(result => {
+      searchResultsAlbums = [...searchResultsAlbums, ...result.albums_loop];
+    })
 
     // get matching albums for search string
     const albumResults = await this.searchAlbums(searchString)
 
     // consolidate albums and remove duplicates
-    searchResultsAlbums = [...albumResults, ...albumResultsForArtists]
+    searchResultsAlbums = [...albumResults, ...searchResultsAlbums]
     searchResultsAlbums = searchResultsAlbums.filter((value, index, self) => self.indexOf(value) === index);
 
     // get art for albums
@@ -252,7 +254,8 @@ class LMSLibrary {
             "100",
             "artist_id:" + artist_id,
             "tags:idjtla"]],
-        (r) => { resolve(r.result) });
+        (r) => {
+         resolve(r.result) });
     });
   }
 
