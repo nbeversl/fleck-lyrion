@@ -2,6 +2,7 @@
     <id>fleck-frontend</id>
     <name>Fleck Frontend</name>
     <version>1.0</version>
+    <module>Plugins::FleckFrontend::Plugin</module>
     <description>A skin focused on album art, easy browsing by disc, and thorough search functionality. Plays to the client device through the browser. Optimized for mobile screens.</description>
     <author>nbeversl</author>
     <main>index.html</main>
