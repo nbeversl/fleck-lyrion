@@ -16,9 +16,6 @@ ons-dialog .dialog {
   border-radius: 2px;
 }
 
-.duration {
-  word-break: normal;
-}
 
 .library-view { z-index: 100; }
 
@@ -165,6 +162,8 @@ ons-toolbar.toolbar-showing { display: inline-block; }
   margin-bottom: 1rem;
   margin-right: 1rem;
 }
+
+.tracklist-artist { font-weight: 800; }
 
 .album-info {
   display: flex;
@@ -429,7 +428,9 @@ input.search-input {
   width: 12rem;
 }
 
-/* Track Info */
+/* Track cards */
+
+.card { color: black; }
 
 .codec {
   color: grey;
@@ -466,14 +467,12 @@ input.search-input {
   left: -3px;
 }
 
-/* Track cards */
+.duration { word-break: normal; }
 
 .track-buttons {
   display: flex;
   align-items: center;
 }
-
-.card { color: black; }
 
 .track-container {
   display: flex;
@@ -523,12 +522,13 @@ input.search-input {
   justify-content: space-between;
 }
 .loading-text { font-size: 5em; }
-.tracklist-artist { font-weight: 800; }
+
 .tracklist-album-title { font-style: italic; }
 ons-range.track-time { width: 100%; }
 
 .button--large--cta {
   background-color: transparent !important;
+  border-radius: 0px;
 }
 
 .button--large--cta:active {
