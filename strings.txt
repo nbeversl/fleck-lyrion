@@ -1,0 +1,5 @@
+PLUGIN_FLECK
+	EN Fleck Skin
+
+PLUGIN_FLEC_DESC
+	EN	A skin focused on album art, easy browsing by disc, and thorough search functionality. Plays to the client device through the browser. Optimized for mobile screens.

@@ -1,6 +1,5 @@
 <?xml version='1.0' standalone='yes'?>
 <extensions>
-	<id>33342234234234234234</id>
 	<name>PLUGIN_FLECK</name>
 	<module>Plugins::Fleck::Plugin</module>
 	<version>0.0.7</version>
