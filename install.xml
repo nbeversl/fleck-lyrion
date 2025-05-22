@@ -3,7 +3,7 @@
 	<name>PLUGIN_FLECK</name>
 	<module>Plugins::Fleck::Plugin</module>
 	<version>0.0.7</version>
-	<description>PLUGIN_FLEC_DESC</description>
+	<description>PLUGIN_FLECK_DESC</description>
 	<creator>NB</creator>
 	<homepageURL>https://github.com/nbeversl/fleck</homepageURL>
 	<defaultState>enabled</defaultState>
