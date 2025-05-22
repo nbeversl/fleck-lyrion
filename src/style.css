@@ -2,13 +2,7 @@ body {
   height: 100vh;
 }
 
-body.dark-theme {
-  background-color: black;
-}
 
-body.light-theme {
-  background-color: #d9d9d9;
-}
 
 ons-button,
 ons-button.button--material {
@@ -104,6 +98,7 @@ ons-toolbar-button, button {
   cursor: pointer;
   max-width: 100%;
   object-fit: cover;
+  border-radius: 2px;
 }
 
 .album-grid-css .button--large--cta {
@@ -256,9 +251,6 @@ ons-toolbar-button, button {
   background-color: white;
 }
 
-.light-theme .page__background {
-  background-color: #d9d9d9 !important;
-}
 
 .control-bar.hidden {
   visibility: hidden;
@@ -567,9 +559,6 @@ ons-toolbar-button.player-control-button {
 .player-selector-dialog .dialog {
   height: auto !important;
 }
-.dark-theme .dialog {
-  box-shadow: 0px 0px 20px 3px #0b0530;
-}
 
 .album-modal .dialog {
   width: 90%;
@@ -748,22 +737,64 @@ ons-button.show-controlbar {
   max-width: 100%;
 }
 
+/*
+  Light Theme
+*/
+
+.light-theme .page__background {
+  background-color: #d9d9d9 !important;
+}
+
+body.light-theme {
+  background-color: #d9d9d9;
+}
+
 /* 
    Dark Theme 
 */
-
-.dark-theme .dialog .list-item {
+body.dark-theme {
+  background-color: black;
+}
+.dark-theme .dialog-container {
+  background-color: black;
+  
+}
+.dark-theme.album-modal .dialog-container {
+/*  border: 1px solid #404040;*/
   background-color: black;
   color: white;
 }
 
+.dark-theme button.search-clear-button {
+  color: white;
+}  
+.dark-theme.control-bar {
+  box-shadow: -1px -6px 20px 0px #0b0530;
+  background-color: black;
+/*  border-top: 1px solid #93858559;*/
+}
+.dark-theme .album-info {
+  color: #a39191;
+}
+.dark-theme .card {
+  background-color: black;
+/*  border: 1px solid #404040;*/
+  color: rgb(179, 177, 177);
+}
+
+.dark-theme .dialog {
+  box-shadow: 0px 0px 20px 3px #0b0530;
+}
+.dark-theme .dialog .list-item {
+  background-color: black;
+  color: white;
+}
 .dark-theme .album-text-info {
   color: white;
 }
 .dark-theme .list-item:hover {
   background-color: #a39191;
 }
-
 .dark-theme .search-bar input {
   background-color: #272727;
   color: white;
@@ -773,12 +804,6 @@ ons-button.show-controlbar {
 }
 .dark-theme .toolbar {
   color: #a39191;;
-}
-.dark-theme img.album-image {
-  width: 98%;
-  max-width: 100%;
-  border-width: 2px;
-  border-radius: 2px;
 }
 
 .album-image-modal {
@@ -797,35 +822,7 @@ ons-list-item.list-item {
 ons-dialog .dialog-container {
   min-height: unset;
 }
-.dark-theme .dialog-container {
-  background-color: black;
-  
-}
-.dark-theme.album-modal .dialog-container {
-  border: 1px solid #404040;
-  background-color: black;
-  color: white;
-}
 
-.dark-theme .btn-icon  {
-  stroke: #0076FF;
-}
-.dark-theme button.search-clear-button {
-  color: white;
-}  
-.dark-theme.control-bar {
-  box-shadow: -1px -6px 20px 0px #0b0530;
-  background-color: black;
-  border-top: 1px solid #93858559;
-}
-.dark-theme .album-info {
-  color: #a39191;
-}
-.dark-theme .card {
-  background-color: black;
-  border: 1px solid #404040;
-  color: rgb(179, 177, 177);
-}
 
 .duration {
   word-break: normal;
