@@ -1,8 +1,4 @@
-body {
-  height: 100vh;
-}
-
-
+body { height: 100vh; }
 
 ons-button,
 ons-button.button--material {
@@ -15,13 +11,8 @@ ons-toolbar {
   bottom: 0px !important;
 }
 
-ons-toolbar.toolbar-hidden {
-  display: none;
-}
-
-ons-toolbar.toolbar-showing {
-  display: inline-block;
-}
+ons-toolbar.toolbar-hidden { display: none; }
+ons-toolbar.toolbar-showing { display: inline-block; }
 
 ons-toolbar-button, button {
   cursor: pointer;
@@ -32,9 +23,6 @@ ons-toolbar-button, button {
 .title-codec-duration {
   margin-bottom: .5rem;
   flex-wrap: wrap;
-}
-.react-grid-item {
-  overflow: hidden;
 }
 
 .player-controls {
@@ -55,8 +43,8 @@ ons-toolbar-button, button {
   z-index: 100;
   overflow: hidden;
   max-width: 100%;
-
 }
+
 .album-title-text-default {
   height: 100px;
   font-size: 14px;
@@ -64,6 +52,7 @@ ons-toolbar-button, button {
   text-wrap: initial;
   line-height: 1.5rem;
 }
+
 .grid-tracklist {
   font-size: 10px;
   display: flex;
@@ -73,12 +62,8 @@ ons-toolbar-button, button {
   padding-bottom: 70px;
 }
 
-.bpm-track-button {
-  display: block;
-}
-.main-album-grid {
-  width: 100%;
-}
+.bpm-track-button { display: block; }
+.main-album-grid { width: 100%; }
 .album-grid-css {
   display: grid;
   gap: 16px;
@@ -101,9 +86,7 @@ ons-toolbar-button, button {
   border-radius: 2px;
 }
 
-.album-grid-css .button--large--cta {
-  padding: 0;
-}
+.album-grid-css .button--large--cta { padding: 0; }
 .album-grid-0 {
   grid-template-columns: repeat(1, 1fr);
   gap: 2rem;
@@ -132,7 +115,6 @@ ons-toolbar-button, button {
   grid-template-columns: repeat(7, 1fr);
   gap: 1rem;
 }
-
 .album-grid-7 {
   grid-template-columns: repeat(8, 1fr);
   gap: 1rem;
@@ -148,13 +130,11 @@ ons-toolbar-button, button {
   grid-template-columns: repeat(10, 1fr);
   gap: 1rem;
 }
-
 .album-grid-0 .album-text-info,
 .album-grid-1 .album-text-info {
   font-size: 4rem;
   line-height: 4.25rem;
 }
-
 .album-grid-2 .album-text-info {
   font-size: 1.5rem;
   line-height: 1.75rem;
@@ -174,12 +154,8 @@ ons-toolbar-button, button {
   line-height: 1rem;
 }
 
-.disc-icon {
-  opacity: .2;
-}
-.album-no-artwork {  
-  position: relative;
-}
+.disc-icon { opacity: .2; }
+.album-no-artwork { position: relative; }
 
 .album-text-info {
   position: absolute;
@@ -205,25 +181,8 @@ ons-toolbar-button, button {
     Album Grid view images and containers 
 */
 
-.album-image {
-  background-position: center;
-}
-.modal__content {
-  height: 100vh;
-}
-.handle-container {
-  z-index: 50;
-  height: 0px;
-  width: 0px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0.5;
-}
-.handle {
-  width: 40px;
-  height: 40px;
-}
+.album-image { background-position: center; }
+
 .loading-message {
   width: 300px;
   margin: auto auto;
@@ -235,9 +194,7 @@ ons-toolbar-button, button {
   margin-top: 20px;
   font-size: 1.5em;
 }
-.album-cover {
-  overflow: hidden;
-}
+.album-cover { overflow: hidden; }
 .control-bar {
   visibility: visible;
   display: flex;
@@ -370,9 +327,7 @@ input.search-input {
   align-items: center;
   justify-content: center;
 }
-.view-and-search-selector ons-button {
-  flex-grow: 1;
-}
+.view-and-search-selector ons-button { flex-grow: 1; }
 
 .track-buttons {
   display: flex;
@@ -394,30 +349,20 @@ input.search-input {
   width: auto;
   height: 12px;
 }
-.now-playing-album-title {
-  font-weight: bold;
-}
-button {
-  min-width: 40px !important;
-}
-.custom-den-controls {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 400px;
-}
+.now-playing-album-title { font-weight: bold; }
+button { min-width: 40px !important; }
+
 .base-lms-controls {
   display: flex;
   padding: 0px 10px 0px 10px;
   max-width: 400px;
 }
+
 ons-toolbar-button.player-control-button {
   flex-grow: 1;
   padding: 2px 15px 2px 15px;
 }
 
-.custom-den-controls .player-control-button {
-  margin-bottom: 0px;
-}
 .track-title {
   font-size: 1rem;
   text-transform: none;
@@ -451,9 +396,7 @@ ons-toolbar-button.player-control-button {
   margin-bottom: 1.5rem;
 }
 
-.card {
-  color: black;
-}
+.card { color: black; }
 
 .now-playing > img {
   max-width: 150px;
@@ -492,9 +435,7 @@ ons-toolbar-button.player-control-button {
   padding:.25rem;
 }
 
-.mini-album-cover.button {
-  padding: 0;
-}
+.mini-album-cover.button { padding: 0; }
 .mini-album-cover img {
   width: auto;
   height: 80px;
@@ -511,9 +452,7 @@ ons-toolbar-button.player-control-button {
   flex-basis: 80%;
   flex-direction: column;
 }
-.track-container .tracklist-album {
-  flex-grow: 1;
-}
+.track-container .tracklist-album { flex-grow: 1; }
 
 .grid-tracklist .track-details {
   margin-left: 1rem;
@@ -548,16 +487,10 @@ ons-toolbar-button.player-control-button {
   border-width: 2px;
   height: auto;
 }
-.track-list-dialog {
-  z-index: 100;
-}
+.track-list-dialog { z-index: 100; }
 .dialog {
   width: 80%;
   min-height: 100px;
-}
-
-.player-selector-dialog .dialog {
-  height: auto !important;
 }
 
 .album-modal .dialog {
@@ -586,34 +519,9 @@ ons-toolbar-button.player-control-button {
   height: auto;
 }
 
-.control-content {
-  margin-right: 4rem;
-}
-.drawer-button {
-  position: fixed;
-  top: 30px;
-  right: 30px;
-  z-index: 100;
-  background: white;
-  opacity: 0.4;
-  border: solid;
-  border-width: 1px;
-}
+.control-content { margin-right: 4rem; }
 
-.view-and-search-selector span {
-  font-size: 0.8em;
-}
-
-button.view-selector.composer-artist {
-  min-width: 80px !important;
-}
-.composer-artist segment__button {
-  line-height: 1.1em;
-}
-segment__button {
-  border-color: rgb(232, 233, 233) !important;
-  padding: 0px 5px 0px 5px;
-}
+.view-and-search-selector span { font-size: 0.8em; }
 
 .search-bar {
   position: relative;
@@ -640,9 +548,7 @@ segment__button {
   width: 12rem;
 }
 
-.library-view {
-  z-index: 100;
-}
+.library-view { z-index: 100; }
 .now-playing > img {
   max-width: 25%;
   float: right;
@@ -654,30 +560,16 @@ segment__button {
   min-width: 200px;
   justify-content: center;
 }
-.slider-volume ons-range {
-  width: 100%;
-}
-
+.slider-volume ons-range { width: 100%; }
 .track-range .timings {
   display: flex;
   justify-content: space-between;
 }
-.loading-text {
-  font-size: 5em;
-}
-.tracklist-album {
-  width: 80px;
-}
-
-.tracklist-artist {
-  font-weight: 800;
-}
-.tracklist-album-title {
-  font-style: italic;
-}
-ons-range.track-time {
-  width: 100%;
-}
+.loading-text { font-size: 5em; }
+.tracklist-album { width: 80px; }
+.tracklist-artist { font-weight: 800; }
+.tracklist-album-title { font-style: italic; }
+ons-range.track-time { width: 100%; }
 ons-button.show-controlbar {
   position: fixed;
   bottom: 10px;
@@ -709,7 +601,6 @@ ons-button.show-controlbar {
 .grid-size {
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   position: sticky;
   z-index: 100;
@@ -778,7 +669,7 @@ body.dark-theme {
 }
 .dark-theme .card {
   background-color: black;
-/*  border: 1px solid #404040;*/
+  border: 1px solid #404040;
   color: rgb(179, 177, 177);
 }
 
@@ -819,10 +710,15 @@ ons-list-item.list-item {
 .list-item:hover {
   background-color: #807d7d40;
 }
-ons-dialog .dialog-container {
-  min-height: unset;
-}
 
+ons-dialog .dialog-container,
+ons-dialog .dialog {
+  min-height: 0;
+}
+ons-dialog .dialog {
+ border: 1px solid #6a6a6a6a;
+ border-radius: 2px;
+}
 
 .duration {
   word-break: normal;
@@ -893,21 +789,17 @@ label {
 }
 
 @media (max-width: 450px) {
-  .grid-size {
-    display: none;
-  }
+  .grid-size { display: none; }
   .global-controls,
   .player-bar {
-    justify-content: center;
+justify-content: center;
   }
   .global-controls {
     margin-bottom: 2.5rem;
     flex-direction: column;
     align-items: center;
   }
-  .now-playing-album-cover {
-    width: 6rem;
-  }
+  .now-playing-album-cover { width: 6rem; }
   .now-playing-meta {
     width: auto;
     margin-right: 1rem;
@@ -926,18 +818,15 @@ label {
     justify-content: center;
     align-self: center;
   }
-
   .album-grid-0 .album-text-info,
   .album-grid-1 .album-text-info {
     font-size: 1.25rem;
     line-height: 1.5rem;
   }
-
   .album-grid-2 .album-text-info {
     font-size: 1rem;
     line-height: 1.25rem;
   }
-
   .album-grid-3 .album-text-info,
   .album-grid-4 .album-text-info,
   .album-grid-5 .album-text-info {
