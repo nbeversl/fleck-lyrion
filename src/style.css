@@ -20,6 +20,8 @@ ons-dialog .dialog {
   word-break: normal;
 }
 
+.library-view { z-index: 100; }
+
 .toolbar-button.hide-control-bar-button {
   width: 2.5rem;
   position: fixed;
@@ -91,7 +93,6 @@ ons-toolbar-button, button {
   align-items: center;
 }
 
-.bpm-track-button { display: block; }
 .album-grid-css .button--large--cta { padding: 0; }
 
 button { min-width: 40px !important; }
@@ -102,18 +103,6 @@ button { min-width: 40px !important; }
   border: 1px solid rgb(0, 118, 255); 
   border-radius: 3px;
   font-weight: 300;
-}
-
-
-button.genre-choice,
-button.search-button {
-  text-transform: none;
-  border: solid;
-  border-color: rgb(179, 177, 177);
-  border-width: 1px;
-  margin-left: 1em;
-  margin: 5px 5px 5px 0px;
-  padding: 2px 12px;
 }
 
 button.search-clear-button {
@@ -143,7 +132,6 @@ ons-toolbar {
 ons-toolbar.toolbar-hidden { display: none; }
 ons-toolbar.toolbar-showing { display: inline-block; }
 
-
 .btn-icon {
   width: 3rem;
   stroke: #0076FF;
@@ -159,14 +147,6 @@ ons-toolbar.toolbar-showing { display: inline-block; }
 .title-codec-duration {
   margin-bottom: .5rem;
   flex-wrap: wrap;
-}
-
-.alum-modal .scrolling-tracklist {
-  width: 100%;
-  position: absolute !important;
-  z-index: 100;
-  overflow: hidden;
-  max-width: 100%;
 }
 
 /* Albums */
@@ -191,6 +171,7 @@ ons-toolbar.toolbar-showing { display: inline-block; }
   margin: 0.5rem;
   justify-content: space-between;
 }
+
 .album-info .text-info {
   flex-basis: 80%;
   padding:.25rem;
@@ -202,12 +183,20 @@ ons-toolbar.toolbar-showing { display: inline-block; }
   height: 8rem;
 }
 
+.album-modal .dialog {
+  width: 90%;
+  max-width: 700px;
+  height: 80vh;
+}
+
 .album-image-modal {
   height: 100vh;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+.album-no-artwork { position: relative; }
 
 /* Album Grid */
 
@@ -292,8 +281,6 @@ ons-toolbar.toolbar-showing { display: inline-block; }
   line-height: 1rem;
 }
 
-.album-no-artwork { position: relative; }
-
 .album-text-info {
   position: absolute;
   top: 0;
@@ -313,12 +300,6 @@ ons-toolbar.toolbar-showing { display: inline-block; }
   overflow: hidden;
   height: 100vh;
 }
-
-/* 
-    Album Grid view images and containers 
-*/
-
-.album-cover { overflow: hidden; }
 
 /* Control Bar */
 
@@ -415,13 +396,11 @@ input.search-input {
   border-radius: 5px;
 }
 
-.player-bar {
+.player-control-bar {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1.5rem;
 }
-
-/* Dialog menus Genre menu */
 
 .player-selector {
   font-size: 40px !important;
