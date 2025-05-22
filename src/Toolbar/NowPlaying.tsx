@@ -1,4 +1,4 @@
-import { Album } from "../Album";
+import { Album } from "../Album/Album.jsx";
 import { LMSLibrary } from "../LMS/Library"; 
 import AlbumType from "../types/AlbumType.tsx";
 import ExtendedMetadata from "../Metadata/ExtendedMetadata";

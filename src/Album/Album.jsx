@@ -1,8 +1,8 @@
 import * as React from "react";
-import TrackListScrolling from "./Track/TrackListScrolling";
+import TrackListScrolling from "./TrackListScrolling";
 import { ProgressCircular, ToolbarButton, Button, Dialog } from "react-onsenui";
-import Disc from './svg/Disc';
-import CloseIcon from "./svg/CloseIcon";
+import Disc from '../svg/Disc';
+import CloseIcon from "../svg/CloseIcon";
 
 class Album extends React.Component {
   constructor(props) {

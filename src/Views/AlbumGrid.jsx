@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Album } from "../Album";
+import { Album } from "../Album/Album";
 import { GestureDetector } from "react-onsenui";
 import { Responsive, WidthProvider } from "react-grid-layout";
 
