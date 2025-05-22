@@ -99,7 +99,7 @@ class TrackListScrolling extends React.Component {
               </Button>
             </div>
             <hr />
-            <div className="grid-tracklist">{List}</div>
+            <div className="album-tracklist">{List}</div>
           </Scrollbars>
         ) : (
           <ProgressCircular />
