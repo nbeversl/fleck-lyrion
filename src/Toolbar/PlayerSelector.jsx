@@ -20,7 +20,7 @@ class PlayerSelector extends React.Component {
         {this.props.playerSelectOpen &&
           <Dialog
             animation={"none"}
-            className={"player-selector-dialog " + this.props.theme}
+            className={this.props.theme}
             onCancel={this.props.closePlayerSelect}
             isCancelable={true}
             isOpen={true}>
