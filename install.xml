@@ -7,6 +7,7 @@
 	<creator>NB</creator>
 	<homepageURL>https://github.com/nbeversl/fleck</homepageURL>
 	<defaultState>enabled</defaultState>
+	<type>2</type>
 	<targetApplication>
 		<id>SlimServer</id>
 		<minVersion>7.9.0</minVersion>
