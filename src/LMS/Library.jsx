@@ -35,29 +35,28 @@ class LMSLibrary {
     });
   }
 
-  getAllAlbumsforGenre(id, callback) {
-    this.titles = [];
-    this.LMS.request(
-      [
-        "",
-        [
-          "albums",
-          "0",
-          "50000",
-          "genre_id:" + id.toString(),
-          "tags:**a****id****e**ljatsS",
+  getAllAlbumsforGenre(id) {
+    return new Promise ( (resolve) => {
+      this.titles = [];
+      this.LMS.request(
+        ["",
+          [
+            "albums",
+            "0",
+            "50000",
+            "genre_id:" + id.toString(),
+            "tags:**a****id****e**ljatsS",
+          ],
         ],
-      ],
-      (r) => {
-        r.result.albums_loop.forEach((album) => {
-          album = assignAlbumArt(album)
-          this.albums[album.id] = album;
-        });
-        if (callback) {
-          callback();
+        (r) => {
+          r.result.albums_loop.forEach((album) => {
+            album = assignAlbumArt(album)
+            this.albums[album.id] = album;
+          });
+          resolve()
         }
-      }
-    );
+      );
+    })
   }
 
   getAllTracksForGenre(id) {

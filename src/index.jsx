@@ -184,16 +184,12 @@ class MediaApp extends React.Component {
     this.setState({ storedLayout: storedLayout });
   }
 
-  loadAlbumsForGenre(genreSelected, storedLayout) {
-    this.state.library.getAllAlbumsforGenre(
-      this.state.library.genres[genreSelected].id,
-      () => {
-        this.setState({
-          genreSelected: genreSelected,
-          storedLayout: storedLayout,
-        });
-      }
-    );
+  async loadAlbumsForGenre(genreSelected, storedLayout) {
+    await this.state.library.getAllAlbumsforGenre(this.state.library.genres[genreSelected].id);
+    this.setState({
+      genreSelected: genreSelected,
+      storedLayout: storedLayout,
+    });
   }
 
   loadRandomAlbums() {
