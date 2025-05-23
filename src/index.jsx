@@ -53,7 +53,7 @@ class MediaApp extends React.Component {
     let cookie = document.cookie;
     let theme = cookie.match(themeSetting);
     if (theme) theme = theme[0].replace("theme=", "");
-    else theme = "light-theme";
+    else theme = "dark-theme";
     this.setTheme(theme);
     if (window.screen.width < 450) {
       this.setState({columns: 2})

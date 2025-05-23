@@ -105,18 +105,18 @@ class ControlBar extends React.Component {
                 />
                 <div className="segments">
                 <Segment className="theme-control" 
-                index={this.props.theme === "light-theme" ? 0 : 1}>
-                  <button
-                    className="theme-select"
-                    onClick={() => this.props.setTheme("light-theme")}
-                  >
-                    Light
-                  </button>
+                index={this.props.theme === "dark-theme" ? 0 : 1}>
                   <button
                     className="theme-select"
                     onClick={() => this.props.setTheme("dark-theme")}
                   >
                     Dark
+                  </button>
+                  <button
+                    className="theme-select"
+                    onClick={() => this.props.setTheme("light-theme")}
+                  >
+                    Light
                   </button>
                 </Segment>
             
