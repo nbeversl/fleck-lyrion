@@ -267,7 +267,7 @@ class MediaApp extends React.Component {
     return (
       <div className={`main ${this.state.theme}`}>
         {this.state.library ? (
-          <div>
+          <>
             {this.state.toolbarShowing &&
               <ControlBar
                 loadRandomAlbums={this.loadRandomAlbums.bind(this)}
@@ -323,7 +323,7 @@ class MediaApp extends React.Component {
                 />
               </div>
             }  
-          </div>
+          </>
           ) : (
           <div className="loading-message">
             <ProgressCircular />
