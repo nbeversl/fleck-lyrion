@@ -103,6 +103,11 @@ class MediaApp extends React.Component {
     this.setState({ genreSelectOpen : true })
   }
 
+  play(disc, trackNumber) {
+    this.state.playerInstance.playAlbumFromTrackAndContinue(
+      disc, // disc doesn't matter, only passes the album ID
+      trackNumber);
+  }
 
   getAvailablePlayers() {
     this.state.LMS.request(["", ["serverstatus", "0", "20"]], (response) => {
@@ -316,6 +321,7 @@ class MediaApp extends React.Component {
                   orderType={this.state.orderType}
                   columns={this.state.columns}
                   theme={this.state.theme}
+                  play={this.play.bind(this)}
                   setColumns={this.setColumns.bind(this)}
                   toolbarShowing={this.state.toolbarShowing}
                   hideToolbar={this.handleHideToolbar.bind(this)}

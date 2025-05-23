@@ -17,7 +17,7 @@ class TrackWithSourceAlbum extends React.Component {
   playTrack(track) {
     var that = this;
     this.props.checkPlayerInstance( () => {
-      that.props.playerInstance.playAlbumFromTrackAndContinue(track, track.tracknum - 1); 
+      that.props.play(track, track.tracknum - 1); 
     });
   }
 
@@ -65,6 +65,7 @@ class TrackWithSourceAlbum extends React.Component {
                 library={this.props.library}
                 LMS={this.props.LMS}
                 handle={false}
+                play={this.props.play}
                 theme={this.props.theme}
               />
             </div> 

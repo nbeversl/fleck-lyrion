@@ -14,6 +14,7 @@ class SearchResults extends React.Component {
             library={this.props.library}
             LMS={this.props.LMS}
             orderType={"alpha"}
+            play={this.props.play}
             hideToolbar={this.props.hideToolbar}
             checkPlayerInstance={this.props.checkPlayerInstance}
             playerInstance={this.props.playerInstance}
@@ -32,6 +33,7 @@ class SearchResults extends React.Component {
                   tracks={this.props.searchResultsTracks}
                   checkPlayerInstance={this.props.checkPlayerInstance}
                   library={this.props.library}
+                  play={this.props.play}
                   LMS={this.props.LMS}
                   playerInstance={this.props.playerInstance}
                   theme={this.props.theme}

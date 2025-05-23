@@ -68,17 +68,9 @@ class Album extends React.Component {
     if (!this.props.playerInstance) {
       this.setState({modalOpen : false })
       this.props.checkPlayerInstance((playerInstance) => {
-        if (playerInstance) {
-          playerInstance.playAlbumFromTrackAndContinue(
-            disc, // disc doesn't matter, only passes the album ID
-            trackNumber);
-        }
+        if (playerInstance) this.props.play(disc, trackNumber);
       });
-    } else {
-      this.props.playerInstance.playAlbumFromTrackAndContinue(
-        disc, // disc doesn't matter, only passes the album ID
-        trackNumber);
-    }
+    } else this.props.play(disc, trackNumber)
   }
 
   handleOpen(e) {

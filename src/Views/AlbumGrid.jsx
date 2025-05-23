@@ -110,6 +110,7 @@ class AlbumGrid extends React.PureComponent {
               {this.state.albums.map( (album) =>
                  <Album
                     key={album.key}
+                    play={this.props.play}
                     album={this.state.albumDict[album.id]}
                     checkPlayerInstance={this.props.checkPlayerInstance}
                     playerInstance={this.props.playerInstance}

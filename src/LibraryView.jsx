@@ -53,11 +53,10 @@ class LibraryView extends React.Component {
       <Page onScroll={this.handleScroll.bind(this)}>
         {this.state.view == "grid" && this.props.genreSelected && 
           <AlbumGrid
-              albumList={
-                this.props.library.genres[this.props.genreSelected].albums
-              }
+              albumList={this.props.library.genres[this.props.genreSelected].albums}
               hideToolbar={this.props.hideToolbar}
               genre={this.props.genreSelected}
+              play={this.props.play}
               clickHandler={this.handleAlbumChange}
               playerInstance={this.props.playerInstance}
               library={this.props.library}
@@ -74,18 +73,19 @@ class LibraryView extends React.Component {
 
         {this.state.view == "search"  &&
           <SearchResults
-              screenWidth={this.props.screenWidth}
-              searchResultsAlbums={this.props.searchResultsAlbums}
-              searchResultsTracks={this.props.searchResultsTracks}
-              library={this.props.library}
-              hideToolbar={this.props.hideToolbar}
-              checkPlayerInstance={this.props.checkPlayerInstance}
-              LMS={this.props.LMS}
-              playerInstance={this.props.playerInstance}
-              columns={this.props.columns}
-              setColumns={this.props.setColumns}
-              theme={this.props.theme}
-            />
+            screenWidth={this.props.screenWidth}
+            searchResultsAlbums={this.props.searchResultsAlbums}
+            searchResultsTracks={this.props.searchResultsTracks}
+            library={this.props.library}
+            play={this.props.play}
+            hideToolbar={this.props.hideToolbar}
+            checkPlayerInstance={this.props.checkPlayerInstance}
+            LMS={this.props.LMS}
+            playerInstance={this.props.playerInstance}
+            columns={this.props.columns}
+            setColumns={this.props.setColumns}
+            theme={this.props.theme}
+          />
         }
         
         { ! this.props.toolbarShowing &&
