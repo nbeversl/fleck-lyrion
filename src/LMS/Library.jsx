@@ -6,32 +6,32 @@ class LMSLibrary {
     this.LMS = LMS;
   }
 
-  establishLibrary(callback) {
-    this.LMS.request(["", ["genres", "0", "1000"]], (r) => {
-      r.result.genres_loop.forEach((item) => {
-        this.genres[item.genre] = {};
-        this.genres[item.genre].id = item.id;
-        this.LMS.request(
-          [
-            "",
+  establishLibrary() {
+    return new Promise( (resolve) => {
+      this.LMS.request(["", ["genres", "0", "1000"]], (r) => {
+        r.result.genres_loop.forEach((item) => {
+          this.genres[item.genre] = {};
+          this.genres[item.genre].id = item.id;
+          this.LMS.request(
             [
-              "albums",
-              "0",
-              "1000",
-              "genre_id:" + item.id.toString(),
-              "tags:ljaS",
-              "sort:artflow",
+              "",
+              [
+                "albums",
+                "0",
+                "1000",
+                "genre_id:" + item.id.toString(),
+                "tags:ljaS",
+                "sort:artflow",
+              ],
             ],
-          ],
-          (r) => {
-            r.result.albums_loop.forEach((album) => { album = assignAlbumArt(album) });
-            this.genres[item.genre].albums = r.result.albums_loop;
-          }
-        );
+            (r) => {
+              r.result.albums_loop.forEach((album) => { album = assignAlbumArt(album) });
+              this.genres[item.genre].albums = r.result.albums_loop;
+              resolve(this)
+            }
+          );
+        });
       });
-      if (callback) {
-        callback(this);
-      }
     });
   }
 

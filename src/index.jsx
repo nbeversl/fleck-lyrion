@@ -39,25 +39,25 @@ class MediaApp extends React.Component {
   }
 
   componentDidMount() {
-
-    this.setState({ LMS: new LMS() }, () => {
-      var l = new LMSLibrary(this.state.LMS);
-      l.establishLibrary((library) => {
-        this.setState({ library: library }, () => {
-          this.loadRandomAlbums();
-        });
-      });
-      this.getAvailablePlayers();
-    });
+    this.establishLibrary()
     const themeSetting = /theme=[^;]+/;
     let cookie = document.cookie;
     let theme = cookie.match(themeSetting);
     if (theme) theme = theme[0].replace("theme=", "");
     else theme = "dark-theme";
     this.setTheme(theme);
-    if (window.screen.width < 450) {
-      this.setState({columns: 2})
-    }
+    if (window.screen.width < 450) this.setState({columns: 2})
+  }
+
+  async establishLibrary() {
+    const LMSInstance = new LMS()
+    this.setState({ LMS: LMSInstance })
+    var l = new LMSLibrary(LMSInstance);
+    const library = await l.establishLibrary();
+    this.setState({ library: library }, () => {
+      this.loadRandomAlbums();
+    });
+    this.getAvailablePlayers();
   }
 
   closePlayerSelect() {
