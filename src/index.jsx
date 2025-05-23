@@ -107,6 +107,7 @@ class MediaApp extends React.Component {
     this.state.playerInstance.playAlbumFromTrackAndContinue(
       disc, // disc doesn't matter, only passes the album ID
       trackNumber);
+    this.setState({ toolbarShowing: true });
   }
 
   getAvailablePlayers() {
