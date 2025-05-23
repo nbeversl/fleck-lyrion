@@ -639,7 +639,6 @@ body.dark-theme {
 }
 
 @media (max-width: 800px) {
-  .page__content { margin-top: 35px;}
   .now-playing-container { width: 95%; }
   .player-controls { margin-top: 1rem; }
   .control-bar-content { flex-direction: column; }
