@@ -7,7 +7,7 @@ class SearchResults extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         {this.props.searchResultsAlbums ? (
           <AlbumGrid
             albumList={this.props.searchResultsAlbums}
@@ -42,7 +42,7 @@ class SearchResults extends React.Component {
         ) : (
           <ProgressCircular />
         )}
-      </div>
+      </>
     );
   }
 }

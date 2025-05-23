@@ -22,11 +22,7 @@ class Album extends React.Component {
           album: album,
         });
       });
-    } else {
-      this.setState({
-        album: this.props.album,
-      });
-    }
+    } else this.setState({ album: this.props.album });
   }
 
   componentDidUpdate() {
@@ -35,7 +31,7 @@ class Album extends React.Component {
         return;
       }
       this.props.library.getAlbumFromID(this.props.getFromId, (album) => {
-        this.setState({album: album, });
+        this.setState({album: album });
       });
     }
 
@@ -58,12 +54,8 @@ class Album extends React.Component {
       var discs = {};
       tracks.forEach((track) => {
         var disc = track.disc;
-        if (!disc) {
-          disc = "1";
-        }
-        if (!Object.keys(discs).includes(disc)) {
-          discs[disc] = [];
-        }
+        if (!disc) disc = "1"
+        if (!Object.keys(discs).includes(disc)) discs[disc] = [];
         discs[disc].push(track);
       });
       this.setState({

@@ -19,16 +19,13 @@ class AlbumGrid extends React.PureComponent {
   componentDidMount() {
     this.makeLayout()
     var albumDict = makeAlbumDict(this.props.albumList);
-    this.setState(
-      {
+    this.setState({
         albumDict: albumDict,
         orderType: this.props.orderType,
         columns: this.props.columns,
         theme: this.props.theme,
       },
-      () => {
-        this.reArrange(true);
-      }
+      () => { this.reArrange(true) }
     );
   }
 
@@ -42,11 +39,9 @@ class AlbumGrid extends React.PureComponent {
           albumDict: albumDict,
           theme: this.props.theme,
         },
-        () => {this.reArrange(true); }
+        () => {this.reArrange(true) }
       );
-    } else {
-      this.reArrange();
-    }
+    } else this.reArrange();
   }
 
   makeLayout(order) {

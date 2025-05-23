@@ -43,7 +43,6 @@ class TrackWithSourceAlbum extends React.Component {
                                 <span className="duration"> ({ secondsToMinutes(track.duration) }) </span>
                                 <span className="codec"> { track.type === 'flc' ? 'FLAC' : track.type } </span>
                             </div>
-                            
                             <div><b>Artist</b>: {track.artist}</div>
                             <div><b>Album</b>: {track.album} </div>
                             <div>
@@ -57,14 +56,11 @@ class TrackWithSourceAlbum extends React.Component {
                                 <ToolbarButton onClick={ () => { this.playTrack(track) } } >
                                     <Play className={"btn-icon"} />
                                 </ToolbarButton>
-
                                 <a href={"/music/"+track.id+"/download/"}>
                                     <Download className="btn-icon download" />
-                                </a> 
-                                
+                                </a>   
                             </div>
                         </div>
-
                         <div className="tracklist-album">                    
                             <Album
                                 getFromId={track.album_id} 
