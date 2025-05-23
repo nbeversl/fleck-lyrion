@@ -33,7 +33,7 @@ A live demo is at https://fleck-theme.org/. Note the demo does not play music an
 
 ## Installation
 
-Add [https://github.com/nbeversl/lyrion-repo](https://github.com/nbeversl/lyrion-repo) to Additional Repositories in the Plugins menu. Then install Fleck from the plugins list.
+Add [https://raw.githubusercontent.com/nbeversl/lyrion-repo/refs/heads/main/repo.xml](https://raw.githubusercontent.com/nbeversl/lyrion-repo/refs/heads/main/repo.xml) to Additional Repositories in the Plugins menu. Then install Fleck from the plugins list.
 
 ## Issues
 
