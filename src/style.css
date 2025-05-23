@@ -639,33 +639,18 @@ body.dark-theme {
 }
 
 @media (max-width: 800px) {
-  .page__content {
-    margin-top: 35px;
-  }
-  .now-playing-container {
-    width: 95%;
-  }
-  .player-controls {
-    margin-top: 1rem;
-  }
-  #target,
-  .control-content {
-    flex-direction: column;
-  }
-  .album-modal .dialog {
-    width: 90%;
-  }
-  .album-image {
-    background-position: top !important;
-  }
+  .page__content { margin-top: 35px; }
+  .now-playing-container { width: 95%; }
+  .player-controls { margin-top: 1rem; }
+  .control-bar-content { flex-direction: column; }
+  .album-modal .dialog { width: 90%; }
+  .album-image { background-position: top !important; }
 }
 
 @media (max-width: 450px) {
   .grid-size { display: none; }
   .global-controls,
-  .player-bar {
-justify-content: center;
-  }
+  .player-bar { justify-content: center; }
   .global-controls {
     margin-bottom: 2.5rem;
     flex-direction: column;
@@ -676,16 +661,12 @@ justify-content: center;
     width: auto;
     margin-right: 1rem;
   }
-  .control-bar {
-    padding: 1rem 0 0 0;
-  }
-  .control-content {
+  .control-bar { padding: 1rem 0 0 0; }
+  .control-bar-content {
     width: 100%;
     margin-right: 0;
   }
-  .alpha-shuffle {
-    justify-content: space-around;
-  }
+  .alpha-shuffle { justify-content: space-around; }
   .search-bar {
     justify-content: center;
     align-self: center;
