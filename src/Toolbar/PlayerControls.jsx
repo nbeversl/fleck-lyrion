@@ -53,7 +53,7 @@ class PlayerControls extends React.Component {
 
   render() {
     return (
-      <div className="player-bar">
+      <div className="player-control-bar">
           <PlayerSelector
             togglePlayerSelect={this.props.togglePlayerSelect}
             playerSelectOpen={this.props.playerSelectOpen}

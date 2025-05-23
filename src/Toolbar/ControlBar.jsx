@@ -54,9 +54,7 @@ class ControlBar extends React.Component {
   render() {
     return (
       <Toolbar>
-        <div
-          ref={(divElement) => {this.divElement = divElement }}
-          className={`control-bar ${this.props.theme}`}>
+        <div className={`control-bar ${this.props.theme}`}>
           <div className={"control-bar-content"}>
             <NowPlaying
               handleSeekChange={this.handleSeekChange.bind(this)}

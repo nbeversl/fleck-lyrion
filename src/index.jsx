@@ -15,7 +15,6 @@ class MediaApp extends React.Component {
     super(props);
     this.state = {
       targetPlayer: 0,
-      elapsedTime: 0,
       library: null,
       players_loop: [],
       showNowPlaying: false,
@@ -28,7 +27,6 @@ class MediaApp extends React.Component {
       searchResultsTracks: null,
       LMS: null,
       columns: 5,
-      storage: null,
       storedLayout: null,
       orderType: "alpha",
       pingingPlayers: null,
@@ -164,10 +162,6 @@ class MediaApp extends React.Component {
     }, 500);
   }
 
-  handleViewChange(name) {
-    this.setState({ view: name });
-  }
-
   toggleNowPlaying() {
     this.setState({ showNowPlaying: !this.state.showNowPlaying });
   }
@@ -292,7 +286,6 @@ class MediaApp extends React.Component {
                 genreSelected={this.state.genreSelected}
                 toggleGenreSelect={this.toggleGenreSelect.bind(this)}
                 LMS={this.state.LMS}
-                handleViewChange={this.handleViewChange.bind(this)}
                 searchFor={this.searchFor.bind(this)}
                 setSearchString={this.setSearchString.bind(this)}
                 searchString={this.state.searchString}

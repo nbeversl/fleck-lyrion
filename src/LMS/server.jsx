@@ -1,9 +1,7 @@
 import $ from "jquery";
 
 class LMS {
-
     request(params, callback) {
-        
         var form_data = { 
             'id' :1,
             'method' : 'slim.request',
@@ -16,17 +14,13 @@ class LMS {
                 'Cache-Control': 'no-cache',
                 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
             },
-            
             async: true,
             url: '/jsonrpc.js',
             data: JSON.stringify(form_data),
             dataType: 'json',
-            success : (r) => {if (callback) { callback(r) } },
-            
+            success : (r) => {if (callback) { callback(r) } }, 
         });
-    
     }
-
     getTrack(trackID) {
         return '/music/' + trackID.toString() +'/download/.flac';
     }
