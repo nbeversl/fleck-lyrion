@@ -134,12 +134,6 @@ class Player {
       );
     };
 
-    this.ElapsedTimePerecent = (callback) => {
-      this.LMS.request([this.address, ["time", "?"]], (r) => {
-        callback(r.result._time);
-      });
-    };
-
     this.seek = (seconds) => {
       this.LMS.request([this.address, ["time", seconds]]);
     };
