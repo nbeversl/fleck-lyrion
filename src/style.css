@@ -639,18 +639,18 @@ body.dark-theme {
 }
 
 @media (max-width: 800px) {
-  .page__content { margin-top: 35px; }
+  .page__content { margin-top: 35px;}
   .now-playing-container { width: 95%; }
   .player-controls { margin-top: 1rem; }
   .control-bar-content { flex-direction: column; }
-  .album-modal .dialog { width: 90%; }
+  .album-modal .dialog { width: 90%;}
   .album-image { background-position: top !important; }
 }
 
 @media (max-width: 450px) {
   .grid-size { display: none; }
   .global-controls,
-  .player-bar { justify-content: center; }
+  .player-control-bar { justify-content: center;}
   .global-controls {
     margin-bottom: 2.5rem;
     flex-direction: column;
@@ -666,7 +666,7 @@ body.dark-theme {
     width: 100%;
     margin-right: 0;
   }
-  .alpha-shuffle { justify-content: space-around; }
+  .alpha-shuffle { justify-content: space-around;}
   .search-bar {
     justify-content: center;
     align-self: center;
