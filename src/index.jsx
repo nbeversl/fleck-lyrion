@@ -9,7 +9,6 @@ import { LibraryView } from "./LibraryView";
 import { ControlBar } from "./Toolbar/ControlBar";
 import "./OnsenCSS/onsenui-core.min.css";
 import "./OnsenCSS/onsen-css-components.min.css";
-import "./style.css"
 
 class MediaApp extends React.Component {
   constructor(props) {
