@@ -53,10 +53,27 @@ class MediaApp extends React.Component {
     this.setState({ LMS: LMSInstance })
     var l = new LMSLibrary(LMSInstance);
     const library = await l.establishLibrary();
-    this.setState({ library: library }, () => {
+    this.setState({ library: library }, async function test() {
+      await this.getAvailablePlayers();
+      this.getSavedState()
+    })
+  }
+
+  async getSavedState() {
+
+    const selectedGenre = localStorage.getItem("selectedGenre")
+    const selectedPlayer = localStorage.getItem("selectedPlayer")
+    if (selectedGenre !== 'null' && selectedGenre != null ) {
+      await this.handleGenreChange(selectedGenre)
+    } else {
       this.loadRandomAlbums();
-    });
-    this.getAvailablePlayers();
+    }
+    if (selectedPlayer) {
+      const playerNames = this.state.players_loop.map( player => {
+        return player.name
+      })
+      if (playerNames.includes(selectedPlayer)) this.switchPlayer(selectedPlayer)
+    }
   }
 
   closePlayerSelect() {
@@ -109,16 +126,17 @@ class MediaApp extends React.Component {
     this.setState({ toolbarShowing: true });
   }
 
-  getAvailablePlayers() {
-    this.state.LMS.request(["", ["serverstatus", "0", "20"]], (response) => {
-      var availablePlayers = [];
-      response.result.players_loop.forEach((player) => {
-        if (player.connected == 1) {
-          availablePlayers.push(player);
-        }
+  async getAvailablePlayers() {
+    return new Promise( (resolve) => { 
+      this.state.LMS.request(["", ["serverstatus", "0", "20"]], (response) => {
+        var availablePlayers = [];
+        response.result.players_loop.map( (player) => {
+          if (player.connected == 1) availablePlayers.push(player);
+        });
+        this.setState({ players_loop: availablePlayers });
+        resolve()
       });
-      this.setState({ players_loop: availablePlayers });
-    });
+    })
   }
 
   switchPlayer(playerName, callback) {
@@ -145,6 +163,7 @@ class MediaApp extends React.Component {
       });
     }
     this.closePlayerSelect();
+    localStorage.setItem("selectedPlayer", playerName);
   }
 
   checkPlayerInstance(callback) {
@@ -175,13 +194,12 @@ class MediaApp extends React.Component {
     this.trackGridChange()
     this.loadAlbumsForGenre(genre);
     this.setState({ view: "grid" });
+    localStorage.setItem("selectedGenre", genre);
   }
 
   async loadAlbumsForGenre(genreSelected) {
     await this.state.library.getAllAlbumsforGenre(this.state.library.genres[genreSelected].id);
-    this.setState({
-      genreSelected: genreSelected,
-    });
+    this.setState({ genreSelected: genreSelected });
   }
 
   loadRandomAlbums() {
@@ -204,6 +222,7 @@ class MediaApp extends React.Component {
         searchResultsAlbums: randomAlbums,
         view: "search",
       });
+      localStorage.setItem("selectedGenre", null);
     });
   }
 
