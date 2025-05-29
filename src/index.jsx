@@ -27,7 +27,6 @@ class MediaApp extends React.Component {
       searchResultsTracks: null,
       LMS: null,
       columns: 5,
-      storedLayout: null,
       orderType: "alpha",
       pingingPlayers: null,
       searchString: "",
@@ -174,21 +173,14 @@ class MediaApp extends React.Component {
 
   async handleGenreChange(genre) {
     this.trackGridChange()
-    var storedLayout = document.cookie || null;
-    this.loadAlbumsForGenre(genre, storedLayout);
+    this.loadAlbumsForGenre(genre);
     this.setState({ view: "grid" });
   }
 
-  storeOrderChange(storedLayout) {
-    document.cookie = storedLayout;
-    this.setState({ storedLayout: storedLayout });
-  }
-
-  async loadAlbumsForGenre(genreSelected, storedLayout) {
+  async loadAlbumsForGenre(genreSelected) {
     await this.state.library.getAllAlbumsforGenre(this.state.library.genres[genreSelected].id);
     this.setState({
       genreSelected: genreSelected,
-      storedLayout: storedLayout,
     });
   }
 
@@ -314,8 +306,6 @@ class MediaApp extends React.Component {
                   checkPlayerInstance={this.checkPlayerInstance.bind(this)}
                   LMS={this.state.LMS}
                   loadRandomAlbums={this.loadRandomAlbums.bind(this)}
-                  storedLayout={this.state.storedLayout}
-                  storeOrderChange={this.storeOrderChange.bind(this)}
                   orderType={this.state.orderType}
                   columns={this.state.columns}
                   theme={this.state.theme}

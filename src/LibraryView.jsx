@@ -62,8 +62,6 @@ class LibraryView extends React.Component {
               library={this.props.library}
               checkPlayerInstance={this.props.checkPlayerInstance}
               LMS={this.props.LMS}
-              storeOrderChange={this.props.storeOrderChange}
-              storedLayout={this.props.storedLayout}
               orderType={this.props.orderType}
               columns={this.props.columns}
               setColumns={this.props.setColumns}
