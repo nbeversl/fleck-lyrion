@@ -18,10 +18,6 @@ class GenreMenu extends React.Component {
   }
 
   render() {
-    const DialogStyle = {
-      height: window.innerHeight - 200,
-      top: "40%",
-    };
 
     return (
       <div className="genre-selector">
@@ -33,12 +29,12 @@ class GenreMenu extends React.Component {
         {this.state.isOpen &&
           <Dialog
             animation={"none"}
-            className={"genre-selector-dialog " + this.props.theme}
             isOpen={true}
             onCancel={this.handleClose.bind(this)}
+            
             isCancelable={true}>
-            <Scrollbars style={DialogStyle}>
-              <div className="content">
+            <Scrollbars 
+              style={{height: 44 * Object.keys(this.props.genres).length, maxHeight: '80vh'}} >
                 <List
                   dataSource={Object.keys(this.props.genres)}
                   renderRow={(row, idx) => (
@@ -56,9 +52,7 @@ class GenreMenu extends React.Component {
                     >
                       {row}
                     </ListItem>
-                  )}
-                />
-              </div>
+                  )} />
             </Scrollbars>
           </Dialog>
         }

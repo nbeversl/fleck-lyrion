@@ -9,13 +9,13 @@ ons-list-item.list-item {
   background-color: #807d7d40;
 }
 
-ons-dialog .dialog-container{ min-height: 0; }
 ons-dialog .dialog {
-  min-height: 0;
+  min-height: unset;
+  max-height: 80vh; 
   border: 1px solid #6a6a6a6a;
   border-radius: 2px;
+  width: 80vw;
 }
-
 
 .library-view { z-index: 100; }
 
@@ -71,11 +71,6 @@ label {
   margin: auto auto;
   margin-top: 200px;
   text-align: center;
-}
-
-.dialog {
-  width: 80%;
-  min-height: 100px;
 }
 
 /**

@@ -1,6 +1,7 @@
 import React from "react";
 import { List, ListItem, ToolbarButton } from "react-onsenui";
 import { Dialog } from "react-onsenui";
+import { Scrollbars } from "react-custom-scrollbars";
 
 class PlayerSelector extends React.Component {
   constructor(props) {
@@ -24,25 +25,26 @@ class PlayerSelector extends React.Component {
             onCancel={this.props.closePlayerSelect}
             isCancelable={true}
             isOpen={true}>
-            <div style={{ textAlign: "center" }}>
-              <List
-                dataSource={[{ name: "Browser (this device)" }].concat(...this.props.players)}
-                renderRow={(row, idx) => (
-                  <ListItem
-                    key={row.name}
-                    onClick={(e) => {
-                      this.setState({activePlayer: row.name});
-                      this.props.switchPlayer(row.name, () => {
-                        this.props.getPlayerStatus();
-                      });
-                    }}
-                    modifier="tappable"
-                    tappable={true}>
-                    {row.name}
-                  </ListItem>
-                )}
-              />
-            </div>
+            <Scrollbars 
+              style={{height: 44 * this.props.players.length, maxHeight: '80vh'}} >
+                <List
+                  dataSource={[{ name: "Browser (this device)" }].concat(...this.props.players)}
+                  renderRow={(row, idx) => (
+                    <ListItem
+                      key={row.name}
+                      onClick={(e) => {
+                        this.setState({activePlayer: row.name});
+                        this.props.switchPlayer(row.name, () => {
+                          this.props.getPlayerStatus();
+                        });
+                      }}
+                      modifier="tappable"
+                      tappable={true}>
+                      {row.name}
+                    </ListItem>
+                  )}
+                />
+             </Scrollbars>   
           </Dialog>
         }
       </div>
