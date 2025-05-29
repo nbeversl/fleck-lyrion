@@ -422,6 +422,9 @@ input.search-input {
   position: relative;
   width: 12rem;
 }
+.now-playing-album-cover ons-button {
+  padding: 0;
+}
 
 /* Track cards */
 
