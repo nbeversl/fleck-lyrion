@@ -11,6 +11,7 @@ type NowPlayingProps = {
   LMS: object;
   theme: string;
   checkPlayerInstance: object,
+  play: any;
   trackPosition: number;
   handleSeekChange: object;
   playerInstance: any;
@@ -22,6 +23,7 @@ const NowPlaying = ({
   playerInstance,
   trackPosition,
   LMS,
+  play,
   handleSeekChange,
   theme,
   checkPlayerInstance}: NowPlayingProps ) => {
@@ -71,6 +73,7 @@ const NowPlaying = ({
               album={albumPlaying}
               modal={true}
               theme={theme}
+              play={play}
               library={library}
               checkPlayerInstance={checkPlayerInstance}
               playerInstance={playerInstance}

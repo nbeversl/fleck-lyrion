@@ -62,6 +62,7 @@ class ControlBar extends React.Component {
               library={this.props.library}
               checkPlayerInstance={this.props.checkPlayerInstance}
               playerInstance={this.props.playerInstance}
+              play={this.props.play}
               genreSelected={this.props.genreSelected}
               LMS={this.props.LMS}
               theme={this.props.theme}

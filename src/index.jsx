@@ -288,6 +288,7 @@ class MediaApp extends React.Component {
                 genreSelected={this.state.genreSelected}
                 toggleGenreSelect={this.toggleGenreSelect.bind(this)}
                 LMS={this.state.LMS}
+                play={this.play.bind(this)}
                 searchFor={this.searchFor.bind(this)}
                 setSearchString={this.setSearchString.bind(this)}
                 searchString={this.state.searchString}
