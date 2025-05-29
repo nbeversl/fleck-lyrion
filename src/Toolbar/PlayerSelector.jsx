@@ -26,7 +26,7 @@ class PlayerSelector extends React.Component {
             isCancelable={true}
             isOpen={true}>
             <Scrollbars 
-              style={{height: 44 * this.props.players.length, maxHeight: '80vh'}} >
+              style={{height: 44 * (this.props.players.length + 1), maxHeight: '80vh'}} >
                 <List
                   dataSource={[{ name: "Browser (this device)" }].concat(...this.props.players)}
                   renderRow={(row, idx) => (
