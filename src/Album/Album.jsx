@@ -16,13 +16,13 @@ class Album extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.getFromId) {
-      this.props.library.getAlbumFromID(this.props.getFromId, (album) => {
-        this.setState({
-          album: album,
-        });
-      });
-    } else this.setState({ album: this.props.album });
+     if (this.props.getFromId) this.getAlbumFromId(); 
+     else this.setState({ album: this.props.album });
+  }
+
+  async getAlbumFromId() {
+    const album = await this.props.library.getAlbumFromID(this.props.getFromId)
+    this.setState({album: album});
   }
 
   componentDidUpdate() {
@@ -30,9 +30,7 @@ class Album extends React.Component {
       if (this.state.album && this.state.album.id == this.props.getFromId) {
         return;
       }
-      this.props.library.getAlbumFromID(this.props.getFromId, (album) => {
-        this.setState({album: album });
-      });
+      this.getAlbumFromId()
     }
 
     if (this.props.album) {
@@ -49,19 +47,21 @@ class Album extends React.Component {
     }
   }
 
-  getMyTracks() {
-    this.props.library.getAlbumTracks(this.state.album.id, (tracks) => {
-      var discs = {};
-      tracks.forEach((track) => {
-        var disc = track.disc;
-        if (!disc) disc = "1"
-        if (!Object.keys(discs).includes(disc)) discs[disc] = [];
-        discs[disc].push(track);
-      });
-      this.setState({
-        discs: discs,
-        modalOpen: true });
+  async getMyTracks() {
+    const tracks = await this.props.library.getAlbumTracks(this.state.album.id)
+    var discs = {};
+    tracks.forEach((track) => {
+      var disc = track.disc;
+      if (!disc) disc = "1"
+      if (!Object.keys(discs).includes(disc)) discs[disc] = [];
+      discs[disc].push(track);
     });
+    this.setState({
+      discs: discs,
+      modalOpen: true });
+    const params = new URLSearchParams(window.location.search);
+    const debug = params.get('debug');
+    if (debug == 'true') console.log(this.state.album, tracks)
   }
 
   handlePlay(disc, trackNumber) {

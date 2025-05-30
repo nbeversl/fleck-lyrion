@@ -49,16 +49,14 @@ const NowPlaying = ({
           (r: object) => { if (trackInfo != r) setTrackInfo(r) });
   }
 
-  const getAlbumInfo = () => {
+  const getAlbumInfo = async () => {
     if (playerStatus &&
       playerStatus.playlist_cur_index != undefined &&
       playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)] != undefined
-    ) 
-      library.getAlbumFromID(
-        playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].album_id,
-        (album: AlbumType) => {
-          if (!albumPlaying || album.id != albumPlaying.id) {setAlbumPlaying(album) }
-        });
+    ) {
+      const album = await library.getAlbumFromID(playerStatus.playlist_loop[parseInt(playerStatus.playlist_cur_index)].album_id)
+      if (!albumPlaying || album.id != albumPlaying.id) {setAlbumPlaying(album) }
+    }
   }
 
   return (
