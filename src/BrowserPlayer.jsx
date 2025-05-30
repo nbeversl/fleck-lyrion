@@ -13,15 +13,24 @@ class BrowserPlayer {
     this.trackSelected = false;
     this.volume = 0
 
-    this.getPlayerStatus = (callback) => {
-      callback({
-        time: this.audio ? this.audio.currentTime : 0,
-        duration: this.audio ? this.audio.duration : 0,
-        playlist_loop : this.tracks,
-        playlist_cur_index : this.currentIndex,
-        volume: this.volume
+    this.getPlayerStatus = async () => {
+      return new Promise( (resolve) => {
+        resolve({
+          time: this.audio ? this.audio.currentTime : 0,
+          duration: this.audio ? this.audio.duration : 0,
+          playlist_loop : this.tracks,
+          playlist_cur_index : this.currentIndex,
+          volume: this.volume
+        })
       })
-    },
+    }
+
+    this.connect = () => {
+      // this.LMS.request("none",
+
+    }
+
+
 
     this.seek = (time) => {
       this.audio.currentTime = time;
