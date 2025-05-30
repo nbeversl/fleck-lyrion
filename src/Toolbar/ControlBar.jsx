@@ -32,22 +32,21 @@ class ControlBar extends React.Component {
     this.setState({trackPosition : newTrackPercent})
   }
 
-  getPlayerStatus() {
+  async getPlayerStatus() {
     if (! this.props.targetPlayer) {
       this.timer = setTimeout(this.getPlayerStatus.bind(this), 1000);
       return;
     }
-    this.props.playerInstance.getPlayerStatus((status) => {
-      if (!this._ismounted) {
-        return;
-      }
-      var newPosition = Math.floor((status.time / status.duration) * 100);
-      this.setState({ 
-        playerStatus: status,
-        trackPosition: newPosition,
-        }, () => {
-        this.timer = setTimeout(this.getPlayerStatus.bind(this), 1000);
-      });
+    const status = await this.props.playerInstance.getPlayerStatus()
+    if (!this._ismounted) {
+      return;
+    }
+    var newPosition = Math.floor((status.time / status.duration) * 100);
+    this.setState({ 
+      playerStatus: status,
+      trackPosition: newPosition,
+      }, () => {
+      this.timer = setTimeout(this.getPlayerStatus.bind(this), 1000);
     });
   }
 

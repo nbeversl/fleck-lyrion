@@ -104,34 +104,36 @@ class Player {
       this.playing = true;
     };
 
-    this.getPlayerStatus = (callback) => {
-      this.LMS.request(
-        [
-          this.address,
+    this.getPlayerStatus = async () => {
+      return new Promise( (resolve) => {
+        this.LMS.request(
           [
-            "status",
-            "0",
-            "100",
-            "tags:duration,time, mode, **playlist index**, **l**,**J**,**K**",
+            this.address,
+            [
+              "status",
+              "0",
+              "100",
+              "tags:duration,time, mode, **playlist index**, **l**,**J**,**K**",
+            ],
           ],
-        ],
-        (r) => {
-          if ( r.result &&
-            r.result.playlist_loop &&
-            r.result.playlist_cur_index != undefined && // can be 0
-            r.result.playlist_loop[parseInt(r.result.playlist_cur_index)] ) {
-              this.trackSelected = true
-            } else {
-              this.trackSelected = false              
-            }
-            if (r.result.mode == "play") {
-              this.playing = true
-            } else {
-              this.playing = false
-            }
-          callback(r.result);
-        }
-      );
+          (r) => {
+            if ( r.result &&
+              r.result.playlist_loop &&
+              r.result.playlist_cur_index != undefined && // can be 0
+              r.result.playlist_loop[parseInt(r.result.playlist_cur_index)] ) {
+                this.trackSelected = true
+              } else {
+                this.trackSelected = false              
+              }
+              if (r.result.mode == "play") {
+                this.playing = true
+              } else {
+                this.playing = false
+              }
+            resolve(r.result);
+          }
+        );
+      })
     };
 
     this.seek = (seconds) => {
