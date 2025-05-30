@@ -33,10 +33,7 @@ class PlayerSelector extends React.Component {
                     <ListItem
                       key={row.name}
                       onClick={(e) => {
-                        this.setState({activePlayer: row.name});
-                        this.props.switchPlayer(row.name, () => {
-                          this.props.getPlayerStatus();
-                        });
+                        this.props.switchPlayer(row.name)
                       }}
                       modifier="tappable"
                       tappable={true}>

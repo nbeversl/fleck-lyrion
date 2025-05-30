@@ -14,7 +14,7 @@ class MediaApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      targetPlayer: 0,
+      targetPlayer: null,
       library: null,
       players_loop: [],
       showNowPlaying: false,
@@ -139,22 +139,15 @@ class MediaApp extends React.Component {
     })
   }
 
-  switchPlayer(playerName, callback) {
+  async switchPlayer(playerName) {
     var newPlayer;
     if (playerName !== "Browser (this device)") {
       newPlayer = new Player(this.state.LMS, playerName);
-      this.setState(
-        {
+      this.setState({
           targetPlayer: playerName,
           playerInstance: newPlayer,
           playerSelectOpen: false,
-        },
-        () => {
-          if (callback) {
-            callback();
-          }
-        }
-      );
+        })
     } else {
       this.setState({
         targetPlayer: "Browser",
