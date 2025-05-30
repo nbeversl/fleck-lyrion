@@ -53,7 +53,7 @@ class MediaApp extends React.Component {
     this.setState({ LMS: LMSInstance })
     var l = new LMSLibrary(LMSInstance);
     const library = await l.establishLibrary();
-    this.setState({ library: library }, async function test() {
+    this.setState({ library: library }, async function getPlayersAndState() {
       await this.getAvailablePlayers();
       this.getSavedState()
     })
