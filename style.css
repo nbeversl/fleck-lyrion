@@ -646,6 +646,7 @@ body.dark-theme {
 
 @media (max-width: 450px) {
   .grid-size { display: none; }
+  button.search-clear-button { width: 2.5rem }
   .global-controls,
   .player-control-bar { justify-content: center;}
   .global-controls {
