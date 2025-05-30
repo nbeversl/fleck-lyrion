@@ -81,27 +81,31 @@ class LMSLibrary {
     );
   }
 
-  getAlbumTracks(albumID, callback) {
-    if (this.albums[albumID].tracks) {
-      callback(this.albums[albumID].tracks)
-    }
-    this.LMS.request(
-      [
-        "",
-        [
-          "titles",
-          "0",
-          "500",
-          "album_id:" + albumID,
-          "sort:tracknum",
-          "tags:**t****o****l****i****e****d**",
-        ],
-      ],
-      (r) => {
-        this.albums[albumID].tracks = r.result.titles_loop
-        callback(r.result.titles_loop);
+  async getAlbumTracks(albumID) {
+    if (! Object.keys(this.albums).includes(albumID)) await this.getAlbumFromID(albumID)
+    return new Promise( (resolve) => {
+      if (this.albums[albumID].tracks) {
+        resolve(this.albums[albumID].tracks)
       }
-    );
+      this.LMS.request(
+        [
+          "",
+          [
+            "titles",
+            "0",
+            "500",
+            "album_id:" + albumID,
+            "sort:tracknum",
+            "tags:**t****o****l****i****e****d**",
+          ],
+        ],
+        (r) => {
+          // console.log("getAlbumTracks:", r)
+          this.albums[albumID].tracks = r.result.titles_loop
+          resolve(r.result.titles_loop);
+        }
+      );
+    })
   }
 
   allAlbums(callback) {
@@ -114,26 +118,29 @@ class LMSLibrary {
     });
   }
 
-  getAlbumFromID(albumID, callback) {
-    if (albumID) {
-      this.LMS.request(
-        [
-          "",
-          ["albums",
-            "0",
-            "100",
-            "album_id:" + albumID.toString(),
-            "tags:ljaSt"],
-        ],
-        (r) => {
-          if (r.result.albums_loop) {
-            const firstResult = r.result.albums_loop[0]
-            firstResult = assignAlbumArt(firstResult)
-            callback(firstResult);
-          }
-        }
-      );
-    }
+  async getAlbumFromID(albumID, callback) {
+    return new Promise( (resolve) => { 
+      if (albumID) {
+        this.LMS.request(
+          [
+            "",
+            ["albums",
+              "0",
+              "100",
+              "album_id:" + albumID.toString(),
+              "tags:ljaSt"],
+          ],
+          (r) => {
+            if (r.result.albums_loop) {
+              const firstResult = r.result.albums_loop[0]
+              firstResult = assignAlbumArt(firstResult)
+              this.albums[albumID] = firstResult
+              // console.log("getAlbumFromID", firstResult)
+              resolve(firstResult);
+            }
+          });
+      }
+    })
   }
 
   getAlbumFromTrackID(TrackID, callback) {

@@ -16,10 +16,9 @@ class LibraryView extends React.Component {
       lastScroll: new Date().getTime(),
     };
   }
-  handleAlbumChange(id, name) {
-    this.props.playerInstance.getAlbumTracks(id, (result) => {
-      this.setState({ trackList: result });
-    });
+  async handleAlbumChange(id, name) {
+    const trackList = await this.props.playerInstance.getAlbumTracks(id)
+    this.setState({ trackList: trackList });
     this.setState({ albumSelected: name });
     this.setState({ albumSelectedID: id });
   }
