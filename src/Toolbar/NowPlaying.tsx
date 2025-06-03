@@ -1,4 +1,4 @@
-import { Album } from "../Album/Album.jsx";
+import { Album } from "../Album/Album";
 import { LMSLibrary } from "../LMS/Library"; 
 import AlbumType from "../types/AlbumType.tsx";
 import ExtendedMetadata from "../Metadata/ExtendedMetadata";
@@ -8,9 +8,8 @@ import { useEffect, useState } from "react";
 type NowPlayingProps = {
   playerStatus: any;
   library: LMSLibrary;
-  LMS: object;
   theme: string;
-  checkPlayerInstance: object,
+  checkPlayerInstance: (callback: (playerInstance: any) => any) => any
   play: any;
   trackPosition: number;
   handleSeekChange: object;
@@ -19,10 +18,9 @@ type NowPlayingProps = {
 
 const NowPlaying = ({
   playerStatus, 
-  library,
   playerInstance,
   trackPosition,
-  LMS,
+  library,
   play,
   handleSeekChange,
   theme,
@@ -30,11 +28,7 @@ const NowPlaying = ({
 
   const [xid, updateXid] = useState<any | null>(null)
   const [trackInfo, setTrackInfo] = useState<object | null>(null)
-  const [albumPlaying, setAlbumPlaying] = useState<AlbumType | null>(null)
-
-  useEffect(() => {
-    getAlbumInfo();
-  }, [playerStatus, library])
+  const [albumPlaying, setAlbumPlaying] = useState<any>(null)
 
   useEffect(() => {
     getAlbumInfo();
@@ -69,13 +63,11 @@ const NowPlaying = ({
           <div className="now-playing-album-cover">
             <Album
               album={albumPlaying}
-              modal={true}
               theme={theme}
               play={play}
-              library={library}
               checkPlayerInstance={checkPlayerInstance}
               playerInstance={playerInstance}
-              LMS={LMS}
+              library={library}
             />
           </div>
           <div className="now-playing-meta">

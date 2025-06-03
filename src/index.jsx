@@ -291,7 +291,6 @@ class MediaApp extends React.Component {
                 handleGenreChange={this.handleGenreChange.bind(this)}
                 genreSelected={this.state.genreSelected}
                 toggleGenreSelect={this.toggleGenreSelect.bind(this)}
-                LMS={this.state.LMS}
                 play={this.play.bind(this)}
                 searchFor={this.searchFor.bind(this)}
                 setSearchString={this.setSearchString.bind(this)}
@@ -316,7 +315,6 @@ class MediaApp extends React.Component {
                   searchResultsAlbums={this.state.searchResultsAlbums}
                   searchResultsTracks={this.state.searchResultsTracks}
                   checkPlayerInstance={this.checkPlayerInstance.bind(this)}
-                  LMS={this.state.LMS}
                   loadRandomAlbums={this.loadRandomAlbums.bind(this)}
                   orderType={this.state.orderType}
                   columns={this.state.columns}

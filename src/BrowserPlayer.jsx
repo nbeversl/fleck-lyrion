@@ -30,6 +30,15 @@ class BrowserPlayer {
 
     }
 
+    this.addTrack = (id) => {
+      // TODO
+      // this.LMS.request([
+      //   this.address,
+      //   ["playlistcontrol", "cmd:add", "track_id:" + id.toString()],
+      // ]);
+    };
+
+
 
 
     this.seek = (time) => {

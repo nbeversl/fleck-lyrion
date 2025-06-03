@@ -1,6 +1,6 @@
 import * as React from "react";
 import { ToolbarButton , Card } from 'react-onsenui';
-import { Album } from '../Album/Album.jsx';
+import { Album } from '../Album/Album';
 import Play from '../svg/Play';
 import Download from '../svg/Download';
 import secondsToMinutes from "../helpers.js";
