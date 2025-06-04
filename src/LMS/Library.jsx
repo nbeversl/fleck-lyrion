@@ -88,16 +88,16 @@ class LMSLibrary {
     return r.result.titles_loop;
   }
 
-  async allAlbums(callback) {
+  async allAlbums() {
     const r = await this.LMS.request(["", ["albums", "0", "10000", "tags:lj**a**"]])
     r.result.albums_loop.forEach((album) => {
       album = assignAlbumArt(album)
       this.albums[album.id] = album;
     });
-    callback(r.result.albums_loop || []);
+    return r.result.albums_loop || []
   }
 
-  async getAlbumFromID(albumID, callback) {
+  async getAlbumFromID(albumID) {
     if (albumID) {
       const r = await this.LMS.request(
         [
@@ -117,7 +117,7 @@ class LMSLibrary {
     }
   }
 
-  async getAlbumFromTrackID(TrackID, callback) {
+  async getAlbumFromTrackID(TrackID) {
     const track = await this.getTrackInfo(TrackID)
     if (track) {
       // this.LMS.request(["",["albums","0","100","album_id:"+albumID.toString(), "tags:ljaS"]], (r) => {
@@ -171,7 +171,7 @@ class LMSLibrary {
     return albums || [];
   }
 
-  async searchTracks(searchString, callback) {
+  async searchTracks(searchString) {
     const r = await this.LMS.request(
         [
           "",
@@ -186,12 +186,12 @@ class LMSLibrary {
     return r.result.titles_loop || [];
   }
 
-  async searchContributors(searchString, callback) {
+  async searchContributors(searchString) {
     const r = await this.LMS.request(["", ["artists", "0", "100", "search:" + searchString]])
     return r.result.artists_loop || [];
   }
 
-  async searchTracksByArtist(artist_id, callback) {
+  async searchTracksByArtist(artist_id) {
     const r = await this.LMS.request(
         [
           "",
@@ -206,7 +206,7 @@ class LMSLibrary {
     return r.result
   }
 
- async searchAlbumsByArtist(artist_id, callback) {
+ async searchAlbumsByArtist(artist_id) {
     const r = await this.LMS.request([
           "", 
           [
@@ -218,7 +218,7 @@ class LMSLibrary {
      return r.result
   }
 
-  getPlaylists(callback) {
+  getPlaylists() {
     this.LMS.request(
       ["", ["playlists", "0", "100", "tags:uplaylist"]],
       (r) => {}
