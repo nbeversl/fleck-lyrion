@@ -118,14 +118,13 @@ class LMSLibrary {
   }
 
   async getAlbumFromTrackID(TrackID, callback) {
-    var track = await this.getTrackInfo(TrackID, (info) => {
-      if (track) {
-        // this.LMS.request(["",["albums","0","100","album_id:"+albumID.toString(), "tags:ljaS"]], (r) => {
-        // if (r.result.albums_loop) {
-        //     callback(r.result.albums_loop[0]);
-        // }
-      }
-    });
+    const track = await this.getTrackInfo(TrackID)
+    if (track) {
+      // this.LMS.request(["",["albums","0","100","album_id:"+albumID.toString(), "tags:ljaS"]], (r) => {
+      // if (r.result.albums_loop) {
+      //     callback(r.result.albums_loop[0]);
+      // }
+    }
   }
 
   async fullSearch(searchString) {
@@ -226,7 +225,7 @@ class LMSLibrary {
     );
   }
 
-  async getTrackInfo(trackID, callback) {
+  async getTrackInfo(trackID) {
     const trackInfo = await this.LMS.request(
       [
         "",
@@ -238,8 +237,13 @@ class LMSLibrary {
           "tags:gald**J****e****u****m**",
         ],
       ])
-    callback(trackInfo.result.songinfo_loop);
+    return trackInfo.result.songinfo_loop;
   }
+
+  getTrack(trackID) {
+    return this.LMS.getTrack(trackID)
+  }
+
 }
 
 const assignAlbumArt = (album) => {

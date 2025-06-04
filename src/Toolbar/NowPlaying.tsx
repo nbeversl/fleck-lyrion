@@ -34,15 +34,6 @@ const NowPlaying = ({
     getAlbumInfo();
   }, [playerStatus])
 
-  const getTrackInfo = () => {
-    if (playerStatus && playerStatus?.playlist_cur_index != undefined &&
-      playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)] != undefined &&
-      playerStatus.playlist_loop.length == 1) 
-        library.getTrackInfo(
-          playerStatus.playlist_loop[parseInt(playerStatus?.playlist_cur_index)].id,
-          (r: object) => { if (trackInfo != r) setTrackInfo(r) });
-  }
-
   const getAlbumInfo = async () => {
     if (playerStatus &&
       playerStatus.playlist_cur_index != undefined &&
