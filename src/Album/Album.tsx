@@ -61,9 +61,6 @@ const Album = ({
     });
     setDiscs(discsDict);
     setModalOpen(true);
-    const params = new URLSearchParams(window.location.search);
-    const debug = params.get('debug');
-    if (debug == 'true') console.log(album, tracks)
   }
 
   const handlePlay = (track : string, startNumber : string) => {

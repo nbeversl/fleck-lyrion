@@ -6,13 +6,6 @@ import Download from '../svg/Download';
 import secondsToMinutes from "../helpers.js";
 
 class TrackWithSourceAlbum extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      albums : {},
-      isLoading: false,
-    }
-  }
 
   playTrack(track) {
     var that = this;
