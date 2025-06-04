@@ -92,6 +92,8 @@ const Album = ({
     backgroundRepeat: "no-repeat",
   };
 
+  if (!album && getFromId) getAlbumFromId()
+  
   return (
     <div className="album">
       {thisAlbum &&
@@ -130,7 +132,7 @@ const Album = ({
                   <TrackListScrolling
                     playerInstance={playerInstance}
                     discs={discs}
-                    album={album}
+                    album={thisAlbum}
                     addToPlaylist={playerInstance ? playerInstance.addTrack : null }
                     handlePlay={handlePlay}
                     checkPlayerInstance={checkPlayerInstance}

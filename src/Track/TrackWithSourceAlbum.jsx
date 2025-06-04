@@ -57,7 +57,6 @@ class TrackWithSourceAlbum extends React.Component {
                 checkPlayerInstance={this.props.checkPlayerInstance}
                 library={this.props.library}
                 LMS={this.props.LMS}
-                handle={false}
                 play={this.props.play}
                 theme={this.props.theme}
               />
