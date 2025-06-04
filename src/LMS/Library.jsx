@@ -117,8 +117,8 @@ class LMSLibrary {
     }
   }
 
-  getAlbumFromTrackID(TrackID, callback) {
-    var track = this.getTrackInfo(TrackID, (info) => {
+  async getAlbumFromTrackID(TrackID, callback) {
+    var track = await this.getTrackInfo(TrackID, (info) => {
       if (track) {
         // this.LMS.request(["",["albums","0","100","album_id:"+albumID.toString(), "tags:ljaS"]], (r) => {
         // if (r.result.albums_loop) {
@@ -226,8 +226,8 @@ class LMSLibrary {
     );
   }
 
-  getTrackInfo(trackID, callback) {
-    this.LMS.request(
+  async getTrackInfo(trackID, callback) {
+    const trackInfo = await this.LMS.request(
       [
         "",
         [
@@ -237,11 +237,8 @@ class LMSLibrary {
           "track_id:" + trackID.toString(),
           "tags:gald**J****e****u****m**",
         ],
-      ],
-      (r) => {
-        callback(r.result.songinfo_loop);
-      }
-    );
+      ])
+    callback(trackInfo.result.songinfo_loop);
   }
 }
 
