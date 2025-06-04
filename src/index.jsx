@@ -60,14 +60,10 @@ class MediaApp extends React.Component {
   }
 
   async getSavedState() {
-
     const selectedGenre = localStorage.getItem("selectedGenre")
     const selectedPlayer = localStorage.getItem("selectedPlayer")
-    if (selectedGenre !== 'null' && selectedGenre != null ) {
-      await this.handleGenreChange(selectedGenre)
-    } else {
-      this.loadRandomAlbums();
-    }
+    if (selectedGenre !== 'null' && selectedGenre != null ) await this.handleGenreChange(selectedGenre)
+    else await this.loadRandomAlbums();
     if (selectedPlayer) {
       const playerNames = this.state.players_loop.map( player => {
         return player.name
@@ -189,28 +185,27 @@ class MediaApp extends React.Component {
     this.setState({ genreSelected: genreSelected });
   }
 
-  loadRandomAlbums() {
-    this.state.library.allAlbums((albums) => {
-      var randomAlbums = [];
-      let numberChosen = 50
-      let selection = Math.floor(Math.random() * Object.keys(albums).length);
-      if (numberChosen > Object.keys(albums).length) numberChosen = Object.keys(albums).length - 1
-      let selectionsChosen = []
-      for (var i = 0; i < numberChosen; i++) {
-        while(selectionsChosen.includes(selection) && selectionsChosen.length < Object.keys(albums).length) {
-          selection = Math.floor(Math.random() * Object.keys(albums).length);
-        }
-        randomAlbums.push(albums[selection]);
-        selectionsChosen.push(selection)
+  async loadRandomAlbums() {
+    const albums = await this.state.library.allAlbums()
+    var randomAlbums = [];
+    let numberChosen = 50
+    let selection = Math.floor(Math.random() * Object.keys(albums).length);
+    if (numberChosen > Object.keys(albums).length) numberChosen = Object.keys(albums).length - 1
+    let selectionsChosen = []
+    for (var i = 0; i < numberChosen; i++) {
+      while(selectionsChosen.includes(selection) && selectionsChosen.length < Object.keys(albums).length) {
+        selection = Math.floor(Math.random() * Object.keys(albums).length);
       }
-      this.setState({
-        genreSelected: null,
-        searchResultsTracks: [],
-        searchResultsAlbums: randomAlbums,
-        view: "search",
-      });
-      localStorage.setItem("selectedGenre", null);
+      randomAlbums.push(albums[selection]);
+      selectionsChosen.push(selection)
+    }
+    this.setState({
+      genreSelected: null,
+      searchResultsTracks: [],
+      searchResultsAlbums: randomAlbums,
+      view: "search",
     });
+    localStorage.setItem("selectedGenre", null);
   }
 
   async searchFor(item) {
