@@ -65,13 +65,13 @@ const Album = ({
     if (debug == 'true') console.log(album, tracks)
   }
 
-  const handlePlay = (disc : string, trackNumber : string) => {
+  const handlePlay = (track : string, startNumber : string) => {
     if (!playerInstance) {
       setModalOpen(false)
       checkPlayerInstance((playerInstance) => {
-        if (playerInstance) play(disc, trackNumber);
+        if (playerInstance) play(track, startNumber);
       });
-    } else play(disc, trackNumber)
+    } else play(track, startNumber)
   }
 
   const handleOpen = (e: React.TouchEvent<HTMLButtonElement>) => {
