@@ -51,14 +51,15 @@ const Album = ({
   const getMyTracks = async () => {
     if (!thisAlbum) return
     const tracks: any = await library.getAlbumTracks(thisAlbum.id)
-    const discs : Record<string, any[]> = {};
+    const discsDict : Record<string, any[]> = {};
     tracks.forEach((track: any) => {
       var disc : string = track.disc;
-      if (!disc) disc = "1"
-      if (!Object.keys(discs).includes(disc)) discs[disc] = [];
-      discs[disc].push(track);
+      if (disc === undefined) disc = "nodisc"
+      disc = disc.toString()
+      if (!Object.keys(discsDict).includes(disc)) discsDict[disc] = [];
+      discsDict[disc].push(track);
     });
-    setDiscs(discs);
+    setDiscs(discsDict);
     setModalOpen(true);
     const params = new URLSearchParams(window.location.search);
     const debug = params.get('debug');
