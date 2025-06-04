@@ -76,16 +76,14 @@ class Player {
       await this.LMS.request([this.address, ["playlist", "clear"]])
       await this.LMS.request([this.address, ["playlist", "addtracks", "album.id=" + track.album_id]]);
       const playerStatus = await this.getPlayerStatus()
-      // let absoluteTrack = 0
-      // const totalTracks = result.playlist_loop.length
-      // const requestedDisc = parseInt(track.disc)
-      // const requestedTrack = parseInt(track.tracknum)
       for (let i=0; i < playerStatus.playlist_loop.length; i++) {
-      
         if (playerStatus.playlist_loop[i].id == track.id) startNumber = i;
       }
       // for multi-disc sets, find absolute track number
-      
+      // let absoluteTrack = 0
+      // const totalTracks = result.playlist_loop.length
+      // const requestedDisc = parseInt(track.disc)
+      // const requestedTrack = parseInt(track.tracknum)      
       await this.LMS.request([
         this.address,
         ["playlist", "index", "+" + startNumber.toString()],
