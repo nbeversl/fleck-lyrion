@@ -54,9 +54,8 @@ class TrackWithSourceAlbum extends React.Component {
             <div className="tracklist-album">                    
               <Album
                 getFromId={track.album_id} 
-                checkPlayerInstance={this.props.checkPlayerInstance}
+                offerPlayerSelect={this.props.offerPlayerSelect}
                 library={this.props.library}
-                LMS={this.props.LMS}
                 play={this.props.play}
                 theme={this.props.theme}
               />

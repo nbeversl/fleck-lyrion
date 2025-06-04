@@ -59,8 +59,7 @@ class LibraryView extends React.Component {
               clickHandler={this.handleAlbumChange}
               playerInstance={this.props.playerInstance}
               library={this.props.library}
-              checkPlayerInstance={this.props.checkPlayerInstance}
-              LMS={this.props.LMS}
+              offerPlayerSelect={this.props.offerPlayerSelect}
               orderType={this.props.orderType}
               columns={this.props.columns}
               setColumns={this.props.setColumns}
@@ -76,8 +75,7 @@ class LibraryView extends React.Component {
             library={this.props.library}
             play={this.props.play}
             hideToolbar={this.props.hideToolbar}
-            checkPlayerInstance={this.props.checkPlayerInstance}
-            LMS={this.props.LMS}
+            offerPlayerSelect={this.props.offerPlayerSelect}
             playerInstance={this.props.playerInstance}
             columns={this.props.columns}
             setColumns={this.props.setColumns}

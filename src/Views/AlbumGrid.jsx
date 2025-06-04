@@ -112,10 +112,9 @@ class AlbumGrid extends React.PureComponent {
                     key={album.key}
                     play={this.props.play}
                     album={this.state.albumDict[album.id]}
-                    checkPlayerInstance={this.props.checkPlayerInstance}
+                    offerPlayerSelect={this.props.offerPlayerSelect}
                     playerInstance={this.props.playerInstance}
                     library={this.props.library}
-                    LMS={this.props.LMS}
                     theme={this.state.theme}
                   />
                 )}

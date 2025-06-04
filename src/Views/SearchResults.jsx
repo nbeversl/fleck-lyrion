@@ -12,11 +12,10 @@ class SearchResults extends React.Component {
           <AlbumGrid
             albumList={this.props.searchResultsAlbums}
             library={this.props.library}
-            LMS={this.props.LMS}
             orderType={"alpha"}
             play={this.props.play}
             hideToolbar={this.props.hideToolbar}
-            checkPlayerInstance={this.props.checkPlayerInstance}
+            offerPlayerSelect={this.props.offerPlayerSelect}
             playerInstance={this.props.playerInstance}
             columns={this.props.columns}
             setColumns={this.props.setColumns}
@@ -31,10 +30,9 @@ class SearchResults extends React.Component {
               <div className="search-results-tracks">
                 <TrackWithSourceAlbum
                   tracks={this.props.searchResultsTracks}
-                  checkPlayerInstance={this.props.checkPlayerInstance}
+                  offerPlayerSelect={this.props.offerPlayerSelect}
                   library={this.props.library}
                   play={this.props.play}
-                  LMS={this.props.LMS}
                   playerInstance={this.props.playerInstance}
                   theme={this.props.theme}
                 />

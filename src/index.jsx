@@ -25,6 +25,7 @@ class MediaApp extends React.Component {
       searchResultsAlbums: null,
       toolbarShowing: true,
       searchResultsTracks: null,
+      resolvePlayerSelection: null,
       LMS: null,
       columns: 5,
       orderType: "alpha",
@@ -129,44 +130,35 @@ class MediaApp extends React.Component {
     this.setState({ players_loop: availablePlayers });
   }
 
-  async switchPlayer(playerName) {
+  switchPlayer(playerName) {
     var newPlayer;
     if (playerName !== "Browser (this device)") {
-      newPlayer = new Player(this.state.LMS, playerName);
-      this.setState({
-          targetPlayer: playerName,
-          playerInstance: newPlayer,
-          playerSelectOpen: false,
-        })
+      const playerInstance = new Player(this.state.LMS, playerName)
+      const targetPlayer = playerName
     } else {
-      this.setState({
-        targetPlayer: "Browser",
-        playerInstance: this.getBrowserPlayer(),
-        playerSelectOpen: false,
+      const playerInstance = this.getBrowserPlayer()
+      const targetPlayer = "Browser"
+    }
+    this.setState({
+      targetPlayer: targetPlayer,
+      playerInstance: playerInstance,
+      playerSelectOpen: false,
+      }, () => { 
+        this.closePlayerSelect();
+        if (this.resolvePlayerSelection) {
+          this.resolvePlayerSelection(this.state.playerInstance);
+          this.resolvePlayerSelection = null;
+        }
+        localStorage.setItem("selectedPlayer", playerName);
       });
-    }
-    this.closePlayerSelect();
-    localStorage.setItem("selectedPlayer", playerName);
   }
 
-  checkPlayerInstance(callback) {
-    if (!this.state.playerInstance) {
-      this.openPlayerSelect();
-      this.setState({ toolbarShowing: true });
-      this.waitForPlayerInstance(callback);
-    } else {
-      callback(this.state.playerInstance);
-    }
-  }
-
-  waitForPlayerInstance(callback) {
-    setTimeout(() => {
-      if (this.state.playerInstance) {
-        callback(this.state.playerInstance);
-      } else {
-        this.waitForPlayerInstance(callback);
-      }
-    }, 500);
+  offerPlayerSelect() {
+    return new Promise( (resolve) => {
+      this.resolvePlayerSelection = resolve;
+      this.openPlayerSelect()
+      this.setState({ toolbarShowing: true });      
+    })
   }
 
   toggleNowPlaying() {
@@ -276,7 +268,7 @@ class MediaApp extends React.Component {
                 players={this.state.players_loop ? this.state.players_loop : []}
                 library={this.state.library}
                 genreSelectOpen={this.state.genreSelectOpen}
-                checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                offerPlayerSelect={this.offerPlayerSelect.bind(this)}
                 handleGenreChange={this.handleGenreChange.bind(this)}
                 genreSelected={this.state.genreSelected}
                 toggleGenreSelect={this.toggleGenreSelect.bind(this)}
@@ -303,7 +295,7 @@ class MediaApp extends React.Component {
                   library={this.state.library}
                   searchResultsAlbums={this.state.searchResultsAlbums}
                   searchResultsTracks={this.state.searchResultsTracks}
-                  checkPlayerInstance={this.checkPlayerInstance.bind(this)}
+                  offerPlayerSelect={this.offerPlayerSelect.bind(this)}
                   loadRandomAlbums={this.loadRandomAlbums.bind(this)}
                   orderType={this.state.orderType}
                   columns={this.state.columns}

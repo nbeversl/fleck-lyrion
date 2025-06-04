@@ -13,10 +13,10 @@ type AlbumProps = {
   getFromId?: number;
   album: AlbumType,
   theme: string;
-  LMS?: any,
-  checkPlayerInstance: (callback: (playerInstance: any) => any) => any
-  library: LMSLibrary
-  playerInstance: Player | BrowserPlayer,
+  LMS?: any;
+  offerPlayerSelect: () => any;
+  library: LMSLibrary;
+  playerInstance: Player | BrowserPlayer;
   play: (disc: string, trackNumber: string ) => void
 }
 
@@ -25,7 +25,7 @@ const Album = ({
   album,
   theme,
   library,
-  checkPlayerInstance,
+  offerPlayerSelect,
   LMS,
   playerInstance,
   play }: AlbumProps) => {
@@ -63,13 +63,12 @@ const Album = ({
     setModalOpen(true);
   }
 
-  const handlePlay = (track : string, startNumber : string) => {
+  const handlePlay = async (track : string, startNumber : string) => {
     if (!playerInstance) {
       setModalOpen(false)
-      checkPlayerInstance((playerInstance) => {
-        if (playerInstance) play(track, startNumber);
-      });
-    } else play(track, startNumber)
+      playerInstance = await offerPlayerSelect();
+    }
+    if (playerInstance) play(track, startNumber);
   }
 
   const handleOpen = (e: React.TouchEvent<HTMLButtonElement>) => {
@@ -135,7 +134,7 @@ const Album = ({
                     album={thisAlbum}
                     addToPlaylist={playerInstance ? playerInstance.addTrack : null }
                     handlePlay={handlePlay}
-                    checkPlayerInstance={checkPlayerInstance}
+                    offerPlayerSelect={offerPlayerSelect}
                     library={library}
                     cover={thisAlbum.albumArtURL}
                     LMS={LMS}

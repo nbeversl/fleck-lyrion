@@ -7,7 +7,7 @@ import { Button  } from 'react-onsenui';
 //     return <BPMViewNaive 
 //                 classes={classes}
 //                 library = {globals.library}
-//                 checkPlayerInstance={globals.checkPlayerInstance}
+//                 offerPlayerSelect={globals.offerPlayerSelect}
 //                 playerInstance={globals.playerInstance}
 //             />;
 // }
@@ -59,7 +59,7 @@ class BPMView extends React.Component {
     }
 
     playTrack(id) {
-        this.props.checkPlayerInstance( (playerInstance) => {
+        this.props.offerPlayerSelect( (playerInstance) => {
             playerInstance.playTrack(id);    
         });
     }

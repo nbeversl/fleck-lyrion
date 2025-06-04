@@ -9,7 +9,7 @@ type NowPlayingProps = {
   playerStatus: any;
   library: LMSLibrary;
   theme: string;
-  checkPlayerInstance: (callback: (playerInstance: any) => any) => any
+  offerPlayerSelect: () => any
   play: any;
   trackPosition: number;
   handleSeekChange: object;
@@ -24,7 +24,7 @@ const NowPlaying = ({
   play,
   handleSeekChange,
   theme,
-  checkPlayerInstance}: NowPlayingProps ) => {
+  offerPlayerSelect}: NowPlayingProps ) => {
 
   const [xid, updateXid] = useState<any | null>(null)
   const [trackInfo, setTrackInfo] = useState<object | null>(null)
@@ -56,7 +56,7 @@ const NowPlaying = ({
               album={albumPlaying}
               theme={theme}
               play={play}
-              checkPlayerInstance={checkPlayerInstance}
+              offerPlayerSelect={offerPlayerSelect}
               playerInstance={playerInstance}
               library={library}
             />
