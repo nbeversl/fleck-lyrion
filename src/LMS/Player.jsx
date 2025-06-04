@@ -51,13 +51,8 @@ class Player {
       ]);
     };
 
-    this.setVolume = (value) => {
-      this.LMS.request(
-        [this.address, ["mixer", "volume", value.toString()]],
-        (r) => {
-          this.volume = value;
-        }
-      );
+    this.setVolume = async (value) => {
+      this.volume = await this.LMS.request([this.address, ["mixer", "volume", value.toString()]])
     };
 
     this.getVolume = async () => {

@@ -39,8 +39,9 @@ class PlayerControls extends React.Component {
   }
 
   setVolume(event) {
-    this.setState({ volume: parseInt(event.target.value) });
-    this.props.playerInstance.setVolume(this.state.volume);
+    this.setState({ volume: parseInt(event.target.value) }, () => {
+      this.props.playerInstance.setVolume(this.state.volume);
+    });
   }
 
   handleBackButton() {
@@ -116,7 +117,7 @@ class PlayerControls extends React.Component {
               { this.props.playerInstance?.trackSelected &&
                 <div>
                   <Range
-                    value={this.props.playerInstance.volume}
+                    value={this.volume}
                     onChange={this.setVolume.bind(this)}
                   />
                   <label>Player Volume</label>
