@@ -7,11 +7,13 @@ import secondsToMinutes from "../helpers.js";
 
 class TrackWithSourceAlbum extends React.Component {
 
-  playTrack(track) {
+  async playTrack(track) {
     var that = this;
-    this.props.checkPlayerInstance( () => {
-      that.props.play(track, track.tracknum - 1); 
-    });
+    let playerInstance = this.props.playerInstance
+    if (!playerInstance) {
+      playerInstance = await this.props.offerPlayerSelect();
+    }
+    if (playerInstance) this.props.play(track, track.tracknum - 1); 
   }
 
   render() {

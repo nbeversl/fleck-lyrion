@@ -26,7 +26,7 @@ class PlayerControls extends React.Component {
   componentDidUpdate() {
     if (this.props.playerInstance && 
       (this.props.playerInstance.playing != this.state.isPlaying)) {
-      this.setState({ isPlaying: this.props.playerInstance?.playing });
+      this.setState({ isPlaying: this.props.playerInstance.playing });
       }
   }
 

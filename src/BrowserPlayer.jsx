@@ -65,13 +65,14 @@ class BrowserPlayer {
       this.isLoading = true 
       if (this.audio) this.audio.pause();
       this.currentTrack = await this.LMS.getTrack(this.tracks[this.currentIndex].id.toString())     
+      this.audio.removeEventListener('ended', this.nextTrack);
       this.audio.addEventListener('ended', this.nextTrack);
       this.audio.src = this.currentTrack
       this.audio.load()
       this.audio.play()
       this.volume = this.audio.volume
       this.playing = true
-      this.isLoading = false 
+      this.isLoading = false
     }
 
     this.playOrPause = async () => {
