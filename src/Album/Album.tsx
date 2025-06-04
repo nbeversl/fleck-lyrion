@@ -36,7 +36,7 @@ const Album = ({
 
   useEffect(() => {
     if (thisAlbum && getFromId && album && thisAlbum.id != getFromId) getAlbumFromId(); 
-    else if (! thisAlbum || thisAlbum.id != album.id) setAlbum(album);
+    else if (! thisAlbum || (album && thisAlbum.id != album.id)) setAlbum(album);
   }, [album])
 
   useEffect(() => {
