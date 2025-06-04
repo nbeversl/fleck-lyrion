@@ -124,7 +124,7 @@ class Player {
       } else this.trackSelected = false              
       if (playerStatus.result.mode == "play") this.playing = true
       else this.playing = false
-      return playerStatus
+      return playerStatus.result
     };
 
     this.seek = (seconds) => {

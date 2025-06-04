@@ -112,7 +112,6 @@ class LMSLibrary {
         const firstResult = r.result.albums_loop[0]
         firstResult = assignAlbumArt(firstResult)
         this.albums[albumID] = firstResult
-        // console.log("getAlbumFromID", firstResult)
         return firstResult;
       }
     }
