@@ -8,18 +8,18 @@ class Player {
     this.isLoading = false;
     this.trackSelected = false;
 
-    this.playOrPause = () => {
-      if (! this.playing) this.play();
-      else this.pause();
+    this.playOrPause = async () => {
+      if (! this.playing) await this.play();
+      else await this.pause();
     };
 
-    this.play = () => {
-      this.LMS.request([this.address, ["play"]]);
+    this.play = async () => {
+      await this.LMS.request([this.address, ["play"]]);
       this.playing = true;
     };
 
-    this.pause = () => {
-      this.LMS.request([this.address, ["pause"]]);
+    this.pause = async () => {
+      await this.LMS.request([this.address, ["pause"]]);
       this.playing = false;
     };
 

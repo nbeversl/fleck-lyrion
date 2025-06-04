@@ -74,7 +74,7 @@ class BrowserPlayer {
       this.isLoading = false 
     }
 
-    this.playOrPause = () => {
+    this.playOrPause = async () => {
       if (this.playing) this.audio.pause();
       else this.audio.play();
       this.playing = ! this.playing
@@ -85,14 +85,14 @@ class BrowserPlayer {
       this.volume = value
     }
 
-    this.nextTrack =  () => {
+    this.nextTrack = async () => {
       if (this.currentIndex < this.tracks.length - 1) {
         this.currentIndex += 1;
         this.playCurrentTrack()
       }
     }
 
-    this.previousTrack = () => {
+    this.previousTrack = async () => {
       if (this.currentIndex > 0) {
         this.currentIndex -=1;
         this.playCurrentTrack()
