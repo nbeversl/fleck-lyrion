@@ -71,69 +71,60 @@ class Player {
       });
     };
 
-    this.playAlbumFromTrackAndContinue = (track, startNumber) => {
+    this.playAlbumFromTrackAndContinue = async (track, startNumber) => {
       this.isLoading = true
-      var albumID = track.album_id;
-      this.LMS.request([this.address, ["playlist", "clear"]], (r) => {
-        this.LMS.request(
-          [this.address, ["playlist", "addtracks", "album.id=" + albumID]],
-          (r) => {
-            this.getPlayerStatus( (result) => {
-              for (let i=0; i< result.playlist_loop.length; i++) {
-                if (result.playlist_loop[i].id == track.id) startNumber = i;
-              }
-              this.LMS.request([
-                this.address,
-                ["playlist", "index", "+" + startNumber.toString()],
-              ]);
-              this.trackSelected = true;
-              this.playing = true;
-              this.isLoading = false
-            }) 
-          }
-        );
-      });
+      await this.LMS.request([this.address, ["playlist", "clear"]])
+      await this.LMS.request([this.address, ["playlist", "addtracks", "album.id=" + track.album_id]]);
+      const playerStatus = await this.getPlayerStatus()
+      // let absoluteTrack = 0
+      // const totalTracks = result.playlist_loop.length
+      // const requestedDisc = parseInt(track.disc)
+      // const requestedTrack = parseInt(track.tracknum)
+      for (let i=0; i < playerStatus.playlist_loop.length; i++) {
+      
+        if (playerStatus.playlist_loop[i].id == track.id) startNumber = i;
+      }
+      // for multi-disc sets, find absolute track number
+      
+      await this.LMS.request([
+        this.address,
+        ["playlist", "index", "+" + startNumber.toString()],
+      ]);
+      this.trackSelected = true;
+      this.playing = true;
+      this.isLoading = false
     };
-    this.nextTrack = () => {
-      this.LMS.request([this.address, ["playlist", "index", "+1"]], (r) => {});
+
+    this.nextTrack = async () => {
+      await this.LMS.request([this.address, ["playlist", "index", "+1"]], (r) => {});
       this.playing = true;
     };
 
-    this.previousTrack = () => {
-      this.LMS.request([this.address, ["playlist", "index", "-1"]], (r) => {});
+    this.previousTrack = async () => {
+      await this.LMS.request([this.address, ["playlist", "index", "-1"]], (r) => {});
       this.playing = true;
     };
 
     this.getPlayerStatus = async () => {
-      return new Promise( (resolve) => {
-        this.LMS.request(
+      const playerStatus = await this.LMS.request(
+        [
+          this.address,
           [
-            this.address,
-            [
-              "status",
-              "0",
-              "100",
-              "tags:duration,time, mode, **playlist index**, **l**,**J**,**K**",
-            ],
+            "status",
+            "0",
+            "100",
+            "tags:duration,time, mode, **playlist index**, **l**,**J**,**K**",
           ],
-          (r) => {
-            if ( r.result &&
-              r.result.playlist_loop &&
-              r.result.playlist_cur_index != undefined && // can be 0
-              r.result.playlist_loop[parseInt(r.result.playlist_cur_index)] ) {
-                this.trackSelected = true
-              } else {
-                this.trackSelected = false              
-              }
-              if (r.result.mode == "play") {
-                this.playing = true
-              } else {
-                this.playing = false
-              }
-            resolve(r.result);
-          }
-        );
-      })
+        ])
+      if ( playerStatus.result &&
+        playerStatus.result.playlist_loop &&
+        playerStatus.result.playlist_cur_index != undefined && // can be 0
+        playerStatus.result.playlist_loop[parseInt(playerStatus.result.playlist_cur_index)] ) {
+          this.trackSelected = true
+      } else this.trackSelected = false              
+      if (playerStatus.result.mode == "play") this.playing = true
+      else this.playing = false
+      return playerStatus
     };
 
     this.seek = (seconds) => {

@@ -1,7 +1,7 @@
 import { render } from "react-dom";
 import * as React from "react";
 import { Player } from "./LMS/Player";
-import { LMS } from "./LMS/server";
+import { LMS } from "./LMS/server.tsx";
 import { LMSLibrary } from "./LMS/Library";
 import { BrowserPlayer } from "./BrowserPlayer";
 import { ProgressCircular } from "react-onsenui";
@@ -119,24 +119,18 @@ class MediaApp extends React.Component {
     this.setState({ genreSelectOpen : true })
   }
 
-  play(disc, trackNumber) {
-    this.state.playerInstance.playAlbumFromTrackAndContinue(
-      disc, // disc doesn't matter, only passes the album ID
-      trackNumber);
+  play(track, startNumber) {
+    this.state.playerInstance.playAlbumFromTrackAndContinue(track, startNumber);
     this.setState({ toolbarShowing: true });
   }
 
   async getAvailablePlayers() {
-    return new Promise( (resolve) => { 
-      this.state.LMS.request(["", ["serverstatus", "0", "20"]], (response) => {
-        var availablePlayers = [];
-        response.result.players_loop.map( (player) => {
-          if (player.connected == 1) availablePlayers.push(player);
-        });
-        this.setState({ players_loop: availablePlayers });
-        resolve()
-      });
-    })
+    const serverStatus = await this.state.LMS.request(["", ["serverstatus", "0", "20"]])
+    var availablePlayers = [];
+    serverStatus.result.players_loop.map( (player) => {
+      if (player.connected == 1) availablePlayers.push(player);
+    });
+    this.setState({ players_loop: availablePlayers });
   }
 
   async switchPlayer(playerName) {

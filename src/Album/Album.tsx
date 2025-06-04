@@ -33,7 +33,7 @@ const Album = ({
   const [discs, setDiscs] = useState<Record<string, any[]> | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [thisAlbum, setAlbum] = useState<AlbumType | null>(null);
-  console.log(album)
+
   useEffect(() => {
     if (thisAlbum && getFromId && album && thisAlbum.id != getFromId) getAlbumFromId(); 
     else if (! thisAlbum || thisAlbum.id != album.id) setAlbum(album);

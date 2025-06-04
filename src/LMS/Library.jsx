@@ -6,61 +6,49 @@ class LMSLibrary {
     this.LMS = LMS;
   }
 
-  establishLibrary() {
-    return new Promise( (resolve) => {
-      this.LMS.request(["", ["genres", "0", "1000"]], (r) => {
-        r.result.genres_loop.forEach((item) => {
-          this.genres[item.genre] = {};
-          this.genres[item.genre].id = item.id;
-          this.LMS.request(
-            [
-              "",
-              [
-                "albums",
-                "0",
-                "1000",
-                "genre_id:" + item.id.toString(),
-                "tags:ljaS",
-                "sort:artflow",
-              ],
-            ],
-            (r) => {
-              r.result.albums_loop.forEach((album) => { album = assignAlbumArt(album) });
-              this.genres[item.genre].albums = r.result.albums_loop;
-              resolve(this)
-            }
-          );
-        });
-      });
-    });
-  }
-
-  getAllAlbumsforGenre(id) {
-    return new Promise ( (resolve) => {
-      this.titles = [];
-      this.LMS.request(
-        ["",
+  async establishLibrary() {
+    const genres = await this.LMS.request(["", ["genres", "0", "1000"]])
+    await genres.result.genres_loop.forEach( async (item) => {
+      this.genres[item.genre] = {};
+      this.genres[item.genre].id = item.id;
+      const genreItems = await this.LMS.request(
+        [
+          "",
           [
             "albums",
             "0",
-            "50000",
-            "genre_id:" + id.toString(),
-            "tags:**a****id****e**ljatsS",
+            "1000",
+            "genre_id:" + item.id.toString(),
+            "tags:ljaS",
+            "sort:artflow",
           ],
-        ],
-        (r) => {
-          r.result.albums_loop.forEach((album) => {
-            album = assignAlbumArt(album)
-            this.albums[album.id] = album;
-          });
-          resolve()
-        }
-      );
+        ])
+      genreItems.result.albums_loop.forEach((album) => { album = assignAlbumArt(album) });
+      this.genres[item.genre].albums = genreItems.result.albums_loop;
     })
+    return this
   }
 
-  getAllTracksForGenre(id) {
-    this.LMS.request(
+  async getAllAlbumsforGenre(id) {
+    this.titles = [];
+    const r = await this.LMS.request(
+      ["",
+        [
+          "albums",
+          "0",
+          "50000",
+          "genre_id:" + id.toString(),
+          "tags:**a****id****e**ljatsS",
+        ],
+      ]);
+    r.result.albums_loop.forEach((album) => {
+      album = assignAlbumArt(album)
+      this.albums[album.id] = album;
+    });
+  }
+
+  async getAllTracksForGenre(id) {
+    const r = await this.LMS.request(
       [
         "",
         [
@@ -70,77 +58,64 @@ class LMSLibrary {
           "genre_id:" + id.toString(),
           "tags:**t****o****l****i****e****m****a**",
         ],
-      ],
-      (r) => {
-        if (r.result.count) {
-          r.result.titles_loop.forEach((title) => {
-            this.tracks.push(title);
-          });
-        }
-      }
-    );
+      ])
+    if (r.result.count) {
+      r.result.titles_loop.forEach((title) => {
+        this.tracks.push(title);
+      });
+    }
   }
 
   async getAlbumTracks(albumID) {
     if (! Object.keys(this.albums).includes(albumID)) await this.getAlbumFromID(albumID)
-    return new Promise( (resolve) => {
-      if (this.albums[albumID].tracks) {
-        resolve(this.albums[albumID].tracks)
-      }
-      this.LMS.request(
+    if (this.albums[albumID].tracks) {
+      return this.albums[albumID].tracks
+    }
+    const r = await this.LMS.request(
+      [
+        "",
         [
-          "",
-          [
-            "titles",
-            "0",
-            "500",
-            "album_id:" + albumID,
-            "sort:tracknum",
-            "tags:**t****o****l****i****e****d**",
-          ],
+          "titles",
+          "0",
+          "500",
+          "album_id:" + albumID,
+          "sort:tracknum",
+          "tags:**t****o****l****i****e****d**",
         ],
-        (r) => {
-          // console.log("getAlbumTracks:", r)
-          this.albums[albumID].tracks = r.result.titles_loop
-          resolve(r.result.titles_loop);
-        }
-      );
-    })
+      ])
+    // console.log("getAlbumTracks:", r)
+    this.albums[albumID].tracks = r.result.titles_loop
+    return r.result.titles_loop;
   }
 
-  allAlbums(callback) {
-    this.LMS.request(["", ["albums", "0", "10000", "tags:lj**a**"]], (r) => {
-      r.result.albums_loop.forEach((album) => {
-        album = assignAlbumArt(album)
-        this.albums[album.id] = album;
-      });
-      callback(r.result.albums_loop || []);
+  async allAlbums(callback) {
+    const r = await this.LMS.request(["", ["albums", "0", "10000", "tags:lj**a**"]])
+    r.result.albums_loop.forEach((album) => {
+      album = assignAlbumArt(album)
+      this.albums[album.id] = album;
     });
+    callback(r.result.albums_loop || []);
   }
 
   async getAlbumFromID(albumID, callback) {
-    return new Promise( (resolve) => { 
-      if (albumID) {
-        this.LMS.request(
-          [
-            "",
-            ["albums",
-              "0",
-              "100",
-              "album_id:" + albumID.toString(),
-              "tags:ljaSt"],
-          ],
-          (r) => {
-            if (r.result.albums_loop) {
-              const firstResult = r.result.albums_loop[0]
-              firstResult = assignAlbumArt(firstResult)
-              this.albums[albumID] = firstResult
-              // console.log("getAlbumFromID", firstResult)
-              resolve(firstResult);
-            }
-          });
+    if (albumID) {
+      const r = await this.LMS.request(
+        [
+          "",
+          ["albums",
+            "0",
+            "100",
+            "album_id:" + albumID.toString(),
+            "tags:ljaSt"],
+        ]);
+      if (r.result.albums_loop) {
+        const firstResult = r.result.albums_loop[0]
+        firstResult = assignAlbumArt(firstResult)
+        this.albums[albumID] = firstResult
+        // console.log("getAlbumFromID", firstResult)
+        return firstResult;
       }
-    })
+    }
   }
 
   getAlbumFromTrackID(TrackID, callback) {
@@ -185,27 +160,21 @@ class LMSLibrary {
     return { searchResultsTracks, searchResultsAlbums };
   }
 
-  searchAlbums(searchString) {
-    return new Promise( (resolve) => {
-      this.LMS.request(
-      ["", ["albums", "0", "100", "search:" + searchString, "tags:ljaS"]],
-      (r) => {
-        let albums = [] 
-        if (r?.result?.albums_loop) {
-          r.result.albums_loop.map( (album) => {
-            album = assignAlbumArt(album)
-            this.albums[album.id] = album
-            albums.push(album)
-          }) 
-        }
-        resolve(albums || []);
-      })
-    });
+  async searchAlbums(searchString) {
+    const r = await this.LMS.request(["", ["albums", "0", "100", "search:" + searchString, "tags:ljaS"]]);
+    let albums = [] 
+    if (r?.result?.albums_loop) {
+      r.result.albums_loop.map( (album) => {
+        album = assignAlbumArt(album)
+        this.albums[album.id] = album
+        albums.push(album)
+      }) 
+    }
+    return albums || [];
   }
 
-  searchTracks(searchString, callback) {
-    return new Promise( (resolve) => { 
-      this.LMS.request(
+  async searchTracks(searchString, callback) {
+    const r = await this.LMS.request(
         [
           "",
           [
@@ -215,26 +184,17 @@ class LMSLibrary {
             "search:" + searchString,
             "tags:id**e****o****t****m****u****a****l****J**",
           ],
-        ],
-        (r) => {
-          resolve(r.result.titles_loop || []);
-        })
-    })
+        ])
+    return r.result.titles_loop || [];
   }
 
   async searchContributors(searchString, callback) {
-    return new Promise( (resolve) => {
-      this.LMS.request(
-        ["", ["artists", "0", "100", "search:" + searchString]],
-        (r) => {
-          resolve(r.result.artists_loop || []);
-        })
-    })
+    const r = await this.LMS.request(["", ["artists", "0", "100", "search:" + searchString]])
+    return r.result.artists_loop || [];
   }
 
   async searchTracksByArtist(artist_id, callback) {
-    return new Promise( (resolve) => {
-      this.LMS.request(
+    const r = await this.LMS.request(
         [
           "",
           [
@@ -244,25 +204,20 @@ class LMSLibrary {
             "artist_id:" + artist_id,
             "tags:id**e****o****t****m****u****a****l****e**",
           ],
-        ],
-        (r) => { resolve(r.result) }
-      );
-    })
+        ])
+    return r.result
   }
 
-  searchAlbumsByArtist(artist_id, callback) {
-    return new Promise ( (resolve) => {
-        this.LMS.request([
+ async searchAlbumsByArtist(artist_id, callback) {
+    const r = await this.LMS.request([
           "", 
           [
             "albums",
             "0",
             "100",
             "artist_id:" + artist_id,
-            "tags:idjtla"]],
-        (r) => {
-         resolve(r.result) });
-    });
+            "tags:idjtla"]])
+     return r.result
   }
 
   getPlaylists(callback) {
