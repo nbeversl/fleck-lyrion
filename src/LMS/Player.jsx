@@ -23,24 +23,19 @@ class Player {
       this.playing = false;
     };
 
-    this.playTrack = (track) => {
+    this.playTrack = async (track) => {
         
       this.isLoading = true
-      this.LMS.request([this.address, ["playlist", "clear"]], (r) => {
-        this.LMS.request(
-          [
+      await this.LMS.request([this.address, ["playlist", "clear"]])
+      const r = await this.LMS.request([
             this.address,
             ["playlistcontrol", "cmd:add", "track_id:" + track.id.toString()],
-          ],
-          (r) => {
-            this.LMS.request([this.address, ["play"]]);
-            this.playing = true;
-            this.trackSelected = true;
-            this.isLoading = false
-          }
-        );
-      });
-    };
+          ])
+      this.LMS.request([this.address, ["play"]]);
+      this.playing = true;
+      this.trackSelected = true;
+      this.isLoading = false
+    }
 
     this.addTrack = (id) => {
       this.LMS.request([
@@ -65,10 +60,9 @@ class Player {
       );
     };
 
-    this.getVolume = () => {
-      this.LMS.request([this.address, ["mixer", "volume", "?"]], (r) => {
-        this.volume = parseInt(r.result._volume);
-      });
+    this.getVolume = async () => {
+      const r = await this.LMS.request([this.address, ["mixer", "volume", "?"]])
+      this.volume = parseInt(r.result._volume);
     };
 
     this.playAlbumFromTrackAndContinue = async (track, startNumber) => {
