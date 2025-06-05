@@ -33,7 +33,12 @@ const Album = ({
   const [discs, setDiscs] = useState<Record<string, any[]> | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [thisAlbum, setAlbum] = useState<AlbumType | null>(null);
-
+  
+  useEffect( () => {
+    if (!album && getFromId) getAlbumFromId()
+    else setAlbum(album)
+  }, [])
+  
   useEffect(() => {
     if (thisAlbum && getFromId && album && thisAlbum.id != getFromId) getAlbumFromId(); 
     else if (! thisAlbum || (album && thisAlbum.id != album.id)) setAlbum(album);
@@ -44,8 +49,8 @@ const Album = ({
   },[modalOpen])
 
   const getAlbumFromId = async () => {
-    const thisAlbum = await library.getAlbumFromID(getFromId)
-    setAlbum(thisAlbum);
+    const albumFromLibrary = await library.getAlbumFromID(getFromId)
+    setAlbum(albumFromLibrary);
   }
 
   const getMyTracks = async () => {
@@ -90,8 +95,6 @@ const Album = ({
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
   };
-
-  if (!album && getFromId) getAlbumFromId()
   
   return (
     <div className="album">
