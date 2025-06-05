@@ -3,6 +3,7 @@ const path = require("path");
 module.exports = {
   entry: "./src/index.jsx",
   output: {
+    path: path.resolve(__dirname, "./FleckSkin/HTML/Fleck"),
     filename: "main.js",
   },
   resolve: {
