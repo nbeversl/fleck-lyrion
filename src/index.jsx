@@ -137,7 +137,7 @@ class MediaApp extends React.Component {
       const targetPlayer = playerName
     } else {
       const playerInstance = this.getBrowserPlayer()
-      const targetPlayer = "Browser"
+      const targetPlayer = "Browser (this device)"
     }
     this.setState({
       targetPlayer: targetPlayer,
