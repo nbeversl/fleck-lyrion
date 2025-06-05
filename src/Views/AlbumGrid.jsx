@@ -1,13 +1,11 @@
 import * as React from "react";
 import { Album } from "../Album/Album";
 import { GestureDetector } from "react-onsenui";
-import { Responsive, WidthProvider } from "react-grid-layout";
 
 class AlbumGrid extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      shuffledAlbums: [],
       order: [],
       lastPinch: new Date().getTime(),
       layout: null,
@@ -46,9 +44,7 @@ class AlbumGrid extends React.PureComponent {
 
   makeLayout(order) {
     var albumDict = makeAlbumDict(this.props.albumList);
-    if (!order) {      
-      var order = Object.keys(albumDict);
-    }
+    if (!order) order = Object.keys(albumDict);
     let albums = []
     let keys = []
     let suffix = 1;
@@ -96,7 +92,6 @@ class AlbumGrid extends React.PureComponent {
   }
 
   render() {
-    const ResponsiveGridLayout = WidthProvider(Responsive);
     return (
       <div className={`main-album-grid ${this.props.theme}`}>
         {this.state.albums ? (
