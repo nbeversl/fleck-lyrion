@@ -37,4 +37,6 @@ Add [https://raw.githubusercontent.com/nbeversl/lyrion-repo/refs/heads/main/repo
 
 ## Issues
 
-Post issues at https://github.com/nbeversl/fleck-theme/issues
+There is a support thread at https://forums.lyrion.org/forum/user-forums/general-discussion/1768283-fleck-theme-frontend-for-lms
+
+Issues may also be posted at https://github.com/nbeversl/fleck-theme/issues
