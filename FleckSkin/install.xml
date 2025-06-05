@@ -2,7 +2,7 @@
 <extensions>
 	<name>PLUGIN_FLECK</name>
 	<module>Plugins::Fleck::Plugin</module>
-	<version>0.0.74</version>
+	<version>0.0.75</version>
 	<description>PLUGIN_FLECK_DESC</description>
 	<creator>NB</creator>
 	<homepageURL>https://github.com/nbeversl/fleck</homepageURL>
