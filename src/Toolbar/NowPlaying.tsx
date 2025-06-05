@@ -1,7 +1,7 @@
 import { Album } from "../Album/Album";
 import { LMSLibrary } from "../LMS/Library"; 
 import AlbumType from "../types/AlbumType.tsx";
-import ExtendedMetadata from "../Metadata/ExtendedMetadata";
+// import ExtendedMetadata from "../Metadata/ExtendedMetadata";
 import { Range } from "react-onsenui";
 import { useEffect, useState } from "react";
 
