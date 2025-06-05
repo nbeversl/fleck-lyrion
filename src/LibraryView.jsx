@@ -39,7 +39,6 @@ class LibraryView extends React.Component {
     if (this.props.view != this.state.view) this.setState({ view: this.props.view })
     if (this.props.playerInstance && 
       (this.props.playerInstance.playing != this.state.isPlaying)) {
-      console.log("NOW SETTING STATE FROM PLAUYER TO", this.props.playerInstance.playing)
       this.setState({ isPlaying: this.props.playerInstance.playing });
       }
   }
