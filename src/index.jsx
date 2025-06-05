@@ -40,12 +40,6 @@ class MediaApp extends React.Component {
 
   componentDidMount() {
     this.establishLibrary()
-    const themeSetting = /theme=[^;]+/;
-    let cookie = document.cookie;
-    let theme = cookie.match(themeSetting);
-    if (theme) theme = theme[0].replace("theme=", "");
-    else theme = "dark-theme";
-    this.setTheme(theme);
     if (window.screen.width < 450) this.setState({columns: 2})
   }
 
@@ -61,6 +55,12 @@ class MediaApp extends React.Component {
   }
 
   async getSavedState() {
+    const themeSetting = /theme=[^;]+/;
+    let cookie = document.cookie;
+    let theme = cookie.match(themeSetting);
+    if (theme) theme = theme[0].replace("theme=", "");
+    else theme = "dark-theme";
+    this.setTheme(theme);
     const selectedGenre = localStorage.getItem("selectedGenre")
     const selectedPlayer = localStorage.getItem("selectedPlayer")
     if (selectedGenre !== 'null' && selectedGenre != null ) await this.handleGenreChange(selectedGenre)
@@ -145,12 +145,12 @@ class MediaApp extends React.Component {
       playerSelectOpen: false,
       }, () => { 
         this.closePlayerSelect();
+        localStorage.setItem("selectedPlayer", playerName);
         if (this.resolvePlayerSelection) {
           this.resolvePlayerSelection(this.state.playerInstance);
           this.resolvePlayerSelection = null;
         }
-        localStorage.setItem("selectedPlayer", playerName);
-      });
+    });
   }
 
   offerPlayerSelect() {
@@ -216,9 +216,7 @@ class MediaApp extends React.Component {
   }
 
   setColumns(columns) {
-    if (10 > columns > 0) {
-      this.setState({ columns: columns });
-    }
+    if (10 > columns > 0) this.setState({ columns: columns });
   }
 
   revealToolbar() {

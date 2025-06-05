@@ -16,17 +16,9 @@ class LibraryView extends React.Component {
       lastScroll: new Date().getTime(),
     };
   }
-  async handleAlbumChange(id, name) {
-    const trackList = await this.props.playerInstance.getAlbumTracks(id)
-    this.setState({ trackList: trackList });
-    this.setState({ albumSelected: name });
-    this.setState({ albumSelectedID: id });
-  }
 
   playOrPause() {
-    if (this.props.playerInstance) {
-        this.props.playerInstance.playOrPause();
-      }
+    if (this.props.playerInstance) this.props.playerInstance.playOrPause();
     // for UI only; the player instance will update this if it is wrong
     this.setState({ isPlaying : ! this.state.isPlaying }) 
   }
@@ -39,9 +31,7 @@ class LibraryView extends React.Component {
     this.setState({ isPlaying: this.props.playerInstance?.playing })
   }
   componentDidUpdate() {
-    if (this.props.view != this.state.view) {
-      this.setState({ view: this.props.view });
-    }
+    if (this.props.view != this.state.view) this.setState({ view: this.props.view })
     if (this.props.playerInstance && 
       (this.props.playerInstance.playing != this.state.isPlaying)) {
       this.setState({ isPlaying: this.props.playerInstance?.playing });
@@ -52,31 +42,28 @@ class LibraryView extends React.Component {
       <Page onScroll={this.handleScroll.bind(this)}>
         {this.state.view == "grid" && this.props.genreSelected && 
           <AlbumGrid
-              albumList={this.props.library.genres[this.props.genreSelected].albums}
-              hideToolbar={this.props.hideToolbar}
-              genre={this.props.genreSelected}
-              play={this.props.play}
-              clickHandler={this.handleAlbumChange}
-              playerInstance={this.props.playerInstance}
-              library={this.props.library}
-              offerPlayerSelect={this.props.offerPlayerSelect}
-              orderType={this.props.orderType}
-              columns={this.props.columns}
-              setColumns={this.props.setColumns}
-              theme={this.props.theme}
-            />
+            albumList={this.props.library.genres[this.props.genreSelected].albums}
+            hideToolbar={this.props.hideToolbar}
+            play={this.props.play}
+            playerInstance={this.props.playerInstance}
+            library={this.props.library}
+            offerPlayerSelect={this.props.offerPlayerSelect}
+            orderType={this.props.orderType}
+            columns={this.props.columns}
+            setColumns={this.props.setColumns}
+            theme={this.props.theme}
+          />
           }
 
         {this.state.view == "search"  &&
           <SearchResults
-            screenWidth={this.props.screenWidth}
             searchResultsAlbums={this.props.searchResultsAlbums}
             searchResultsTracks={this.props.searchResultsTracks}
-            library={this.props.library}
-            play={this.props.play}
             hideToolbar={this.props.hideToolbar}
-            offerPlayerSelect={this.props.offerPlayerSelect}
+            play={this.props.play}
             playerInstance={this.props.playerInstance}
+            library={this.props.library}
+            offerPlayerSelect={this.props.offerPlayerSelect}
             columns={this.props.columns}
             setColumns={this.props.setColumns}
             theme={this.props.theme}
