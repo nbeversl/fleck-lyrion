@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import AlbumGrid from "./Views/AlbumGrid";
 import SearchResults from "./Views/SearchResults";
 import { Page, ToolbarButton } from "react-onsenui";
@@ -12,16 +12,19 @@ class LibraryView extends React.Component {
     super(props);
     this.state = {
       view: null,
-      isPlaying: false,
+      isPlaying: null,
       lastScroll: new Date().getTime(),
     };
   }
 
-  playOrPause() {
-    if (this.props.playerInstance) this.props.playerInstance.playOrPause();
-    // for UI only; the player instance will update this if it is wrong
-    this.setState({ isPlaying : ! this.state.isPlaying }) 
+  async playOrPause() {
+    if (this.props.playerInstance) {
+      // for UI only; the player instance will update this if it is wrong
+      await this.props.playerInstance.playOrPause();
+      this.setState({ isPlaying : ! this.state.isPlaying }) 
+    }
   }
+
   handleScroll() {
     this.props.hideToolbar()
   }
@@ -30,11 +33,14 @@ class LibraryView extends React.Component {
     this.setState({ view: this.props.view });
     this.setState({ isPlaying: this.props.playerInstance?.playing })
   }
+
   componentDidUpdate() {
+
     if (this.props.view != this.state.view) this.setState({ view: this.props.view })
     if (this.props.playerInstance && 
       (this.props.playerInstance.playing != this.state.isPlaying)) {
-      this.setState({ isPlaying: this.props.playerInstance?.playing });
+      console.log("NOW SETTING STATE FROM PLAUYER TO", this.props.playerInstance.playing)
+      this.setState({ isPlaying: this.props.playerInstance.playing });
       }
   }
   render() {

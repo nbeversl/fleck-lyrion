@@ -25,12 +25,13 @@ class PlayerControls extends React.Component {
 
   componentDidUpdate() {
     if (this.props.playerInstance && 
-      (this.props.playerInstance.playing != this.state.isPlaying)) {
+      (this.props.playerInstance.playing !== this.state.isPlaying)) {
       this.setState({ isPlaying: this.props.playerInstance.playing });
       }
   }
 
   async playOrPause() {
+
     if (this.props.playerInstance) {
       // for UI only; the player instance will update this if it is wrong
       this.setState({ isPlaying : ! this.state.isPlaying }) 
